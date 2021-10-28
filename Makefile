@@ -1,5 +1,5 @@
 SRCS=\
-			project/src/main.c
+			project/src/date.cpp \
 
 HDRS_DIR=project/include
 
