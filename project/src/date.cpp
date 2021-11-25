@@ -3,6 +3,10 @@
 #include <time.h>
 #include <string>
 #include <iomanip>
+#include <set>
+#include <bitset>
+
+#include "date.h"
 
 class Date {
     private:
@@ -18,7 +22,6 @@ class Date {
         Date() {
             time_t t = time(NULL);
             struct tm *time = localtime(&t);
-            std::stringstream s;
             day = time->tm_mday;
             month = time->tm_mon + 1;
             year = time->tm_year + 1900;
@@ -29,6 +32,10 @@ class Date {
 
         void PrintDate() {
             std::cout << GetDay() << "." << GetMonth() << "." << GetYear() << "\n";
+        }
+
+        Date GetStringDate() {
+            
         }
 };
 
@@ -49,16 +56,11 @@ int main(void) {
     std::cin >> str;
     std::stringstream s;
     s << str;
+    printf("%s", "чтение введенной даты\n");
     Date date = ReadDate(s);
     Date date2 = Date();
     date.PrintDate();
+    printf("%s", "определение сегодняшней даты по умолчанию\n");
     date2.PrintDate();
-    // time_t t = time(NULL);
-    // struct tm *time = localtime(&t);
-    // std::stringstream s;
-    // s << std::setfill('0');
-    // s << std::setw(2) << time->tm_mday << "." << std::setw(2) << time->tm_mon << "." << std::setw(4) << time->tm_year + 1900 << "\n";
-    // Date date = ReadDate(s);
-    // date.PrintDate();
     return 0;
 }
