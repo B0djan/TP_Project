@@ -1,5 +1,8 @@
 SRCS=\
-			project/src/event.cpp \
+		project/src/day.cpp \
+		project/src/time.cpp \
+		project/src/date.cpp \
+		project/src/event.cpp 
 
 HDRS_DIR=project/include
 

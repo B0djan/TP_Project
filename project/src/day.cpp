@@ -1,30 +1,60 @@
 #include <stdio.h>
-#include "date.h"
+#include <assert.h>
 
-//{"user_id, "event(_name), "date", begin, end,}
+#include "date.h"
+#include "time.h"
+#include "day.h"
+
+#define TIME_INTERVAL 12
 
 class Day {
-    enum { BITS = 8 * sizeof(unsigned char) }; //96 бит, 12 чанков
-    enum {NUMBER_CHANKS = 12};
 public:
-    Day() /*создать класс*/ {
-
+    enum { BITS = sizeof(unsigned char)};
+    Day() {
+        storage = new unsigned char[TIME_INTERVAL];
+        flag_storage = new unsigned char[TIME_INTERVAL];
+        unsigned char size = TIME_INTERVAL * BITS;
     }
-    void add_event() {
-
+    ~Day() {
+        delete [] storage;
+        delete [] flag_storage;
     }
-    void delite_event() {
 
-    } 
-
+    void insert(Time& begin, Time& end, unsigned char time_interval, bool flag) { // если можно двигать то flag = true;
+        //assert(time_interval < size);
+        storage[time_interval / BITS] |= ((unsigned char)1 << (time_interval % BITS));
+        if (flag)
+            flag_storage[time_interval / BITS] |= ((unsigned char)1 << (time_interval % BITS));
+        else (flag_storage[time_interval / BITS] &= ~((unsigned char)1 << (time_interval % BITS)));
+    }
+    void erase(unsigned char time_interval) {
+        //assert(elem < size);
+        storage[time_interval / BITS] &= ~((unsigned char)1 << (time_interval % BITS));
+        flag_storage[time_interval / BITS] &= ~((unsigned char)1 << (time_interval % BITS));
+    }
+    // bool in(size_t elem) {
+    //     //assert(elem < size);
+    //     return storage[elem / BITS] >> (elem % BITS) & 1;
+    // }
 private:
-    unsigned char* storage = nullptr;
+    unsigned char *storage = nullptr;
+    unsigned char *flag_storage = nullptr;
+};
 
-    size_t size = BITS * NUMBER_CHANKS;
-
-    /*на size_t поместится 64 числа, а надо 96, поэтому
-    придется использовать объект состоящий из нескольких
-    типов. 96 бит/8 бит = 12 чанков. 8 бит - unsigned char*/
-
- }
- 
+int main() {
+    // myset s(1000);
+    // for (size_t i = 0; i < 10; i++) {
+    //     s.insert(i);
+    // }
+    // for (size_t i = 0; i < 20; i += 2) {
+    //     if (s.in(i)) {
+    //         printf("%zu found\n", i);
+    //     }
+    // }
+    
+    // s.erase(5);
+    // if (s.in(5)) {
+    //     printf("OOPS: %zu must not be in set\n", (size_t)5);
+    // }
+    // return 0;
+}
