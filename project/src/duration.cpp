@@ -1,17 +1,16 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-#include <iomanip>
 
 #include "time.h"
 
-class Time {
+class Duration {
 private:
     int hour;
     int min;
 
 public:
-    Time(const std::string& time) {
+    Duration(const std::string& time) {
         std::stringstream stream(time);
         int h, m = 0;
         stream >> h;
@@ -22,19 +21,13 @@ public:
         min = total % 60;
     }
 
-    unsigned char GetTimeInterval(Time& t) {
+    unsigned char GetTimeInterval() {
         int total = hour * 60 * min;
         return (unsigned char)(total / 15 + 1);
     }
 
-    void PrintTime() {
+    void PrintDuration() {
         std::cout << hour << ":";
         std::cout << min << std::endl;
     }
 };
-
-int main() {
-    std::string str = "10:15";
-    Time t = {str};
-    t.PrintTime();
-}

@@ -1,19 +1,19 @@
+#pragma once
+
 #include <string>
 #include <map>
 
 #include "user.h"
 #include "day.h"
 
-using namespace std;
-
 class Group {
 private:
-    string group_id;
-    map <int, User> map;
+    std::string group_id;
+    std::map <int, User> group_map;
     Day day;
 public:
     Group();
-
+    
     Group AddUser();
 
     Group DeleteUser();

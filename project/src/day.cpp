@@ -2,7 +2,7 @@
 #include <assert.h>
 
 #include "date.h"
-#include "time.h"
+#include "duration.h"
 #include "day.h"
 #include "group.h"
 
@@ -21,31 +21,40 @@ public:
         delete [] flag_storage;
     }
 
-    Day GetFreeTime(Group group) {
+    // Day GetFreeTime(map <int, User> m /*group.m*/) {
+    //     for (auto item: m) {
+    //     }  
+    // }
 
-    }
-
-    void insert(Time& begin_time, Time& end_time, bool flag) {
+    void InsertEvent(Duration& begin_time, Duration& end_time, bool flag) {
         // если можно двигать то flag = true;
         //assert(time_interval < size);
         char begin = begin_time.GetTimeInterval();
         char end = end_time.GetTimeInterval();
+
         while (begin < end) {
             storage[begin / BITS] |= ((unsigned char)1 << (begin % BITS));
-            if (flag)
+
+            if (flag) {
                 flag_storage[begin / BITS] |= ((unsigned char)1 << (begin % BITS));
-            else (flag_storage[begin / BITS] &= ~((unsigned char)1 << (begin % BITS)));
+            } else {
+                (flag_storage[begin / BITS] &= ~((unsigned char)1 << (begin % BITS)));
+            }
+
             begin ++;
         }
     }
 
-    void erase(Time& begin_time, Time& end_time, bool flag) {
+    void EraseEvent(Duration& begin_time, Duration& end_time, bool flag) {
         //assert(elem < size);
         char begin = begin_time.GetTimeInterval();
         char end = end_time.GetTimeInterval();
+
         while (begin < end) {
             storage[begin / BITS] &= ~((unsigned char)1 << (begin % BITS));
             flag_storage[begin / BITS] &= ~((unsigned char)1 << (begin % BITS));
+            
+            begin++;
         }
     }
 
@@ -59,6 +68,8 @@ private:
 };
 
 int main() {
+
+
     // myset s(1000);
     // for (size_t i = 0; i < 10; i++) {
     //     s.insert(i);

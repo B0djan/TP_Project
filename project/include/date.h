@@ -11,16 +11,11 @@ class Date {
         Date(int& new_day, int& new_month, int& new_year);
 
         Date GetDate(std::string& date_string);
+        Date GetStringDate();
 
-        int GetDay() const {return day;}
-        int GetMonth() const {return month;}
-        int GetYear() const {return year;}
+        int GetDay();
+        int GetMonth();
+        int GetYear();
 
-        void PrintDate() {
-            std::cout << GetDay() << "." << GetMonth() << "." << GetYear() << "\n";
-        }
-
-        Date GetStringDate() {
-            
-        }
+        void PrintDate();
 };
