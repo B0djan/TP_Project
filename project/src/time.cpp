@@ -21,10 +21,10 @@ public:
         hour = total / 60;
         min = total % 60;
     }
-    
-    unsigned char TimeInterval(Time& t) {
+
+    unsigned char GetTimeInterval(Time& t) {
         int total = hour * 60 * min;
-        return (unsigned char)(total / 15);
+        return (unsigned char)(total / 15 + 1);
     }
 
     void PrintTime() {

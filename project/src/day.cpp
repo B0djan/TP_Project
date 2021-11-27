@@ -4,34 +4,51 @@
 #include "date.h"
 #include "time.h"
 #include "day.h"
+#include "group.h"
 
-#define TIME_INTERVAL 12
+#define NUMBER_INTERVAL 12
 
 class Day {
 public:
-    enum { BITS = sizeof(unsigned char)};
+    enum { BITS = sizeof(unsigned char) };
     Day() {
-        storage = new unsigned char[TIME_INTERVAL];
-        flag_storage = new unsigned char[TIME_INTERVAL];
-        unsigned char size = TIME_INTERVAL * BITS;
+        storage = new unsigned char[NUMBER_INTERVAL];
+        flag_storage = new unsigned char[NUMBER_INTERVAL];
+        unsigned char size = NUMBER_INTERVAL * BITS;
     }
     ~Day() {
         delete [] storage;
         delete [] flag_storage;
     }
 
-    void insert(Time& begin, Time& end, unsigned char time_interval, bool flag) { // если можно двигать то flag = true;
+    Day GetFreeTime(Group group) {
+
+    }
+
+    void insert(Time& begin_time, Time& end_time, bool flag) {
+        // если можно двигать то flag = true;
         //assert(time_interval < size);
-        storage[time_interval / BITS] |= ((unsigned char)1 << (time_interval % BITS));
-        if (flag)
-            flag_storage[time_interval / BITS] |= ((unsigned char)1 << (time_interval % BITS));
-        else (flag_storage[time_interval / BITS] &= ~((unsigned char)1 << (time_interval % BITS)));
+        char begin = begin_time.GetTimeInterval();
+        char end = end_time.GetTimeInterval();
+        while (begin < end) {
+            storage[begin / BITS] |= ((unsigned char)1 << (begin % BITS));
+            if (flag)
+                flag_storage[begin / BITS] |= ((unsigned char)1 << (begin % BITS));
+            else (flag_storage[begin / BITS] &= ~((unsigned char)1 << (begin % BITS)));
+            begin ++;
+        }
     }
-    void erase(unsigned char time_interval) {
+
+    void erase(Time& begin_time, Time& end_time, bool flag) {
         //assert(elem < size);
-        storage[time_interval / BITS] &= ~((unsigned char)1 << (time_interval % BITS));
-        flag_storage[time_interval / BITS] &= ~((unsigned char)1 << (time_interval % BITS));
+        char begin = begin_time.GetTimeInterval();
+        char end = end_time.GetTimeInterval();
+        while (begin < end) {
+            storage[begin / BITS] &= ~((unsigned char)1 << (begin % BITS));
+            flag_storage[begin / BITS] &= ~((unsigned char)1 << (begin % BITS));
+        }
     }
+
     // bool in(size_t elem) {
     //     //assert(elem < size);
     //     return storage[elem / BITS] >> (elem % BITS) & 1;
