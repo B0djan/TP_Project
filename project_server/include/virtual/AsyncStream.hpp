@@ -23,4 +23,7 @@ public:
     virtual void write(char* const buf, size_t count, Cb) = 0;
 };
 
-class AsyncIOStream: virtual public AsyncInputStream, virtual public AsyncOutputStream {};
+class AsyncIOStream:
+        virtual public AsyncInputStream,
+        virtual public AsyncOutputStream
+        {};

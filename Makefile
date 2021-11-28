@@ -1,19 +1,23 @@
 TARGET = ./HttpServer
 
+IP = 127.0.0.1
+
 PORT = 8080
 
 HDRS_DIR = \
- 	   project*/include/*/*.hpp
+ 	   project*/include
 
 SRCS = \
        project*/src/*.cpp
 
-.PHONY: all build rebuild check clean launch
+CC = g++
 
-all: clean check
+CFLAGS = -lmagic
+
+.PHONY: build rebuild check clean launch
 
 build:
-	g++ -I $(HDRS_DIR) -lmagic $(SRCS) -o $(TARGET)
+	$(CC) $(CFLAGS) -I $(HDRS_DIR) -o $(TARGET) $(SRCS)
 
 rebuild: clean build
 
@@ -21,7 +25,7 @@ check:
 	./linters/run_linters.sh
 
 launch:
-	./HttpServer 127.0.0.1 $(PORT)
+	./HttpServer $(IP) $(PORT)
 
 clean:
 	rm -rf $(TARGET)
