@@ -14,9 +14,9 @@ class Date {
         Date GetDate(std::string& date_string);
         Date GetStringDate();
 
-        int GetDay();
-        int GetMonth();
-        int GetYear();
+        int GetDay() const;
+        int GetMonth() const;
+        int GetYear() const;
 
         void PrintDate();
 };

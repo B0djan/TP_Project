@@ -1,25 +1,23 @@
-SRCS=\
-		project/src/date.cpp \
-		project/src/day.cpp \
-		project/src/duration.cpp \
-		project/src/event.cpp \
-		project/src/group.cpp
+TARGET = ./main.out
+HDRS = project/include
 
-HDRS_DIR=project/include
+SRCS = \
+	   project/src/date.cpp \
+       project/src/day.cpp \
+	   project/src/duration.cpp \
+	   project/src/event.cpp \
+	   project/src/group.cpp
 
-CC=g++
-#CFLAGS =-Iinclude
-PRNAME=program
+.PHONY: all build rebuild clean
 
-$(PRNAME):
-	$(CC) -I $(HDRS_DIR) -o $(PRNAME) $(SRCS)
+all: clean build
 
-build: $(PRNAME)
+build: $(TARGET)
+
+rebuild: clean build
+
+$(TARGET): $(SRCS)
+	$(CC) -Wall -Wextra -Werror $(addprefix -I,$(HDRS)) -o $(TARGET) $(CFLAGS) $(SRCS)
 
 clean:
-	rm -f $(PRNAME)
-
-test: build
-	./$(PRNAME)
-
-.PHONY: clean test build btest all
+	rm -f $(TARGET)

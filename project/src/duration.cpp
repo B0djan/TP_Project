@@ -1,12 +1,5 @@
 #include "duration.h"
 
-class Duration {
-private:
-    int hour;
-    int min;
-
-public:
-
     Duration::Duration(unsigned char& t) {
         unsigned char total = t * 15;
         hour = total / 60;
@@ -33,4 +26,3 @@ public:
         std::cout << hour << ":";
         std::cout << min << std::endl;
     }
-};

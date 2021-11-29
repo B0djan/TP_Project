@@ -10,7 +10,9 @@ private:
     int min;
 
 public:
-    Duration(std::string& time);
+    Duration(unsigned char& t);
+    
+    Duration(const std::string& time);
     
     unsigned char GetTimeInterval();
 

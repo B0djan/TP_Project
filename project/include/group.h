@@ -14,14 +14,16 @@ private:
 public:
     Group();
 
+    std::map <int, User> GetMap() const;
+
     unsigned char* GetStorage();
     unsigned char* Flag_storage();
 
-    Group AddUser();
+    void AddUser(User& user);
 
-    Group DeleteUser();
+    void DeleteUser(User& user);
 
-    int Size();
+    void GetFreeTime(Group& group);
 
-    Group GetGropup();
+    int Size() const;
 };
