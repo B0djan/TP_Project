@@ -1,31 +1,24 @@
-TARGET = ./HttpServer
+TARGET = HttpServer
 
 IP = 127.0.0.1
 
 PORT = 8080
 
-HDRS_DIR = \
- 	   project*/include
 
-SRCS = \
-       project*/src/*.cpp
+.PHONY: all build rebuild check clean launch
 
-CC = g++
-
-CFLAGS = -lmagic
-
-.PHONY: build rebuild check clean launch
+all: rebuild check
 
 build:
-	$(CC) $(CFLAGS) -I $(HDRS_DIR) -o $(TARGET) $(SRCS)
+	./build.sh
 
 rebuild: clean build
 
 check:
 	./linters/run_linters.sh
 
-launch:
-	./HttpServer $(IP) $(PORT)
-
 clean:
-	rm -rf $(TARGET)
+	rm -rf build
+
+launch:
+	./$(TARGET) $(IP) $(PORT)
