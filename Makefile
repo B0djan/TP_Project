@@ -2,7 +2,7 @@ TARGET = HttpServer
 
 IP = 127.0.0.1
 
-PORT = 9999
+PORT = 8080
 
 
 .PHONY: all build rebuild check clean launch
