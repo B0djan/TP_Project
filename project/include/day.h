@@ -15,6 +15,10 @@ public:
     Day();
     ~Day();
 
+    void UnionDays(Day& aded_day);
+
+    void InvertDay(Day& busy_day);
+
     void InsertEvent(Duration& begin_time, Duration& end_time, bool flag);
 
     void EraseEvent(Duration& begin_time, Duration& end_time, bool flag);

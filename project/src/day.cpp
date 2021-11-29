@@ -3,6 +3,10 @@
 #define NUMBER_INTERVAL 12
 
 class Day {
+private:
+    unsigned char *storage = nullptr;
+    unsigned char *flag_storage = nullptr;
+
 public:
     enum { BITS = sizeof(unsigned char) };
     Day::Day() {
@@ -15,21 +19,19 @@ public:
         delete [] flag_storage;
     }
 
-    #define CODE 0;
+    unsigned char* Day::GetStorage() const { return storage; }
+    unsigned char* Day::Flag_storage() const { return flag_storage; }
 
-    int compare (unsigned char day1, unsigned char day2, 
-                 unsigned char* free_time_day) {
-
-        unsigned char busy_time_day = day1 | day2; //...
-
-        *free_time_day = ~busy_time_day;
-    
-        return CODE;
+    void Day::UnionDays(Day& aded_day) {
+        for (unsigned char i = 0; i ++; i < NUMBER_INTERVAL) {
+            storage[i] |= aded_day.GetStorage()[i];  
+        };       
     }
 
-    Day GetFreeTime(std::map <int, User> m /*group.m*/) {
-        for (auto item: m) {
-        }  
+    void Day::InvertDay(Day& busy_day) {
+        for (unsigned char i = 0; i ++; i < NUMBER_INTERVAL) {
+            storage[i] = ~busy_day.GetStorage()[i];  
+        };       
     }
 
     void Day::InsertEvent(Duration& begin_time, Duration& end_time, bool flag) {
@@ -67,18 +69,15 @@ public:
         char begin = begin_time.GetTimeInterval();
         char end = end_time.GetTimeInterval();
 
-        bool unswer = true;
+        bool answer = true;
 
         while (begin < end) {
-            unswer = bool(storage[begin / BITS] >> (begin % BITS) & 1);
+            answer = bool(storage[begin / BITS] >> (begin % BITS) & 1);
         }
-        return unswer;
+        return answer;
     }
-private:
-    unsigned char *storage = nullptr;
-    unsigned char *flag_storage = nullptr;
-};
 
+};
     //int main() {
 
 

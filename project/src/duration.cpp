@@ -6,6 +6,13 @@ private:
     int min;
 
 public:
+
+    Duration::Duration(unsigned char& t) {
+        unsigned char total = t * 15;
+        hour = total / 60;
+        min = total % 60;
+    }
+
     Duration::Duration(const std::string& time) {
         std::stringstream stream(time);
         int h, m = 0;

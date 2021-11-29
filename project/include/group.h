@@ -13,7 +13,10 @@ private:
     Day day;
 public:
     Group();
-    
+
+    unsigned char* GetStorage();
+    unsigned char* Flag_storage();
+
     Group AddUser();
 
     Group DeleteUser();
