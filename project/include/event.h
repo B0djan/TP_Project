@@ -1,5 +1,12 @@
 #pragma once
 
+#include <iostream>
+#include <nlohmann/json.hpp>
+#include <sstream>
+
+#include "date.h"
+#include "time.h"
+
 class Event {
     size_t user_id = 0;
     std::string event = "";

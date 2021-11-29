@@ -1,9 +1,3 @@
-#include <iostream>
-#include <nlohmann/json.hpp>
-#include <sstream>
-
-#include "date.h"
-#include "time.h"
 #include "event.h"
 
 class Event {
@@ -16,7 +10,7 @@ class Event {
     bool flag = false; // по умолчанию нельзя двигать двигать
 
 public:
-    Event(std::string& s) {
+    Event::Event(std::string& s) {
         nlohmann::json j = nlohmann::json::parse(s);
         user_id = j["user_id"].get<size_t>();
         event = j["event"].get<std::string>();
@@ -36,12 +30,12 @@ public:
     //     return stream;
     // }
 
-    size_t GetUserId() const { return user_id;}
-    size_t GetGroupId() const { return group_id;}
-    std::string GetEvent() { return event;}
-    std::string GetDate() const { return date;}
-    std::string GetBegin() const { return begin;};
-    std::string GetEnd() const { return end;};
+    size_t Event::GetUserId() const { return user_id;}
+    size_t Event::GetGroupId() const { return group_id;}
+    std::string Event::GetEvent() { return event;}
+    std::string Event::GetDate() const { return date;}
+    std::string Event::GetBegin() const { return begin;};
+    std::string Event::GetEnd() const { return end;};
 };
 
 int main() {

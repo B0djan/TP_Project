@@ -4,7 +4,7 @@
 #include <assert.h>
 
 #include <date.h>
-#include <time.h>
+#include <duration.h>
 
 class Day {
 public:

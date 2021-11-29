@@ -1,22 +1,16 @@
-#include <stdio.h>
-#include <assert.h>
-
-#include "date.h"
-#include "duration.h"
 #include "day.h"
-#include "group.h"
 
 #define NUMBER_INTERVAL 12
 
 class Day {
 public:
     enum { BITS = sizeof(unsigned char) };
-    Day() {
+    Day::Day() {
         storage = new unsigned char[NUMBER_INTERVAL];
         flag_storage = new unsigned char[NUMBER_INTERVAL];
         unsigned char size = NUMBER_INTERVAL * BITS;
     }
-    ~Day() {
+    Day::~Day() {
         delete [] storage;
         delete [] flag_storage;
     }
@@ -26,7 +20,7 @@ public:
     //     }  
     // }
 
-    void InsertEvent(Duration& begin_time, Duration& end_time, bool flag) {
+    void Day::InsertEvent(Duration& begin_time, Duration& end_time, bool flag) {
         // если можно двигать то flag = true;
         //assert(time_interval < size);
         char begin = begin_time.GetTimeInterval();
@@ -45,7 +39,7 @@ public:
         }
     }
 
-    void EraseEvent(Duration& begin_time, Duration& end_time, bool flag) {
+    void Day::EraseEvent(Duration& begin_time, Duration& end_time, bool flag) {
         //assert(elem < size);
         char begin = begin_time.GetTimeInterval();
         char end = end_time.GetTimeInterval();
@@ -67,7 +61,7 @@ private:
     unsigned char *flag_storage = nullptr;
 };
 
-int main() {
+    //int main() {
 
 
     // myset s(1000);
@@ -85,4 +79,4 @@ int main() {
     //     printf("OOPS: %zu must not be in set\n", (size_t)5);
     // }
     // return 0;
-}
+    //}

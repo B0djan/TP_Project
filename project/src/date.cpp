@@ -1,11 +1,3 @@
-#include <iostream>
-#include <sstream>
-#include <time.h>
-#include <string>
-#include <iomanip>
-#include <set>
-#include <bitset>
-
 #include "date.h"
 
 class Date {
@@ -14,13 +6,13 @@ private:
     int month;
     int year;
 public:
-    Date(int& new_day, int& new_month, int& new_year) {
+    Date::Date(int& new_day, int& new_month, int& new_year) {
         day = new_day;
         month = new_month;
         year = new_year;
     }
 
-    Date GetDate(std::string& date_string) {
+    Date Date::GetDate(std::string& date_string) {
         std::stringstream stream(date_string);
         int d, m, y = 0;
         stream >> d;
@@ -37,11 +29,11 @@ public:
     //     month = time->tm_mon + 1;
     //     year = time->tm_year + 1900;
     // }
-    int GetDay() const {return day;}
-    int GetMonth() const {return month;}
-    int GetYear() const {return year;}
+    int Date::GetDay() const {return day;}
+    int Date::GetMonth() const {return month;}
+    int Date::GetYear() const {return year;}
 
-    void PrintDate() {
+    void Date::PrintDate() {
         std::cout << GetDay() << "." << GetMonth() << "." << GetYear() << "\n";
     }
 };

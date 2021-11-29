@@ -1,8 +1,4 @@
-#include <iostream>
-#include <string>
-#include <sstream>
-
-#include "time.h"
+#include "duration.h"
 
 class Duration {
 private:
@@ -10,7 +6,7 @@ private:
     int min;
 
 public:
-    Duration(const std::string& time) {
+    Duration::Duration(const std::string& time) {
         std::stringstream stream(time);
         int h, m = 0;
         stream >> h;
@@ -21,12 +17,12 @@ public:
         min = total % 60;
     }
 
-    unsigned char GetTimeInterval() {
+    unsigned char Duration::GetTimeInterval() {
         int total = hour * 60 * min;
         return (unsigned char)(total / 15 + 1);
     }
 
-    void PrintDuration() {
+    void Duration::PrintDuration() {
         std::cout << hour << ":";
         std::cout << min << std::endl;
     }
