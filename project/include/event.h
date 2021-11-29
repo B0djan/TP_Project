@@ -5,7 +5,7 @@
 #include <sstream>
 
 #include "date.h"
-#include "time.h"
+#include "duration.h"
 
 class Event {
     size_t user_id = 0;

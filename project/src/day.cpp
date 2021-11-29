@@ -15,16 +15,26 @@ public:
         delete [] flag_storage;
     }
 
-    // Day GetFreeTime(map <int, User> m /*group.m*/) {
-    //     for (auto item: m) {
-    //     }  
-    // }
+    #define CODE 0;
+
+    int compare (unsigned char day1, unsigned char day2, 
+                 unsigned char* free_time_day) {
+
+        unsigned char busy_time_day = day1 | day2; //...
+
+        *free_time_day = ~busy_time_day;
+    
+        return CODE;
+    }
+
+    Day GetFreeTime(std::map <int, User> m /*group.m*/) {
+        for (auto item: m) {
+        }  
+    }
 
     void Day::InsertEvent(Duration& begin_time, Duration& end_time, bool flag) {
-        // если можно двигать то flag = true;
-        //assert(time_interval < size);
-        char begin = begin_time.GetTimeInterval();
-        char end = end_time.GetTimeInterval();
+        unsigned char begin = begin_time.GetTimeInterval();
+        unsigned char end = end_time.GetTimeInterval();
 
         while (begin < end) {
             storage[begin / BITS] |= ((unsigned char)1 << (begin % BITS));
@@ -40,7 +50,7 @@ public:
     }
 
     void Day::EraseEvent(Duration& begin_time, Duration& end_time, bool flag) {
-        //assert(elem < size);
+
         char begin = begin_time.GetTimeInterval();
         char end = end_time.GetTimeInterval();
 
@@ -52,10 +62,18 @@ public:
         }
     }
 
-    // bool in(size_t elem) {
-    //     //assert(elem < size);
-    //     return storage[elem / BITS] >> (elem % BITS) & 1;
-    // }
+    bool Day::IsFree(Duration& begin_time, Duration& end_time) {
+
+        char begin = begin_time.GetTimeInterval();
+        char end = end_time.GetTimeInterval();
+
+        bool unswer = true;
+
+        while (begin < end) {
+            unswer = bool(storage[begin / BITS] >> (begin % BITS) & 1);
+        }
+        return unswer;
+    }
 private:
     unsigned char *storage = nullptr;
     unsigned char *flag_storage = nullptr;
