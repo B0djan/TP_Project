@@ -28,7 +28,7 @@ int ListeningNetworkSocket::make_listening_socket(const char* ip, uint16_t port)
     ASSERT(rc != -1, "failed to set O_NONBLOCK flag on listening socket");
 
     rc = bind(fd, (struct sockaddr*)&addr, sizeof(addr));
-    ASSERT(!rc, "listening socket bind failed");
+    ASSERT(rc == -1, "listening socket bind failed"); //  !rc in begin
 
     rc = listen(fd, 4096);
     ASSERT(!rc, "listen() failed");
