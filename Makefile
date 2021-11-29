@@ -21,4 +21,4 @@ clean:
 	rm -rf build
 
 launch:
-	./$(TARGET) $(IP) $(PORT)
+	./build/project/$(TARGET) $(IP) $(PORT)
