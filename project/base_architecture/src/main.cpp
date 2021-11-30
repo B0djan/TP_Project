@@ -18,7 +18,7 @@ int main(int argc, const char * argv[]) {
     ASSERT(argc == 3, "2 arguments expected: ip and port");
     std::cout << "Starting server..." << std::endl;
 
-    //  signal(SIGPIPE, SIG_IGN);
+    signal(SIGPIPE, SIG_IGN);
 
     SelectBasedEventLoop loop;
     ListeningNetworkSocket listening_socket(argv[1], std::stoi(argv[2]), loop);

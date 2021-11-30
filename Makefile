@@ -2,10 +2,10 @@ TARGET = HttpServer
 
 IP = 127.0.0.1
 
-PORT = 8080
+PORT = 9999
 
 
-.PHONY: all build rebuild check clean launch
+.PHONY: all build rebuild check clean launch launch_client
 
 all: rebuild launch
 
@@ -22,3 +22,6 @@ clean:
 
 launch:
 	./build/project/$(TARGET) $(IP) $(PORT)
+
+launch_client:
+	curl -vvv http://127.0.0.1:8080
