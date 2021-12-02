@@ -1,0 +1,29 @@
+TARGET = ./main.out
+HDRS = \
+		project/include \
+		project/include/business 
+
+
+CC = g++
+
+SRCS = \
+		project/src/business/date.cpp \
+       	project/src/business/day.cpp \
+	   	project/src/business/duration.cpp \
+	   	project/src/business/event.cpp \
+	   	project/src/business/group.cpp \
+	   	project/src/main.cpp
+
+.PHONY: all build rebuild clean
+
+all: clean build
+
+build: $(TARGET)
+
+rebuild: clean build
+
+$(TARGET): $(SRCS)
+	$(CC) -Wall -Wextra -Werror $(addprefix -I,$(HDRS)) -o $(TARGET) $(CFLAGS) $(SRCS)
+
+clean:
+	rm -f $(TARGET)
