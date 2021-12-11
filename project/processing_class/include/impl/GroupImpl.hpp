@@ -46,10 +46,10 @@ public:
 
 class SearchFreeTimeImpl : public SearchFreeTime {
 public:
-    std::set<JSONObject> process(ResCb) override;
+    std::set<ParserObject> process(ResCb) override;
 };
 
 class OutputHistoryMeetUpImpl : public OutputHistoryMeetUp {
 public:
-    std::set<JSONObject> process(ResCb) override;
+    std::set<ParserObject> process(ResCb) override;
 };

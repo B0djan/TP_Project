@@ -14,7 +14,7 @@ void RmEventImpl::process(ResCb cb) {
     //
 }
 
-std::set<JSONObject> OutputEventsImpl::process(ResCb cb) {
-    std::set<JSONObject> a, b;
+std::set<ParserObject> OutputEventsImpl::process(ResCb cb) {
+    std::set<ParserObject> a, b;
     return a;
 }

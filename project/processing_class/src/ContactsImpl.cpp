@@ -10,8 +10,8 @@ void RmUserToContactsImpl::process(ResCb cb) {
     //
 }
 
-std::set<JSONObject> OutputContactsImpl::process(ResCb cb) {
-    std::set<JSONObject> a;
+std::set<ParserObject> OutputContactsImpl::process(ResCb cb) {
+    std::set<ParserObject> a;
     return a;
 }
 

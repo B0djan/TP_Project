@@ -45,10 +45,10 @@ public:
 
 class SearchFreeTime : public Handler {
 public:
-    virtual std::set<JSONObject> process(ResCb) = 0;
+    virtual std::set<ParserObject> process(ResCb) = 0;
 };
 
 class OutputHistoryMeetUp : public Handler {
 public:
-    virtual std::set<JSONObject> process(ResCb) = 0;
+    virtual std::set<ParserObject> process(ResCb) = 0;
 };

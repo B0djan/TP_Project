@@ -16,7 +16,7 @@ public:
 
 class OutputContactsImpl : public OutputContacts {
 public:
-    std::set<JSONObject> process(ResCb) override;
+    std::set<ParserObject> process(ResCb) override;
 };
 
 

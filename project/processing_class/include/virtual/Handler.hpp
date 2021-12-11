@@ -6,7 +6,7 @@
 
 typedef std::string str;
 
-class JSONObject {
+class ParserObject {
 public:
     typedef struct object_body {
         str request;
@@ -40,17 +40,17 @@ public:
         } contacts_t;
     } object_body_t;
 
-    JSONObject(const JSONObject&) = default;
-    ~JSONObject() = default;
+    ParserObject(const ParserObject&) = default;
+    ~ParserObject() = default;
 
-    JSONObject& operator=(const JSONObject& other) = default;
+    ParserObject& operator=(const ParserObject& other) = default;
 };
 
 class Handler {
 public:
     using ResCb = std::function<void(bool success)>;
 
-    JSONObject request_body, response_body;
+    ParserObject request_body, response_body;
 
 protected:
     virtual ~Handler(){}; //  Деструктор нужно сделать виртуальным, так как класс базовый

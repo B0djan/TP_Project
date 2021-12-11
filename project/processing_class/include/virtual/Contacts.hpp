@@ -16,7 +16,7 @@ public:
 
 class OutputContacts : public Handler {
 public:
-    virtual std::set<JSONObject> process(ResCb) = 0;
+    virtual std::set<ParserObject> process(ResCb) = 0;
 };
 
 

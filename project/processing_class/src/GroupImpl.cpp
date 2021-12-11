@@ -32,12 +32,12 @@ void SearchGroupImpl::process(ResCb cb) {
     //
 }
 
-std::set<JSONObject> SearchFreeTimeImpl::process(ResCb cb) {
-    std::set<JSONObject> a;
+std::set<ParserObject> SearchFreeTimeImpl::process(ResCb cb) {
+    std::set<ParserObject> a;
     return a;
 }
 
-std::set<JSONObject> OutputHistoryMeetUpImpl::process(ResCb cb) {
-    std::set<JSONObject> a;
+std::set<ParserObject> OutputHistoryMeetUpImpl::process(ResCb cb) {
+    std::set<ParserObject> a;
     return a;
 }

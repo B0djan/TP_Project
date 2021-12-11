@@ -21,5 +21,5 @@ public:
 
 class OutputEventsImpl : public OutputEvents {
 public:
-    std::set<JSONObject> process(ResCb) override;
+    std::set<ParserObject> process(ResCb) override;
 };
