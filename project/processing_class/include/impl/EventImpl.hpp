@@ -17,9 +17,5 @@ public:
 class RmEventImpl : public RmEvent {
 public:
     void process(ResCb) override;
-};
 
-class OutputEventsImpl : public OutputEvents {
-public:
-    std::set<ParserObject> process(ResCb) override;
 };

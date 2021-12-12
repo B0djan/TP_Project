@@ -4,6 +4,9 @@ INCLUDE_DIRECTORIES(base_architecture/include/virtual)
 INCLUDE_DIRECTORIES(processing_class/include/impl)
 INCLUDE_DIRECTORIES(processing_class/include/virtual)
 
+INCLUDE_DIRECTORIES(route/include/impl)
+INCLUDE_DIRECTORIES(route/include/virtual)
+
 SET(SOURCE_LIST
         base_architecture/src/AsyncFileInputStream.cpp
         base_architecture/src/AsyncFileOutputStream.cpp
@@ -19,8 +22,17 @@ SET(SOURCE_LIST_PROCESSING_CLASS
         processing_class/src/GroupImpl.cpp
         processing_class/src/RegistrAuthImpl.cpp
         processing_class/src/SynchroClientImpl.cpp
-        processing_class/src/WriteAddreesDataImpl.cpp
+        processing_class/src/VectorHandlerImpl.cpp
+        processing_class/src/WriteAddressDataImpl.cpp
         processing_class/src/WritePersonalDataImpl.cpp )
 
-ADD_EXECUTABLE(${PROJECT_NAME} ${SOURCE_LIST} ${SOURCE_LIST_PROCESSING_CLASS})
+SET(SOURCE_LIST_ROUTE
+        route/src/VectorRequestImpl.cpp
+        route/src/RouteImpl.cpp
+        route/src/LinkRequestHandlerImpl.cpp)
+
+ADD_EXECUTABLE(${PROJECT_NAME}
+        ${SOURCE_LIST}
+        ${SOURCE_LIST_PROCESSING_CLASS}
+        ${SOURCE_LIST_ROUTE})
 

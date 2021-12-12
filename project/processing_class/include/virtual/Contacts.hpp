@@ -13,10 +13,3 @@ class RmUserToContacts : public Handler {
 public:
     virtual void process(ResCb) = 0;
 };
-
-class OutputContacts : public Handler {
-public:
-    virtual std::set<ParserObject> process(ResCb) = 0;
-};
-
-

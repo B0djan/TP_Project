@@ -18,8 +18,3 @@ class RmEvent : public Handler {
 public:
     virtual void process(ResCb) = 0;
 };
-
-class OutputEvents : public Handler {
-public:
-    virtual std::set<ParserObject> process(ResCb) = 0;
-};

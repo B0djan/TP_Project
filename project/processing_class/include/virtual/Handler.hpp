@@ -4,43 +4,41 @@
 
 #include <string>
 
-typedef std::string str;
-
 class ParserObject {
 public:
     typedef struct object_body {
-        str request;
+        std::string request;
 
         typedef struct user {
-            str mail;
+            std::string mail;
         } user_t;
 
         typedef struct personal_data {
-            str name;
+            std::string name;
         } personal_data_t;
 
         typedef struct address_data {
-            str country;
+            std::string country;
         } address_data_t;
 
         typedef struct event {
-            str note;
+            std::string note;
         } event_t;
 
         typedef struct meetup {
-            str date;
+            std::string date;
         } meetup_t;
 
         typedef struct group {
-            str title;
+            std::string title;
         } group_t;
 
         typedef struct contacts {
-            str user_id;
+            std::string user_id;
         } contacts_t;
     } object_body_t;
 
-    ParserObject(const ParserObject&) = default;
+    ParserObject(const ParserObject& other) = default;
     ~ParserObject() = default;
 
     ParserObject& operator=(const ParserObject& other) = default;
@@ -52,8 +50,14 @@ public:
 
     ParserObject request_body, response_body;
 
-protected:
-    virtual ~Handler(){}; //  Деструктор нужно сделать виртуальным, так как класс базовый
+    /*std::string request_t;
+
+    void setRequest_t (std::string request_in) { request_t = request_in; }
+
+    std::string getRequest_t () { return request_t; }*/
+
+    Handler() : request_body{}, response_body{} {}
+    virtual ~Handler() = default; //  Деструктор нужно сделать виртуальным, так как класс базовый
 };
 
 

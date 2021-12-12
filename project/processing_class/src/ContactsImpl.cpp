@@ -10,9 +10,4 @@ void RmUserToContactsImpl::process(ResCb cb) {
     //
 }
 
-std::set<ParserObject> OutputContactsImpl::process(ResCb cb) {
-    std::set<ParserObject> a;
-    return a;
-}
-
 
