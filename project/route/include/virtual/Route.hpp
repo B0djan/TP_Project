@@ -1,10 +1,18 @@
 #pragma once
 
-#include <vector>
-#include <string>
+#include <queue>
+
+#include <Handler.hpp>
+
+#include <LinkRequestHandlerImpl.hpp>
 
 class Route {
 public:
-    std::vector<std::string> request_chain;
+    std::queue<ParserObject> request_queue;
+
+    LinkRequestHandlerImpl processing_map;
+
+    virtual Handler* find_handler() = 0;
+
     virtual ~Route() = default;
 };

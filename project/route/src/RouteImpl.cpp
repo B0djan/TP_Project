@@ -1,6 +1,5 @@
 #include <RouteImpl.hpp>
 
-RouteImpl::RouteImpl() {
-    //
-}
+Handler* RouteImpl::find_handler(ParserObject request) {
 
+}

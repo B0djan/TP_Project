@@ -56,6 +56,8 @@ public:
 
     std::string getRequest_t () { return request_t; }*/
 
+    virtual void process(ResCb);
+
     Handler() : request_body{}, response_body{} {}
     virtual ~Handler() = default; //  Деструктор нужно сделать виртуальным, так как класс базовый
 };
