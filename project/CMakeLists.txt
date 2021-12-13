@@ -27,9 +27,8 @@ SET(SOURCE_LIST_PROCESSING_CLASS
         processing_class/src/WritePersonalDataImpl.cpp )
 
 SET(SOURCE_LIST_ROUTE
-        route/src/VectorRequestImpl.cpp
         route/src/RouteImpl.cpp
-        route/src/LinkRequestHandlerImpl.cpp)
+        )
 
 ADD_EXECUTABLE(${PROJECT_NAME}
         ${SOURCE_LIST}

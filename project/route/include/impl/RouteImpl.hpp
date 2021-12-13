@@ -8,6 +8,6 @@ public:
 
     ParserObject get_response() override;
 
-    RouteImpl() = default;
+    RouteImpl();
     ~RouteImpl() = default;
 };

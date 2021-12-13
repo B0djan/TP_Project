@@ -4,12 +4,12 @@
 
 #include <set>
 
-class AddUserToContacts : public Handler {
+class AddUserContacts : public Handler {
 public:
     virtual void process(ResCb) = 0;
 };
 
-class RmUserToContacts : public Handler {
+class RmUserContacts : public Handler {
 public:
     virtual void process(ResCb) = 0;
 };

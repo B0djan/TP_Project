@@ -2,15 +2,16 @@
 
 #include <queue>
 
-#include <Handler.hpp>
+#include <map>
 
-#include <LinkRequestHandlerImpl.hpp>
+#include <Handler.hpp>
 
 class Route {
 public:
     std::queue<ParserObject> request_queue;
 
-    LinkRequestHandlerImpl processing_map;
+    std::map <std::string, Handler*> chain_links;
+
 
     virtual ParserObject get_response() = 0;
 
@@ -18,3 +19,4 @@ public:
 
     virtual ~Route() = default;
 };
+

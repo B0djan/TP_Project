@@ -6,12 +6,12 @@
 
 #include <string>
 
-class AddUserToContactsImpl : public AddUserToContacts {
+class AddUserContactsImpl : public AddUserContacts {
 public:
     void process(ResCb) override;
 };
 
-class RmUserToContactsImpl : public RmUserToContacts {
+class RmUserContactsImpl : public RmUserContacts {
 public:
     void process(ResCb) override;
 };
