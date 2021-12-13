@@ -46,10 +46,10 @@ public:
 
 class SearchFreeTimeImpl : public SearchFreeTime {
 public:
-    std::set<ParserObject> process(ResCb) override;
+    void process(ResCb) override;  //  std::set<ParserObject>
 };
 
 class OutputHistoryMeetUpImpl : public OutputHistoryMeetUp {
 public:
-    std::set<ParserObject> process(ResCb) override;
+    void process(ResCb) override;  //  std::set<ParserObject>
 };

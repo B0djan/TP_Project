@@ -6,42 +6,45 @@
 
 class ParserObject {
 public:
-    typedef struct object_body {
-        std::string request;
+    std::string head;
 
-        typedef struct user {
-            std::string mail;
-        } user_t;
+    typedef struct user {
+        std::string mail;
+    } user_t;
 
-        typedef struct personal_data {
-            std::string name;
-        } personal_data_t;
+    typedef struct personal_data {
+        std::string name;
+    } personal_data_t;
 
-        typedef struct address_data {
-            std::string country;
-        } address_data_t;
+    typedef struct address_data {
+        std::string country;
+    } address_data_t;
 
-        typedef struct event {
-            std::string note;
-        } event_t;
+    typedef struct event {
+        std::string note;
+    } event_t;
 
-        typedef struct meetup {
-            std::string date;
-        } meetup_t;
+    typedef struct meetup {
+        std::string date;
+    } meetup_t;
 
-        typedef struct group {
-            std::string title;
-        } group_t;
+    typedef struct group {
+        std::string title;
+    } group_t;
 
-        typedef struct contacts {
-            std::string user_id;
-        } contacts_t;
-    } object_body_t;
+    typedef struct contacts {
+        std::string user_id;
+    } contacts_t;
 
+    ParserObject(ParserObject& other) = default;
     ParserObject(const ParserObject& other) = default;
     ~ParserObject() = default;
 
+    std::string get_head() { return head; }
+
     ParserObject& operator=(const ParserObject& other) = default;
+
+    void input(const ParserObject& other) { this = other; }
 };
 
 class Handler {

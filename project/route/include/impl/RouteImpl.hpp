@@ -4,9 +4,9 @@
 
 class RouteImpl : Route {
 public:
-    //void run_until_complete() override;
+    void schedule(ParserObject request) override;
 
-    Handler* find_handler(ParserObject request) override;
+    ParserObject get_response() override;
 
     RouteImpl() = default;
     ~RouteImpl() = default;

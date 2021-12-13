@@ -44,7 +44,7 @@ VectorRequestImpl::VectorRequestImpl() {
     request_chain.push_back(REGISTRATION);
     request_chain.push_back(AUTHENTICATION);
 
-    // Synchro
+    /*// Synchro
     request_chain.push_back(SYNCHRO);
 
     //  Write user personal data
@@ -77,7 +77,7 @@ VectorRequestImpl::VectorRequestImpl() {
 
     request_chain.push_back(SEARCH_FREE_TIME);
 
-    request_chain.push_back(HISTORY_MEETUP);
+    request_chain.push_back(HISTORY_MEETUP);*/
 
     capacity = request_chain.size();
 }

@@ -12,7 +12,9 @@ public:
 
     LinkRequestHandlerImpl processing_map;
 
-    virtual Handler* find_handler() = 0;
+    virtual ParserObject get_response() = 0;
+
+    virtual void schedule(ParserObject request) = 0;
 
     virtual ~Route() = default;
 };

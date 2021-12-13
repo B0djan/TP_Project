@@ -45,10 +45,10 @@ public:
 
 class SearchFreeTime : public Handler {
 public:
-    virtual std::set<ParserObject> process(ResCb) = 0;
+    virtual void process(ResCb) = 0;  //  std::set<ParserObject>
 };
 
 class OutputHistoryMeetUp : public Handler {
 public:
-    virtual std::set<ParserObject> process(ResCb) = 0;
+    virtual void process(ResCb) = 0;  //  std::set<ParserObject>
 };
