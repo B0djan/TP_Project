@@ -10,6 +10,8 @@
 //  TEST
 #include <TestInputData.hpp>
 
+
+
 void HttpClientAcceptor::HttpClientProcessor::reply(int code, const char* reason) {
     int size = snprintf(write_buffer, sizeof(write_buffer),
                         "%s %d %s\r\n"
@@ -49,10 +51,13 @@ void HttpClientAcceptor::HttpClientProcessor::reply() {
             "Content-Length: %zu\r\n"
             "Connection: %s\r\n"
             "\r\n",
+            "%s\r\n",
+            "\r\n",
             proto.c_str(),
             mime ?: "application/octet-stream",
             total_size,
-            keep_alive ? "keep-alive" : "close");
+            keep_alive ? "keep-alive" : "close",
+            massage_d.c_str());
 
     ASSERT(writebuf_filled > 0 && writebuf_filled + size < sizeof(write_buffer), "too small reply buffer");
 
@@ -93,10 +98,10 @@ void HttpClientAcceptor::HttpClientProcessor::get_start_line() {
 
                 std::string_view start_string(buf, size);
 
-                if (start_string.substr(0, 5) != "GET /")
+                if (start_string.substr(0, 6) != "POST /")
                     return reply(405, "Method not allowed");
 
-                start_string.remove_prefix(5);
+                start_string.remove_prefix(6);
 
                 ssize_t resource_end = start_string.find(" ");
 
@@ -136,49 +141,32 @@ void HttpClientAcceptor::HttpClientProcessor::get_header() {
                         keep_alive = true;
                 }
 
-                test.input_view(header.data());
-                test.print_view();
-                test.input_str(buf);
-                test.print_str();
+                if (!massage && header.find("json") != header.npos) {
+                    std::string buff(buf);
+
+                    size_t key_start = buff.find("{");
+
+                    size_t key_end = buff.find("}\n");
+
+                    std::string massage_data = buff.substr(key_start, key_end - 1);
+
+                    massage = true;
+
+                    massage_d = massage_data;
+
+                    std::cout<< massage_d << " " << massage_d.size() << "\n" << std::endl;
+                }
 
                 get_header();
             });
 }
 
-void HttpClientAcceptor::HttpClientProcessor::get_data() {
-    stream->read_till(
-            "\r\n", 2,
-            [this] (bool success, const char* buf, size_t size) {
-                if (!success)
-                    return end_cb();
-
-                if (!size)
-                    return request_finished();
-
-                std::string_view data(buf, size);
-
-                ssize_t key_end = data.find("\n");
-
-                if (key_end == data.npos)
-                    return reply(400, "Bad request");
-
-                if (!strncasecmp("{", data.data(), key_end)) {
-                    data.remove_prefix(key_end + 2);
-                    if (!strncasecmp("keep-alive", data.data(), data.size()))
-                        keep_alive = true;
-                }
-
-                /*Test test;
-                test.input(data);
-                test.print();*/
-            });
-}
-
 void HttpClientAcceptor::HttpClientProcessor::request_finished() {
-    if (!last_resource)
-        return reply(404, "Not found");
-    else
-        reply();
+    //if (!last_resource)
+      //  return reply(404, "Not found");
+    //else {
+       reply();
+    //}
 }
 
 void HttpClientAcceptor::HttpClientProcessor::process(EndCb end_cb) {

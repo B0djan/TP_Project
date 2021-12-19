@@ -19,9 +19,9 @@ class HttpClientAcceptor: public ClientAcceptor {
         void get_header();
         void request_finished();
 
-        Test test;
-
-        void get_data();
+        //  void get_massage();
+        bool massage = false;
+        std::string massage_d;
 
         magic_t magic;
         AsyncIOStream* stream;
