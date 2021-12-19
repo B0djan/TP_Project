@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Project"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/andeo/GitHub/TP_Project/project/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/andeo/GitHub/TP_Project/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/andeo/GitHub/TP_Project/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/andeo/GitHub/TP_Project/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/andeo/GitHub/TP_Project/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/andeo/GitHub/TP_Project/project/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/andeo/GitHub/TP_Project/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/andeo/GitHub/TP_Project/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/andeo/GitHub/TP_Project/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/andeo/GitHub/TP_Project/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/andeo/GitHub/TP_Project/project/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/andeo/GitHub/TP_Project/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/andeo/GitHub/TP_Project/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/andeo/GitHub/TP_Project/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/andeo/GitHub/TP_Project/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Project">
+				<Option output="/home/andeo/GitHub/TP_Project/project/cmake-build-debug/Project" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/andeo/GitHub/TP_Project/project/base_architecture/include/impl"/>
+					<Add directory="/home/andeo/GitHub/TP_Project/project/base_architecture/include/virtual"/>
+					<Add directory="/home/andeo/GitHub/TP_Project/project/processing_class/include/impl"/>
+					<Add directory="/home/andeo/GitHub/TP_Project/project/processing_class/include/virtual"/>
+					<Add directory="/home/andeo/GitHub/TP_Project/project/route/include/impl"/>
+					<Add directory="/home/andeo/GitHub/TP_Project/project/route/include/virtual"/>
+					<Add directory="/home/andeo/GitHub/TP_Project/project/parser/include/impl"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/../../../../include/c++/11.1.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/../../../../include/c++/11.1.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/../../../../include/c++/11.1.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/andeo/GitHub/TP_Project/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 Project"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/andeo/GitHub/TP_Project/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/andeo/GitHub/TP_Project/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/andeo/GitHub/TP_Project/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Project/fast">
+				<Option output="/home/andeo/GitHub/TP_Project/project/cmake-build-debug/Project" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/andeo/GitHub/TP_Project/project/base_architecture/include/impl"/>
+					<Add directory="/home/andeo/GitHub/TP_Project/project/base_architecture/include/virtual"/>
+					<Add directory="/home/andeo/GitHub/TP_Project/project/processing_class/include/impl"/>
+					<Add directory="/home/andeo/GitHub/TP_Project/project/processing_class/include/virtual"/>
+					<Add directory="/home/andeo/GitHub/TP_Project/project/route/include/impl"/>
+					<Add directory="/home/andeo/GitHub/TP_Project/project/route/include/virtual"/>
+					<Add directory="/home/andeo/GitHub/TP_Project/project/parser/include/impl"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/../../../../include/c++/11.1.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/../../../../include/c++/11.1.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/../../../../include/c++/11.1.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/andeo/GitHub/TP_Project/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 Project/fast"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/andeo/GitHub/TP_Project/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/andeo/GitHub/TP_Project/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/andeo/GitHub/TP_Project/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/andeo/GitHub/TP_Project/project/base_architecture/src/AsyncFileInputStream.cpp">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="/home/andeo/GitHub/TP_Project/project/base_architecture/src/AsyncFileOutputStream.cpp">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="/home/andeo/GitHub/TP_Project/project/base_architecture/src/FileImpl.cpp">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="/home/andeo/GitHub/TP_Project/project/base_architecture/src/HttpClientAcceptor.cpp">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="/home/andeo/GitHub/TP_Project/project/base_architecture/src/ListeningNetworkSocket.cpp">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="/home/andeo/GitHub/TP_Project/project/base_architecture/src/SelectBasedEventLoop.cpp">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="/home/andeo/GitHub/TP_Project/project/base_architecture/src/main.cpp">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="/home/andeo/GitHub/TP_Project/project/processing_class/src/ContactsImpl.cpp">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="/home/andeo/GitHub/TP_Project/project/processing_class/src/EventImpl.cpp">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="/home/andeo/GitHub/TP_Project/project/processing_class/src/GroupImpl.cpp">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="/home/andeo/GitHub/TP_Project/project/processing_class/src/RegistrAuthImpl.cpp">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="/home/andeo/GitHub/TP_Project/project/processing_class/src/SynchroClientImpl.cpp">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="/home/andeo/GitHub/TP_Project/project/processing_class/src/WriteAddressDataImpl.cpp">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="/home/andeo/GitHub/TP_Project/project/processing_class/src/WritePersonalDataImpl.cpp">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="/home/andeo/GitHub/TP_Project/project/route/src/RouteImpl.cpp">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="/home/andeo/GitHub/TP_Project/project/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

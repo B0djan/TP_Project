@@ -99,7 +99,7 @@ ParserObject RouteImpl::get_response() {
 
     res->second->request_body.input(search);
 
-    res->second->process(cb);
+    res->second->process();
 
     ParserObject res_body = res->second->response_body;
 

@@ -2,14 +2,14 @@
 
 #include <set>
 
-void AddEventImpl::process(ResCb cb) {
+void AddEventImpl::process() {
     //
 }
 
-void WriteEventImpl ::process(ResCb cb) {
+void WriteEventImpl ::process() {
     //
 }
 
-void RmEventImpl::process(ResCb cb) {
+void RmEventImpl::process() {
     //
 }

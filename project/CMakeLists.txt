@@ -7,6 +7,8 @@ INCLUDE_DIRECTORIES(processing_class/include/virtual)
 INCLUDE_DIRECTORIES(route/include/impl)
 INCLUDE_DIRECTORIES(route/include/virtual)
 
+INCLUDE_DIRECTORIES(parser/include/impl)
+
 SET(SOURCE_LIST
         base_architecture/src/AsyncFileInputStream.cpp
         base_architecture/src/AsyncFileOutputStream.cpp
@@ -22,7 +24,6 @@ SET(SOURCE_LIST_PROCESSING_CLASS
         processing_class/src/GroupImpl.cpp
         processing_class/src/RegistrAuthImpl.cpp
         processing_class/src/SynchroClientImpl.cpp
-        processing_class/src/VectorHandlerImpl.cpp
         processing_class/src/WriteAddressDataImpl.cpp
         processing_class/src/WritePersonalDataImpl.cpp )
 

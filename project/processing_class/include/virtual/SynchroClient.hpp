@@ -4,5 +4,5 @@
 
 class SynchroClient : public Handler {
 public:
-    virtual void process(ResCb) = 0;
+    virtual void process() = 0;
 };

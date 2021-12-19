@@ -1,5 +1,5 @@
 #include <WritePersonalDataImpl.hpp>
 
-void WritePersonalDataImpl::process(ResCb cb) {
+void WritePersonalDataImpl::process() {
     //
 }

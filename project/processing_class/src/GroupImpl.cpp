@@ -1,41 +1,41 @@
 #include <GroupImpl.hpp>
 
-void AddGroupImpl::process(ResCb cb) {
+void AddGroupImpl::process() {
     //
 }
 
-void WriteGroupImpl ::process(ResCb cb) {
+void WriteGroupImpl ::process() {
     //
 }
 
-void RmGroupImpl::process(ResCb cb) {
+void RmGroupImpl::process() {
     //
 }
 
-void AddUserImpl::process(ResCb cb) {
+void AddUserImpl::process() {
     //
 }
 
-void RmUserImpl::process(ResCb cb) {
+void RmUserImpl::process() {
     //
 }
 
-void JoinImpl ::process(ResCb cb) {
+void JoinImpl ::process() {
     //
 }
 
-void LeaveImpl::process(ResCb cb) {
+void LeaveImpl::process() {
     //
 }
 
-void SearchGroupImpl::process(ResCb cb) {
+void SearchGroupImpl::process() {
     //
 }
 
-void SearchFreeTimeImpl::process(ResCb cb) {  //  std::set<ParserObject>
+void SearchFreeTimeImpl::process() {  //  std::set<ParserObject>
 
 }
 
-void OutputHistoryMeetUpImpl::process(ResCb cb) {  //  std::set<ParserObject>
+void OutputHistoryMeetUpImpl::process() {  //  std::set<ParserObject>
 
 }

@@ -6,6 +6,8 @@
 
 #include <ClientAcceptor.hpp>
 
+#include <TestInputData.hpp>
+
 class HttpClientAcceptor: public ClientAcceptor {
     class HttpClientProcessor {
         using EndCb = std::function<void()>;
@@ -16,6 +18,10 @@ class HttpClientAcceptor: public ClientAcceptor {
         void get_start_line();
         void get_header();
         void request_finished();
+
+        Test test;
+
+        void get_data();
 
         magic_t magic;
         AsyncIOStream* stream;

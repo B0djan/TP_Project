@@ -1,5 +1,5 @@
 #include <WriteAddressDataImpl.hpp>
 
-void WriteAddressDataImpl::process(ResCb cb) {
+void WriteAddressDataImpl::process() {
     //
 }

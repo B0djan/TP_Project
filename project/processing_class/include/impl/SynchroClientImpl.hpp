@@ -4,5 +4,5 @@
 
 class SynchroClientImpl : public SynchroClient {
 public:
-    void process(ResCb) override;
+    void process() override;
 };

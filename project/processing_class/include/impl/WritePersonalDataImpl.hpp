@@ -4,5 +4,5 @@
 
 class WritePersonalDataImpl : public WritePersonalData {
 public:
-    void process(ResCb) override;
+    void process() override;
 };

@@ -24,4 +24,4 @@ launch:
 	./build/project/$(TARGET) $(IP) $(PORT)
 
 launch_client:
-	curl -vvv http://127.0.0.1:8080
+	curl -vvv http://$(IP):$(PORT)

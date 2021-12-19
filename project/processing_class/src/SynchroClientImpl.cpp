@@ -1,5 +1,5 @@
 #include <SynchroClientImpl.hpp>
 
-void SynchroClientImpl::process(ResCb) {
+void SynchroClientImpl::process() {
     //
 }

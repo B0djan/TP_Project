@@ -22,7 +22,7 @@ int main(int argc, const char * argv[]) {
 
     SelectBasedEventLoop loop;
     ListeningNetworkSocket listening_socket(argv[1], std::stoi(argv[2]), loop);
-//    EchoClientAcceptor client_acceptor;
+    //  EchoClientAcceptor client_acceptor;
 
     magic_t magic = magic_open(MAGIC_MIME);
     int rc = magic_load(magic, NULL);

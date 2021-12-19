@@ -4,5 +4,5 @@
 
 class WriteAddressDataImpl : public WriteAddress {
 public:
-    void process(ResCb) override;
+    void process() override;
 };

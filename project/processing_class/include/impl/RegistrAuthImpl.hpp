@@ -5,11 +5,11 @@
 class RegistrationImpl : public Registration {
 public:
     RegistrationImpl() : Registration() {}
-    void process(ResCb) override;
+    void process() override;
 };
 
 class AuthenticationImpl : public Authentication {
 public:
     AuthenticationImpl() : Authentication() {}
-    void process(ResCb) override;
+    void process() override;
 };

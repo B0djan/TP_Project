@@ -1,9 +1,9 @@
 #include <RegistrAuthImpl.hpp>
 
-void RegistrationImpl::process(ResCb cb) {
+void RegistrationImpl::process() {
     //
 }
 
-void AuthenticationImpl ::process(ResCb cb) {
+void AuthenticationImpl ::process() {
     //
 }

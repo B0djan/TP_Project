@@ -2,11 +2,11 @@
 
 #include <set>
 
-void AddUserContactsImpl ::process(ResCb cb) {
+void AddUserContactsImpl ::process() {
     //
 }
 
-void RmUserContactsImpl::process(ResCb cb) {
+void RmUserContactsImpl::process() {
     //
 }
 

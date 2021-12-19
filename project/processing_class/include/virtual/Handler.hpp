@@ -44,12 +44,12 @@ public:
 
     ParserObject& operator=(const ParserObject& other) = default;
 
-    void input(const ParserObject& other) { this = other; }
+    void input(const ParserObject& other) { *this = other; }
 };
 
 class Handler {
 public:
-    using ResCb = std::function<void(bool success)>;
+    //  using ResCb = std::function<void(bool success)>;
 
     ParserObject request_body, response_body;
 
@@ -59,7 +59,7 @@ public:
 
     std::string getRequest_t () { return request_t; }*/
 
-    virtual void process(ResCb);
+    virtual void process() = 0;
 
     Handler() : request_body{}, response_body{} {}
     virtual ~Handler() = default; //  Деструктор нужно сделать виртуальным, так как класс базовый

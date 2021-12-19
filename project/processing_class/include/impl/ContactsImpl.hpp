@@ -8,10 +8,10 @@
 
 class AddUserContactsImpl : public AddUserContacts {
 public:
-    void process(ResCb) override;
+    void process() override;
 };
 
 class RmUserContactsImpl : public RmUserContacts {
 public:
-    void process(ResCb) override;
+    void process() override;
 };

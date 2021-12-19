@@ -7,8 +7,17 @@
 
 #include <Utils.hpp>
 
+//  TEST
+#include <TestInputData.hpp>
+
 void HttpClientAcceptor::HttpClientProcessor::reply(int code, const char* reason) {
-    int size = snprintf(write_buffer, sizeof(write_buffer), "%s %d %s\r\nConnection: %s\r\n\r\n", proto.c_str(), code, reason, keep_alive ? "keep-alive" : "close");
+    int size = snprintf(write_buffer, sizeof(write_buffer),
+                        "%s %d %s\r\n"
+                        "Connection: %s\r\n\r\n",
+                        proto.c_str(),
+                        code,
+                        reason,
+                        keep_alive ? "keep-alive" : "close");
 
     ASSERT(size > 0 && size < sizeof(write_buffer), "too small reply buffer");
 
@@ -127,7 +136,41 @@ void HttpClientAcceptor::HttpClientProcessor::get_header() {
                         keep_alive = true;
                 }
 
+                test.input_view(header.data());
+                test.print_view();
+                test.input_str(buf);
+                test.print_str();
+
                 get_header();
+            });
+}
+
+void HttpClientAcceptor::HttpClientProcessor::get_data() {
+    stream->read_till(
+            "\r\n", 2,
+            [this] (bool success, const char* buf, size_t size) {
+                if (!success)
+                    return end_cb();
+
+                if (!size)
+                    return request_finished();
+
+                std::string_view data(buf, size);
+
+                ssize_t key_end = data.find("\n");
+
+                if (key_end == data.npos)
+                    return reply(400, "Bad request");
+
+                if (!strncasecmp("{", data.data(), key_end)) {
+                    data.remove_prefix(key_end + 2);
+                    if (!strncasecmp("keep-alive", data.data(), data.size()))
+                        keep_alive = true;
+                }
+
+                /*Test test;
+                test.input(data);
+                test.print();*/
             });
 }
 
