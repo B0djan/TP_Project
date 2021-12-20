@@ -167,9 +167,6 @@ void HttpClientAcceptor::HttpClientProcessor::get_header() {
 
                 //  std::cout<< keep_alive << "\n" << std::endl;
 
-                ssize_t content_type = header.find("application/json");
-                ASSERT(content_type == header.npos, "can't find 'application/json'");
-
                 if (!massage) {
                     get_massage();
                 } else {
@@ -184,6 +181,9 @@ void HttpClientAcceptor::HttpClientProcessor::get_massage() {
             "\r\n", 2,
             [this] (bool success, const char* buf, size_t size) {
                 std::string buff(buf);
+
+                ssize_t content_type = buff.find("application/json");
+                ASSERT(content_type == buff.npos, "can't find 'application/json'");
 
                 size_t key_start = buff.find("{");
                 ASSERT(key_start == buff.npos, "can't find '{'");
