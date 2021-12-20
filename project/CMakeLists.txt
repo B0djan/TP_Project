@@ -24,6 +24,9 @@ SET(SOURCE_LIST_SERVER
         base_architecture/src/FileImpl.cpp
         base_architecture/src/main.cpp)
 
+SET(SOURCE_LIST_ROUTE
+        route/src/RouteImpl.cpp)
+
 SET(SOURCE_LIST_PROCESSING_CLASS
         processing_class/src/ContactsImpl.cpp
         processing_class/src/EventImpl.cpp
@@ -33,9 +36,6 @@ SET(SOURCE_LIST_PROCESSING_CLASS
         processing_class/src/WriteAddressDataImpl.cpp
         processing_class/src/WritePersonalDataImpl.cpp)
 
-SET(SOURCE_LIST_ROUTE
-        route/src/RouteImpl.cpp)
-
 SET(SOURCE_LIST_PARSER_CLASS
         parser/src_json/ParserContactsImpl.cpp
         parser/src_json/ParserEventImpl.cpp
@@ -44,6 +44,9 @@ SET(SOURCE_LIST_PARSER_CLASS
         parser/src_json/ParserSynchroClientImpl.cpp
         parser/src_json/ParserWriteAddressDataImpl.cpp
         parser/src_json/ParserWritePersonalDataImpl.cpp)
+
+
+
 
 
 INCLUDE_DIRECTORIES(parser/include/)
@@ -76,9 +79,10 @@ SET(SOURCE_LIST_DATA
 
 ADD_EXECUTABLE(${PROJECT_NAME}
         ${SOURCE_LIST_SERVER}
+        ${SOURCE_LIST_ROUTE}
         ${SOURCE_LIST_PROCESSING_CLASS}
         ${SOURCE_LIST_PARSER_CLASS}
-        ${SOURCE_LIST_ROUTE}
+
 
         ${SOURCE_LIST_PARSER}
         ${SOURCE_LIST_DATA}
