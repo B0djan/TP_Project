@@ -4,11 +4,11 @@
 
 #include "ParserObject.hpp"
 
-class Parsing {
+class Parser {
 public:
     virtual ParserObject StrToObject(std::string parser_str) = 0;
 
     virtual std::string ObjectToStr(const ParserObject& other) = 0;
 
-    virtual ~Parsing() = default;
+    virtual ~Parser() = default;
 };

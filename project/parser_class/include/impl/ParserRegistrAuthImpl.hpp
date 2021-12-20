@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Parsing.hpp>
+#include <Parser.hpp>
 
-class ParserRegistrationImpl : public Parsing {
+class ParserRegistrationImpl : public Parser {
 public:
     ParserObject StrToObject(const std::string parser_str) override;
 
@@ -11,7 +11,7 @@ public:
     ~ParserRegistrationImpl() = default;
 };
 
-class ParserAuthenticationImpl : public Parsing {
+class ParserAuthenticationImpl : public Parser {
 public:
     ParserObject StrToObject(const std::string parser_str) override;
 

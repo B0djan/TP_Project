@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Parsing.hpp>
+#include <Parser.hpp>
 
-class ParserWriteAddressDataImpl : public Parsing {
+class ParserWriteAddressDataImpl : public Parser {
 public:
     ParserObject StrToObject(std::string parser_str) override;
 

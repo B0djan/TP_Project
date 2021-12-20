@@ -1,30 +1,33 @@
 #pragma once
 
-#include <Parsing.hpp>
+#include <set>
 
-class ParserSynchroClientEventsImpl : public Parsing {
+#include <Parser.hpp>
+
+class ParserAddEventImpl : public Parser {
 public:
     ParserObject StrToObject(const std::string parser_str) override;
 
     std::string ObjectToStr(const ParserObject& other) override;
 
-    ~ParserSynchroClientEventsImpl() = default;
+    ~ParserAddEventImpl() = default;
 };
 
-class ParserSynchroClientContactsImpl : public Parsing {
+class ParserWriteEventImpl : public Parser {
 public:
     ParserObject StrToObject(const std::string parser_str) override;
 
     std::string ObjectToStr(const ParserObject& other) override;
 
-    ~ParserSynchroClientContactsImpl() = default;
+    ~ParserWriteEventImpl() = default;
 };
 
-class ParserSynchroClientGroupsImpl : public Parsing {
+class ParserRmEventImpl : public Parser {
 public:
     ParserObject StrToObject(const std::string parser_str) override;
 
     std::string ObjectToStr(const ParserObject& other) override;
 
-    ~ParserSynchroClientGroupsImpl() = default;
+    ~ParserRmEventImpl() = default;
 };
+

@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Parsing.hpp>
+#include <Parser.hpp>
 
-class ParserAddGroupImpl : public Parsing {
+class ParserAddGroupImpl : public Parser {
 public:
     ParserObject StrToObject(const std::string parser_str) override;
 
@@ -11,7 +11,7 @@ public:
     ~ParserAddGroupImpl() = default;
 };
 
-class ParserWriteGroupImpl : public Parsing {
+class ParserWriteGroupImpl : public Parser {
 public:
     ParserObject StrToObject(const std::string parser_str) override;
 
@@ -20,7 +20,7 @@ public:
     ~ParserWriteGroupImpl() = default;
 };
 
-class ParserRmGroupImpl : public Parsing {
+class ParserRmGroupImpl : public Parser {
 public:
     ParserObject StrToObject(const std::string parser_str) override;
 
@@ -29,7 +29,7 @@ public:
     ~ParserRmGroupImpl() = default;
 };
 
-class ParserAddUserImpl : public Parsing {
+class ParserAddUserImpl : public Parser {
 public:
     ParserObject StrToObject(const std::string parser_str) override;
 
@@ -38,7 +38,7 @@ public:
     ~ParserAddUserImpl() = default;
 };
 
-class ParserRmUserImpl : public Parsing {
+class ParserRmUserImpl : public Parser {
 public:
     ParserObject StrToObject(const std::string parser_str) override;
 
@@ -47,7 +47,7 @@ public:
     ~ParserRmUserImpl() = default;
 };
 
-class ParserJoinImpl : public Parsing {
+class ParserJoinImpl : public Parser {
 public:
     ParserObject StrToObject(const std::string parser_str) override;
 
@@ -56,7 +56,7 @@ public:
     ~ParserJoinImpl() = default;
 };
 
-class ParserLeaveImpl : public Parsing {
+class ParserLeaveImpl : public Parser {
 public:
     ParserObject StrToObject(const std::string parser_str) override;
 
@@ -65,7 +65,7 @@ public:
     ~ParserLeaveImpl() = default;
 };
 
-class ParserSearchGroupImpl : public Parsing {
+class ParserSearchGroupImpl : public Parser {
 public:
     ParserObject StrToObject(const std::string parser_str) override;
 
@@ -74,7 +74,7 @@ public:
     ~ParserSearchGroupImpl() = default;
 };
 
-class ParserSearchFreeTimeImpl : public Parsing {
+class ParserSearchFreeTimeImpl : public Parser {
 public:
     ParserObject StrToObject(const std::string parser_str) override;
 
@@ -83,7 +83,7 @@ public:
     ~ParserSearchFreeTimeImpl() = default;
 };
 
-class ParserOutputHistoryMeetUpImpl : public Parsing {
+class ParserOutputHistoryMeetUpImpl : public Parser {
 public:
     ParserObject StrToObject(const std::string parser_str) override;
 

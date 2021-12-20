@@ -10,9 +10,9 @@ INCLUDE_DIRECTORIES(route/include/impl)
 INCLUDE_DIRECTORIES(route/include/virtual)
 
 
-INCLUDE_DIRECTORIES(parser/include/libs/single_include/nlohmann)
-INCLUDE_DIRECTORIES(parser/include/impl)
-INCLUDE_DIRECTORIES(parser/include/virtual)
+INCLUDE_DIRECTORIES(parser_class/include/libs/single_include/nlohmann)
+INCLUDE_DIRECTORIES(parser_class/include/impl)
+INCLUDE_DIRECTORIES(parser_class/include/virtual)
 
 
 SET(SOURCE_LIST_SERVER
@@ -37,19 +37,19 @@ SET(SOURCE_LIST_PROCESSING_CLASS
         processing_class/src/WritePersonalDataImpl.cpp)
 
 SET(SOURCE_LIST_PARSER_CLASS
-        parser/src_json/ParserContactsImpl.cpp
-        parser/src_json/ParserEventImpl.cpp
-        parser/src_json/ParserGroupImpl.cpp
-        parser/src_json/ParserRegistrAuthImpl.cpp
-        parser/src_json/ParserSynchroClientImpl.cpp
-        parser/src_json/ParserWriteAddressDataImpl.cpp
-        parser/src_json/ParserWritePersonalDataImpl.cpp)
+        parser_class/src_json/ParserContactsImpl.cpp
+        parser_class/src_json/ParserEventImpl.cpp
+        parser_class/src_json/ParserGroupImpl.cpp
+        parser_class/src_json/ParserRegistrAuthImpl.cpp
+        parser_class/src_json/ParserSynchroClientImpl.cpp
+        parser_class/src_json/ParserWriteAddressDataImpl.cpp
+        parser_class/src_json/ParserWritePersonalDataImpl.cpp)
 
 
 
 
 
-INCLUDE_DIRECTORIES(parser/include/)
+INCLUDE_DIRECTORIES(parser_class/include/)
 
 INCLUDE_DIRECTORIES(database_connector/include/impl)
 INCLUDE_DIRECTORIES(database_connector/include/libs/postgresql)
@@ -57,17 +57,17 @@ INCLUDE_DIRECTORIES(database_connector/include/libs/postgresql)
 INCLUDE_DIRECTORIES(function/registration/include)
 
 SET(SOURCE_LIST_PARSER
-        parser/src_json/single/addres.cpp
-        parser/src_json/single/contacts.cpp
-        parser/src_json/single/event.cpp
-        parser/src_json/single/group.cpp
-        parser/src_json/single/meetup.cpp
-        parser/src_json/single/person.cpp
-        parser/src_json/single/user.cpp
-        parser/src_json/methods/reg_and_au.cpp
-        parser/src_json/methods/friend.cpp
-        parser/src_json/methods/get_id.cpp
-        parser/src_json/methods/shedule.cpp)
+        parser_class/src_json/single/addres.cpp
+        parser_class/src_json/single/contacts.cpp
+        parser_class/src_json/single/event.cpp
+        parser_class/src_json/single/group.cpp
+        parser_class/src_json/single/meetup.cpp
+        parser_class/src_json/single/person.cpp
+        parser_class/src_json/single/user.cpp
+        parser_class/src_json/methods/reg_and_au.cpp
+        parser_class/src_json/methods/friend.cpp
+        parser_class/src_json/methods/get_id.cpp
+        parser_class/src_json/methods/shedule.cpp)
 
 SET(SOURCE_LIST_FA
         function/registration/src/myfunction.cpp)

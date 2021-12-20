@@ -1,5 +1,6 @@
 #include <RouteImpl.hpp>
 
+//  processing classes
 #include <ContactsImpl.hpp>
 #include <EventImpl.hpp>
 #include <GroupImpl.hpp>
@@ -7,6 +8,15 @@
 #include <SynchroClientImpl.hpp>
 #include <WriteAddressDataImpl.hpp>
 #include <WritePersonalDataImpl.hpp>
+
+//  parser_class classes
+#include <ParserContactsImpl.hpp>
+#include <ParserEventImpl.hpp>
+#include <ParserGroupImpl.hpp>
+#include <ParserRegistrAuthImpl.hpp>
+#include <ParserSynchroClientImpl.hpp>
+#include <ParserWriteAddressDataImpl.hpp>
+#include <ParserWritePersonalDataImpl.hpp>
 
 //  base
 #define REGISTRATION                     "registration"
@@ -51,45 +61,45 @@
 
 RouteImpl::RouteImpl() {
     //  Base
-    chain_links.insert({REGISTRATION,           new RegistrationImpl()});
-    chain_links.insert({AUTHENTICATION,         new AuthenticationImpl()});
+    route_map.insert({REGISTRATION,           std::make_pair(new ParserRegistrationImpl,           new RegistrationImpl)});
+    route_map.insert({AUTHENTICATION,         std::make_pair(new  ParserAuthenticationImpl,        new AuthenticationImpl)});
 
     // Synchro
-    chain_links.insert({GET_EVENTS,             new SynchroClientEventsImpl()});
-    chain_links.insert({GET_CONTACTS,           new SynchroClientContactsImpl()});
-    chain_links.insert({GET_GROUPS,             new SynchroClientGroupsImpl()});
+    route_map.insert({GET_EVENTS,             std::make_pair(new  ParserSynchroClientEventsImpl,   new SynchroClientEventsImpl)});
+    route_map.insert({GET_CONTACTS,           std::make_pair(new  ParserSynchroClientContactsImpl, new SynchroClientContactsImpl)});
+    route_map.insert({GET_GROUPS,             std::make_pair(new  ParserSynchroClientGroupsImpl,   new SynchroClientGroupsImpl)});
 
     //  Write user personal data
-    chain_links.insert({WRITE_PERSONAL_DATA,    new WritePersonalDataImpl()});
+    route_map.insert({WRITE_PERSONAL_DATA,    std::make_pair(new  ParserWritePersonalDataImpl,     new WritePersonalDataImpl)});
 
     //  Write user address
-    chain_links.insert({WRITE_ADDRESS,          new WriteAddressDataImpl()});
+    route_map.insert({WRITE_ADDRESS,          std::make_pair(new  ParserWriteAddressDataImpl,      new WriteAddressDataImpl)});
 
     //  Event functional
-    chain_links.insert({ADD_EVENT,              new AddEventImpl()});
-    chain_links.insert({WRITE_EVENT,            new WriteEventImpl()});
-    chain_links.insert({RM_EVENT,               new RmGroupImpl()});
+    route_map.insert({ADD_EVENT,              std::make_pair(new  ParserAddEventImpl,              new AddEventImpl)});
+    route_map.insert({WRITE_EVENT,            std::make_pair(new  ParserWriteEventImpl,            new WriteEventImpl)});
+    route_map.insert({RM_EVENT,               std::make_pair(new  ParserRmGroupImpl,               new RmGroupImpl)});
 
     //  Contact functional
-    chain_links.insert({ADD_USER_TO_CONTACTS,   new AddUserContactsImpl()});
-    chain_links.insert({RM_USER_TO_CONTACTS,    new RmUserContactsImpl()});
+    route_map.insert({ADD_USER_TO_CONTACTS,   std::make_pair(new  ParserAddUserContactsImpl,       new AddUserContactsImpl)});
+    route_map.insert({RM_USER_TO_CONTACTS,    std::make_pair(new  ParserRmUserContactsImpl,        new RmUserContactsImpl)});
 
     //  Group functional
-    chain_links.insert({ADD_GROUP,              new AddUserImpl()});
-    chain_links.insert({WRITE_GROUP,            new WriteGroupImpl()});
-    chain_links.insert({RM_GROUP,               new RmGroupImpl()});
+    route_map.insert({ADD_GROUP,              std::make_pair(new  ParserAddUserImpl,               new AddUserImpl)});
+    route_map.insert({WRITE_GROUP,            std::make_pair(new  ParserWriteGroupImpl,            new WriteGroupImpl)});
+    route_map.insert({RM_GROUP,               std::make_pair(new  ParserRmGroupImpl,               new RmGroupImpl)});
 
-    chain_links.insert({ADD_USER,               new AddUserImpl()});
-    chain_links.insert({RM_USER,                new RmUserImpl()});
+    route_map.insert({ADD_USER,               std::make_pair(new  ParserAddUserImpl,               new AddUserImpl)});
+    route_map.insert({RM_USER,                std::make_pair(new  ParserRmUserImpl,                new RmUserImpl)});
 
-    chain_links.insert({JOIN,                   new JoinImpl()});
-    chain_links.insert({LEAVE,                  new LeaveImpl()});
+    route_map.insert({JOIN,                   std::make_pair(new  ParserJoinImpl,                  new JoinImpl)});
+    route_map.insert({LEAVE,                  std::make_pair(new  ParserLeaveImpl,                 new LeaveImpl)});
 
-    chain_links.insert({SEARCH_GROUP,           new SearchGroupImpl()});
+    route_map.insert({SEARCH_GROUP,           std::make_pair(new  ParserSearchGroupImpl,           new SearchGroupImpl)});
 
-    chain_links.insert({SEARCH_FREE_TIME,       new SearchFreeTimeImpl()});
+    route_map.insert({SEARCH_FREE_TIME,       std::make_pair(new  ParserSearchFreeTimeImpl,        new SearchFreeTimeImpl)});
 
-    chain_links.insert({HISTORY_MEETUP,         new OutputHistoryMeetUpImpl()});
+    route_map.insert({HISTORY_MEETUP,         std::make_pair(new  ParserOutputHistoryMeetUpImpl,   new OutputHistoryMeetUpImpl)});
 }
 
 std::string RouteImpl::get_response(const std::string request_body) {
