@@ -167,7 +167,7 @@ void HttpClientAcceptor::HttpClientProcessor::get_header() {
 
                 //  std::cout<< keep_alive << "\n" << std::endl;
 
-                ssize_t content_type = header.find("application/json") != header.npos;
+                ssize_t content_type = header.find("application/json");
                 ASSERT(content_type == header.npos, "can't find 'application/json'");
 
                 if (!massage) {
