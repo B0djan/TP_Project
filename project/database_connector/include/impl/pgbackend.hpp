@@ -1,2 +1,2 @@
 #include "pgconnection.hpp"
-#include "struct.hpp"
+#include <ParserObject.hpp>

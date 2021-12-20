@@ -4,7 +4,7 @@
 
 #include <string>
 
-#include "../../../parser/include/ParserObject.hpp"
+#include "ParserObject.hpp"
 
 class Handler {
 public:

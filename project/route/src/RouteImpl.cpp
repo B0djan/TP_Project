@@ -92,10 +92,14 @@ RouteImpl::RouteImpl() {
     chain_links.insert({HISTORY_MEETUP,         new OutputHistoryMeetUpImpl()});
 }
 
-ParserObject RouteImpl::get_response(const ParserObject& request_body) {
+std::string RouteImpl::get_response(const std::string request_body) {
+
+/*
     auto res = chain_links.find(request_body.get_head());
 
     ParserObject response_body = res->second->process(request_body);
+*/
+    std::string response_body_1;
 
-    return response_body;
+    return response_body_1;
 }

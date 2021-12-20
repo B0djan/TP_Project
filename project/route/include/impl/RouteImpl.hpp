@@ -4,7 +4,7 @@
 
 class RouteImpl : Route {
 public:
-    ParserObject get_response(const ParserObject& request_body) override;
+    std::string get_response(const std::string request_body) override;
 
     RouteImpl();
     ~RouteImpl() = default;

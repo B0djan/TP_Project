@@ -10,7 +10,7 @@ class Route {
 public:
     std::map <std::string, Handler*> chain_links;
 
-    virtual ParserObject get_response(const ParserObject& request_body) = 0;
+    virtual std::string get_response(const std::string request_body) = 0;
 
     virtual ~Route() = default;
 };
