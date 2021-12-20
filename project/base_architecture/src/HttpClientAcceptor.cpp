@@ -68,7 +68,7 @@ void HttpClientAcceptor::HttpClientProcessor::reply() {
 }
 
 void HttpClientAcceptor::HttpClientProcessor::reply(std::string response) {
-    std::cout<< response << " " << response.size() << "\n" << std::endl;
+    //  std::cout<< response << " " << response.size() << "\n" << std::endl;
 
     size_t total_size = response.size();
 
@@ -85,7 +85,6 @@ void HttpClientAcceptor::HttpClientProcessor::reply(std::string response) {
             response.c_str());
 
     ASSERT(writebuf_filled > 0 && writebuf_filled < sizeof(write_buffer), "too small reply buffer");
-
 
     stream->write(write_buffer, writebuf_filled, [this] (bool success) {
         if (!success)
@@ -162,6 +161,8 @@ void HttpClientAcceptor::HttpClientProcessor::get_header() {
                         keep_alive = true;
                 }
 
+                //  std::cout<< keep_alive << "\n" << std::endl;
+
                 if (!massage && header.find("json") != header.npos) {
                     get_massage();
                 }
@@ -178,16 +179,19 @@ void HttpClientAcceptor::HttpClientProcessor::get_massage() {
 
                 size_t key_start = buff.find("{");
 
-                size_t key_end = buff.find("}\n");
+                size_t key_end = buff.find("}}");
 
-                std::string massage_data = buff.substr(key_start, key_end - 1);
+                std::string new_massage = buff.substr(key_start, key_end - key_start + 2);
+
+                massage_d = new_massage;
 
                 massage = true;
 
-                massage_d = massage_data;
-
                 //  reply(massage_d);
 
+                //  std::cout<< buff << " " << buff.size() << "\n" << std::endl;
+                //  std::cout<< key_start << " " << key_end << "\n" << std::endl;
+                //  std::cout<< new_massage << " " << new_massage.size() << "\n" << std::endl;
                 //  std::cout<< massage_d << " " << massage_d.size() << "\n" << std::endl;
             });
 }

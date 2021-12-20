@@ -11,8 +11,6 @@
 
 #include <HttpClientAcceptor.hpp>
 
-//  #include <HttpClientAcceptorCustom.hpp>
-
 #include <Utils.hpp>
 
 int main(int argc, const char * argv[]) {
@@ -30,8 +28,6 @@ int main(int argc, const char * argv[]) {
     int rc = magic_load(magic, NULL);
     ASSERT(!rc, "failed to load 'magic' database");
     HttpClientAcceptor client_acceptor(magic);
-
-    //  HttpClientAcceptorCustom client_acceptor(magic);
 
     listening_socket.start_listening(client_acceptor);
 

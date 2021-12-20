@@ -15,7 +15,6 @@ SET(SOURCE_LIST
         base_architecture/src/SelectBasedEventLoop.cpp
         base_architecture/src/ListeningNetworkSocket.cpp
         base_architecture/src/HttpClientAcceptor.cpp
-        base_architecture/src/HttpClientAcceptorCustom.cpp
         base_architecture/src/FileImpl.cpp
         base_architecture/src/main.cpp )
 
