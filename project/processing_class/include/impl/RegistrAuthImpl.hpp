@@ -1,15 +1,15 @@
 #pragma once
 
-#include <RegistrAuth.hpp>
+#include <Handler.hpp>
 
-class RegistrationImpl : public Registration {
+class RegistrationImpl : public Handler {
 public:
-    RegistrationImpl() : Registration() {}
+    RegistrationImpl() : Handler() {}
     void process() override;
 };
 
-class AuthenticationImpl : public Authentication {
+class AuthenticationImpl : public Handler {
 public:
-    AuthenticationImpl() : Authentication() {}
+    AuthenticationImpl() : Handler() {}
     void process() override;
 };

@@ -2,19 +2,19 @@
 
 #include <set>
 
-#include <Event.hpp>
+#include <Handler.hpp>
 
-class AddEventImpl : public AddEvent {
+class AddEventImpl : public Handler {
 public:
     void process() override;
 };
 
-class WriteEventImpl : public WriteEvent {
+class WriteEventImpl : public Handler {
 public:
     void process() override;
 };
 
-class RmEventImpl : public RmEvent {
+class RmEventImpl : public Handler {
 public:
     void process() override;
 

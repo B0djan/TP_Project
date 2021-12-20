@@ -2,54 +2,54 @@
 
 #include <set>
 
-#include <Group.hpp>
+#include <Handler.hpp>
 
-class AddGroupImpl : public AddGroup {
+class AddGroupImpl : public Handler {
 public:
     void process() override;
 };
 
-class WriteGroupImpl : public WriteGroup {
+class WriteGroupImpl : public Handler {
 public:
     void process() override;
 };
 
-class RmGroupImpl : public RmGroup {
+class RmGroupImpl : public Handler {
 public:
     void process() override;
 };
 
-class AddUserImpl : public AddUser {
+class AddUserImpl : public Handler {
 public:
     void process() override;
 };
 
-class RmUserImpl : public RmUser {
+class RmUserImpl : public Handler {
 public:
     void process() override;
 };
 
-class JoinImpl : public Join {
+class JoinImpl : public Handler {
 public:
     void process() override;
 };
 
-class LeaveImpl : public Leave {
+class LeaveImpl : public Handler {
 public:
     void process() override;
 };
 
-class SearchGroupImpl : public SearchGroup {
+class SearchGroupImpl : public Handler {
 public:
     void process() override;
 };
 
-class SearchFreeTimeImpl : public SearchFreeTime {
+class SearchFreeTimeImpl : public Handler {
 public:
     void process() override;  //  std::set<ParserObject>
 };
 
-class OutputHistoryMeetUpImpl : public OutputHistoryMeetUp {
+class OutputHistoryMeetUpImpl : public Handler {
 public:
     void process() override;  //  std::set<ParserObject>
 };

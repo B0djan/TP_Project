@@ -1,8 +1,8 @@
 #pragma once
 
-#include <SynchroClient.hpp>
+#include <Handler.hpp>
 
-class SynchroClientImpl : public SynchroClient {
+class SynchroClientImpl : public Handler {
 public:
     void process() override;
 };

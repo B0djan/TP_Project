@@ -1,8 +1,8 @@
 #pragma once
 
-#include <WriteAddressData.hpp>
+#include <Handler.hpp>
 
-class WriteAddressDataImpl : public WriteAddress {
+class WriteAddressDataImpl : public Handler {
 public:
     void process() override;
 };

@@ -1,8 +1,8 @@
 #pragma once
 
-#include <WritePersonalData.hpp>
+#include <Handler.hpp>
 
-class WritePersonalDataImpl : public WritePersonalData {
+class WritePersonalDataImpl : public Handler {
 public:
     void process() override;
 };

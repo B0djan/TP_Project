@@ -1,17 +1,17 @@
 #pragma once
 
-#include <Contacts.hpp>
+#include <Handler.hpp>
 
 #include <set>
 
 #include <string>
 
-class AddUserContactsImpl : public AddUserContacts {
+class AddUserContactsImpl : public Handler {
 public:
     void process() override;
 };
 
-class RmUserContactsImpl : public RmUserContacts {
+class RmUserContactsImpl : public Handler {
 public:
     void process() override;
 };

@@ -6,26 +6,23 @@
 
 #include <ClientAcceptor.hpp>
 
-#include <TestInputData.hpp>
-
-class HttpClientAcceptor: public ClientAcceptor {
+class HttpClientAcceptorCustom: public ClientAcceptor {
     class HttpClientProcessor {
         using EndCb = std::function<void()>;
 
         void reply(int code, const char* reason);
         void reply();
 
+        void reply(std::string response);
+
         void next_file_part();
         void get_start_line();
         void get_header();
         void request_finished();
 
-        //  CUSTOM !!!!!
-        void reply(std::string response);
         void get_massage();
         bool massage = false;
         std::string massage_d;
-        //  CUSTOM !!!!!
 
         magic_t magic;
         AsyncIOStream* stream;
@@ -44,7 +41,7 @@ class HttpClientAcceptor: public ClientAcceptor {
 
     magic_t magic;
 public:
-    HttpClientAcceptor(magic_t magic): magic(magic) {}
+    HttpClientAcceptorCustom(magic_t magic): magic(magic) {}
 
     void accept(AsyncIOStream*) override;
 };

@@ -4,21 +4,16 @@
 
 #include <iostream>
 
+#include <HttpClientAcceptorCustom.hpp>
+
 class Test {
 public:
-    std::string_view buf;
-    const char* buf1;
+    friend class HttpClientAcceptorCustom;
 
-    void input_view(std::string_view in) {
-        buf = in;
-    }
+    std::string buf1;
 
-    void input_str(const char* in) {
+    void input_str(std::string in) {
         buf1 = in;
-    }
-
-    void print_view() {
-        std::cout << buf << "\n" << std::endl;
     }
 
     void print_str() {
@@ -26,4 +21,5 @@ public:
     }
 
     Test() = default;
+    ~Test() = default;
 };
