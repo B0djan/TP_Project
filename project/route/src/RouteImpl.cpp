@@ -39,8 +39,8 @@
 #define RM_EVENT                         "..."
 
 //  contacts
-#define ADD_USER_TO_CONTACTS             "..."
-#define RM_USER_TO_CONTACTS              "..."
+#define ADD_USER_CONTACTS             "..."
+#define RM_USER_CONTACTS              "..."
 
 //  group
 #define ADD_GROUP                        "..."
@@ -81,8 +81,8 @@ RouteImpl::RouteImpl() {
     route_map.insert({RM_EVENT,               std::make_pair(new  ParserRmGroupImpl,               new RmGroupImpl)});
 
     //  Contact functional
-    route_map.insert({ADD_USER_TO_CONTACTS,   std::make_pair(new  ParserAddUserContactsImpl,       new AddUserContactsImpl)});
-    route_map.insert({RM_USER_TO_CONTACTS,    std::make_pair(new  ParserRmUserContactsImpl,        new RmUserContactsImpl)});
+    route_map.insert({ADD_USER_CONTACTS,   std::make_pair(new  ParserAddUserContactsImpl,       new AddUserContactsImpl)});
+    route_map.insert({RM_USER_CONTACTS,    std::make_pair(new  ParserRmUserContactsImpl,        new RmUserContactsImpl)});
 
     //  Group functional
     route_map.insert({ADD_GROUP,              std::make_pair(new  ParserAddUserImpl,               new AddUserImpl)});
