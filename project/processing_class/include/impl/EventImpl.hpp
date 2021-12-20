@@ -6,16 +6,16 @@
 
 class AddEventImpl : public Handler {
 public:
-    void process() override;
+    ParserObject process(const ParserObject& request_body) override;
 };
 
 class WriteEventImpl : public Handler {
 public:
-    void process() override;
+    ParserObject process(const ParserObject& request_body) override;
 };
 
 class RmEventImpl : public Handler {
 public:
-    void process() override;
+    ParserObject process(const ParserObject& request_body) override;
 
 };

@@ -8,6 +8,20 @@ INCLUDE_DIRECTORIES(route/include/impl)
 INCLUDE_DIRECTORIES(route/include/virtual)
 
 INCLUDE_DIRECTORIES(parser/include/impl)
+INCLUDE_DIRECTORIES(parser/include/virtual)
+
+INCLUDE_DIRECTORIES(database_connector/include/impl)
+INCLUDE_DIRECTORIES(database_connector/include/virtual)
+
+
+INCLUDE_DIRECTORIES(libs/database_connector/postgresql/)
+INCLUDE_DIRECTORIES(libs/database_connector/postgresql/internal/)
+INCLUDE_DIRECTORIES(libs/database_connector/postgresql/internal/libpq/)
+INCLUDE_DIRECTORIES(libs/database_connector/postgresql/libpq/)
+INCLUDE_DIRECTORIES(libs/parsing/include/nlohmann/)
+INCLUDE_DIRECTORIES(libs/parsing/include/nlohmann/)
+
+
 
 SET(SOURCE_LIST
         base_architecture/src/AsyncFileInputStream.cpp
@@ -28,11 +42,14 @@ SET(SOURCE_LIST_PROCESSING_CLASS
         processing_class/src/WritePersonalDataImpl.cpp )
 
 SET(SOURCE_LIST_ROUTE
-        route/src/RouteImpl.cpp
-        )
+        route/src/RouteImpl.cpp)
+
+SET(SOURCE_LIST_PARSER
+        parser/src/JSON.cpp)
 
 ADD_EXECUTABLE(${PROJECT_NAME}
         ${SOURCE_LIST}
         ${SOURCE_LIST_PROCESSING_CLASS}
-        ${SOURCE_LIST_ROUTE})
+        ${SOURCE_LIST_ROUTE}
+        ${SOURCE_LIST_PARSER})
 

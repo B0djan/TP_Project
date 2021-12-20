@@ -1,41 +1,51 @@
 #include <GroupImpl.hpp>
 
-void AddGroupImpl::process() {
-    //
+ParserObject AddGroupImpl::process(const ParserObject& request_body) {
+    ParserObject response_body;
+    return response_body;
 }
 
-void WriteGroupImpl ::process() {
-    //
+ParserObject WriteGroupImpl ::process(const ParserObject& request_body) {
+    ParserObject response_body;
+    return response_body;
 }
 
-void RmGroupImpl::process() {
-    //
+ParserObject RmGroupImpl::process(const ParserObject& request_body) {
+    ParserObject response_body;
+    return response_body;
 }
 
-void AddUserImpl::process() {
-    //
+ParserObject AddUserImpl::process(const ParserObject& request_body) {
+    ParserObject response_body;
+    return response_body;
 }
 
-void RmUserImpl::process() {
-    //
+ParserObject RmUserImpl::process(const ParserObject& request_body) {
+    ParserObject response_body;
+    return response_body;
 }
 
-void JoinImpl ::process() {
-    //
+ParserObject JoinImpl ::process(const ParserObject& request_body) {
+    ParserObject response_body;
+    return response_body;
 }
 
-void LeaveImpl::process() {
-    //
+ParserObject LeaveImpl::process(const ParserObject& request_body) {
+    ParserObject response_body;
+    return response_body;
 }
 
-void SearchGroupImpl::process() {
-    //
+ParserObject SearchGroupImpl::process(const ParserObject& request_body) {
+    ParserObject response_body;
+    return response_body;
 }
 
-void SearchFreeTimeImpl::process() {  //  std::set<ParserObject>
-
+ParserObject SearchFreeTimeImpl::process(const ParserObject& request_body) {  //  std::set<ParserObject>
+    ParserObject response_body;
+    return response_body;
 }
 
-void OutputHistoryMeetUpImpl::process() {  //  std::set<ParserObject>
-
+ParserObject OutputHistoryMeetUpImpl::process(const ParserObject& request_body) {  //  std::set<ParserObject>
+    ParserObject response_body;
+    return response_body;
 }

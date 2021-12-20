@@ -1,13 +1,13 @@
 #include <ContactsImpl.hpp>
 
-#include <set>
-
-void AddUserContactsImpl ::process() {
-    //
+ParserObject AddUserContactsImpl::process(const ParserObject& request_body) {
+    ParserObject response_body;
+    return response_body;
 }
 
-void RmUserContactsImpl::process() {
-    //
+ParserObject RmUserContactsImpl::process(const ParserObject& request_body) {
+    ParserObject response_body;
+    return response_body;
 }
 
 

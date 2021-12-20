@@ -1,9 +1,11 @@
 #include <RegistrAuthImpl.hpp>
 
-void RegistrationImpl::process() {
-    //
+ParserObject RegistrationImpl::process(const ParserObject& request_body) {
+    ParserObject response_body;
+    return response_body;
 }
 
-void AuthenticationImpl ::process() {
-    //
+ParserObject AuthenticationImpl ::process(const ParserObject& request_body) {
+    ParserObject response_body;
+    return response_body;
 }

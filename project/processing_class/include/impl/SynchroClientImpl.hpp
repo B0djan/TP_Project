@@ -2,7 +2,17 @@
 
 #include <Handler.hpp>
 
-class SynchroClientImpl : public Handler {
+class SynchroClientEventsImpl : public Handler {
 public:
-    void process() override;
+    ParserObject process(const ParserObject& request_body) override;
+};
+
+class SynchroClientContactsImpl : public Handler {
+public:
+    ParserObject process(const ParserObject& request_body) override;
+};
+
+class SynchroClientGroupsImpl : public Handler {
+public:
+    ParserObject process(const ParserObject& request_body) override;
 };

@@ -2,16 +2,12 @@
 
 #include <Handler.hpp>
 
-#include <set>
-
-#include <string>
-
 class AddUserContactsImpl : public Handler {
 public:
-    void process() override;
+    ParserObject process(const ParserObject& request_body) override;
 };
 
 class RmUserContactsImpl : public Handler {
 public:
-    void process() override;
+    ParserObject process(const ParserObject& request_body) override;
 };

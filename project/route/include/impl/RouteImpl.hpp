@@ -4,9 +4,7 @@
 
 class RouteImpl : Route {
 public:
-    void schedule(ParserObject request) override;
-
-    ParserObject get_response() override;
+    ParserObject get_response(const ParserObject& request_body) override;
 
     RouteImpl();
     ~RouteImpl() = default;

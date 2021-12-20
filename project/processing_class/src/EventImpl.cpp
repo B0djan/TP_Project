@@ -2,14 +2,17 @@
 
 #include <set>
 
-void AddEventImpl::process() {
-    //
+ParserObject AddEventImpl::process(const ParserObject& request_body) {
+    ParserObject response_body;
+    return response_body;
 }
 
-void WriteEventImpl ::process() {
-    //
+ParserObject WriteEventImpl ::process(const ParserObject& request_body) {
+    ParserObject response_body;
+    return response_body;
 }
 
-void RmEventImpl::process() {
-    //
+ParserObject RmEventImpl::process(const ParserObject& request_body) {
+    ParserObject response_body;
+    return response_body;
 }

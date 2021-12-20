@@ -4,12 +4,12 @@
 
 class RegistrationImpl : public Handler {
 public:
-    RegistrationImpl() : Handler() {}
-    void process() override;
+    RegistrationImpl() = default;
+    ParserObject process(const ParserObject& request_body)override;
 };
 
 class AuthenticationImpl : public Handler {
 public:
-    AuthenticationImpl() : Handler() {}
-    void process() override;
+    AuthenticationImpl() = default;
+    ParserObject process(const ParserObject& request_body) override;
 };

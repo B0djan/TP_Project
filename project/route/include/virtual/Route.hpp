@@ -8,14 +8,9 @@
 
 class Route {
 public:
-    std::queue<ParserObject> request_queue;
-
     std::map <std::string, Handler*> chain_links;
 
-
-    virtual ParserObject get_response() = 0;
-
-    virtual void schedule(ParserObject request) = 0;
+    virtual ParserObject get_response(const ParserObject& request_body) = 0;
 
     virtual ~Route() = default;
 };

@@ -6,8 +6,6 @@
 
 #include <ClientAcceptor.hpp>
 
-#include <TestInputData.hpp>
-
 class HttpClientAcceptor: public ClientAcceptor {
     class HttpClientProcessor {
         using EndCb = std::function<void()>;

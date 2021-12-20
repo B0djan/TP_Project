@@ -4,5 +4,5 @@
 
 class WriteAddressDataImpl : public Handler {
 public:
-    void process() override;
+    ParserObject process(const ParserObject& request_body) override;
 };
