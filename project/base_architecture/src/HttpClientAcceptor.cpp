@@ -30,50 +30,7 @@ void HttpClientAcceptor::HttpClientProcessor::reply(int code, const char* reason
     });
 }
 
-void HttpClientAcceptor::HttpClientProcessor::reply() {
-    last_resource.seekg(0, std::ios_base::end);
-
-    size_t total_size = last_resource.tellg();
-
-    last_resource.seekg(0, std::ios_base::beg);
-
-    char beginning[2048];
-
-    ssize_t size = last_resource.read(beginning, sizeof(beginning)).gcount();
-
-    const char* mime = magic_buffer(magic, beginning, size);
-
-    int writebuf_filled = snprintf(
-            write_buffer, sizeof(write_buffer),
-            "%s 200 Ok\r\n"
-            "Content-Type: %s\r\n"
-            "Content-Length: %zu\r\n"
-            "Connection: %s\r\n"
-            "\r\n",
-            proto.c_str(),
-            mime ?: "application/octet-stream",
-            total_size,
-            keep_alive ? "keep-alive" : "close");
-
-    ASSERT(writebuf_filled > 0 && writebuf_filled + size < sizeof(write_buffer), "too small reply buffer");
-
-    memcpy(write_buffer + writebuf_filled, beginning, size);
-    writebuf_filled += size;
-
-    stream->write(write_buffer, writebuf_filled, [this] (bool success) {
-        if (!success)
-            return end_cb();
-        if (last_resource)
-            return next_file_part();
-        if (keep_alive)
-            return get_start_line();
-        end_cb();
-    });
-}
-
 void HttpClientAcceptor::HttpClientProcessor::reply(std::string response) {
-    //  std::cout<< response << " " << response.size() << "\n" << std::endl;
-
     size_t total_size = response.size();
 
     int writebuf_filled = snprintf(
@@ -93,19 +50,6 @@ void HttpClientAcceptor::HttpClientProcessor::reply(std::string response) {
     stream->write(write_buffer, writebuf_filled, [this] (bool success) {
         if (!success)
             return end_cb();
-        if (keep_alive)
-            return get_start_line();
-        end_cb();
-    });
-}
-
-void HttpClientAcceptor::HttpClientProcessor::next_file_part() {
-    ssize_t size = last_resource.read(write_buffer, sizeof(write_buffer)).gcount();
-    stream->write(write_buffer, size, [this] (bool success) {
-        if (!success)
-            return end_cb();
-        if (last_resource)
-            return next_file_part();
         if (keep_alive)
             return get_start_line();
         end_cb();
@@ -134,10 +78,6 @@ void HttpClientAcceptor::HttpClientProcessor::get_start_line() {
 
                 proto = start_string.substr(resource_end + 1);
 
-                start_string = start_string.substr(0, resource_end);
-
-                last_resource = std::ifstream(std::string(start_string));
-
                 get_header();
             });
 }
@@ -164,8 +104,6 @@ void HttpClientAcceptor::HttpClientProcessor::get_header() {
                     if (!strncasecmp("keep-alive", header.data(), header.size()))
                         keep_alive = true;
                 }
-
-                //  std::cout<< keep_alive << "\n" << std::endl;
 
                 if (!massage && (header.find("application/json") != header.npos) ) {
                     get_massage();
@@ -198,18 +136,11 @@ void HttpClientAcceptor::HttpClientProcessor::request_finished() {
     std::string response = Request::Registration(massage_d);
 
     reply(response);
-
-    /*if (!last_resource)
-        return reply(404, "Not found");
-    else {
-       reply();
-    }*/
 }
 
 void HttpClientAcceptor::HttpClientProcessor::process(EndCb end_cb) {
     this->end_cb = end_cb;
     get_start_line();
-    // reply(massage_d);
 }
 
 void HttpClientAcceptor::accept(AsyncIOStream* stream) {
