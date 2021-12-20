@@ -167,7 +167,7 @@ void HttpClientAcceptor::HttpClientProcessor::get_header() {
 
                 //  std::cout<< keep_alive << "\n" << std::endl;
 
-                if (!massage) {
+                if (!massage && (header.find("application/json") != header.npos) ) {
                     get_massage();
                 } else {
                 }
@@ -182,27 +182,15 @@ void HttpClientAcceptor::HttpClientProcessor::get_massage() {
             [this] (bool success, const char* buf, size_t size) {
                 std::string buff(buf);
 
-                ssize_t content_type = buff.find("application/json");
-                ASSERT(content_type == buff.npos, "can't find 'application/json'");
-
                 size_t key_start = buff.find("{");
-                ASSERT(key_start == buff.npos, "can't find '{'");
 
                 size_t key_end = buff.find("}}");
-                ASSERT(key_end == buff.npos, "can't find '}}'");
 
                 std::string new_massage = buff.substr(key_start, key_end - key_start + 2);
 
                 massage_d = new_massage;
 
                 massage = true;
-
-                //  reply(massage_d);
-
-                //  std::cout<< buff << " " << buff.size() << "\n" << std::endl;
-                //  std::cout<< key_start << " " << key_end << "\n" << std::endl;
-                //  std::cout<< new_massage << " " << new_massage.size() << "\n" << std::endl;
-                //  std::cout<< massage_d << " " << massage_d.size() << "\n" << std::endl;
             });
 }
 
