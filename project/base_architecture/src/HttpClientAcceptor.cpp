@@ -7,6 +7,10 @@
 
 #include <Utils.hpp>
 
+#include <parse_json.hpp>
+
+#include <myfunction.hpp>
+
 void HttpClientAcceptor::HttpClientProcessor::reply(int code, const char* reason) {
     int size = snprintf(write_buffer, sizeof(write_buffer),
                         "%s %d %s\r\n"
@@ -197,7 +201,10 @@ void HttpClientAcceptor::HttpClientProcessor::get_massage() {
 }
 
 void HttpClientAcceptor::HttpClientProcessor::request_finished() {
-    reply(massage_d);
+    std::string response = Request::Registration(massage_d);
+
+    reply(response);
+
     /*if (!last_resource)
         return reply(404, "Not found");
     else {

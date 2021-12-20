@@ -7,21 +7,6 @@ INCLUDE_DIRECTORIES(processing_class/include/virtual)
 INCLUDE_DIRECTORIES(route/include/impl)
 INCLUDE_DIRECTORIES(route/include/virtual)
 
-INCLUDE_DIRECTORIES(parser/include/impl)
-INCLUDE_DIRECTORIES(parser/include/virtual)
-
-INCLUDE_DIRECTORIES(database_connector/include/impl)
-INCLUDE_DIRECTORIES(database_connector/include/virtual)
-
-
-INCLUDE_DIRECTORIES(libs/database_connector/postgresql/)
-INCLUDE_DIRECTORIES(libs/database_connector/postgresql/internal/)
-INCLUDE_DIRECTORIES(libs/database_connector/postgresql/internal/libpq/)
-INCLUDE_DIRECTORIES(libs/database_connector/postgresql/libpq/)
-INCLUDE_DIRECTORIES(libs/parsing/include/nlohmann/)
-INCLUDE_DIRECTORIES(libs/parsing/include/nlohmann/)
-
-
 
 SET(SOURCE_LIST
         base_architecture/src/AsyncFileInputStream.cpp
@@ -44,12 +29,54 @@ SET(SOURCE_LIST_PROCESSING_CLASS
 SET(SOURCE_LIST_ROUTE
         route/src/RouteImpl.cpp)
 
+
+
+
+
+
+
+
+
+
+INCLUDE_DIRECTORIES(parser/include/)
+INCLUDE_DIRECTORIES(parser/include/nlohmann)
+
+INCLUDE_DIRECTORIES(database_connector/include/impl)
+
+
+INCLUDE_DIRECTORIES(libs/database_connector/postgresql/)
+INCLUDE_DIRECTORIES(libs/parsing/include/nlohmann/)
+INCLUDE_DIRECTORIES(libs/parsing/include/nlohmann/)
+
+INCLUDE_DIRECTORIES(function/registration/include/)
+
 SET(SOURCE_LIST_PARSER
-        parser/src/JSON.cpp)
+        parser/src/single/addres.cpp
+        parser/src/single/contacts.cpp
+        parser/src/single/event.cpp
+        parser/src/single/group.cpp
+        parser/src/single/meetup.cpp
+        parser/src/single/person.cpp
+        parser/src/single/user.cpp
+        parser/src/methods/reg_and_au.cpp
+        parser/src/methods/friend.cpp
+        parser/src/methods/get_id.cpp
+        parser/src/methods/shedule.cpp)
+
+SET(SOURCE_LIST_FA
+        function/registration/src/myfunction.cpp)
+
+
+SET(SOURCE_LIST_DATA
+        database_connector/src/pgconnection.cpp
+        )
+
 
 ADD_EXECUTABLE(${PROJECT_NAME}
         ${SOURCE_LIST}
         ${SOURCE_LIST_PROCESSING_CLASS}
         ${SOURCE_LIST_ROUTE}
-        ${SOURCE_LIST_PARSER})
+        ${SOURCE_LIST_PARSER}
+        ${SOURCE_LIST_DATA}
+        ${SOURCE_LIST_FA})
 

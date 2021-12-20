@@ -6,6 +6,8 @@
 
 #include <ClientAcceptor.hpp>
 
+#include <RouteImpl.hpp>
+
 class HttpClientAcceptor: public ClientAcceptor {
     class HttpClientProcessor {
         using EndCb = std::function<void()>;
@@ -23,6 +25,7 @@ class HttpClientAcceptor: public ClientAcceptor {
         void get_massage();
         bool massage = false;
         std::string massage_d;
+        RouteImpl route;
         //  CUSTOM !!!!!
 
         magic_t magic;
