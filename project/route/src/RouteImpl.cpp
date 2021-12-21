@@ -103,13 +103,13 @@ RouteImpl::RouteImpl() {
 }
 
 std::string RouteImpl::get_response(const std::string request_body) {
+    std::string head;
 
-/*
-    auto res = chain_links.find(request_body.get_head());
+    auto needed_node = route_map.find(head);
 
-    ParserObject response_body = res->second->process(request_body);
-*/
-    std::string response_body_1;
+    ParserObject buf = needed_node->second.first->StrToObject(request_body);
+    buf = needed_node->second.second->process(buf);
+    std::string res = needed_node->second.first->ObjectToStr(buf);
 
-    return response_body_1;
+    return res;
 }

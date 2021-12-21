@@ -2,20 +2,12 @@
 
 #include <Parser.hpp>
 
-class ParserRegistrationImpl : public Parser {
+class ParserRegistrAuthImpl : public Parser {
 public:
     ParserObject StrToObject(const std::string parser_str) override;
 
     std::string ObjectToStr(const ParserObject& other) override;
 
-    ~ParserRegistrationImpl() = default;
+    ~ParserRegistrAuthImpl() = default;
 };
 
-class ParserAuthenticationImpl : public Parser {
-public:
-    ParserObject StrToObject(const std::string parser_str) override;
-
-    std::string ObjectToStr(const ParserObject& other) override;
-
-    ~ParserAuthenticationImpl() = default;
-};

@@ -39,6 +39,8 @@ class HttpClientAcceptor: public ClientAcceptor {
 
     magic_t magic;
 public:
+    static RouteImpl route;
+
     HttpClientAcceptor(magic_t magic): magic(magic) {}
 
     void accept(AsyncIOStream*) override;
