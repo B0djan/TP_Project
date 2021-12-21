@@ -59,56 +59,85 @@
 #define HISTORY_MEETUP                   "..."
 
 RouteImpl::RouteImpl() {
-    //  Base
-    route_map.insert({REGISTRATION,           std::make_pair(new ParserRegistrAuthImpl,           new RegistrationImpl)});
-    route_map.insert({AUTHENTICATION,         std::make_pair(new ParserRegistrAuthImpl,        new AuthenticationImpl)});
+    ParserRegistrAuthImpl par_reg_auth;
+
+    ParserEventImpl par_event;
+
+    ParserUserContactsImpl par_user_contacts;
+
+    ParserGroupImpl par_group;
+
+    ParserWritePersonalDataImpl par_write_data;
+
+    ParserWriteAddressDataImpl par_write_address;
+
+    ParserUserGroupImpl par_user_group;
+
+    ParserMeetUpImpl par_meetup;
+
+
+    //  Base            REQUEST                                        PARSER                     HANDLER
+    route_map.insert({REGISTRATION,           std::make_pair(&par_reg_auth,        new RegistrationImpl)});
+    route_map.insert({AUTHENTICATION,         std::make_pair(&par_reg_auth,        new AuthenticationImpl)});
 
     // Synchro
-    route_map.insert({GET_EVENTS,             std::make_pair(new  ParserEventImpl,   new SynchroClientEventsImpl)});
-    route_map.insert({GET_CONTACTS,           std::make_pair(new  ParserEventImpl, new SynchroClientContactsImpl)});
-    route_map.insert({GET_GROUPS,             std::make_pair(new  ParserEventImpl,   new SynchroClientGroupsImpl)});
+    route_map.insert({GET_EVENTS,             std::make_pair(&par_event,              new SynchroClientEventsImpl)});
+    route_map.insert({GET_CONTACTS,           std::make_pair(&par_user_contacts,       new SynchroClientContactsImpl)});
+    route_map.insert({GET_GROUPS,             std::make_pair(&par_group,              new SynchroClientGroupsImpl)});
 
     //  Write user personal data
-    route_map.insert({WRITE_PERSONAL_DATA,    std::make_pair(new  ParserWritePersonalDataImpl,     new WritePersonalDataImpl)});
+    route_map.insert({WRITE_PERSONAL_DATA,    std::make_pair(&par_write_data,  new WritePersonalDataImpl)});
 
     //  Write user address
-    route_map.insert({WRITE_ADDRESS,          std::make_pair(new  ParserWriteAddressDataImpl,      new WriteAddressDataImpl)});
+    route_map.insert({WRITE_ADDRESS,          std::make_pair(&par_write_address,   new WriteAddressDataImpl)});
 
     //  Event functional
-    route_map.insert({ADD_EVENT,              std::make_pair(new  ParserEventImpl,              new AddEventImpl)});
-    route_map.insert({WRITE_EVENT,            std::make_pair(new  ParserEventImpl,            new WriteEventImpl)});
-    route_map.insert({RM_EVENT,               std::make_pair(new  ParserEventImpl,               new RmGroupImpl)});
+    route_map.insert({ADD_EVENT,              std::make_pair(&par_event,              new AddEventImpl)});
+    route_map.insert({WRITE_EVENT,            std::make_pair(&par_event,              new WriteEventImpl)});
+    route_map.insert({RM_EVENT,               std::make_pair(&par_event,              new RmGroupImpl)});
 
     //  Contact functional
-    route_map.insert({ADD_USER_CONTACTS,      std::make_pair(new  ParserUserContactsImpl,       new AddUserContactsImpl)});
-    route_map.insert({RM_USER_CONTACTS,       std::make_pair(new  ParserUserContactsImpl,        new RmUserContactsImpl)});
+    route_map.insert({ADD_USER_CONTACTS,      std::make_pair(&par_user_contacts,       new AddUserContactsImpl)});
+    route_map.insert({RM_USER_CONTACTS,       std::make_pair(&par_user_contacts,       new RmUserContactsImpl)});
 
     //  Group functional
-    route_map.insert({ADD_GROUP,              std::make_pair(new  ParserGroupImpl,               new AddUserImpl)});
-    route_map.insert({WRITE_GROUP,            std::make_pair(new  ParserGroupImpl,            new WriteGroupImpl)});
-    route_map.insert({RM_GROUP,               std::make_pair(new  ParserGroupImpl,               new RmGroupImpl)});
+    route_map.insert({ADD_GROUP,              std::make_pair(&par_group,              new AddUserImpl)});
+    route_map.insert({WRITE_GROUP,            std::make_pair(&par_group,              new WriteGroupImpl)});
+    route_map.insert({RM_GROUP,               std::make_pair(&par_group,              new RmGroupImpl)});
 
-    route_map.insert({ADD_USER,               std::make_pair(new  ParserUserGroupImpl,               new AddUserImpl)});
-    route_map.insert({RM_USER,                std::make_pair(new  ParserUserGroupImpl,                new RmUserImpl)});
+    route_map.insert({SEARCH_GROUP,           std::make_pair(&par_group,              new SearchGroupImpl)});
 
-    route_map.insert({JOIN,                   std::make_pair(new  ParserUserGroupImpl,                  new JoinImpl)});
-    route_map.insert({LEAVE,                  std::make_pair(new  ParserUserGroupImpl,                 new LeaveImpl)});
+    route_map.insert({ADD_USER,               std::make_pair(&par_user_group,          new AddUserImpl)});
+    route_map.insert({RM_USER,                std::make_pair(&par_user_group,          new RmUserImpl)});
 
-    route_map.insert({SEARCH_GROUP,           std::make_pair(new  ParserGroupImpl,           new SearchGroupImpl)});
+    route_map.insert({JOIN,                   std::make_pair(&par_user_group,          new JoinImpl)});
+    route_map.insert({LEAVE,                  std::make_pair(&par_user_group,          new LeaveImpl)});
 
-    route_map.insert({SEARCH_FREE_TIME,       std::make_pair(new  ParserMeetUpImpl,        new SearchFreeTimeImpl)});
+    route_map.insert({SEARCH_FREE_TIME,       std::make_pair(&par_meetup,             new SearchFreeTimeImpl)});
 
-    route_map.insert({HISTORY_MEETUP,         std::make_pair(new  ParserMeetUpImpl,   new OutputHistoryMeetUpImpl)});
+    route_map.insert({HISTORY_MEETUP,         std::make_pair(&par_meetup,             new OutputHistoryMeetUpImpl)});
+}
+
+std::string RouteImpl::get_head(const std::string request_body) {
+    size_t begin = request_body.find("\"");
+    size_t end = request_body.find("\"", begin);
+
+    std::string type_request = request_body.substr(begin, end);
+    return type_request;
 }
 
 std::string RouteImpl::get_response(const std::string request_body) {
-    std::string head;
+    std::string type_request = get_head(request_body);
 
-    auto needed_node = route_map.find(head);
+    auto needed_node = route_map.find(type_request);
+    if (needed_node == route_map.end()) {
+        std::string res;
+        return res;
+    }
 
-    ParserObject buf = needed_node->second.first->StrToObject(request_body);
-    buf = needed_node->second.second->process(buf);
-    std::string res = needed_node->second.first->ObjectToStr(buf);
-
+    //ParserObject buf = needed_node->second.first->StrToObject(request_body);
+    //buf = needed_node->second.second->process(buf);
+    //std::string res = needed_node->second.first->ObjectToStr(buf);
+    std::string res;
     return res;
 }

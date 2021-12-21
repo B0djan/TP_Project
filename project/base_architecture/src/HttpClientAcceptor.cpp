@@ -133,7 +133,10 @@ void HttpClientAcceptor::HttpClientProcessor::get_massage() {
 void HttpClientAcceptor::HttpClientProcessor::request_finished() {
     std::string response = Request::Registration(massage_d);
 
-    std::string response_r = route.get_response(massage_d);
+    /*std::string response_r = get_response(massage_d);
+    if (response_r.empty()) {
+        return reply(400, "Bad request");
+    }*/
     reply(response);
 }
 

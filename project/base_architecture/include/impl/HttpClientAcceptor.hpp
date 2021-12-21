@@ -9,7 +9,7 @@
 #include <RouteImpl.hpp>
 
 class HttpClientAcceptor: public ClientAcceptor {
-    class HttpClientProcessor {
+    class HttpClientProcessor: public RouteImpl {
         using EndCb = std::function<void()>;
 
         void reply(int code, const char* reason);
@@ -18,7 +18,7 @@ class HttpClientAcceptor: public ClientAcceptor {
         void get_header();
         void request_finished();
 
-        void reply(std::string response);
+        void reply(std::string resprouteonse);
         void get_massage();
         bool massage = false;
         std::string massage_d;
@@ -39,9 +39,8 @@ class HttpClientAcceptor: public ClientAcceptor {
 
     magic_t magic;
 public:
-    static RouteImpl route;
 
-    HttpClientAcceptor(magic_t magic): magic(magic) {}
+    HttpClientAcceptor(magic_t magic) : magic(magic) {}
 
     void accept(AsyncIOStream*) override;
 };
