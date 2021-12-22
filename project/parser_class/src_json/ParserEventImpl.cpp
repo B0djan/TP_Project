@@ -1,31 +1,64 @@
 #include <ParserEventImpl.hpp>
 
 ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
+
+    /* 
+
+    {
+        "get_events":
+        [
+            {"user_id":"1", "event_name":"qwerty", "":"", "":"", },
+            {},
+            {}
+        ]
+    }
+
+    */
     
-    // nlohmann::json j = nlohmann::json::parse(parser_str);
+    nlohmann::json j = nlohmann::json::parse(parser_str);
 
-    // nlohmann::json::iterator it = j.begin();
+    nlohmann::json::iterator it = j.begin();
 
-    // nlohmann::json value = j[it.key()];
+    nlohmann::json value = j[it.key()];  // []
 
-    // std::set<event_t> events;
+    std::set<event_t> events;
 
-    // for (auto& element : value[""])
+    for (auto& element : value)
+    {
+        event_t event;
 
-    //     if(j.contains("user_id"))
-    //         contacts.user_id = value["user_id"];
+        if(element.contains("user_id"))
+        {
+            event.user_id = element["user_id"].get<std::string>();
+        };
+        if(element.contains("event_name"))
+        {
+            event.event_name = element["event_name"].get<std::string>();
+        };
+        if(element.contains("date"))
+        {
+            event.date = element["date"].get<std::string>();
+        };
+        if(element.contains("description"))
+        {
+            event.user_id = element["description"].get<std::string>();
+        };
+        if(element.contains("time_begin"))
+        {
+            event.user_id = element["time_begin"].get<std::string>();
+        };
+        if(element.contains("time_end"))
+        {
+            event.user_id = element["time_end"].get<std::string>();
+        };
 
-    //     if(j.contains("contacts"))
-    //     {
-    //         for (auto& element : value["contacts"])
-    //         contacts.contacts.insert(element.dump());
-    //     }
+    }
 
-    // ParserObject res;
+    ParserObject res;
 
-    // res.events = events;
+    res.events = events;
 
-    // return res;
+    return res;
 }
 
 std::string ParserEventImpl::ObjectToStr(const ParserObject& other) const {
