@@ -137,7 +137,6 @@ void HttpClientAcceptor::HttpClientProcessor::get_massage() {
                     return reply(400, "Bad request");
                 }
 
-
                 massage_d = buff.substr(key_start, key_end - key_start + 2);
 
                 std::cout << "JSON" << std::endl;
