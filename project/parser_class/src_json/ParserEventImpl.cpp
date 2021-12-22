@@ -1,34 +1,34 @@
 #include <ParserEventImpl.hpp>
 
-ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) {
+// ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) {
 
-    //  {}
+//     //  {}
     
-    nlohmann::json j = nlohmann::json::parse(parser_str);
+//     nlohmann::json j = nlohmann::json::parse(parser_str);
 
-    nlohmann::json::iterator it = j.begin();
+//     nlohmann::json::iterator it = j.begin();
 
-    nlohmann::json value = j[it.key()];
+//     nlohmann::json value = j[it.key()];
 
-    std::set<event_t> events;
+//     std::set<event_t> events;
 
-    for (auto& element : value[""])
+//     for (auto& element : value[""])
 
-        if(j.contains("user_id"))
-            contacts.user_id = value["user_id"];
+//         if(j.contains("user_id"))
+//             contacts.user_id = value["user_id"];
 
-        if(j.contains("contacts"))
-        {
-            for (auto& element : value["contacts"])
-            contacts.contacts.insert(element.dump());
-        }
+//         if(j.contains("contacts"))
+//         {
+//             for (auto& element : value["contacts"])
+//             contacts.contacts.insert(element.dump());
+//         }
 
-    ParserObject res;
+//     ParserObject res;
 
-    res.events = events;
+//     res.events = events;
 
-    return res;
-}
+//     return res;
+// }
 
 std::string ParserEventImpl::ObjectToStr(const ParserObject& other) {
 
