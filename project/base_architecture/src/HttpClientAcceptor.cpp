@@ -81,28 +81,32 @@ void HttpClientAcceptor::HttpClientProcessor::get_header() {
     stream->read_till(
             "\r\n", 2,
             [this] (bool success, const char* buf, size_t size) {
-                if (!success)
+                if (!success) {
                     return end_cb();
+                }
 
-                if (!size)
+                if (!size) {
                     return request_finished();
+                }
 
                 std::string_view header(buf, size);
 
                 ssize_t key_end = header.find(": ");
 
-                if (key_end == header.npos)
+                if (key_end == header.npos) {
                     return reply(400, "Bad request");
+                }
 
                 if (!strncasecmp("Connection", header.data(), key_end)) {
                     header.remove_prefix(key_end + 2);
-                    if (!strncasecmp("keep-alive", header.data(), header.size()))
+
+                    if (!strncasecmp("keep-alive", header.data(), header.size())) {
                         keep_alive = true;
+                    }
                 }
 
                 if (!massage && (header.find("application/json") != header.npos) ) {
                     get_massage();
-                } else {
                 }
 
                 get_header();
@@ -116,8 +120,14 @@ void HttpClientAcceptor::HttpClientProcessor::get_massage() {
                 std::string buff(buf);
 
                 size_t key_start = buff.find("{");
+                if (key_start == buff.npos) {
+                    return reply(400, "Bad request");
+                }
 
                 size_t key_end = buff.find("}}");
+                if (key_end == buff.npos) {
+                    return reply(400, "Bad request");
+                }
 
                 std::string new_massage = buff.substr(key_start, key_end - key_start + 2);
 
@@ -128,12 +138,11 @@ void HttpClientAcceptor::HttpClientProcessor::get_massage() {
 }
 
 void HttpClientAcceptor::HttpClientProcessor::request_finished() {
-    //  std::string response = Request::Registration(massage_d);
-
     std::string response = get_response(massage_d);
     if (response.empty()) {
         return reply(400, "Bad request");
     }
+
     reply(response);
 }
 
