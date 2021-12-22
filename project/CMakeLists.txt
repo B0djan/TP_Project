@@ -14,6 +14,9 @@ INCLUDE_DIRECTORIES(parser_class/include/libs/single_include/nlohmann)
 INCLUDE_DIRECTORIES(parser_class/include/impl)
 INCLUDE_DIRECTORIES(parser_class/include/virtual)
 
+INCLUDE_DIRECTORIES(database_connector/include/impl)
+INCLUDE_DIRECTORIES(database_connector/include/libs/postgresql)
+
 
 SET(SOURCE_LIST_SERVER
         base_architecture/src/AsyncFileInputStream.cpp
@@ -45,15 +48,8 @@ SET(SOURCE_LIST_PARSER_CLASS
         parser_class/src_json/ParserWritePersonalDataImpl.cpp)
 
 
-
-
-
-INCLUDE_DIRECTORIES(database_connector/include/impl)
-INCLUDE_DIRECTORIES(database_connector/include/libs/postgresql)
-
-
 SET(SOURCE_LIST_DATA
-        database_connector/src_postge_sql/pgconnection.cpp)
+        database_connector/src_postge_sql/PGConnection.cpp)
 
 
 ADD_EXECUTABLE(${PROJECT_NAME}
@@ -61,6 +57,5 @@ ADD_EXECUTABLE(${PROJECT_NAME}
         ${SOURCE_LIST_ROUTE}
         ${SOURCE_LIST_PROCESSING_CLASS}
         ${SOURCE_LIST_PARSER_CLASS}
-
         ${SOURCE_LIST_DATA})
 

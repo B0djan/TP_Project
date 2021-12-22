@@ -83,7 +83,7 @@ RouteImpl::RouteImpl() {
     // Synchro
     route_map.insert({GET_EVENTS,             std::make_pair(new ParserEventImpl,              new SynchroClientEventsImpl)});
     route_map.insert({GET_CONTACTS,           std::make_pair(new ParserUserContactsImpl,       new SynchroClientContactsImpl)});
-    route_map.insert({GET_GROUPS,             std::make_pair(new ParserRegistrAuthImpl,              new SynchroClientGroupsImpl)});
+    route_map.insert({GET_GROUPS,             std::make_pair(new ParserRegistrAuthImpl,        new SynchroClientGroupsImpl)});
 
     //  Write user personal data
     route_map.insert({WRITE_PERSONAL_DATA,    std::make_pair(new ParserWritePersonalDataImpl,  new WritePersonalDataImpl)});
@@ -107,15 +107,15 @@ RouteImpl::RouteImpl() {
 
     route_map.insert({SEARCH_GROUP,           std::make_pair(new ParserGroupImpl,              new SearchGroupImpl)});
 
-    route_map.insert({ADD_USER,               std::make_pair(new ParserWriteAddressDataImpl,          new AddUserImpl)});
-    route_map.insert({RM_USER,                std::make_pair(new ParserWriteAddressDataImpl,          new RmUserImpl)});
+    route_map.insert({ADD_USER,               std::make_pair(new ParserWriteAddressDataImpl,   new AddUserImpl)});
+    route_map.insert({RM_USER,                std::make_pair(new ParserWriteAddressDataImpl,   new RmUserImpl)});
 
-    route_map.insert({JOIN,                   std::make_pair(new ParserWriteAddressDataImpl,          new JoinImpl)});
-    route_map.insert({LEAVE,                  std::make_pair(new ParserWriteAddressDataImpl,          new LeaveImpl)});
+    route_map.insert({JOIN,                   std::make_pair(new ParserWriteAddressDataImpl,   new JoinImpl)});
+    route_map.insert({LEAVE,                  std::make_pair(new ParserWriteAddressDataImpl,   new LeaveImpl)});
 
-    route_map.insert({SEARCH_FREE_TIME,       std::make_pair(new ParserRegistrAuthImpl,             new SearchFreeTimeImpl)});
+    route_map.insert({SEARCH_FREE_TIME,       std::make_pair(new ParserRegistrAuthImpl,        new SearchFreeTimeImpl)});
 
-    route_map.insert({HISTORY_MEETUP,         std::make_pair(new ParserRegistrAuthImpl,             new OutputHistoryMeetUpImpl)});
+    route_map.insert({HISTORY_MEETUP,         std::make_pair(new ParserRegistrAuthImpl,        new OutputHistoryMeetUpImpl)});
 }
 
 std::string RouteImpl::get_head(const std::string request_body) {
@@ -148,8 +148,9 @@ std::string RouteImpl::get_response(const std::string request_body) {
         return res;
     }
 
+    ParserObject buf;
 
-    ParserObject buf = needed_node->second.first->StrToObject(request_body);
+    buf = needed_node->second.first->StrToObject(request_body);
     buf = needed_node->second.second->process(buf);
     res = needed_node->second.first->ObjectToStr(buf);
 

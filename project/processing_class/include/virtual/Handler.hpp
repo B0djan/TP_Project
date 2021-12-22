@@ -8,7 +8,7 @@
 
 #include "libpq-fe.h"
 
-#include "pgconnection.hpp"
+#include "PGConnection.hpp"
 
 #define SUCCESS     0
 #define ERROR      -1

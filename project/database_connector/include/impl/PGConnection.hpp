@@ -5,6 +5,8 @@
 
 #include "libpq-fe.h"
 
+// (TODO): Сделать класс ридер для конфига к базе
+
 class PGConnection {
 
     PGConnection() = default;  // equivalent () {}
