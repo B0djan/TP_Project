@@ -18,7 +18,7 @@ class HttpClientAcceptor: public ClientAcceptor {
         void get_header();
         void request_finished();
 
-        void reply(std::string resprouteonse);
+        void reply(std::string response);
         void get_massage();
         bool massage = false;
         std::string massage_d;

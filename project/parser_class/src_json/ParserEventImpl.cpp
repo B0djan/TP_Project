@@ -1,6 +1,6 @@
 #include <ParserEventImpl.hpp>
 
-ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) {
+ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
     
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
@@ -17,7 +17,7 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) {
     return res;
 }
 
-std::string ParserEventImpl::ObjectToStr(const ParserObject& other) {
+std::string ParserEventImpl::ObjectToStr(const ParserObject& other) const {
 
     contacts_t contacts = other.contacts;
 

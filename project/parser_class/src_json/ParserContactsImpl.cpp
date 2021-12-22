@@ -1,6 +1,6 @@
 #include <ParserContactsImpl.hpp>
 
-ParserObject ParserUserContactsImpl::StrToObject(const std::string& parser_str) {
+ParserObject ParserUserContactsImpl::StrToObject(const std::string& parser_str) const {
 
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
@@ -26,7 +26,7 @@ ParserObject ParserUserContactsImpl::StrToObject(const std::string& parser_str) 
     return res;
 }
 
-std::string ParserUserContactsImpl::ObjectToStr(const ParserObject& other) {
+std::string ParserUserContactsImpl::ObjectToStr(const ParserObject& other) const {
 
     contacts_t contacts = other.contacts;
 

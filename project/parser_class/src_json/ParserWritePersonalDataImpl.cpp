@@ -1,6 +1,6 @@
 #include <ParserWritePersonalDataImpl.hpp>
 
-ParserObject ParserWritePersonalDataImpl::StrToObject(const std::string& parser_str) {
+ParserObject ParserWritePersonalDataImpl::StrToObject(const std::string& parser_str) const {
     
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
@@ -41,7 +41,7 @@ ParserObject ParserWritePersonalDataImpl::StrToObject(const std::string& parser_
     return res;
 }
 
-std::string ParserWritePersonalDataImpl::ObjectToStr(const ParserObject& other) {
+std::string ParserWritePersonalDataImpl::ObjectToStr(const ParserObject& other) const {
 
     personal_data_t personal_data = other.personal_data;
 

@@ -75,6 +75,7 @@ public:
 
 
     ParserObject() = default;
+    ParserObject(const ParserObject& other) = default;
     ~ParserObject() = default;
 
     ParserObject& operator=(const user_t other)             { this->user = other;               return *this; };
