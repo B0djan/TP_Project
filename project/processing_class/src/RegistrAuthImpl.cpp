@@ -79,7 +79,7 @@ int RegistrationImpl::RegistrationTo(user_t& r) {
     return SUCCESS;
 }
 
-int AutorizationTo(user_t& r) {
+int AuthenticationImpl::AutorizationTo(user_t& r) {
 
     char check[] = "SELECT nickname, password "
                     "FROM user_m WHERE (nickname = $1) AND (password = $2)";

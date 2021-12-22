@@ -91,6 +91,10 @@ void HttpClientAcceptor::HttpClientProcessor::get_header() {
 
                 std::string_view header(buf, size);
 
+                std::cout << "WARNING START DATA" << std::endl;
+                std::cout << header << std::endl;
+                std::cout << "WARNING END DATA" << std::endl;
+
                 ssize_t key_end = header.find(": ");
 
                 if (key_end == header.npos) {
