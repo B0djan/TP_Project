@@ -43,13 +43,17 @@ std::string ParserRegistrAuthImpl::ObjectToStr(const ParserObject& other) const 
 
     nlohmann::json value;
 
-    value["user_id"] = user.user_id;
+    if (user.user_id != "")
+        value["user_id"] = user.user_id;
 
-    value["email"] = user.email;
+    if (user.email != "")
+        value["email"] = user.email;
 
-    value["password"] = user.password;
+    if (user.password != "")
+        value["password"] = user.password;
 
-    value["nickname"] = user.nickname;
+    if (user.user_id != "")
+        value["nickname"] = user.nickname;
 
     nlohmann::json j;
 

@@ -47,21 +47,29 @@ std::string ParserWritePersonalDataImpl::ObjectToStr(const ParserObject& other) 
 
     nlohmann::json value;
 
-    value["user_id"] = personal_data.user_id;
+    if (personal_data.user_id != "")
+        value["user_id"] = personal_data.user_id;
 
-    value["first_name"] = personal_data.first_name;
+    if (personal_data.first_name != "")
+        value["first_name"] = personal_data.first_name;
 
-    value["surname"] = personal_data.surname;
+    if (personal_data.surname != "")
+        value["surname"] = personal_data.surname;
 
-    value["age"] = personal_data.age;
+    if (personal_data.age != "")
+        value["age"] = personal_data.age;
 
-    value["phone_number"] = personal_data.phone_number;
+    if (personal_data.phone_number != "")
+        value["phone_number"] = personal_data.phone_number;
 
-    value["status"] = personal_data.status;
+    if (personal_data.status != "")
+        value["status"] = personal_data.status;
 
-    value["label"] = personal_data.label;
+    if (personal_data.label != "")
+        value["label"] = personal_data.label;
 
-    value["description"] = personal_data.description;
+    if (personal_data.description != "")
+        value["description"] = personal_data.description;
 
     nlohmann::json j;
 
