@@ -6,7 +6,7 @@
 
 class Parser {
 public:
-    virtual ParserObject StrToObject(std::string parser_str) = 0;
+    virtual ParserObject StrToObject(const std::string& parser_str) = 0;
 
     virtual std::string ObjectToStr(const ParserObject& other) = 0;
 

@@ -1,6 +1,6 @@
 #include <ParserGroupImpl.hpp>
 
-ParserObject ParserGroupImpl::StrToObject(const std::string parser_str) {
+ParserObject ParserGroupImpl::StrToObject(const std::string& parser_str) {
     ParserObject res;
     return res;
 }
@@ -11,7 +11,7 @@ std::string ParserGroupImpl::ObjectToStr(const ParserObject& other) {
 }
 
 
-ParserObject ParserUserGroupImpl::StrToObject(const std::string parser_str) {
+ParserObject ParserUserGroupImpl::StrToObject(const std::string& parser_str) {
     ParserObject res;
     return res;
 }
@@ -21,7 +21,7 @@ std::string ParserUserGroupImpl::ObjectToStr(const ParserObject& other) {
     return res;
 }
 
-ParserObject ParserMeetUpImpl::StrToObject(const std::string parser_str) {
+ParserObject ParserMeetUpImpl::StrToObject(const std::string& parser_str) {
     ParserObject res;
     return res;
 }

@@ -1,6 +1,6 @@
 #include <ParserWritePersonalDataImpl.hpp>
 
-ParserObject ParserWritePersonalDataImpl::StrToObject(const std::string parser_str) {
+ParserObject ParserWritePersonalDataImpl::StrToObject(const std::string& parser_str) {
     ParserObject res;
     return res;
 }

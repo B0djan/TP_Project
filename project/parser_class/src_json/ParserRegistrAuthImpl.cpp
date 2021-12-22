@@ -1,6 +1,6 @@
 #include <ParserRegistrAuthImpl.hpp>
 
-ParserObject ParserRegistrAuthImpl::StrToObject(const std::string parser_str) {
+ParserObject ParserRegistrAuthImpl::StrToObject(const std::string& parser_str) {
     ParserObject res;
     return res;
 }

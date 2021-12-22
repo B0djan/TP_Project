@@ -1,6 +1,6 @@
 #include <ParserEventImpl.hpp>
 
-ParserObject ParserEventImpl::StrToObject(const std::string parser_str) {
+ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) {
     ParserObject res;
     return res;
 }

@@ -1,6 +1,6 @@
 #include <ParserWriteAddressDataImpl.hpp>
 
-ParserObject ParserWriteAddressDataImpl::StrToObject(std::string parser_str) {
+ParserObject ParserWriteAddressDataImpl::StrToObject(const std::string& parser_str) {
     ParserObject res;
     return res;
 }
