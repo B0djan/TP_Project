@@ -4,6 +4,8 @@
 
 #include "ParserObject.hpp"
 
+#include "nlohmann/json.hpp"
+
 class Parser {
 public:
     virtual ParserObject StrToObject(const std::string& parser_str) = 0;
