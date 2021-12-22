@@ -1,6 +1,6 @@
 #include <ParserRegistrAuthImpl.hpp>
 
-ParserObject ParserRegistrAuthImpl::StrToObject(const std::string& parser_str) {
+ParserObject ParserRegistrAuthImpl::StrToObject(const std::string& parser_str) const {
     
     // {"registration":{"login":"mars444","password":"qqqqqqqqqqqqqqqq"}}
 
@@ -31,7 +31,7 @@ ParserObject ParserRegistrAuthImpl::StrToObject(const std::string& parser_str) {
     return res;
 }
 
-std::string ParserRegistrAuthImpl::ObjectToStr(const ParserObject& other) {
+std::string ParserRegistrAuthImpl::ObjectToStr(const ParserObject& other) const {
 
     user_t user = other.user;
 

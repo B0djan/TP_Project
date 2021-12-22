@@ -123,6 +123,8 @@ std::string RouteImpl::get_head(const std::string request_body) {
     size_t end = request_body.find("\"", begin);
 
     std::string type_request = request_body.substr(begin, end);
+    std::cout << type_request << "\n" << std::endl;
+
     return type_request;
 }
 
@@ -135,9 +137,9 @@ std::string RouteImpl::get_response(const std::string request_body) {
         return res;
     }
 
-    //ParserObject buf = needed_node->second.first->StrToObject(request_body);
-    //buf = needed_node->second.second->process(buf);
-    //std::string res = needed_node->second.first->ObjectToStr(buf);
-    std::string res;
+    ParserObject buf = needed_node->second.first->StrToObject(request_body);
+    buf = needed_node->second.second->process(buf);
+    std::string res = needed_node->second.first->ObjectToStr(buf);
+
     return res;
 }

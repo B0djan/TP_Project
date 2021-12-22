@@ -1,13 +1,10 @@
 #include <strings.h>
 #include <iostream>
 #include <string_view>
-#include <cstring>
 
 #include <HttpClientAcceptor.hpp>
 
 #include <Utils.hpp>
-
-#include <myfunction.hpp>
 
 void HttpClientAcceptor::HttpClientProcessor::reply(int code, const char* reason) {
     int size = snprintf(write_buffer, sizeof(write_buffer),
@@ -131,13 +128,13 @@ void HttpClientAcceptor::HttpClientProcessor::get_massage() {
 }
 
 void HttpClientAcceptor::HttpClientProcessor::request_finished() {
-    std::string response = Request::Registration(massage_d);
+    //  std::string response = Request::Registration(massage_d);
 
-    /*std::string response_r = get_response(massage_d);
+    std::string response_r = get_response(massage_d);
     if (response_r.empty()) {
         return reply(400, "Bad request");
-    }*/
-    reply(response);
+    }
+    reply(response_r);
 }
 
 void HttpClientAcceptor::HttpClientProcessor::process(EndCb end_cb) {

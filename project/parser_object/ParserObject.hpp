@@ -4,6 +4,8 @@
 
 #include <set>
 
+#include "nlohmann/json.hpp"
+
 typedef struct {
     std::string user_id  = "";
     std::string email    = "";
@@ -76,6 +78,7 @@ public:
 
 
     ParserObject() = default;
+    ParserObject(const ParserObject& other) = default;
     ~ParserObject() = default;
 
     ParserObject& operator=(const user_t other)                     { this->user = other;                return *this; };

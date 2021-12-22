@@ -53,8 +53,6 @@ INCLUDE_DIRECTORIES(parser_class/include/)
 INCLUDE_DIRECTORIES(database_connector/include/impl)
 INCLUDE_DIRECTORIES(database_connector/include/libs/postgresql)
 
-INCLUDE_DIRECTORIES(function/registration/include)
-
 SET(SOURCE_LIST_PARSER
         parser_class/src_json/single/addres.cpp
         parser_class/src_json/single/contacts.cpp
@@ -68,8 +66,6 @@ SET(SOURCE_LIST_PARSER
         parser_class/src_json/methods/get_id.cpp
         parser_class/src_json/methods/shedule.cpp)
 
-SET(SOURCE_LIST_FA
-        function/registration/src/myfunction.cpp)
 
 
 SET(SOURCE_LIST_DATA
@@ -84,6 +80,5 @@ ADD_EXECUTABLE(${PROJECT_NAME}
 
 
         ${SOURCE_LIST_PARSER}
-        ${SOURCE_LIST_DATA}
-        ${SOURCE_LIST_FA})
+        ${SOURCE_LIST_DATA})
 

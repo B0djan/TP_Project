@@ -1,6 +1,6 @@
 #include <ParserWriteAddressDataImpl.hpp>
 
-ParserObject ParserWriteAddressDataImpl::StrToObject(const std::string& parser_str) {
+ParserObject ParserWriteAddressDataImpl::StrToObject(const std::string& parser_str) const {
     
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
@@ -41,7 +41,7 @@ ParserObject ParserWriteAddressDataImpl::StrToObject(const std::string& parser_s
     return res;
 }
 
-std::string ParserWriteAddressDataImpl::ObjectToStr(const ParserObject& other) {
+std::string ParserWriteAddressDataImpl::ObjectToStr(const ParserObject& other) const {
 
     addres_data_t addres_data = other.address_data;
 
