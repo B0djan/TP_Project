@@ -63,35 +63,26 @@ typedef struct {
     std::set<std::string> contacts;
 } contacts_t;
 
-typedef struct object_body {
-    user_t                   user;
-    personal_data_t personal_data;
-    addres_data_t     addres_data;
-    event_t                 event;
-    group_t                 group;
-    meetup_t               meetup;
-    contacts_t           contacts;
-} object_body_t;
-
 class ParserObject {
 public:
     user_t                    user;
     personal_data_t  personal_data;
     addres_data_t     address_data;
-    event_t                  event;
-    group_t                  group;
-    meetup_t                meetup;
+    std::set<event_t>        event;
+    std::set<group_t>        group;
+    std::set<meetup_t>      meetup;
     contacts_t            contacts;
+    std::string              error;
 
 
     ParserObject() = default;
     ~ParserObject() = default;
 
-    ParserObject& operator=(const user_t other) { this->user = other; return *this; };
-    ParserObject& operator=(const personal_data_t other) { this->personal_data = other; return *this; };
-    ParserObject& operator=(const addres_data_t other) { this->address_data = other; return *this; };
-    ParserObject& operator=(const event_t other) { this->event = other; return *this; };
-    ParserObject& operator=(const group_t other) { this->group = other; return *this; };
-    ParserObject& operator=(const meetup_t other) { this->meetup = other; return *this; };
-    ParserObject& operator=(const contacts_t other) { this->contacts = other; return *this; };
+    ParserObject& operator=(const user_t other)             { this->user = other;               return *this; };
+    ParserObject& operator=(const personal_data_t other)    { this->personal_data = other;      return *this; };
+    ParserObject& operator=(const addres_data_t other)      { this->address_data = other;       return *this; };
+    ParserObject& operator=(const event_t other)            { this->event.insert(other);        return *this; };
+    ParserObject& operator=(const group_t other)            { this->group.insert(other);        return *this; };
+    ParserObject& operator=(const meetup_t other)           { this->meetup.insert(other);       return *this; };
+    ParserObject& operator=(const contacts_t other)         { this->contacts = other;           return *this; };
 };
