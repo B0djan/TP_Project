@@ -32,9 +32,11 @@ std::string ParserUserContactsImpl::ObjectToStr(const ParserObject& other) const
 
     nlohmann::json value;
 
-    value["user_id"] = contacts.user_id;
-
-    value["contacts"] = contacts.contacts;
+    if (contacts.user_id != "")
+        value["user_id"] = contacts.user_id;
+        
+    if (!contacts.contacts.empty())
+        value["contacts"] = contacts.contacts;
 
     nlohmann::json j;
 

@@ -47,21 +47,29 @@ std::string ParserWriteAddressDataImpl::ObjectToStr(const ParserObject& other) c
 
     nlohmann::json value;
 
-    value["user_id"] = addres_data.user_id;
+    if (addres_data.user_id != "")
+        value["user_id"] = addres_data.user_id;
 
-    value["building"] = addres_data.building;
+    if (addres_data.building != "")
+        value["building"] = addres_data.building;
 
-    value["housing"] = addres_data.housing;
+    if (addres_data.housing != "")
+        value["housing"] = addres_data.housing;
 
-    value["street"] = addres_data.street;
+    if (addres_data.street != "")
+        value["street"] = addres_data.street;
 
-    value["city"] = addres_data.city;
+    if (addres_data.city != "")
+        value["city"] = addres_data.city;
 
-    value["district"] = addres_data.district;
+    if (addres_data.district != "")
+        value["district"] = addres_data.district;
 
-    value["index"] = addres_data.index;
+    if (addres_data.index != "")
+        value["index"] = addres_data.index;
 
-    value["country"] = addres_data.country;
+    if (addres_data.country != "")
+        value["country"] = addres_data.country;
 
     nlohmann::json j;
 

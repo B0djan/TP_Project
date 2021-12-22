@@ -31,27 +31,33 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
         {
             event.user_id = element["user_id"].get<std::string>();
         };
+
         if(element.contains("event_name"))
         {
             event.event_name = element["event_name"].get<std::string>();
         };
+
         if(element.contains("date"))
         {
             event.date = element["date"].get<std::string>();
         };
+
         if(element.contains("description"))
         {
             event.user_id = element["description"].get<std::string>();
         };
+
         if(element.contains("time_begin"))
         {
             event.user_id = element["time_begin"].get<std::string>();
         };
+        
         if(element.contains("time_end"))
         {
             event.user_id = element["time_end"].get<std::string>();
         };
 
+        events.insert(event);
     }
 
     ParserObject res;
