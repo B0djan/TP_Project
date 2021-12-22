@@ -4,7 +4,7 @@ ParserObject RegistrationImpl::process(const ParserObject& request_body) {
 
     user_t user = request_body.user;
 
-    int code = RegistrationTo(user);
+    int code = this->RegistrationTo(user);
 
     ParserObject response_body;
 
@@ -40,7 +40,7 @@ ParserObject AuthenticationImpl::process(const ParserObject& request_body) {
     return response_body;
 }
 
-int RegistrationTo(user_t& r) {
+int RegistrationImpl::RegistrationTo(user_t& r) {
     
     char check[] = "SELECT nickname, password FROM user_m WHERE (nickname = $1) AND (password = $2)";
 

@@ -1,6 +1,10 @@
 #include <ParserRegistrAuthImpl.hpp>
 
+
+#include <iostream>
+
 ParserObject ParserRegistrAuthImpl::StrToObject(const std::string& parser_str) const {
+    //  std::cout << parser_str << "    - parser_str\n" << std::endl;
     
     // {"registration":{"login":"mars444","password":"qqqqqqqqqqqqqqqq"}}
 
@@ -23,6 +27,8 @@ ParserObject ParserRegistrAuthImpl::StrToObject(const std::string& parser_str) c
 
     if (value.contains("nickname"))
         user.nickname = value["nickname"].get<std::string>();
+
+    //  std::cout << user.user_id << " " << user.email << " " << user.password << " " << user.nickname << " \n" << std::endl;
 
     ParserObject res;
 

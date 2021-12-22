@@ -4,7 +4,7 @@
 
 #include <set>
 
-#include "nlohmann/json.hpp"
+#include "json.hpp"
 
 typedef struct {
     std::string user_id  = "";
@@ -16,7 +16,7 @@ typedef struct {
 typedef struct {
     std::string user_id  = "";
     std::string building = "";
-    std::string housing  = ""; // корпус
+    std::string housing  = "";
     std::string street   = "";
     std::string city     = "";
     std::string district = "";

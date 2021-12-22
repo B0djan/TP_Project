@@ -48,24 +48,8 @@ SET(SOURCE_LIST_PARSER_CLASS
 
 
 
-INCLUDE_DIRECTORIES(parser_class/include/)
-
 INCLUDE_DIRECTORIES(database_connector/include/impl)
 INCLUDE_DIRECTORIES(database_connector/include/libs/postgresql)
-
-SET(SOURCE_LIST_PARSER
-        parser_class/src_json/single/addres.cpp
-        parser_class/src_json/single/contacts.cpp
-        parser_class/src_json/single/event.cpp
-        parser_class/src_json/single/group.cpp
-        parser_class/src_json/single/meetup.cpp
-        parser_class/src_json/single/person.cpp
-        parser_class/src_json/single/user.cpp
-        parser_class/src_json/methods/reg_and_au.cpp
-        parser_class/src_json/methods/friend.cpp
-        parser_class/src_json/methods/get_id.cpp
-        parser_class/src_json/methods/shedule.cpp)
-
 
 
 SET(SOURCE_LIST_DATA
@@ -78,7 +62,5 @@ ADD_EXECUTABLE(${PROJECT_NAME}
         ${SOURCE_LIST_PROCESSING_CLASS}
         ${SOURCE_LIST_PARSER_CLASS}
 
-
-        ${SOURCE_LIST_PARSER}
         ${SOURCE_LIST_DATA})
 
