@@ -90,10 +90,8 @@ void HttpClientAcceptor::HttpClientProcessor::get_header() {
                 }
 
                 std::string_view header(buf, size);
-
-                std::cout << "WARNING START DATA" << std::endl;
+                std::cout << "-------------------------------------------" << std::endl;
                 std::cout << header << std::endl;
-                std::cout << "WARNING END DATA" << std::endl;
 
                 ssize_t key_end = header.find(": ");
 
@@ -136,6 +134,10 @@ void HttpClientAcceptor::HttpClientProcessor::get_massage() {
                 std::string new_massage = buff.substr(key_start, key_end - key_start + 2);
 
                 massage_d = new_massage;
+
+                std::cout << "JSON" << std::endl;
+                std::cout << massage_d << std::endl;
+                std::cout << "-------------------------------------------" << std::endl;
 
                 massage = true;
             });
