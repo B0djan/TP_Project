@@ -120,20 +120,25 @@ void HttpClientAcceptor::HttpClientProcessor::get_massage() {
             "\r\n", 2,
             [this] (bool success, const char* buf, size_t size) {
                 std::string buff(buf);
+                std::cout << "---------------------data----------------" << std::endl;
+                std::cout << buf << std::endl;
+                std::cout << "---------------------data----------------" << std::endl;
+                std::cout << buff << std::endl;
+                std::cout << "---------------------data----------------" << std::endl;
 
                 size_t key_start = buff.find("{");
                 if (key_start == buff.npos) {
                     return reply(400, "Bad request");
                 }
 
+
                 size_t key_end = buff.find("}}");
                 if (key_end == buff.npos) {
                     return reply(400, "Bad request");
                 }
 
-                std::string new_massage = buff.substr(key_start, key_end - key_start + 2);
 
-                massage_d = new_massage;
+                massage_d = buff.substr(key_start, key_end - key_start + 2);
 
                 std::cout << "JSON" << std::endl;
                 std::cout << massage_d << std::endl;
