@@ -9,7 +9,6 @@ typedef struct {
     std::string email    = "";
     std::string password = "";
     std::string nickname = "";
-    std::string login = "";
 } user_t;
 
 typedef struct {
