@@ -41,7 +41,7 @@ ParserObject ParserWritePersonalDataImpl::StrToObject(const std::string& parser_
     return res;
 }
 
-std::string ParserWritePersonalDataImpl::ObjectToStr(const ParserObject& other) const {
+std::string ParserWritePersonalDataImpl::ObjectToStr(const std::string type_response, const ParserObject& other) const {
 
     personal_data_t personal_data = other.personal_data;
 
@@ -73,7 +73,7 @@ std::string ParserWritePersonalDataImpl::ObjectToStr(const ParserObject& other) 
 
     nlohmann::json j;
 
-    j["person"] = value;
+    j[type_response] = value;
 
     std::string res = j.dump();
 

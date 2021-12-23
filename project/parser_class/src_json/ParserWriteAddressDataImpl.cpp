@@ -8,7 +8,7 @@ ParserObject ParserWriteAddressDataImpl::StrToObject(const std::string& parser_s
 
     nlohmann::json value = j[it.key()];
 
-    addres_data_t addres_data;
+    address_data_t addres_data;
 
     if(j.contains("user_id"))
         addres_data.user_id = j["user_id"].get<std::string>();
@@ -41,39 +41,39 @@ ParserObject ParserWriteAddressDataImpl::StrToObject(const std::string& parser_s
     return res;
 }
 
-std::string ParserWriteAddressDataImpl::ObjectToStr(const ParserObject& other) const {
+std::string ParserWriteAddressDataImpl::ObjectToStr(const std::string type_response, const ParserObject& other) const {
 
-    addres_data_t addres_data = other.address_data;
+    address_data_t address_data = other.address_data;
 
     nlohmann::json value;
 
-    if (addres_data.user_id != "")
-        value["user_id"] = addres_data.user_id;
+    if (address_data.user_id != "")
+        value["user_id"] = address_data.user_id;
 
-    if (addres_data.building != "")
-        value["building"] = addres_data.building;
+    if (address_data.building != "")
+        value["building"] = address_data.building;
 
-    if (addres_data.housing != "")
-        value["housing"] = addres_data.housing;
+    if (address_data.housing != "")
+        value["housing"] = address_data.housing;
 
-    if (addres_data.street != "")
-        value["street"] = addres_data.street;
+    if (address_data.street != "")
+        value["street"] = address_data.street;
 
-    if (addres_data.city != "")
-        value["city"] = addres_data.city;
+    if (address_data.city != "")
+        value["city"] = address_data.city;
 
-    if (addres_data.district != "")
-        value["district"] = addres_data.district;
+    if (address_data.district != "")
+        value["district"] = address_data.district;
 
-    if (addres_data.index != "")
-        value["index"] = addres_data.index;
+    if (address_data.index != "")
+        value["index"] = address_data.index;
 
-    if (addres_data.country != "")
-        value["country"] = addres_data.country;
+    if (address_data.country != "")
+        value["country"] = address_data.country;
 
     nlohmann::json j;
 
-    j["addres"] = value;
+    j[type_response] = value;
 
     std::string res = j.dump();
 

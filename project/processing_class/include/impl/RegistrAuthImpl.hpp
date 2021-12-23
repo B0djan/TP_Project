@@ -6,7 +6,7 @@ class RegistrationImpl : public Handler {
     int RegistrationTo(user_t& r);
 public:
     RegistrationImpl() = default;
-    ParserObject process(const ParserObject& request_body)override;
+    ParserObject process(const ParserObject& request_body) override;
 };
 
 class AuthenticationImpl : public Handler {

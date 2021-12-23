@@ -26,7 +26,7 @@ ParserObject ParserUserContactsImpl::StrToObject(const std::string& parser_str) 
     return res;
 }
 
-std::string ParserUserContactsImpl::ObjectToStr(const ParserObject& other) const {
+std::string ParserUserContactsImpl::ObjectToStr(const std::string type_response, const ParserObject& other) const {
 
     contacts_t contacts = other.contacts;
 
@@ -40,7 +40,7 @@ std::string ParserUserContactsImpl::ObjectToStr(const ParserObject& other) const
 
     nlohmann::json j;
 
-    j["friends"] = value;
+    j[type_response] = value;
 
     std::string res = j.dump();
 
