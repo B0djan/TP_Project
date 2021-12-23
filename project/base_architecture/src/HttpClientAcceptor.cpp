@@ -93,7 +93,7 @@ void HttpClientAcceptor::HttpClientProcessor::get_header() {
 
                 std::string_view header(buf, size);
 
-                std::cout << header << std::endl;
+                //  std::cout << header << std::endl;
 
                 ssize_t key_end = header.find(": ");
 
