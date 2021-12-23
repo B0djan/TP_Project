@@ -91,15 +91,7 @@ void HttpClientAcceptor::HttpClientProcessor::get_header() {
                     return request_finished();
                 }
 
-                std::string all = buf;
-
-                reply(all);
-
-                return;
-
                 std::string_view header(buf, size);
-
-                //  std::cout << header << std::endl;
 
                 ssize_t key_end = header.find(": ");
 
@@ -128,7 +120,6 @@ void HttpClientAcceptor::HttpClientProcessor::get_header() {
 
 void HttpClientAcceptor::HttpClientProcessor::get_massage(const char* input) {
     std::string buff(input);
-    std::cout << input << std::endl;
 
     size_t key_start = buff.find("{");
     if (key_start == buff.npos) {
@@ -142,10 +133,6 @@ void HttpClientAcceptor::HttpClientProcessor::get_massage(const char* input) {
     }
 
     massage_d = buff.substr(key_start, key_end - key_start + 2);
-
-    std::cout << "JSON" << std::endl;
-    std::cout << massage_d << std::endl;
-    //  std::cout << "-------------------------------------------" << std::endl;
 
     massage = true;
 }
@@ -165,7 +152,7 @@ void HttpClientAcceptor::HttpClientProcessor::process(EndCb end_cb) {
 }
 
 void HttpClientAcceptor::accept(AsyncIOStream* stream) {
-    HttpClientProcessor* processor = new HttpClientProcessor(magic, stream);
+    HttpClientProcessor* processor = new HttpClientProcessor(stream);
     processor->process([processor] {
         delete processor;
     });

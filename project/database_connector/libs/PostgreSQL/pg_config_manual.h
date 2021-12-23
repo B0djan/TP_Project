@@ -207,7 +207,7 @@
  * support them yet.
  */
 #ifndef WIN32
-#define DEFAULT_PGSOCKET_DIR  "/var/run/postgresql"
+#define DEFAULT_PGSOCKET_DIR  "/var/run/PostgreSQL"
 #else
 #define DEFAULT_PGSOCKET_DIR ""
 #endif

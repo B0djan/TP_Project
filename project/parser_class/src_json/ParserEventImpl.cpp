@@ -55,7 +55,7 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
     return res;
 }
 
-std::string ParserEventImpl::ObjectToStr(const ParserObject& other) const {
+std::string ParserEventImpl::ObjectToStr(const std::string type_response, const ParserObject& other) const {
 
     std::set<event_t> events = other.events;
 
@@ -88,7 +88,7 @@ std::string ParserEventImpl::ObjectToStr(const ParserObject& other) const {
 
     nlohmann::json j;
 
-    j["events"] = json_events;
+    j[type_response] = json_events;
 
     std::string res = j.dump();
 

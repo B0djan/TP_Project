@@ -397,7 +397,7 @@ extern PQnoticeProcessor PQsetNoticeProcessor(PGconn *conn,
  *	   non-thread safe functions that libpq needs.
  *	   The default implementation uses a libpq internal mutex.
  *	   Only required for multithreaded apps that use kerberos
- *	   both within their app and for postgresql connections.
+ *	   both within their app and for PostgreSQL connections.
  */
 typedef void (*pgthreadlock_t) (int acquire);
 

@@ -1,6 +1,6 @@
 INCLUDE_DIRECTORIES(base_architecture/include/impl)
 INCLUDE_DIRECTORIES(base_architecture/include/virtual)
-INCLUDE_DIRECTORIES(base_architecture/include/libs/gzip_filter)
+INCLUDE_DIRECTORIES(base_architecture/include/libs)
 
 INCLUDE_DIRECTORIES(parser_object)
 
@@ -15,8 +15,12 @@ INCLUDE_DIRECTORIES(parser_class/include/libs/single_include/nlohmann)
 INCLUDE_DIRECTORIES(parser_class/include/impl)
 INCLUDE_DIRECTORIES(parser_class/include/virtual)
 
-INCLUDE_DIRECTORIES(database_connector/include/impl)
-INCLUDE_DIRECTORIES(database_connector/include/libs/postgresql)
+INCLUDE_DIRECTORIES(database_connector/PostgreSQL/include/impl)
+
+INCLUDE_DIRECTORIES(database_connector/libs/PostgreSQL)
+INCLUDE_DIRECTORIES(database_connector/libs/PostgreSQL/libpq)
+INCLUDE_DIRECTORIES(database_connector/libs/PostgreSQL/internal)
+INCLUDE_DIRECTORIES(database_connector/libs/PostgreSQL/internal/libpq)
 
 
 SET(SOURCE_LIST_SERVER
@@ -50,7 +54,7 @@ SET(SOURCE_LIST_PARSER_CLASS
 
 
 SET(SOURCE_LIST_DATA
-        database_connector/src_postge_sql/PGConnection.cpp)
+        database_connector/PostgreSQL/src/PGConnection.cpp)
 
 
 ADD_EXECUTABLE(${PROJECT_NAME}

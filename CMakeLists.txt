@@ -5,7 +5,7 @@ PROJECT(HttpServer)
 
 SET(CMAKE_CXX_STANDARD 17)
 
-SET(FLAGS "-lmagic -lpq")
+SET(FLAGS "-lpq")
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${FLAGS}")
 

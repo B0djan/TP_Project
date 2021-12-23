@@ -37,7 +37,7 @@ ParserObject ParserRegistrAuthImpl::StrToObject(const std::string& parser_str) c
     return res;
 }
 
-std::string ParserRegistrAuthImpl::ObjectToStr(const ParserObject& other) const {
+std::string ParserRegistrAuthImpl::ObjectToStr(const std::string type_response, const ParserObject& other) const {
 
     user_t user = other.user;
 
@@ -57,7 +57,7 @@ std::string ParserRegistrAuthImpl::ObjectToStr(const ParserObject& other) const 
 
     nlohmann::json j;
 
-    j["registration"] = value;
+    j[type_response] = value;
 
     std::string res = j.dump();
 

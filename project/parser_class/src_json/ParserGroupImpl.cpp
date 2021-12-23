@@ -17,7 +17,7 @@ ParserObject ParserGroupImpl::StrToObject(const std::string& parser_str) const{
     return res;
 }
 
-std::string ParserGroupImpl::ObjectToStr(const ParserObject& other) const {
+std::string ParserGroupImpl::ObjectToStr(const std::string type_response, const ParserObject& other) const {
 
     contacts_t contacts = other.contacts;
 
@@ -25,7 +25,7 @@ std::string ParserGroupImpl::ObjectToStr(const ParserObject& other) const {
 
     nlohmann::json j;
 
-    j["friends"] = value;
+    j[type_response] = value;
 
     std::string res = j.dump();
 
@@ -40,7 +40,7 @@ ParserObject ParserUserGroupImpl::StrToObject(const std::string& parser_str) con
     return res;
 }
 
-std::string ParserUserGroupImpl::ObjectToStr(const ParserObject& other) const {
+std::string ParserUserGroupImpl::ObjectToStr(const std::string type_response, const ParserObject& other) const {
     std::string res;
     return res;
 }
@@ -50,7 +50,7 @@ ParserObject ParserMeetUpImpl::StrToObject(const std::string& parser_str) const 
     return res;
 }
 
-std::string ParserMeetUpImpl::ObjectToStr(const ParserObject& other) const {
+std::string ParserMeetUpImpl::ObjectToStr(const std::string type_response, const ParserObject& other) const {
     std::string res;
     return res;
 }
@@ -95,7 +95,7 @@ std::string ParserMeetUpImpl::ObjectToStr(const ParserObject& other) const {
 
 //     nlohmann::json j;
 
-//     j["friends"] = value;
+//     j[type_response] = value;
 
 //     std::string res = j.dump();
 
