@@ -122,7 +122,7 @@ void HttpClientAcceptor::HttpClientProcessor::get_header() {
 
 void HttpClientAcceptor::HttpClientProcessor::get_massage(const char* input) {
     std::string buff(input);
-    //std::cout << input << std::endl;
+    std::cout << input << std::endl;
 
     size_t key_start = buff.find("{");
     if (key_start == buff.npos) {
