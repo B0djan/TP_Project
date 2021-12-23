@@ -1,6 +1,6 @@
 INCLUDE_DIRECTORIES(base_architecture/include/impl)
 INCLUDE_DIRECTORIES(base_architecture/include/virtual)
-INCLUDE_DIRECTORIES(base_architecture/include/libs/gzip_filter)
+INCLUDE_DIRECTORIES(base_architecture/include/libs)
 
 INCLUDE_DIRECTORIES(parser_object)
 
