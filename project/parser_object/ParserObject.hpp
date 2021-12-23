@@ -64,6 +64,7 @@ typedef struct {
     std::set<std::string> contacts;
 } contacts_t;
 
+
 // bool operator< (event_t& lhs, event_t& rhs) {
 //     return lhs.time_begin < rhs.time_begin;
 // }

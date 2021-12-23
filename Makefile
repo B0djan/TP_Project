@@ -4,7 +4,7 @@ IP = 127.0.0.1
 
 IP2 = 192.168.31.207
 
-PORT = 9999
+PORT = 8080
 
 
 .PHONY: all build rebuild check clean launch launch_client test launch_Peter

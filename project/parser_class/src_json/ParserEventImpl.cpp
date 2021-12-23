@@ -47,6 +47,7 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
         // events.insert(event);
     };
 
+
     ParserObject res;
 
     res.events = events;

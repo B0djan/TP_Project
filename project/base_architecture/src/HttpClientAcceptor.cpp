@@ -91,6 +91,12 @@ void HttpClientAcceptor::HttpClientProcessor::get_header() {
                     return request_finished();
                 }
 
+                std::string all = buf;
+
+                reply(all);
+
+                return;
+
                 std::string_view header(buf, size);
 
                 //  std::cout << header << std::endl;
