@@ -84,8 +84,5 @@ namespace Json
 
 
 
-    object_body_t GetBody(std::string& s);
-
-    std::string ReturnBody(object_body_t& object_body);
 
 };
