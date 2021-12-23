@@ -1,19 +1,6 @@
 #include <ParserEventImpl.hpp>
 
 ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
-
-    /* 
-
-    {
-        "get_events":
-        [
-            {"user_id":"1", "event_name":"qwerty", "":"", "":"", },
-            {},
-            {}
-        ]
-    }
-
-    */
     
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
@@ -57,8 +44,7 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
             event.user_id = element["time_end"].get<std::string>();
         };
 
-        //(TODO) : ошибка вставки
-        // events.insert(event);
+        events.insert(event);
     };
 
     ParserObject res;
@@ -70,17 +56,40 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
 
 std::string ParserEventImpl::ObjectToStr(const ParserObject& other) const {
 
-    contacts_t contacts = other.contacts;
+    std::set<event_t> events = other.events;
 
-    nlohmann::json value;
+    nlohmann::json json_events;
+
+    if (!events.empty()) 
+    {
+        for (auto& event: events) 
+        {
+            nlohmann::json json_event;
+
+            if (event.event_name != "")
+                json_event["event_name"] = event.event_name;
+            
+            if (event.time_begin != "")
+                json_event["time_begin"] = event.time_begin;
+
+            if (event.time_end != "")
+                json_event["time_end"]   = event.time_end;
+
+            if (event.description != "")
+                json_event["description"] = event.description;
+            
+            if (event.date != "")
+                json_event["date"] = event.date;
+
+            json_events.push_back(json_event);
+        };
+    }
 
     nlohmann::json j;
 
-    j["friends"] = value;
+    j["events"] = json_events;
 
     std::string res = j.dump();
 
-    // {"registration":{"user_id":"value"}}
-
     return res;
-}
+};

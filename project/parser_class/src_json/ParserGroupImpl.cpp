@@ -2,17 +2,17 @@
 
 ParserObject ParserGroupImpl::StrToObject(const std::string& parser_str) const{
     
-    nlohmann::json j = nlohmann::json::parse(parser_str);
+    // nlohmann::json j = nlohmann::json::parse(parser_str);
 
-    nlohmann::json::iterator it = j.begin();
+    // nlohmann::json::iterator it = j.begin();
 
-    nlohmann::json value = j[it.key()];
+    // nlohmann::json value = j[it.key()];
 
-    contacts_t contacts;
+    // group_t group;
 
     ParserObject res;
 
-    res = contacts;
+    // res = contacts;
 
     return res;
 }
