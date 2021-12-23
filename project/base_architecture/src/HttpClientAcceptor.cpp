@@ -164,7 +164,7 @@ void HttpClientAcceptor::HttpClientProcessor::process(EndCb end_cb) {
 }
 
 void HttpClientAcceptor::accept(AsyncIOStream* stream) {
-    HttpClientProcessor* processor = new HttpClientProcessor(magic, stream);
+    HttpClientProcessor* processor = new HttpClientProcessor(stream);
     processor->process([processor] {
         delete processor;
     });

@@ -2,7 +2,6 @@
 
 #include <string>
 #include <fstream>
-#include <magic.h>
 
 #include <ClientAcceptor.hpp>
 
@@ -23,7 +22,7 @@ class HttpClientAcceptor: public ClientAcceptor {
         bool massage = false;
         std::string massage_d;
 
-        magic_t magic;
+
         AsyncIOStream* stream;
         char write_buffer[4096];
         EndCb end_cb;
@@ -31,16 +30,15 @@ class HttpClientAcceptor: public ClientAcceptor {
         bool keep_alive = false;
 
     public:
-        HttpClientProcessor(magic_t magic, AsyncIOStream* stream): magic(magic), stream(stream) {}
+        HttpClientProcessor(AsyncIOStream* stream): stream(stream) {}
         ~HttpClientProcessor() { delete stream; }
 
         void process(EndCb);
     };
 
-    magic_t magic;
 public:
 
-    HttpClientAcceptor(magic_t magic) : magic(magic) {}
+    HttpClientAcceptor() = default;
 
     void accept(AsyncIOStream*) override;
 };

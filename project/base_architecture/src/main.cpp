@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <csignal>
-#include <magic.h>
 
 #include <SelectBasedEventLoop.hpp>
 
@@ -21,16 +20,13 @@ int main(int argc, const char * argv[]) {
     SelectBasedEventLoop loop;
     ListeningNetworkSocket listening_socket(argv[1], std::stoi(argv[2]), loop);
 
-    magic_t magic = magic_open(MAGIC_MIME);
-    int rc = magic_load(magic, NULL);
-    ASSERT(!rc, "failed to load 'magic' database");
-    HttpClientAcceptor client_acceptor(magic);
+
+    HttpClientAcceptor client_acceptor;
 
     listening_socket.start_listening(client_acceptor);
 
     loop.run_until_complete();
 
-    magic_close(magic);
 
     return 0;
 }
