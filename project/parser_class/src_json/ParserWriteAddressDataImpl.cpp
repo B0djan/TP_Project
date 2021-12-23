@@ -8,35 +8,35 @@ ParserObject ParserWriteAddressDataImpl::StrToObject(const std::string& parser_s
 
     nlohmann::json value = j[it.key()];
 
-    address_data_t addres_data;
+    address_data_t address_data;
 
     if(j.contains("user_id"))
-        addres_data.user_id = j["user_id"].get<std::string>();
+        address_data.user_id = j["user_id"].get<std::string>();
 
     if (j.contains("building"))
-        addres_data.building = j["building"].get<std::string>();
+        address_data.building = j["building"].get<std::string>();
 
     if (j.contains("housing"))
-        addres_data.housing = j["housing"].get<std::string>();
+        address_data.housing = j["housing"].get<std::string>();
 
     if (j.contains("street"))
-        addres_data.street = j["street"].get<std::string>();
+        address_data.street = j["street"].get<std::string>();
 
     if (j.contains("city"))
-        addres_data.city = j["city"].get<std::string>();
+        address_data.city = j["city"].get<std::string>();
 
     if (j.contains("district"))
-        addres_data.district = j["district"].get<std::string>();
+        address_data.district = j["district"].get<std::string>();
     
     if (j.contains("index"))
-        addres_data.index = j["index"].get<std::string>();
+        address_data.index = j["index"].get<std::string>();
 
     if (j.contains("country"))
-        addres_data.country = j["country"].get<std::string>();
+        address_data.country = j["country"].get<std::string>();
 
     ParserObject res;
 
-    res = addres_data;
+    res = address_data;
 
     return res;
 }
