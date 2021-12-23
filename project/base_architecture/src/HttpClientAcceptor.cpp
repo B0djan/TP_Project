@@ -112,7 +112,7 @@ void HttpClientAcceptor::HttpClientProcessor::get_header() {
                 if (!massage) {
                     get_massage(buf);
                     if (massage_d.empty()) {
-                        return reply(400, "Bad request");
+                        return reply(400, "Bad request, null json");
                     }
                 }
 
