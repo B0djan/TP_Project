@@ -44,7 +44,7 @@
 #define BLCKSZ 8192
 
 /* Saved arguments from configure */
-#define CONFIGURE_ARGS " '--build=x86_64-linux-gnu' '--prefix=/usr' '--includedir=${prefix}/include' '--mandir=${prefix}/share/man' '--infodir=${prefix}/share/info' '--sysconfdir=/etc' '--localstatedir=/var' '--disable-silent-rules' '--libdir=${prefix}/lib/x86_64-linux-gnu' '--runstatedir=/run' '--disable-maintainer-mode' '--disable-dependency-tracking' '--with-icu' '--with-tcl' '--with-perl' '--with-python' '--with-pam' '--with-openssl' '--with-libxml' '--with-libxslt' 'PYTHON=/usr/bin/python3' '--mandir=/usr/share/postgresql/14/man' '--docdir=/usr/share/doc/postgresql-doc-14' '--sysconfdir=/etc/postgresql-common' '--datarootdir=/usr/share/' '--datadir=/usr/share/postgresql/14' '--bindir=/usr/lib/postgresql/14/bin' '--libdir=/usr/lib/x86_64-linux-gnu/' '--libexecdir=/usr/lib/postgresql/' '--includedir=/usr/include/postgresql/' '--with-extra-version= (Ubuntu 14.1-2.pgdg20.04+1)' '--enable-nls' '--enable-thread-safety' '--enable-tap-tests' '--enable-debug' '--enable-dtrace' '--disable-rpath' '--with-uuid=e2fs' '--with-gnu-ld' '--with-lz4' '--with-pgport=5432' '--with-system-tzdata=/usr/share/zoneinfo' '--with-llvm' 'LLVM_CONFIG=/usr/bin/llvm-config-9' 'CLANG=/usr/bin/clang-9' '--with-systemd' '--with-selinux' 'AWK=mawk' 'MKDIR_P=/bin/mkdir -p' 'PROVE=/usr/bin/prove' 'TAR=/bin/tar' 'XSLTPROC=xsltproc --nonet' 'CFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fno-omit-frame-pointer' 'LDFLAGS=-Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now' '--with-gssapi' '--with-ldap' 'build_alias=x86_64-linux-gnu' 'CPPFLAGS=-Wdate-time -D_FORTIFY_SOURCE=2' 'CXXFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security'"
+#define CONFIGURE_ARGS " '--build=x86_64-linux-gnu' '--prefix=/usr' '--includedir=${prefix}/include' '--mandir=${prefix}/share/man' '--infodir=${prefix}/share/info' '--sysconfdir=/etc' '--localstatedir=/var' '--disable-silent-rules' '--libdir=${prefix}/lib/x86_64-linux-gnu' '--runstatedir=/run' '--disable-maintainer-mode' '--disable-dependency-tracking' '--with-icu' '--with-tcl' '--with-perl' '--with-python' '--with-pam' '--with-openssl' '--with-libxml' '--with-libxslt' 'PYTHON=/usr/bin/python3' '--mandir=/usr/share/PostgreSQL/14/man' '--docdir=/usr/share/doc/PostgreSQL-doc-14' '--sysconfdir=/etc/PostgreSQL-common' '--datarootdir=/usr/share/' '--datadir=/usr/share/PostgreSQL/14' '--bindir=/usr/lib/PostgreSQL/14/bin' '--libdir=/usr/lib/x86_64-linux-gnu/' '--libexecdir=/usr/lib/PostgreSQL/' '--includedir=/usr/include/PostgreSQL/' '--with-extra-version= (Ubuntu 14.1-2.pgdg20.04+1)' '--enable-nls' '--enable-thread-safety' '--enable-tap-tests' '--enable-debug' '--enable-dtrace' '--disable-rpath' '--with-uuid=e2fs' '--with-gnu-ld' '--with-lz4' '--with-pgport=5432' '--with-system-tzdata=/usr/share/zoneinfo' '--with-llvm' 'LLVM_CONFIG=/usr/bin/llvm-config-9' 'CLANG=/usr/bin/clang-9' '--with-systemd' '--with-selinux' 'AWK=mawk' 'MKDIR_P=/bin/mkdir -p' 'PROVE=/usr/bin/prove' 'TAR=/bin/tar' 'XSLTPROC=xsltproc --nonet' 'CFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fno-omit-frame-pointer' 'LDFLAGS=-Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now' '--with-gssapi' '--with-ldap' 'build_alias=x86_64-linux-gnu' 'CPPFLAGS=-Wdate-time -D_FORTIFY_SOURCE=2' 'CXXFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security'"
 
 /* Define to the default TCP port number on which the server listens and to
    which clients will try to connect. This can be overridden at run-time, but
@@ -790,7 +790,7 @@
 #define OPENSSL_API_COMPAT 0x10001000L
 
 /* Define to the address where bug reports for this package should be sent. */
-#define PACKAGE_BUGREPORT "pgsql-bugs@lists.postgresql.org"
+#define PACKAGE_BUGREPORT "pgsql-bugs@lists.PostgreSQL.org"
 
 /* Define to the full name of this package. */
 #define PACKAGE_NAME "PostgreSQL"
@@ -799,10 +799,10 @@
 #define PACKAGE_STRING "PostgreSQL 14.1"
 
 /* Define to the one symbol short name of this package. */
-#define PACKAGE_TARNAME "postgresql"
+#define PACKAGE_TARNAME "PostgreSQL"
 
 /* Define to the home page for this package. */
-#define PACKAGE_URL "https://www.postgresql.org/"
+#define PACKAGE_URL "https://www.PostgreSQL.org/"
 
 /* Define to the version of this package. */
 #define PACKAGE_VERSION "14.1"

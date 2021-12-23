@@ -122,7 +122,7 @@ void HttpClientAcceptor::HttpClientProcessor::get_header() {
 
 void HttpClientAcceptor::HttpClientProcessor::get_massage(const char* input) {
     std::string buff(input);
-    //std::cout << input << std::endl;
+    std::cout << input << std::endl;
 
     size_t key_start = buff.find("{");
     if (key_start == buff.npos) {
@@ -137,23 +137,23 @@ void HttpClientAcceptor::HttpClientProcessor::get_massage(const char* input) {
 
     massage_d = buff.substr(key_start, key_end - key_start + 2);
 
-    std::cout << "JSON" << std::endl;
-    std::cout << massage_d << std::endl;
+    //  std::cout << "JSON" << std::endl;
+    //  std::cout << massage_d << std::endl;
     //  std::cout << "-------------------------------------------" << std::endl;
 
+    massage_d = buff;
     massage = true;
 }
 
 void HttpClientAcceptor::HttpClientProcessor::request_finished() {
-
-    for ( size_t i = 0; i < 20; i++) {
-        massage_d.push_back('-');
-    }
-
     /*std::string response = get_response(massage_d);
     if (response.empty()) {
         return reply(400, "Bad request");
     }*/
+
+    for ( size_t i = 0; i < 20; i++) {
+        massage_d.push_back('-');
+    }
 
     reply(massage_d);
 }

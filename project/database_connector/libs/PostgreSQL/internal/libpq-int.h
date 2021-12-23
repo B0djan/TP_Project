@@ -593,14 +593,14 @@ extern char *const pgresStatus[];
 #ifdef USE_SSL
 
 #ifndef WIN32
-#define USER_CERT_FILE		".postgresql/postgresql.crt"
-#define USER_KEY_FILE		".postgresql/postgresql.key"
-#define ROOT_CERT_FILE		".postgresql/root.crt"
-#define ROOT_CRL_FILE		".postgresql/root.crl"
+#define USER_CERT_FILE		".PostgreSQL/PostgreSQL.crt"
+#define USER_KEY_FILE		".PostgreSQL/PostgreSQL.key"
+#define ROOT_CERT_FILE		".PostgreSQL/root.crt"
+#define ROOT_CRL_FILE		".PostgreSQL/root.crl"
 #else
 /* On Windows, the "home" directory is already PostgreSQL-specific */
-#define USER_CERT_FILE		"postgresql.crt"
-#define USER_KEY_FILE		"postgresql.key"
+#define USER_CERT_FILE		"PostgreSQL.crt"
+#define USER_KEY_FILE		"PostgreSQL.key"
 #define ROOT_CERT_FILE		"root.crt"
 #define ROOT_CRL_FILE		"root.crl"
 #endif
