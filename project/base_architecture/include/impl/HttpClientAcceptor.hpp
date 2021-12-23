@@ -19,7 +19,7 @@ class HttpClientAcceptor: public ClientAcceptor {
         void request_finished();
 
         void reply(std::string response);
-        void get_massage();
+        void get_massage(const char* input);
         bool massage = false;
         std::string massage_d;
 

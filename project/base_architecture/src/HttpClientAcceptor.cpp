@@ -6,6 +6,8 @@
 
 #include <Utils.hpp>
 
+#include <cstdlib>
+
 void HttpClientAcceptor::HttpClientProcessor::reply(int code, const char* reason) {
     int size = snprintf(write_buffer, sizeof(write_buffer),
                         "%s %d %s\r\n"
@@ -90,7 +92,7 @@ void HttpClientAcceptor::HttpClientProcessor::get_header() {
                 }
 
                 std::string_view header(buf, size);
-                std::cout << "-------------------------------------------" << std::endl;
+
                 std::cout << header << std::endl;
 
                 ssize_t key_end = header.find(": ");
@@ -107,44 +109,39 @@ void HttpClientAcceptor::HttpClientProcessor::get_header() {
                     }
                 }
 
-                if (!massage && (header.find("application/json") != header.npos) ) {
-                    get_massage();
+                if (!massage) {
+                    get_massage(buf);
+                    if (massage_d.empty()) {
+                        return reply(400, "Bad request");
+                    }
                 }
 
                 get_header();
             });
 }
 
-void HttpClientAcceptor::HttpClientProcessor::get_massage() {
-    stream->read_till(
-            "\r\n", 2,
-            [this] (bool success, const char* buf, size_t size) {
-                std::string buff(buf);
-                std::cout << "---------------------data----------------" << std::endl;
-                std::cout << buf << std::endl;
-                std::cout << "---------------------data----------------" << std::endl;
-                std::cout << buff << std::endl;
-                std::cout << "---------------------data----------------" << std::endl;
+void HttpClientAcceptor::HttpClientProcessor::get_massage(const char* input) {
+    std::string buff(input);
+    //std::cout << input << std::endl;
 
-                size_t key_start = buff.find("{");
-                if (key_start == buff.npos) {
-                    return reply(400, "Bad request");
-                }
+    size_t key_start = buff.find("{");
+    if (key_start == buff.npos) {
+        return;
+    }
 
 
-                size_t key_end = buff.find("}}");
-                if (key_end == buff.npos) {
-                    return reply(400, "Bad request");
-                }
+    size_t key_end = buff.find("}}");
+    if (key_end == buff.npos) {
+        return;
+    }
 
-                massage_d = buff.substr(key_start, key_end - key_start + 2);
+    massage_d = buff.substr(key_start, key_end - key_start + 2);
 
-                std::cout << "JSON" << std::endl;
-                std::cout << massage_d << std::endl;
-                std::cout << "-------------------------------------------" << std::endl;
+    std::cout << "JSON" << std::endl;
+    std::cout << massage_d << std::endl;
+    //  std::cout << "-------------------------------------------" << std::endl;
 
-                massage = true;
-            });
+    massage = true;
 }
 
 void HttpClientAcceptor::HttpClientProcessor::request_finished() {
