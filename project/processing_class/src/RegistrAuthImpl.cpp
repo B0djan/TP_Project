@@ -4,7 +4,7 @@ ParserObject RegistrationImpl::process(const ParserObject& request_body) {
 
     user_t user = request_body.user;
 
-    int code = this = RegistrationTo(user);
+    int code = RegistrationTo(user);
 
     ParserObject response_body;
 
