@@ -44,7 +44,7 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
             event.user_id = element["time_end"].get<std::string>();
         };
 
-        events.insert(event);
+        // events.insert(event);
     };
 
     ParserObject res;

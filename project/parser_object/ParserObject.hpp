@@ -64,17 +64,17 @@ typedef struct {
     std::set<std::string> contacts;
 } contacts_t;
 
-bool operator< (event_t& lhs, event_t& rhs) {
-    return lhs.time_begin < rhs.time_begin;
-}
+// bool operator< (event_t& lhs, event_t& rhs) {
+//     return lhs.time_begin < rhs.time_begin;
+// }
 
-bool operator< (meetup_t& lhs, meetup_t& rhs) {
-    return lhs.time_begin < rhs.time_begin;
-}
+// bool operator< (meetup_t& lhs, meetup_t& rhs) {
+//     return lhs.time_begin < rhs.time_begin;
+// }
 
-bool operator< (group_t& lhs, group_t& rhs) {
-    return lhs.title < rhs.title;
-}
+// bool operator< (group_t& lhs, group_t& rhs) {
+//     return lhs.title < rhs.title;
+// }
 
 
 class ParserObject {
