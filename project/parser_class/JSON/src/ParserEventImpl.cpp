@@ -101,7 +101,7 @@ std::string ParserEventImpl::ObjectToStr(const std::string type_response, const 
 
     nlohmann::json j;
 
-    j[type_response] = json_events;
+    j[type_response] = "OK";
 
     std::string res = j.dump();
 
