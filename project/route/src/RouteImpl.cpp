@@ -22,9 +22,9 @@
 #define AUTHENTICATION                   "autorization"
 
 //  synchro
-#define GET_EVENTS                       "..."
-#define GET_CONTACTS                     "..."
-#define GET_GROUPS                       "..."
+#define GET_EVENTS                       "get_events"
+#define GET_CONTACTS                     "get_friends"
+#define GET_GROUPS                       "get_groups"
 
 //  personal data
 #define WRITE_PERSONAL_DATA              "..."
@@ -33,7 +33,7 @@
 #define WRITE_ADDRESS                    "..."
 
 //  event
-#define ADD_EVENT                        "..."
+#define ADD_EVENT                        "get_events"
 #define WRITE_EVENT                      "..."
 #define RM_EVENT                         "..."
 

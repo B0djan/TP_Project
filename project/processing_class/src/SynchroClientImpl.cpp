@@ -62,8 +62,9 @@ ParserObject SynchroClientGroupsImpl::process(const ParserObject& request_body) 
 }
 
 std::set<std::string> SynchroClientContactsImpl::GetContacts(contacts_t& c) {
-
-    char command[] = "SELECT contacts.fk_user_id, user_m.nickname FROM contacts LEFT JOIN user_m ON contacts.fk_friend_id = user_m.user_id WHERE fk_user_id = $1";
+    char command[] = "SELECT contacts.fk_user_id, user_m.nickname "
+                     "FROM contacts LEFT JOIN user_m ON contacts.fk_friend_id = user_m.user_id"
+                     "WHERE fk_user_id = $1";
 
     const char* parametrs[1];
 
