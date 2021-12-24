@@ -87,7 +87,7 @@ public:
 
     ParserObject& operator=(const user_t other)                     { this->user = other;                return *this; };
     ParserObject& operator=(const personal_data_t other)            { this->personal_data = other;       return *this; };
-    ParserObject& operator=(const address_data_t other)              { this->address_data = other;        return *this; };
+    ParserObject& operator=(const address_data_t other)              { this->address_data = other;       return *this; };
     ParserObject& operator=(const std::set<event_t> other)          { this->events = other;              return *this; };
     ParserObject& operator=(const std::set<group_t> other)          { this->groups = other;              return *this; };
     ParserObject& operator=(const std::set<meetup_t> other)         { this->meetups = other;             return *this; };

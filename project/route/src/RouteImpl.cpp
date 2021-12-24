@@ -118,7 +118,7 @@ RouteImpl::RouteImpl() {
     route_map.insert({RM_USER_CONTACTS,       std::make_pair(new ParserUserContactsImpl,       new RmUserContactsImpl)});
 
     //  Group functional
-    route_map.insert({ADD_GROUP,              std::make_pair(new ParserGroupImpl,              new AddUserImpl)});
+    route_map.insert({ADD_GROUP,              std::make_pair(new ParserGroupImpl,              new AddGroupImpl)});
     route_map.insert({WRITE_GROUP,            std::make_pair(new ParserGroupImpl,              new WriteGroupImpl)});
     route_map.insert({RM_GROUP,               std::make_pair(new ParserGroupImpl,              new RmGroupImpl)});
 

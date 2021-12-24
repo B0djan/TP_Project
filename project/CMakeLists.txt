@@ -1,8 +1,7 @@
 INCLUDE_DIRECTORIES(base_architecture/include/impl)
 INCLUDE_DIRECTORIES(base_architecture/include/virtual)
-INCLUDE_DIRECTORIES(base_architecture/include/libs)
 
-INCLUDE_DIRECTORIES(parser_object/include())
+INCLUDE_DIRECTORIES(parser_object/include)
 
 INCLUDE_DIRECTORIES(processing_class/include/impl)
 INCLUDE_DIRECTORIES(processing_class/include/virtual)
@@ -34,12 +33,15 @@ SET(SOURCE_LIST_ROUTE
 SET(SOURCE_LIST_PROCESSING_CLASS
         processing_class/src/ContactsImpl.cpp
         processing_class/src/EventImpl.cpp
-        processing_class/src/GroupImpl.cpp
+        processing_class/src/GroupImpl/Base/GroupImpl.cpp
+        processing_class/src/GroupImpl/User/UserGroupImpl.cpp
+        processing_class/src/GroupImpl/MeetUp/MeetUpImpl.cpp
+        processing_class/src/GroupImpl/MeetUp/SupportMeetUp.cpp
         processing_class/src/RegistrAuthImpl.cpp
         processing_class/src/SynchroClientImpl.cpp
         processing_class/src/WriteAddressDataImpl.cpp
         processing_class/src/WritePersonalDataImpl.cpp
-        processing_class/src/SupportProcess.cpp)
+        processing_class/src/Support/SupportProcess.cpp)
 
 SET(SOURCE_LIST_PARSER_CLASS
         parser_class/JSON/src/ParserContactsImpl.cpp
@@ -51,9 +53,6 @@ SET(SOURCE_LIST_PARSER_CLASS
 
 SET(SOURCE_LIST_PARSER_OBJECT
         parser_object/src/ParserObject.cpp)
-
-SET(SOURCE_LIST_DATA
-        database_connector/PostgreSQL/src/PGConnection.cpp)
 
 SET(SOURCE_LIST_DATA
         database_connector/PostgreSQL/src/PGConnection.cpp)
