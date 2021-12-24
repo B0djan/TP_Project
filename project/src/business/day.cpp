@@ -2,6 +2,7 @@
 
 #define NUMBER_INTERVAL 12
 
+
     enum { BITS = sizeof(unsigned char) };
     Day::Day() {
         storage = new unsigned char[NUMBER_INTERVAL];
