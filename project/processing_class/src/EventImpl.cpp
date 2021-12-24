@@ -60,7 +60,7 @@ ParserObject RmEventImpl::process(const ParserObject& request_body) {
 
 int AddEventImpl::AddEvent(event_t& e) {
 
-    char command[] = "INSERT INTO event_m (event_date, date, description, time_begin, time_end, fk_user_id) VALUES ($1, $2, $3, $4, $5, $6)";
+    char command[] = "INSERT INTO event_m (event_date, event_date, description, time_begin, time_end, fk_user_id) VALUES ($1, $2, $3, $4, $5, $6)";
 
     const char* arguments[6];
 
