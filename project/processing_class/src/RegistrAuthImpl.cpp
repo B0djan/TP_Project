@@ -12,7 +12,7 @@ ParserObject RegistrationImpl::process(const ParserObject& request_body) {
         return response_body;
     };
 
-    std::string id = SupportProcess::GetId(user);
+    std::string id = SupportProcess::GetUserId(user);
 
     response_body.user.user_id = id;
 
@@ -31,7 +31,7 @@ ParserObject AuthenticationImpl::process(const ParserObject& request_body) {
         return response_body;
     };
 
-    std::string id = SupportProcess::GetId(user);
+    std::string id = SupportProcess::GetUserId(user);
 
     response_body.user.user_id = id;
 
@@ -41,15 +41,15 @@ ParserObject AuthenticationImpl::process(const ParserObject& request_body) {
 int RegistrationImpl::RegistrationTo(user_t& r) {
     char check[] = "SELECT nickname, password FROM user_m WHERE (nickname = $1) AND (password = $2)";
 
-    const char* reg[2];
+    const char* arguments[2];
 
-    reg[0] = (r.nickname).c_str();
-    reg[1] = (r.password).c_str();
+    arguments[0] = (r.nickname).c_str();
+    arguments[1] = (r.password).c_str();
 
-    PGresult *res = PQexecParams(PGConnection::GetConnection(), check, 2, NULL, reg, NULL, NULL, 0);
+    PGresult *res = PQexecParams(PGConnection::GetConnection(), check, 2, NULL, arguments, NULL, NULL, 0);
 
     if (PQresultStatus(res) != PGRES_TUPLES_OK) {
-        printf("command faild: %s", PQerrorMessage(PGConnection::GetConnection()));
+        printf("command field: %s", PQerrorMessage(PGConnection::GetConnection()));
 
         PQclear(res);
 
@@ -67,10 +67,10 @@ int RegistrationImpl::RegistrationTo(user_t& r) {
 
     char command[] = "INSERT INTO user_m (nickname, password) VALUES ($1 , $2)";
     
-    res = PQexecParams(PGConnection::GetConnection(), command, 2, NULL, reg, NULL, NULL, 0);
+    res = PQexecParams(PGConnection::GetConnection(), command, 2, NULL, arguments, NULL, NULL, 0);
 
     if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-        printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+        printf("command field: %s\n", PQerrorMessage(PGConnection::GetConnection()));
 
         PQclear(res);
 
@@ -85,15 +85,15 @@ int AuthenticationImpl::AutorizationTo(user_t& r) {
     char check[] = "SELECT nickname, password "
                     "FROM user_m WHERE (nickname = $1) AND (password = $2)";
 
-    const char* aut[2];
+    const char* arguments[2];
 
-    aut[0] = (r.nickname).c_str();
-    aut[1] = (r.password).c_str();
+    arguments[0] = (r.nickname).c_str();
+    arguments[1] = (r.password).c_str();
 
-    PGresult *res = PQexecParams(PGConnection::GetConnection(), check, 2, NULL, aut, NULL, NULL, 0);
+    PGresult *res = PQexecParams(PGConnection::GetConnection(), check, 2, NULL, arguments, NULL, NULL, 0);
 
     if (PQresultStatus(res) != PGRES_TUPLES_OK) {
-        printf("command faild: %s", PQerrorMessage(PGConnection::GetConnection()));
+        printf("command field: %s", PQerrorMessage(PGConnection::GetConnection()));
 
         PQclear(res);
 

@@ -23,5 +23,6 @@ public:
 };
 
 namespace SupportProcess {
-    char* GetId(user_t& r);  //  промежуточный класс
+    char* GetUserId(user_t& r);  //  промежуточный класс
+    char* GetEventId(event_t& r);  //  промежуточный класс
 }

@@ -9,7 +9,6 @@ INCLUDE_DIRECTORIES(processing_class/include/virtual)
 INCLUDE_DIRECTORIES(route/include/impl)
 INCLUDE_DIRECTORIES(route/include/virtual)
 
-
 INCLUDE_DIRECTORIES(parser_class/JSON/libs/single_include/nlohmann)
 INCLUDE_DIRECTORIES(parser_class/JSON/include/impl)
 INCLUDE_DIRECTORIES(parser_class/virtual)

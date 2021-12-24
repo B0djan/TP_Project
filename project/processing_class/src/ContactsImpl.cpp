@@ -36,7 +36,7 @@ std::string AddUserContactsImpl::AddFriend(contacts_t& c) {
 
     friend_.nickname = friend_nickname;
 
-    std::string friend_id = SupportProcess::GetId(friend_);
+    std::string friend_id = SupportProcess::GetUserId(friend_);
 
     char command[] = "INSERT INTO contacts VALUES ($1, $2)";
 
@@ -69,7 +69,7 @@ std::string RmUserContactsImpl::DeleteFriend(contacts_t& c) {
 
     friend_.nickname = friend_nickname;
 
-    std::string friend_id = SupportProcess::GetId(friend_);
+    std::string friend_id = SupportProcess::GetUserId(friend_);
 
     char command[] = "DELETE FROM contacts WHERE (fk_user_id = $1) AND (fk_friend_id = $2)";
 
