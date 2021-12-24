@@ -100,21 +100,21 @@ std::string ParserEventImpl::ObjectToStr(const std::string type_response, const 
 
     nlohmann::json j;
 
-    j[type_response] = json_events;
+    j[type_response] = "OK";
 
     std::string res = j.dump();
 
     //  Отладка
-    if (global_key_test_parser) {
-        for (std::set<event_t>::iterator it = events.begin(); it != events.end(); ++it) {
-            std::cout << (*it).date << std::endl;
-            std::cout << (*it).time_begin << std::endl;
-            std::cout << (*it).time_end << std::endl;
-            std::cout << (*it).description << std::endl;
-            std::cout << (*it).user_id << std::endl;
-        }
-        std::cout << res << std::endl;
-    }
+    // if (global_key_test_parser) {
+    //     for (std::set<event_t>::iterator it = events.begin(); it != events.end(); ++it) {
+    //         std::cout << (*it).date << std::endl;
+    //         std::cout << (*it).time_begin << std::endl;
+    //         std::cout << (*it).time_end << std::endl;
+    //         std::cout << (*it).description << std::endl;
+    //         std::cout << (*it).user_id << std::endl;
+    //     }
+    //     std::cout << res << std::endl;
+    // }
 
     return res;
 };
