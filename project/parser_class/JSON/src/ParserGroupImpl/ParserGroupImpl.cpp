@@ -70,7 +70,7 @@ ParserObject ParserUserGroupImpl::StrToObject(const std::string& parser_str) con
 
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
-    if (j.contains(""))
+    if (j.contains(""));
 
     ParserObject res;
     return res;
