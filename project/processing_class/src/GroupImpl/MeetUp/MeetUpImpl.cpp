@@ -1,6 +1,6 @@
 #include <GroupImpl.hpp>
 
-ParserObject SearchFreeTimeImpl::process(const ParserObject& request_body) {  //  std::set<ParserObject>
+ParserObject SearchFreeTimeImpl::process(const ParserObject& request_body) {
     /*
     ParserObject response_body;
 
@@ -19,7 +19,7 @@ ParserObject SearchFreeTimeImpl::process(const ParserObject& request_body) {  //
     return response_body;
 }
 
-ParserObject OutputHistoryMeetUpImpl::process(const ParserObject& request_body) {  //  std::set<ParserObject>
+ParserObject OutputHistoryMeetUpImpl::process(const ParserObject& request_body) {
     ParserObject response_body;
     return response_body;
 }

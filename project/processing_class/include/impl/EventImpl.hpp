@@ -11,7 +11,7 @@ public:
 };
 
 class WriteEventImpl : public Handler {
-    std::string old_id;
+    std::string id;
     int WriteEvent(event_t&, std::string& id);
 public:
     ParserObject process(const ParserObject& request_body) override;

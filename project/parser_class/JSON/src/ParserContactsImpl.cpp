@@ -13,10 +13,10 @@ ParserObject ParserUserContactsImpl::StrToObject(const std::string& parser_str) 
     if(j.contains("user_id"))
             contacts.user_id = value["user_id"];
 
-    if(j.contains("contacts"))
+    if(j.contains("list_contacts"))
     {
-        for (auto& element : value["contacts"])
-        contacts.contacts.insert(element.dump());
+        for (auto& element : value["list_contacts"])
+        contacts.list_contacts.insert(element.dump());
     }
 
     ParserObject res;
@@ -35,8 +35,8 @@ std::string ParserUserContactsImpl::ObjectToStr(const std::string type_response,
     if (contacts.user_id != "")
         value["user_id"] = contacts.user_id;
         
-    if (!contacts.contacts.empty())
-        value["contacts"] = contacts.contacts;
+    if (!contacts.list_contacts.empty())
+        value["list_contacts"] = contacts.list_contacts;
 
     nlohmann::json j;
 

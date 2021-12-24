@@ -59,7 +59,7 @@ typedef struct {
 
 typedef struct {
     std::string           user_id;
-    std::set<std::string> contacts;
+    std::set<std::string> list_contacts;
 } contacts_t;
 
     bool operator< (const event_t& lhs, const event_t& rhs);

@@ -25,12 +25,13 @@ ParserObject RmUserContactsImpl::process(const ParserObject& request_body) {
 }
 
 std::string AddUserContactsImpl::AddFriend(contacts_t& c) {
-
     std::string friend_nickname;
 
-    for (auto f: c.contacts) {
+    //  friend_nickname.front() (TODO) : чекни обращение чтоб без костылей
+
+    for (auto f: c.list_contacts) {
         friend_nickname = f;
-    };
+    }
 
     user_t friend_;
 
@@ -38,7 +39,7 @@ std::string AddUserContactsImpl::AddFriend(contacts_t& c) {
 
     std::string friend_id = SupportProcess::GetUserId(friend_);
 
-    char command[] = "INSERT INTO contacts VALUES ($1, $2)";
+    char command[] = "INSERT INTO list_contacts VALUES ($1, $2)";
 
     const char* arguments[2];
 
@@ -61,7 +62,7 @@ std::string AddUserContactsImpl::AddFriend(contacts_t& c) {
 std::string RmUserContactsImpl::DeleteFriend(contacts_t& c) {
     std::string friend_nickname;
 
-    for (auto f: c.contacts) {
+    for (auto f: c.list_contacts) {
         friend_nickname = f;
     };
 
@@ -71,7 +72,7 @@ std::string RmUserContactsImpl::DeleteFriend(contacts_t& c) {
 
     std::string friend_id = SupportProcess::GetUserId(friend_);
 
-    char command[] = "DELETE FROM contacts WHERE (fk_user_id = $1) AND (fk_friend_id = $2)";
+    char command[] = "DELETE FROM list_contacts WHERE (fk_user_id = $1) AND (fk_friend_id = $2)";
 
     const char* arguments[2];
 
@@ -81,10 +82,10 @@ std::string RmUserContactsImpl::DeleteFriend(contacts_t& c) {
     PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 2, NULL, arguments, NULL, NULL, 0);
 
     if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-        printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+        printf("command field: %s\n", PQerrorMessage(PGConnection::GetConnection()));
         PQclear(res);
         return "null";
-    };
+    }
 
     PQclear(res);
 

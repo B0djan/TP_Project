@@ -5,13 +5,13 @@ ParserObject AddEventImpl::process(const ParserObject& request_body) {
 
     for (auto event: request_body.events) {
         code += AddEvent(event);
-    };
+    }
 
     ParserObject response_body;
 
     if (code != 0) {
         return response_body;
-    };
+    }
 
     return response_body;
 }
@@ -22,17 +22,21 @@ ParserObject WriteEventImpl::process(const ParserObject& request_body) {
 
     for (auto e: request_body.events) {
         event = e;
-    };
+    }
 
-    std::string event_id = SupportProcess::GetEventId(event);
+    if (id.empty()) {
+        std::string id = SupportProcess::GetEventId(event);
+    }
 
-    int code = WriteEvent(event, event_id);
+    int code = WriteEvent(event, id);
+
+    id.clear();
 
     ParserObject response_body;
 
     if (code) {
         response_body.error = "null";
-    };
+    }
 
     return response_body;
 }
@@ -43,13 +47,13 @@ ParserObject RmEventImpl::process(const ParserObject& request_body) {
 
     for (auto event: request_body.events) {
         code += DeleteEvent(event);
-    };
+    }
 
     ParserObject response_body;
 
     if (code != 0) {
         return response_body;
-    };
+    }
 
     return response_body;
 }
@@ -68,12 +72,12 @@ int AddEventImpl::AddEvent(event_t& e) {
     PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 4, NULL, arguments, NULL, NULL, 0);
 
     if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-        printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+        printf("command field: %s\n", PQerrorMessage(PGConnection::GetConnection()));
         PQclear(res);
         return ERROR;
     } else {
         return SUCCESS;
-    };
+    }
 }
 
 
@@ -93,12 +97,12 @@ int WriteEventImpl::WriteEvent(event_t& e, std::string& id) {
     PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 5, NULL, arguments, NULL, NULL, 0);
 
     if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-        printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+        printf("command field: %s\n", PQerrorMessage(PGConnection::GetConnection()));
         PQclear(res);
         return ERROR;
     } else {
         return SUCCESS;
-    };
+    }
 }
 
 
@@ -116,10 +120,10 @@ int RmEventImpl::DeleteEvent(event_t& e){
     PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 4, NULL, arguments, NULL, NULL, 0);
 
     if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-        printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+        printf("command field: %s\n", PQerrorMessage(PGConnection::GetConnection()));
         PQclear(res);
         return ERROR;
     } else {
         return SUCCESS;
-    };
+    }
 }

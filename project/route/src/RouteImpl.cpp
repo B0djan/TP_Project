@@ -50,7 +50,7 @@
 #define RM_EVENT                         "delete_event"
 //  input: user_id, data, description, time_begin, time_end; output: OK
 
-        //  contacts
+        //  list_contacts
 #define ADD_USER_CONTACTS                "add_friend"
 //  input: user_id, nickname; output: OK
 

@@ -13,7 +13,7 @@ namespace SupportProcess {
         if (PQresultStatus(res) != PGRES_TUPLES_OK) {
             printf("command field: %s\n", PQerrorMessage(PGConnection::GetConnection()));
             PQclear(res);
-        };
+        }
 
         char* id = PQgetvalue(res, 0, 0);
         PQclear(res);

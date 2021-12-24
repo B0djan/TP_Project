@@ -10,7 +10,7 @@ ParserObject RegistrationImpl::process(const ParserObject& request_body) {
     if (code == ERROR) {
         response_body.error = "USER_COLLISION";
         return response_body;
-    };
+    }
 
     std::string id = SupportProcess::GetUserId(user);
 
@@ -29,7 +29,7 @@ ParserObject AuthenticationImpl::process(const ParserObject& request_body) {
     if (code == ERROR) {
         response_body.error = "ERROR";
         return response_body;
-    };
+    }
 
     std::string id = SupportProcess::GetUserId(user);
 
@@ -54,7 +54,7 @@ int RegistrationImpl::RegistrationTo(user_t& r) {
         PQclear(res);
 
         return ERROR;
-    };
+    }
 
     int n = PQgetisnull(res, 0, 0);
     int p = PQgetisnull(res, 0, 1);
@@ -63,7 +63,7 @@ int RegistrationImpl::RegistrationTo(user_t& r) {
 
     if (n == 0 || p == 0) {
         return ERROR;
-    };
+    }
 
     char command[] = "INSERT INTO user_m (nickname, password) VALUES ($1 , $2)";
     
@@ -75,7 +75,7 @@ int RegistrationImpl::RegistrationTo(user_t& r) {
         PQclear(res);
 
         return ERROR;
-    };
+    }
 
     PQclear(res);
     return SUCCESS;
@@ -98,14 +98,14 @@ int AuthenticationImpl::AutorizationTo(user_t& r) {
         PQclear(res);
 
         return ERROR;
-    };
+    }
 
     int n = PQgetisnull(res, 0, 0);
     int p = PQgetisnull(res, 0, 1);
 
     if (n == 1 || p == 1) {
         return ERROR;
-    };
+    }
 
     PQclear(res);
 

@@ -66,9 +66,9 @@ std::set<meetup_t> SearchFreeTimeImpl::GetMeetUps(std::vector<std::set<event_t>>
             Day user_day;
             for (auto event: events) {
                 user_day.InsertEvent(begin, end);
-            };
+            }
             free_day.UnionDays(user_day);
-        };
+        }
         free_day.InvertDay();
         set<meetup> res = free_day.SeachMeetUps();
      */

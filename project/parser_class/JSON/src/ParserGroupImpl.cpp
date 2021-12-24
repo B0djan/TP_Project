@@ -82,33 +82,33 @@ std::string ParserMeetUpImpl::ObjectToStr(const std::string type_response, const
 
 //     nlohmann::json value = j[it.key()];
 
-//     contacts_t contacts;
+//     contacts_t list_contacts;
 
 //     if(j.contains("user_id"))
-//             contacts.user_id = value["user_id"];
+//             list_contacts.user_id = value["user_id"];
 
-//     if(j.contains("contacts"))
+//     if(j.contains("list_contacts"))
 //     {
-//         for (auto& element : value["contacts"])
-//         contacts.contacts.insert(element.dump());
+//         for (auto& element : value["list_contacts"])
+//         list_contacts.list_contacts.insert(element.dump());
 //     }
 
 //     ParserObject res;
 
-//     res = contacts;
+//     res = list_contacts;
 
 //     return res;
 // }
 
 // std::string ParserUserContactsImpl::ObjectToStr(const ParserObject& other) {
 
-//     contacts_t contacts = other.contacts;
+//     contacts_t list_contacts = other.list_contacts;
 
 //     nlohmann::json value;
 
-//     value["user_id"] = contacts.user_id;
+//     value["user_id"] = list_contacts.user_id;
 
-//     value["contacts"] = contacts.contacts;
+//     value["list_contacts"] = list_contacts.list_contacts;
 
 //     nlohmann::json j;
 

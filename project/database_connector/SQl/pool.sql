@@ -42,7 +42,7 @@ CREATE TABLE event_m
     fk_user_id bigint REFERENCES user_m(user_id) NOT NULL   
 );
 
-CREATE TABLE contacts
+CREATE TABLE list_contacts
 (
 	fk_user_id bigint REFERENCES user_m(user_id) NOT NULL,
 	fk_friend_id bigint REFERENCES user_m(user_id) NOT NULL
@@ -78,7 +78,7 @@ drop table user_address;
 
 drop table event_m;
 
-drop table contacts;
+drop table list_contacts;
 
 drop table group_members;
 
@@ -94,13 +94,13 @@ SELECT * FROM user_m
 WHERE (nickname != '') AND (password != '')
 ;
 
-INSERT INTO contacts
+INSERT INTO list_contacts
 VALUES (14, 13);
 
-SELECT * FROM contacts;
+SELECT * FROM list_contacts;
 
-SELECT contacts.fk_user_id, user_m.nickname
-FROM contacts
+SELECT list_contacts.fk_user_id, user_m.nickname
+FROM list_contacts
 LEFT JOIN user_m
-ON contacts.fk_friend_id = user_m.user_id
+ON list_contacts.fk_friend_id = user_m.user_id
 WHERE fk_user_id = 10;
