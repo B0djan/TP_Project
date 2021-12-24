@@ -60,7 +60,7 @@ ParserObject RmEventImpl::process(const ParserObject& request_body) {
 
 int AddEventImpl::AddEvent(event_t& e) {
 
-    char command[] = "INSERT INTO event_m (event_date, date, description, time_begin, time_end, fk_user_id) VALUES ($1, $2, $3, $4, $5, $6)";
+    char command[] = "INSERT INTO event_m (event_date, event_date, description, time_begin, time_end, fk_user_id) VALUES ($1, $2, $3, $4, $5, $6)";
 
     const char* arguments[6];
 
@@ -71,7 +71,7 @@ int AddEventImpl::AddEvent(event_t& e) {
     arguments[4] = e.time_end.c_str();
     arguments[5] = e.user_id.c_str();
 
-    PGresult *res = PQexecParams(PGConnection::GetConnection(), command, sizeof(arguments)/sizeof(char), NULL, arguments, NULL, NULL, 0);
+    PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 6, NULL, arguments, NULL, NULL, 0);
 
     if (PQresultStatus(res) != PGRES_COMMAND_OK) {
         printf("command field: %s\n", PQerrorMessage(PGConnection::GetConnection()));
