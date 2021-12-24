@@ -17,47 +17,80 @@
 #include <ParserWriteAddressDataImpl.hpp>
 #include <ParserWritePersonalDataImpl.hpp>
 
-//  base
+        //  base
 #define REGISTRATION                     "registration"
+//  input: nickname, password; output: user_id; error:"null" (если пользователь уже существует)
+
 #define AUTHENTICATION                   "autorization"
+//  input: nickname, password; output: user_id; error:"null" (если введены некорректные данные)
 
 //  synchro
 #define GET_EVENTS                       "get_events"
-#define GET_CONTACTS                     "get_friends"
-#define GET_GROUPS                       "get_groups"
+//  input: user_id, date; output: set<event_t> [description, time_begin, time_end]
 
-//  personal data
+#define GET_CONTACTS                     "get_friends"
+//  input: user_id; output: set<sring> [nickname]
+
+#define GET_GROUPS                       "get_groups"
+//  input: user_id; output: set<string> [title]
+
+        //  personal data
 #define WRITE_PERSONAL_DATA              "..."
 
-//  user address
+        //  user address
 #define WRITE_ADDRESS                    "..."
 
-//  event
+        //  event
 #define ADD_EVENT                        "add_event"
+//  input: user_id, data, description, time_begin, time_end; output: OK
+
 #define WRITE_EVENT                      "change_event"
-#define RM_EVENT                         "delete_friend"
+//  input: user_id, data, description, time_begin, time_end; output: OK
 
-//  contacts
+#define RM_EVENT                         "delete_event"
+//  input: user_id, data, description, time_begin, time_end; output: OK
+
+        //  contacts
 #define ADD_USER_CONTACTS                "add_friend"
-#define RM_USER_CONTACTS                 "delete_friend"
+//  input: user_id, nickname; output: OK
 
-//  group
+#define RM_USER_CONTACTS                 "delete_friend"
+//  input: user_id, nickname; output: OK
+
+        //  group
 #define ADD_GROUP                        "create_group"
+//  input: title; output: group_id ???
+
 #define WRITE_GROUP                      "change_group"
+//  input: title; output OK
+
 #define RM_GROUP                         "delete_group"
+//  input: title; output OK
 
 #define ADD_USER                         "invite"
 #define RM_USER                          "kick"
 
 #define JOIN                             "join_group"
+//  input: user_id, title(group); output: OK
+
 #define LEAVE                            "leave_group"
+//  input: user_id, title(group); output: OK
 
 #define SEARCH_GROUP                     "search_group"
+//  input: title; output: title; error:"null" (не найдена такая группа)
 
-//  meetup in group
+        //  meetup in group
 #define SEARCH_FREE_TIME                 "get_meetup"
+//  input: title, date; output: set<meetup_t>[description, time_begin, time_end]
 
 #define HISTORY_MEETUP                   "get_history"
+//  input: title; output: set<meetup_t>[description, time_begin, time_end, date]
+
+
+/*
+Идеи по функционалу:
+ - match (голосование по времени встречи)
+*/
 
 RouteImpl::RouteImpl() {
     //  Base            REQUEST                                        PARSER                     HANDLER
