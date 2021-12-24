@@ -1,7 +1,5 @@
 #include <ParserEventImpl.hpp>
 
-#include <iostream>
-
 ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
@@ -11,7 +9,7 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
 
     std::set<event_t> events;
 
-   // {"add_event":{"user_id":"56","event_name":"breakfast","date":"01:06:2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"}}
+   // {"add_event":{["user_id":"56","event_name":"breakfast","date":"01:06:2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"]}}
 
     for (auto& element : value)
     {
@@ -20,7 +18,7 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
         if(element.contains("user_id"))
         {
             event.user_id = element["user_id"].get<std::string>();
-            };
+        };
 
         if(element.contains("event_name"))
         {
@@ -34,21 +32,25 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
 
         if(element.contains("description"))
         {
-            event.user_id = element["description"].get<std::string>();
+            event.description = element["description"].get<std::string>();
         };
 
         if(element.contains("time_begin"))
         {
-            event.user_id = element["time_begin"].get<std::string>();
+            event.time_begin = element["time_begin"].get<std::string>();
         };
         
         if(element.contains("time_end"))
         {
-            event.user_id = element["time_end"].get<std::string>();
+            event.time_end = element["time_end"].get<std::string>();
         };
 
         events.insert(event);
     };
+
+    ParserObject res;
+
+    res.events = events;
 
     //  Отладка
     if (global_key_test_parser) {
@@ -61,10 +63,6 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
             std::cout << (*it).user_id << std::endl;
         }
     }
-
-    ParserObject res;
-
-    res.events = events;
 
     return res;
 }

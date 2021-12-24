@@ -38,6 +38,19 @@ ParserObject ParserWritePersonalDataImpl::StrToObject(const std::string& parser_
 
     res = personal_data;
 
+    //  Отладка
+    if (global_key_test_parser) {
+        std::cout << parser_str << std::endl;
+        std::cout << personal_data.user_id << std::endl;
+        std::cout << personal_data.first_name << std::endl;
+        std::cout << personal_data.surname << std::endl;
+        std::cout << personal_data.age << std::endl;
+        std::cout << personal_data.phone_number << std::endl;
+        std::cout << personal_data.status << std::endl;
+        std::cout << personal_data.label << std::endl;
+        std::cout << personal_data.description << std::endl;
+    }
+
     return res;
 }
 
@@ -76,6 +89,19 @@ std::string ParserWritePersonalDataImpl::ObjectToStr(const std::string type_resp
     j[type_response] = value;
 
     std::string res = j.dump();
+
+    //  Отладка
+    if (global_key_test_parser) {
+        std::cout << personal_data.user_id << std::endl;
+        std::cout << personal_data.first_name << std::endl;
+        std::cout << personal_data.surname << std::endl;
+        std::cout << personal_data.age << std::endl;
+        std::cout << personal_data.phone_number << std::endl;
+        std::cout << personal_data.status << std::endl;
+        std::cout << personal_data.label << std::endl;
+        std::cout << personal_data.description << std::endl;
+        std::cout << res << std::endl;
+    }
 
     // {"registration":{"user_id":"value"}}
 

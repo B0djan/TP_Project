@@ -38,6 +38,19 @@ ParserObject ParserWriteAddressDataImpl::StrToObject(const std::string& parser_s
 
     res = address_data;
 
+    //  Отладка
+    if (global_key_test_parser) {
+        std::cout << parser_str << std::endl;
+        std::cout << address_data.user_id << std::endl;
+        std::cout << address_data.building << std::endl;
+        std::cout << address_data.housing << std::endl;
+        std::cout << address_data.street << std::endl;
+        std::cout << address_data.city << std::endl;
+        std::cout << address_data.district << std::endl;
+        std::cout << address_data.index << std::endl;
+        std::cout << address_data.country << std::endl;
+    }
+
     return res;
 }
 
@@ -76,6 +89,19 @@ std::string ParserWriteAddressDataImpl::ObjectToStr(const std::string type_respo
     j[type_response] = value;
 
     std::string res = j.dump();
+
+    //  Отладка
+    if (global_key_test_parser) {
+        std::cout << address_data.user_id << std::endl;
+        std::cout << address_data.building << std::endl;
+        std::cout << address_data.housing << std::endl;
+        std::cout << address_data.street << std::endl;
+        std::cout << address_data.city << std::endl;
+        std::cout << address_data.district << std::endl;
+        std::cout << address_data.index << std::endl;
+        std::cout << address_data.country << std::endl;
+        std::cout << res << std::endl;
+    }
 
     // {"registration":{"user_id":"value"}}
 
