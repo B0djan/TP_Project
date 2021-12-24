@@ -87,3 +87,20 @@ drop table user_m;
 drop table meetup;
 
 drop table group_m;
+
+--  Примеры запросов
+
+SELECT * FROM user_m 
+WHERE (nickname != '') AND (password != '')
+;
+
+INSERT INTO contacts
+VALUES (14, 13);
+
+SELECT * FROM contacts;
+
+SELECT contacts.fk_user_id, user_m.nickname
+FROM contacts
+LEFT JOIN user_m
+ON contacts.fk_friend_id = user_m.user_id
+WHERE fk_user_id = 10;

@@ -127,5 +127,4 @@ char* GetId(user_t& r) {
     char* id = PQgetvalue(res, 0, 0);
     PQclear(res);
     return id;
-
 }

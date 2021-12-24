@@ -11,7 +11,7 @@ public:
 class RmUserContactsImpl : public Handler {
     std::string DeleteFriend(contacts_t& c);
 public:
-    ParserObject process(const ParserObject& request_body) override;
-private:
-  
+    ParserObject process(const ParserObject& request_body) override;  
 };
+
+char* GetId(user_t& r);
