@@ -71,7 +71,7 @@ int AddEventImpl::AddEvent(event_t& e) {
     arguments[4] = e.time_end.c_str();
     arguments[5] = e.user_id.c_str();
 
-    PGresult *res = PQexecParams(PGConnection::GetConnection(), command, sizeof(arguments)/sizeof(char), NULL, arguments, NULL, NULL, 0);
+    PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 6, NULL, arguments, NULL, NULL, 0);
 
     if (PQresultStatus(res) != PGRES_COMMAND_OK) {
         printf("command field: %s\n", PQerrorMessage(PGConnection::GetConnection()));
