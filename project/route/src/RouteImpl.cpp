@@ -33,30 +33,31 @@
 #define WRITE_ADDRESS                    "..."
 
 //  event
-#define ADD_EVENT                        "get_events"
-#define WRITE_EVENT                      "..."
-#define RM_EVENT                         "..."
+#define ADD_EVENT                        "add_event"
+#define WRITE_EVENT                      "change_event"
+#define RM_EVENT                         "delete_friend"
 
 //  contacts
-#define ADD_USER_CONTACTS                "..."
-#define RM_USER_CONTACTS                 "..."
+#define ADD_USER_CONTACTS                "add_friend"
+#define RM_USER_CONTACTS                 "delete_friend"
 
 //  group
-#define ADD_GROUP                        "..."
-#define WRITE_GROUP                      "..."
-#define RM_GROUP                         "..."
+#define ADD_GROUP                        "create_group"
+#define WRITE_GROUP                      "change_group"
+#define RM_GROUP                         "delete_group"
 
-#define ADD_USER                         "..."
-#define RM_USER                          "..."
+#define ADD_USER                         "invite"
+#define RM_USER                          "kick"
 
-#define JOIN                             "..."
-#define LEAVE                            "..."
+#define JOIN                             "join_group"
+#define LEAVE                            "leave_group"
 
-#define SEARCH_GROUP                     "..."
+#define SEARCH_GROUP                     "search_group"
 
-#define SEARCH_FREE_TIME                 "..."
+//  meetup in group
+#define SEARCH_FREE_TIME                 "get_meetup"
 
-#define HISTORY_MEETUP                   "..."
+#define HISTORY_MEETUP                   "get_history"
 
 RouteImpl::RouteImpl() {
     //  Base            REQUEST                                        PARSER                     HANDLER
