@@ -1,12 +1,12 @@
 /*-------------------------------------------------------------------------
  *
  * port.h
- *	  Header for src_json/port/ compatibility functions.
+ *	  Header for src/port/ compatibility functions.
  *
  * Portions Copyright (c) 1996-2021, PostgreSQL Global Development Group
  * Portions Copyright (c) 1994, Regents of the University of California
  *
- * src_json/include/port.h
+ * src/include/port.h
  *
  *-------------------------------------------------------------------------
  */
@@ -348,7 +348,7 @@ extern int	gettimeofday(struct timeval *tp, struct timezone *tzp);
 
 /*
  * Default "extern" declarations or macro substitutes for library routines.
- * When necessary, these routines are provided by files in src_json/port/.
+ * When necessary, these routines are provided by files in src/port/.
  */
 
 /* Type to use with fseeko/ftello */

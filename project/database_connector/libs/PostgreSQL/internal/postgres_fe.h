@@ -11,7 +11,7 @@
  * Portions Copyright (c) 1996-2021, PostgreSQL Global Development Group
  * Portions Copyright (c) 1995, Regents of the University of California
  *
- * src_json/include/postgres_fe.h
+ * src/include/postgres_fe.h
  *
  *-------------------------------------------------------------------------
  */

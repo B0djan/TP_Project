@@ -4,8 +4,6 @@
 
 #include <set>
 
-#include "json.hpp"
-
 typedef struct {
     std::string user_id  = "";
     std::string email    = "";

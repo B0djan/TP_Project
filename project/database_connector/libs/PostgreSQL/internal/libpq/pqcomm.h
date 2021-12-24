@@ -9,7 +9,7 @@
  * Portions Copyright (c) 1996-2021, PostgreSQL Global Development Group
  * Portions Copyright (c) 1994, Regents of the University of California
  *
- * src_json/include/libpq/pqcomm.h
+ * src/include/libpq/pqcomm.h
  *
  *-------------------------------------------------------------------------
  */

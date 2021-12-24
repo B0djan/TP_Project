@@ -11,9 +11,9 @@ INCLUDE_DIRECTORIES(route/include/impl)
 INCLUDE_DIRECTORIES(route/include/virtual)
 
 
-INCLUDE_DIRECTORIES(parser_class/include/libs/single_include/nlohmann)
-INCLUDE_DIRECTORIES(parser_class/include/impl)
-INCLUDE_DIRECTORIES(parser_class/include/virtual)
+INCLUDE_DIRECTORIES(parser_class/JSON/libs/single_include/nlohmann)
+INCLUDE_DIRECTORIES(parser_class/JSON/include/impl)
+INCLUDE_DIRECTORIES(parser_class/virtual)
 
 INCLUDE_DIRECTORIES(database_connector/PostgreSQL/include/impl)
 
@@ -42,12 +42,12 @@ SET(SOURCE_LIST_PROCESSING_CLASS
         processing_class/src/SupportProcess.cpp)
 
 SET(SOURCE_LIST_PARSER_CLASS
-        parser_class/src_json/ParserContactsImpl.cpp
-        parser_class/src_json/ParserEventImpl.cpp
-        parser_class/src_json/ParserGroupImpl.cpp
-        parser_class/src_json/ParserRegistrAuthImpl.cpp
-        parser_class/src_json/ParserWriteAddressDataImpl.cpp
-        parser_class/src_json/ParserWritePersonalDataImpl.cpp)
+        parser_class/JSON/src/ParserContactsImpl.cpp
+        parser_class/JSON/src/ParserEventImpl.cpp
+        parser_class/JSON/src/ParserGroupImpl.cpp
+        parser_class/JSON/src/ParserRegistrAuthImpl.cpp
+        parser_class/JSON/src/ParserWriteAddressDataImpl.cpp
+        parser_class/JSON/src/ParserWritePersonalDataImpl.cpp)
 
 SET(SOURCE_LIST_PARSER_OBJECT
         parser_object/src/ParserObject.cpp)

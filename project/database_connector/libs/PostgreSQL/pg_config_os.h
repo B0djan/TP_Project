@@ -1,4 +1,4 @@
-/* src_json/include/port/linux.h */
+/* src/include/port/linux.h */
 
 /*
  * As of July 2007, all known versions of the Linux kernel will sometimes

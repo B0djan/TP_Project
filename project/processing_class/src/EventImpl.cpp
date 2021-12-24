@@ -1,7 +1,5 @@
 #include <EventImpl.hpp>
 
-#include <set>
-
 ParserObject AddEventImpl::process(const ParserObject& request_body) {
 
     int code;
