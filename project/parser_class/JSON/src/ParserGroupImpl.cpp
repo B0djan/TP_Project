@@ -1,18 +1,35 @@
 #include <ParserGroupImpl.hpp>
 
 ParserObject ParserGroupImpl::StrToObject(const std::string& parser_str) const{
-    
-    // nlohmann::json j = nlohmann::json::parse(parser_str);
+    nlohmann::json j = nlohmann::json::parse(parser_str);
 
-    // nlohmann::json::iterator it = j.begin();
+    nlohmann::json::iterator it = j.begin();
 
-    // nlohmann::json value = j[it.key()];
+    nlohmann::json value = j[it.key()];
 
-    // group_t group;
+    std::set<group_t> groups;
+
+    for (auto& json_group : value) {
+        group_t group;
+
+        if(json_group.contains("group_id"))
+            group.group_id = json_group["group_id"];
+
+        if(json_group.contains("title"))
+            group.title = json_group["title"];
+
+        if(json_group.contains("members"))
+        {
+            for (auto& element : json_group["members"])
+                group.members.insert(element.dump());
+        };
+
+        groups.insert(group);
+    };
 
     ParserObject res;
 
-    // res = contacts;
+    res.groups = groups;
 
     return res;
 }
