@@ -82,7 +82,7 @@ std::string ParserEventImpl::ObjectToStr(const std::string type_response, const 
                 json_event["description"] = event.description;
             
             if (!event.date.empty())
-                json_event["date"] = event.date;
+                json_event["event_date"] = event.date;
 
             json_events.push_back(json_event);
         };
