@@ -10,6 +10,8 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
 
     std::set<event_t> events;
 
+   // {"add_event":{"user_id":"56","event_name":"breakfast","date":"01:06:2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"}}
+
     for (auto& element : value)
     {
         event_t event;
@@ -44,7 +46,7 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
             event.user_id = element["time_end"].get<std::string>();
         };
 
-        // events.insert(event);
+        events.insert(event);
     };
 
 

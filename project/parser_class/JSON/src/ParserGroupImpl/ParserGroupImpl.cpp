@@ -36,9 +36,25 @@ ParserObject ParserGroupImpl::StrToObject(const std::string& parser_str) const{
 
 std::string ParserGroupImpl::ObjectToStr(const std::string type_response, const ParserObject& other) const {
 
-    contacts_t contacts = other.contacts;
+    group_t group;
+
+    for (auto g: other.groups) {
+        group = g;
+    }
 
     nlohmann::json value;
+
+    if (!group.group_id.empty()) {
+        value["group_id"] = group.group_id;
+    }
+
+    if (!group.title.empty()) {
+        value["title"] = group.title;
+    };
+
+    if (!group.members.empty()) {
+        value["members"] = group.members;
+    }
 
     nlohmann::json j;
 
@@ -46,13 +62,16 @@ std::string ParserGroupImpl::ObjectToStr(const std::string type_response, const 
 
     std::string res = j.dump();
 
-    // {"registration":{"user_id":"value"}}
-
     return res;
 }
 
 
 ParserObject ParserUserGroupImpl::StrToObject(const std::string& parser_str) const {
+
+    nlohmann::json j = nlohmann::json::parse(parser_str);
+
+    if (j.contains(""))
+
     ParserObject res;
     return res;
 }
