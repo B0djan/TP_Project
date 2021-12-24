@@ -1,11 +1,5 @@
 #include "duration.h"
 
-    Duration::Duration(unsigned char& t) {
-        unsigned char total = t * 15;
-        hour = total / 60;
-        min = total % 60;
-    }
-
     Duration::Duration(const std::string& time) {
         std::stringstream stream(time);
         int h, m = 0;
@@ -21,6 +15,8 @@
         int total = hour * 60 * min;
         return (unsigned char)(total / 15 + 1);
     }
+    
+    // (TODO): добисать обратный конвертер
 
     void Duration::PrintDuration() {
         std::cout << hour << ":";
