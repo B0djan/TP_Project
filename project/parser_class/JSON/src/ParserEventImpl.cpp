@@ -53,7 +53,7 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
     res.events = events;
 
     //  Отладка
-    if (global_key_test_parser) {
+    if (GLOBAL_KEY_TEST_PARSER) {
         std::cout  << "From client  :---: " << parser_str << std::endl;
         for (std::set<event_t>::iterator it = events.begin(); it != events.end(); ++it) {
             std::cout << "user_id      :---: " << (*it).user_id << std::endl;
@@ -106,18 +106,7 @@ std::string ParserEventImpl::ObjectToStr(const std::string type_response, const 
     std::string res = j.dump();
 
     //  Отладка
-    // if (global_key_test_parser) {
-    //     for (std::set<event_t>::iterator it = events.begin(); it != events.end(); ++it) {
-    //         std::cout << (*it).date << std::endl;
-    //         std::cout << (*it).time_begin << std::endl;
-    //         std::cout << (*it).time_end << std::endl;
-    //         std::cout << (*it).description << std::endl;
-    //         std::cout << (*it).user_id << std::endl;
-    //     }
-    //     std::cout << res << std::endl;
-    // }
-
-    if (global_key_test_parser) {
+    if (GLOBAL_KEY_TEST_PARSER) {
         for (std::set<event_t>::iterator it = events.begin(); it != events.end(); ++it) {
             std::cout << "user_id      :---: " << (*it).user_id << std::endl;
             std::cout << "event_name   :---: " << (*it).event_name << std::endl;

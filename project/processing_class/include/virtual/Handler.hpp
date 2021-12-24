@@ -4,11 +4,13 @@
 
 #include <string>
 
-#include "ParserObject.hpp"
+#include <ParserObject.hpp>
 
-#include "libpq-fe.h"
+#include <libpq-fe.h>
 
-#include "PGConnection.hpp"
+#include <PGConnection.hpp>
+
+#define global_key_test_processing true
 
 #define SUCCESS     0
 #define ERROR      -1
