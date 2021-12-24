@@ -23,6 +23,14 @@ ParserObject ParserUserContactsImpl::StrToObject(const std::string& parser_str) 
 
     res = contacts;
 
+    //  Отладка
+    if (global_key_test_parser) {
+        std::cout << parser_str << std::endl;
+        for (std::set<std::string>::iterator it = contacts.list_contacts.begin(); it != contacts.list_contacts.end(); ++it) {
+            std::cout << *it << std::endl;
+        }
+    }
+
     return res;
 }
 
@@ -45,6 +53,14 @@ std::string ParserUserContactsImpl::ObjectToStr(const std::string type_response,
     std::string res = j.dump();
 
     // {"registration":{"user_id":"value"}}
+
+    //  Отладка
+    if (global_key_test_parser) {
+        for (std::set<std::string>::iterator it = contacts.list_contacts.begin(); it != contacts.list_contacts.end(); ++it) {
+            std::cout << *it << std::endl;
+        }
+        std::cout << res << std::endl;
+    }
 
     return res;
 }

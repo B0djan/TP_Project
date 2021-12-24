@@ -31,6 +31,11 @@ ParserObject ParserGroupImpl::StrToObject(const std::string& parser_str) const{
 
     res.groups = groups;
 
+    //  Отладка
+    if (global_key_test_parser) {
+        std::cout << parser_str << std::endl;
+    }
+
     return res;
 }
 
@@ -61,6 +66,10 @@ std::string ParserGroupImpl::ObjectToStr(const std::string type_response, const 
     j[type_response] = value;
 
     std::string res = j.dump();
+
+    if (global_key_test_parser) {
+        std::cout << res << std::endl;
+    }
 
     return res;
 }

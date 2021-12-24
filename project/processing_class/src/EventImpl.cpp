@@ -1,7 +1,23 @@
 #include <EventImpl.hpp>
 
+#include <iostream>
+
 ParserObject AddEventImpl::process(const ParserObject& request_body) {
     int code;
+    std::cout << request_body.events.size() << std::endl;
+
+    std::set<event_t> :: iterator it = request_body.events.begin();
+
+    code += AddEvent(*it);
+
+    for (std::set<event_t>::iterator it = request_body.events.begin(); it != request_body.events.end(); ++it) {
+        std::cout << (*it).date << std::endl;
+        std::cout << (*it).time_begin << std::endl;
+        std::cout << (*it).time_end << std::endl;
+        std::cout << (*it).description << std::endl;
+        std::cout << (*it).user_id << std::endl;
+    }
+
 
     for (auto event: request_body.events) {
         code += AddEvent(event);
@@ -58,11 +74,17 @@ ParserObject RmEventImpl::process(const ParserObject& request_body) {
     return response_body;
 }
 
-int AddEventImpl::AddEvent(event_t& e) {
+int AddEventImpl::AddEvent(const event_t& e) {
 
     char command[] = "INSERT INTO event_m (event_date, time_begin, time_end, description, fk_user_id) VALUES ($1, $2, $3, $4, $5)";
 
     const char* arguments[5];
+
+    std::cout << e.date << std::endl;
+    std::cout << e.time_begin << std::endl;
+    std::cout << e.time_end << std::endl;
+    std::cout << e.description << std::endl;
+    std::cout << e.user_id << std::endl;
 
     arguments[0] = e.date.c_str();
     arguments[1] = e.time_begin.c_str();
@@ -89,6 +111,12 @@ int WriteEventImpl::WriteEvent(event_t& e) {
 
     const char* arguments[5];
 
+    std::cout << e.date << std::endl;
+    std::cout << e.time_begin << std::endl;
+    std::cout << e.time_end << std::endl;
+    std::cout << e.description << std::endl;
+    std::cout << e.user_id << std::endl;
+
     arguments[0] = e.event_name.c_str();
     arguments[1] = e.time_begin.c_str();
     arguments[2] = e.time_end.c_str();
@@ -112,6 +140,12 @@ int RmEventImpl::DeleteEvent(event_t& e){
     char command[] = "DELETE FROM event_m WHERE (event_date = $1) AND (time_begin = $2) AND (time_end = $3) AND (fk_user_id = $4)";
 
     const char* arguments[4];
+
+    std::cout << e.date << std::endl;
+    std::cout << e.time_begin << std::endl;
+    std::cout << e.time_end << std::endl;
+    std::cout << e.description << std::endl;
+    std::cout << e.user_id << std::endl;
 
     arguments[0] = e.event_name.c_str();
     arguments[1] = e.time_begin.c_str();

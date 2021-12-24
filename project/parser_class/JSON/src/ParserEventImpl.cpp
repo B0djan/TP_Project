@@ -1,7 +1,6 @@
 #include <ParserEventImpl.hpp>
 
 ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
-    
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
     nlohmann::json::iterator it = j.begin();
@@ -10,7 +9,7 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
 
     std::set<event_t> events;
 
-   // {"add_event":{"user_id":"56","event_name":"breakfast","date":"01:06:2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"}}
+   // {"add_event":{["user_id":"56","event_name":"breakfast","date":"01:06:2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"]}}
 
     for (auto& element : value)
     {
@@ -38,21 +37,32 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
 
         if(element.contains("time_begin"))
         {
-            event.user_id = element["time_begin"].get<std::string>();
+            event.time_begin = element["time_begin"].get<std::string>();
         };
         
         if(element.contains("time_end"))
         {
-            event.user_id = element["time_end"].get<std::string>();
+            event.time_end = element["time_end"].get<std::string>();
         };
 
         events.insert(event);
     };
 
-
     ParserObject res;
 
     res.events = events;
+
+    //  Отладка
+    if (global_key_test_parser) {
+        std::cout << parser_str << std::endl;
+        for (std::set<event_t>::iterator it = events.begin(); it != events.end(); ++it) {
+            std::cout << (*it).date << std::endl;
+            std::cout << (*it).time_begin << std::endl;
+            std::cout << (*it).time_end << std::endl;
+            std::cout << (*it).description << std::endl;
+            std::cout << (*it).user_id << std::endl;
+        }
+    }
 
     return res;
 }
@@ -93,6 +103,18 @@ std::string ParserEventImpl::ObjectToStr(const std::string type_response, const 
     j[type_response] = json_events;
 
     std::string res = j.dump();
+
+    //  Отладка
+    if (global_key_test_parser) {
+        for (std::set<event_t>::iterator it = events.begin(); it != events.end(); ++it) {
+            std::cout << (*it).date << std::endl;
+            std::cout << (*it).time_begin << std::endl;
+            std::cout << (*it).time_end << std::endl;
+            std::cout << (*it).description << std::endl;
+            std::cout << (*it).user_id << std::endl;
+        }
+        std::cout << res << std::endl;
+    }
 
     return res;
 };

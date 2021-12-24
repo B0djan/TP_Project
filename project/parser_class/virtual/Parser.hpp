@@ -2,9 +2,14 @@
 
 #include <string>
 
-#include "ParserObject.hpp"
+#include <iostream>
 
-#include "json.hpp"
+#include <ParserObject.hpp>
+
+#include <json.hpp>
+
+
+#define global_key_test_parser true
 
 
 class Parser {
