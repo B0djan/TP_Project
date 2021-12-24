@@ -9,7 +9,7 @@
  * Portions Copyright (c) 1996-2021, PostgreSQL Global Development Group
  * Portions Copyright (c) 1994, Regents of the University of California
  *
- * src_json/include/pg_config_manual.h
+ * src/include/pg_config_manual.h
  *------------------------------------------------------------------------
  */
 
@@ -288,7 +288,7 @@
  * Do not try to test the server under Valgrind without having built the
  * server with USE_VALGRIND; else you will get false positives from sinval
  * messaging (see comments in AddCatcacheInvalidationMessage).  It's also
- * important to use the suppression file src_json/tools/valgrind.supp to
+ * important to use the suppression file src/tools/valgrind.supp to
  * exclude other known false positives.
  *
  * You should normally use MEMORY_CONTEXT_CHECKING with USE_VALGRIND;
@@ -325,7 +325,7 @@
  * For cache-invalidation debugging, define DISCARD_CACHES_ENABLED to enable
  * use of the debug_discard_caches GUC to aggressively flush syscache/relcache
  * entries whenever it's possible to deliver invalidations.  See
- * AcceptInvalidationMessages() in src_json/backend/utils/cache/inval.c for
+ * AcceptInvalidationMessages() in src/backend/utils/cache/inval.c for
  * details.
  *
  * USE_ASSERT_CHECKING builds default to enabling this.  It's possible to use
@@ -349,7 +349,7 @@
 
 /*
  * Recover memory used for relcache entries when invalidated.  See
- * RelationBuildDescr() in src_json/backend/utils/cache/relcache.c.
+ * RelationBuildDescr() in src/backend/utils/cache/relcache.c.
  *
  * This is active automatically for clobber-cache builds when clobbering is
  * active, but can be overridden here by explicitly defining

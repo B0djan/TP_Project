@@ -42,12 +42,12 @@ SET(SOURCE_LIST_PROCESSING_CLASS
         processing_class/src/SupportProcess.cpp)
 
 SET(SOURCE_LIST_PARSER_CLASS
-        parser_class/JSON/src_json/ParserContactsImpl.cpp
-        parser_class/JSON/src_json/ParserEventImpl.cpp
-        parser_class/JSON/src_json/ParserGroupImpl.cpp
-        parser_class/JSON/src_json/ParserRegistrAuthImpl.cpp
-        parser_class/JSON/src_json/ParserWriteAddressDataImpl.cpp
-        parser_class/JSON/src_json/ParserWritePersonalDataImpl.cpp)
+        parser_class/JSON/src/ParserContactsImpl.cpp
+        parser_class/JSON/src/ParserEventImpl.cpp
+        parser_class/JSON/src/ParserGroupImpl.cpp
+        parser_class/JSON/src/ParserRegistrAuthImpl.cpp
+        parser_class/JSON/src/ParserWriteAddressDataImpl.cpp
+        parser_class/JSON/src/ParserWritePersonalDataImpl.cpp)
 
 SET(SOURCE_LIST_PARSER_OBJECT
         parser_object/src/ParserObject.cpp)

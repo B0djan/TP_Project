@@ -12,7 +12,7 @@
  * Portions Copyright (c) 1996-2021, PostgreSQL Global Development Group
  * Portions Copyright (c) 1994, Regents of the University of California
  *
- * src_json/include/c.h
+ * src/include/c.h
  *
  *-------------------------------------------------------------------------
  */
@@ -378,7 +378,7 @@ typedef void (*pg_funcptr_t) (void);
  * For C++ compilers, we assume the compiler has a compatible built-in
  * definition of bool.
  *
- * See also the version of this code in src_json/interfaces/ecpg/include/ecpglib.h.
+ * See also the version of this code in src/interfaces/ecpg/include/ecpglib.h.
  */
 
 #ifndef __cplusplus

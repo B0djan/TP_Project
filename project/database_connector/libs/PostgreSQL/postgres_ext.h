@@ -15,7 +15,7 @@
  *	use header files that are otherwise internal to Postgres to interface
  *	with the backend.
  *
- * src_json/include/postgres_ext.h
+ * src/include/postgres_ext.h
  *
  *-------------------------------------------------------------------------
  */

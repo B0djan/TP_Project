@@ -1,5 +1,5 @@
-/* src_json/include/pg_config.h.  Generated from pg_config.h.in by configure.  */
-/* src_json/include/pg_config.h.in.  Generated from configure.ac by autoheader.  */
+/* src/include/pg_config.h.  Generated from pg_config.h.in by configure.  */
+/* src/include/pg_config.h.in.  Generated from configure.ac by autoheader.  */
 
 /* Define to the type of arg 1 of 'accept' */
 #define ACCEPT_TYPE_ARG1 int
