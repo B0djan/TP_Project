@@ -34,7 +34,7 @@ ParserObject ParserRegistrAuthImpl::StrToObject(const std::string& parser_str) c
 
     res = user;
 
-    if (global_key_test_parser) {
+    if (GLOBAL_KEY_TEST_PARSER) {
         std::cout  << "From client  :---: " << parser_str << std::endl;
         std::cout << user.user_id << std::endl;
         std::cout << user.email << std::endl;
@@ -70,7 +70,7 @@ std::string ParserRegistrAuthImpl::ObjectToStr(const std::string type_response, 
     std::string res = j.dump();
 
     //  Отладка
-    if (global_key_test_parser) {
+    if (GLOBAL_KEY_TEST_PARSER) {
         std::cout << user.user_id << std::endl;
         std::cout << user.email << std::endl;
         std::cout << user.password << std::endl;

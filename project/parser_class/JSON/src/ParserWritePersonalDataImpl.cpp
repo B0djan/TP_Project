@@ -39,7 +39,7 @@ ParserObject ParserWritePersonalDataImpl::StrToObject(const std::string& parser_
     res = personal_data;
 
     //  Отладка
-    if (global_key_test_parser) {
+    if (GLOBAL_KEY_TEST_PARSER) {
         std::cout  << "From client  :---: " << parser_str << std::endl;
         std::cout << personal_data.user_id << std::endl;
         std::cout << personal_data.first_name << std::endl;
@@ -91,7 +91,7 @@ std::string ParserWritePersonalDataImpl::ObjectToStr(const std::string type_resp
     std::string res = j.dump();
 
     //  Отладка
-    if (global_key_test_parser) {
+    if (GLOBAL_KEY_TEST_PARSER) {
         std::cout << personal_data.user_id << std::endl;
         std::cout << personal_data.first_name << std::endl;
         std::cout << personal_data.surname << std::endl;

@@ -9,7 +9,7 @@
 #include <json.hpp>
 
 
-#define global_key_test_parser true
+#define GLOBAL_KEY_TEST_PARSER true
 
 
 class Parser {
