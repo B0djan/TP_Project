@@ -17,16 +17,21 @@ ParserObject AddEventImpl::process(const ParserObject& request_body) {
 }
 
 ParserObject WriteEventImpl::process(const ParserObject& request_body) {
-    int code;
+    
+    event_t event;
 
-    for (auto event: request_body.events) {
-        code += WriteEvent(event);
+    for (auto e: request_body.events) {
+        event = e;
     };
+
+    std::string event_id = SupportProcess::GetEventId(event);
+
+    int code = WriteEvent(event, event_id);
 
     ParserObject response_body;
 
-    if (code != 0) {
-        return response_body;
+    if (code) {
+        response_body.error = "null";
     };
 
     return response_body;
@@ -72,7 +77,7 @@ int AddEventImpl::AddEvent(event_t& e) {
 }
 
 
-int WriteEventImpl::WriteEvent(event_t& e) {
+int WriteEventImpl::WriteEvent(event_t& e, std::string& id) {
     char command[] = "UPDATE event_m "
                      "SET (event_date = $1, time_begin = $2, time_end = $3, description = $4)"
                      "WHERE (fk_user_id = $5)";
@@ -83,7 +88,7 @@ int WriteEventImpl::WriteEvent(event_t& e) {
     arguments[1] = e.time_begin.c_str();
     arguments[2] = e.time_end.c_str();
     arguments[3] = e.description.c_str();
-    arguments[4] = e.user_id.c_str();
+    arguments[4] = id.c_str();
 
     PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 5, NULL, arguments, NULL, NULL, 0);
 

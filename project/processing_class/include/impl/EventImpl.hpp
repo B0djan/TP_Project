@@ -12,7 +12,7 @@ public:
 
 class WriteEventImpl : public Handler {
     std::string old_id;
-    int WriteEvent(event_t&);
+    int WriteEvent(event_t&, std::string& id);
 public:
     ParserObject process(const ParserObject& request_body) override;
 };
