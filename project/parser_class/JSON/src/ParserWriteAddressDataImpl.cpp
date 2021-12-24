@@ -40,7 +40,7 @@ ParserObject ParserWriteAddressDataImpl::StrToObject(const std::string& parser_s
 
     //  Отладка
     if (global_key_test_parser) {
-        std::cout << parser_str << std::endl;
+        std::cout  << "From client  :---: " << parser_str << std::endl;
         std::cout << address_data.user_id << std::endl;
         std::cout << address_data.building << std::endl;
         std::cout << address_data.housing << std::endl;
@@ -100,7 +100,7 @@ std::string ParserWriteAddressDataImpl::ObjectToStr(const std::string type_respo
         std::cout << address_data.district << std::endl;
         std::cout << address_data.index << std::endl;
         std::cout << address_data.country << std::endl;
-        std::cout << res << std::endl;
+        std::cout << "From processing  :---: " << res << std::endl;
     }
 
     // {"registration":{"user_id":"value"}}

@@ -25,9 +25,9 @@ ParserObject ParserUserContactsImpl::StrToObject(const std::string& parser_str) 
 
     //  Отладка
     if (global_key_test_parser) {
-        std::cout << parser_str << std::endl;
+        std::cout  << "From client  :---: " << parser_str << std::endl;
         for (std::set<std::string>::iterator it = contacts.list_contacts.begin(); it != contacts.list_contacts.end(); ++it) {
-            std::cout << *it << std::endl;
+            std::cout << "contacts" << *it << std::endl;
         }
     }
 
@@ -57,9 +57,9 @@ std::string ParserUserContactsImpl::ObjectToStr(const std::string type_response,
     //  Отладка
     if (global_key_test_parser) {
         for (std::set<std::string>::iterator it = contacts.list_contacts.begin(); it != contacts.list_contacts.end(); ++it) {
-            std::cout << *it << std::endl;
+            std::cout << "contacts" << *it << std::endl;
         }
-        std::cout << res << std::endl;
+        std::cout << "From processing  :---: " << res << std::endl;
     }
 
     return res;

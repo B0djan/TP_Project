@@ -40,7 +40,7 @@ ParserObject ParserWritePersonalDataImpl::StrToObject(const std::string& parser_
 
     //  Отладка
     if (global_key_test_parser) {
-        std::cout << parser_str << std::endl;
+        std::cout  << "From client  :---: " << parser_str << std::endl;
         std::cout << personal_data.user_id << std::endl;
         std::cout << personal_data.first_name << std::endl;
         std::cout << personal_data.surname << std::endl;
@@ -100,7 +100,7 @@ std::string ParserWritePersonalDataImpl::ObjectToStr(const std::string type_resp
         std::cout << personal_data.status << std::endl;
         std::cout << personal_data.label << std::endl;
         std::cout << personal_data.description << std::endl;
-        std::cout << res << std::endl;
+        std::cout << "From processing  :---: " << res << std::endl;
     }
 
     // {"registration":{"user_id":"value"}}

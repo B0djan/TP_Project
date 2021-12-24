@@ -54,13 +54,14 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
 
     //  Отладка
     if (global_key_test_parser) {
-        std::cout << parser_str << std::endl;
+        std::cout  << "From client  :---: " << parser_str << std::endl;
         for (std::set<event_t>::iterator it = events.begin(); it != events.end(); ++it) {
-            std::cout << (*it).date << std::endl;
-            std::cout << (*it).time_begin << std::endl;
-            std::cout << (*it).time_end << std::endl;
-            std::cout << (*it).description << std::endl;
-            std::cout << (*it).user_id << std::endl;
+            std::cout << "user_id      :---: " << (*it).user_id << std::endl;
+            std::cout << "event_name   :---: " << (*it).event_name << std::endl;
+            std::cout << "date         :---: " << (*it).date << std::endl;
+            std::cout << "description  :---: " << (*it).description << std::endl;
+            std::cout << "time_begin   :---: " << (*it).time_begin << std::endl;
+            std::cout << "time_end     :---: " << (*it).time_end << std::endl;
         }
     }
 
@@ -107,13 +108,14 @@ std::string ParserEventImpl::ObjectToStr(const std::string type_response, const 
     //  Отладка
     if (global_key_test_parser) {
         for (std::set<event_t>::iterator it = events.begin(); it != events.end(); ++it) {
-            std::cout << (*it).date << std::endl;
-            std::cout << (*it).time_begin << std::endl;
-            std::cout << (*it).time_end << std::endl;
-            std::cout << (*it).description << std::endl;
-            std::cout << (*it).user_id << std::endl;
+            std::cout << "user_id      :---: " << (*it).user_id << std::endl;
+            std::cout << "event_name   :---: " << (*it).event_name << std::endl;
+            std::cout << "date         :---: " << (*it).date << std::endl;
+            std::cout << "description  :---: " << (*it).description << std::endl;
+            std::cout << "time_begin   :---: " << (*it).time_begin << std::endl;
+            std::cout << "time_end     :---: " << (*it).time_end << std::endl;
         }
-        std::cout << res << std::endl;
+        std::cout << "From processing  :---: " << res << std::endl;
     }
 
     return res;
