@@ -68,7 +68,10 @@
 //  input: title; output OK
 
 #define ADD_USER                         "invite"
+//  input: user_id, title(group); output: OK
+
 #define RM_USER                          "kick"
+//  input: user_id, title(group); output: OK
 
 #define JOIN                             "join_group"
 //  input: user_id, title(group); output: OK
