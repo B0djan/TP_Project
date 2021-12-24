@@ -5,6 +5,7 @@
 #include <Handler.hpp>
 
 class AddEventImpl : public Handler {
+    int AddEvent(event_t&);
 public:
     ParserObject process(const ParserObject& request_body) override;
 };
@@ -15,6 +16,7 @@ public:
 };
 
 class RmEventImpl : public Handler {
+    int DeleteEvent(event_t&);
 public:
     ParserObject process(const ParserObject& request_body) override;
 

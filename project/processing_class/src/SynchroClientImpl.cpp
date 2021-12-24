@@ -1,7 +1,43 @@
 #include <SynchroClientImpl.hpp>
 
 ParserObject SynchroClientEventsImpl::process(const ParserObject& request_body) {
+
+    event_t parametrs;
+
+    for (auto e: request_body.events) {
+
+        parametrs.date = e.date;
+        parametrs.user_id = e.user_id;
+    };
+
+    char command[] = "SELECT description, time_begin, time_end FROM event_m WHERE (date = $1, fk_user_id = $2)";
+
+    const char* arguments[2];
+
+    arguments[0] = parametrs.date.c_str();
+    arguments[1] = parametrs.user_id.c_str();
+
+    PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 2, NULL, arguments, NULL, NULL, 0);
+
+    std::set<event_t> events;
+
+    event_t event;
+
+    int nrows = PQntuples(res);
+
+    for (int i = 0; i < nrows; i++) {
+
+        event.description = PQgetvalue(res, i, 0);
+        event.time_begin = PQgetvalue(res, i, 1);
+        event.time_end = PQgetvalue(res, i, 2);
+
+        events.insert(event);
+    };
+
     ParserObject response_body;
+
+    response_body.events = events;
+    
     return response_body;
 }
 
