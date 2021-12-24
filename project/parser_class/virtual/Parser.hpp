@@ -7,6 +7,9 @@
 #include "json.hpp"
 
 
+#define global_key_test_parser true
+
+
 class Parser {
 public:
     virtual ParserObject StrToObject(const std::string& parser_str) const = 0;
