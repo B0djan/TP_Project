@@ -38,7 +38,7 @@ std::string AddUserContactsImpl::AddFriend(contacts_t& c) {
 
     friend_.nickname = friend_nickname;
 
-    std::string friend_id = GetId(friend_);
+    std::string friend_id = SupportProcess::GetId(friend_);
 
     char command[] = "INSERT INTO contacts VALUES ($1, $2)";
 
@@ -71,7 +71,7 @@ std::string RmUserContactsImpl::DeleteFriend(contacts_t& c) {
 
     friend_.nickname = friend_nickname;
 
-    std::string friend_id = GetId(friend_);
+    std::string friend_id = SupportProcess::GetId(friend_);
 
     char command[] = "DELETE FROM contacts WHERE (fk_user_id = $1) AND (fk_friend_id = $2)";
 
@@ -91,25 +91,3 @@ std::string RmUserContactsImpl::DeleteFriend(contacts_t& c) {
     PQclear(res);
     return c.user_id.c_str();
 };
-
-char* GetId(user_t& r) {
-
-    char return_id[] = "SELECT user_id FROM user_m WHERE (nickname = $1)";
-
-    const char* reg[1];
-
-    reg[0] = r.nickname.c_str();
-
-    PGresult *res = PQexecParams(PGConnection::GetConnection(), return_id, 1, NULL, reg, NULL, NULL, 0);
-
-    if (PQresultStatus(res) != PGRES_TUPLES_OK) {
-        printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
-        PQclear(res);
-    };
-
-    char* id = PQgetvalue(res, 0, 0);
-    PQclear(res);
-    return id;
-}
-
-

@@ -21,3 +21,7 @@ public:
 
     virtual ~Handler() = default;
 };
+
+namespace SupportProcess {
+    char* GetId(user_t& r);  //  промежуточный класс
+}
