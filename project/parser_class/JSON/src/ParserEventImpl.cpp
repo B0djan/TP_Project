@@ -33,7 +33,7 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
 
         if(element.contains("description"))
         {
-            event.user_id = element["description"].get<std::string>();
+            event.description = element["description"].get<std::string>();
         };
 
         if(element.contains("time_begin"))
