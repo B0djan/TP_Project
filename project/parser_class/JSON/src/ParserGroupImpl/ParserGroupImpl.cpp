@@ -33,7 +33,7 @@ ParserObject ParserGroupImpl::StrToObject(const std::string& parser_str) const{
 
     //  Отладка
     if (global_key_test_parser) {
-        std::cout << parser_str << std::endl;
+        std::cout  << "From client  :---: " << parser_str << std::endl;
     }
 
     return res;
@@ -68,7 +68,7 @@ std::string ParserGroupImpl::ObjectToStr(const std::string type_response, const 
     std::string res = j.dump();
 
     if (global_key_test_parser) {
-        std::cout << res << std::endl;
+        std::cout << "From processing  :---: " << res << std::endl;
     }
 
     return res;

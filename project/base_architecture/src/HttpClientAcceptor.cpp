@@ -129,7 +129,10 @@ void HttpClientAcceptor::HttpClientProcessor::get_massage(const char* input) {
 
     size_t key_end = buff.find("}}");
     if (key_end == buff.npos) {
-        return;
+        size_t key_end = buff.find("]}");
+        if (key_end == buff.npos) {
+            return;
+        }
     }
 
     massage_d = buff.substr(key_start, key_end - key_start + 2);
