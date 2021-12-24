@@ -26,9 +26,9 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
             event.event_name = element["event_name"].get<std::string>();
         };
 
-        if(element.contains("date"))
+        if(element.contains("event_date"))
         {
-            event.date = element["date"].get<std::string>();
+            event.date = element["event_date"].get<std::string>();
         };
 
         if(element.contains("description"))
@@ -82,7 +82,7 @@ std::string ParserEventImpl::ObjectToStr(const std::string type_response, const 
                 json_event["description"] = event.description;
             
             if (!event.date.empty())
-                json_event["date"] = event.date;
+                json_event["event_date"] = event.date;
 
             json_events.push_back(json_event);
         };
