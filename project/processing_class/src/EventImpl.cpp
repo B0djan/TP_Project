@@ -62,7 +62,7 @@ int AddEventImpl::AddEvent(event_t& e) {
 
     char command[] = "INSERT INTO event_m (event_date, time_begin, time_end, description, fk_user_id) VALUES ($1, $2, $3, $4, $5)";
 
-    const char* arguments[6];
+    const char* arguments[5];
 
     arguments[0] = e.date.c_str();
     arguments[1] = e.time_begin.c_str();
