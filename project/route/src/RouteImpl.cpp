@@ -18,17 +18,17 @@
 #include <ParserWritePersonalDataImpl.hpp>
 
         //  base
-#define REGISTRATION                     "registration"
+#define REGISTRATION                     "registration"  //  completed + test
 //  input: nickname, password; output: user_id; error:"null" (если пользователь уже существует)
 
-#define AUTHENTICATION                   "autorization"
+#define AUTHENTICATION                   "autorization"  //  completed + test
 //  input: nickname, password; output: user_id; error:"null" (если введены некорректные данные)
 
 //  synchro
-#define GET_EVENTS                       "get_events"
+#define GET_EVENTS                       "get_events"  //  completed
 //  input: user_id, date; output: set<event_t> [description, time_begin, time_end]
 
-#define GET_CONTACTS                     "get_friends"
+#define GET_CONTACTS                     "get_friends"  //  completed
 //  input: user_id; output: set<sring> [nickname]
 
 #define GET_GROUPS                       "get_groups"
@@ -41,20 +41,20 @@
 #define WRITE_ADDRESS                    "..."
 
         //  event
-#define ADD_EVENT                        "add_event"
+#define ADD_EVENT                        "add_event"  //  completed
 //  input: user_id, data, description, time_begin, time_end; output: OK
 
-#define WRITE_EVENT                      "change_event"
+#define WRITE_EVENT                      "change_event"  //  completed
 //  input: user_id, data, description, time_begin, time_end; output: OK
 
-#define RM_EVENT                         "delete_event"
+#define RM_EVENT                         "delete_event"  //  completed
 //  input: user_id, data, description, time_begin, time_end; output: OK
 
         //  list_contacts
-#define ADD_USER_CONTACTS                "add_friend"
+#define ADD_USER_CONTACTS                "add_friend"  //  completed
 //  input: user_id, nickname; output: OK
 
-#define RM_USER_CONTACTS                 "delete_friend"
+#define RM_USER_CONTACTS                 "delete_friend"  //  completed
 //  input: user_id, nickname; output: OK
 
         //  group

@@ -1,0 +1,5 @@
+TEST autorization: {"autorization":{"nickname":"Sasha","password":"123456asd64569898989"}}
+RES: {"autorization":{"user_id":"56"}}
+
+TEST registration: {"registration":{"nickname":"Sasha","password":"123456asd64569898989"}}
+RES: {"registration":{"user_id":"56"}}

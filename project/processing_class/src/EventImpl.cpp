@@ -28,7 +28,7 @@ ParserObject WriteEventImpl::process(const ParserObject& request_body) {
         std::string id = SupportProcess::GetEventId(event);
     }
 
-    int code = WriteEvent(event, id);
+    int code = WriteEvent(event);
 
     id.clear();
 
@@ -81,7 +81,7 @@ int AddEventImpl::AddEvent(event_t& e) {
 }
 
 
-int WriteEventImpl::WriteEvent(event_t& e, std::string& id) {
+int WriteEventImpl::WriteEvent(event_t& e) {
     char command[] = "UPDATE event_m "
                      "SET (event_date = $1, time_begin = $2, time_end = $3, description = $4)"
                      "WHERE (fk_user_id = $5)";
