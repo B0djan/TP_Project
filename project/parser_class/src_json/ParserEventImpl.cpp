@@ -67,19 +67,19 @@ std::string ParserEventImpl::ObjectToStr(const std::string type_response, const 
         {
             nlohmann::json json_event;
 
-            if (event.event_name != "")
+            if (!event.event_name.empty())
                 json_event["event_name"] = event.event_name;
             
-            if (event.time_begin != "")
+            if (!event.time_begin.empty())
                 json_event["time_begin"] = event.time_begin;
 
-            if (event.time_end != "")
+            if (!event.time_end.empty())
                 json_event["time_end"]   = event.time_end;
 
-            if (event.description != "")
+            if (!event.description.empty())
                 json_event["description"] = event.description;
             
-            if (event.date != "")
+            if (!event.date.empty())
                 json_event["date"] = event.date;
 
             json_events.push_back(json_event);

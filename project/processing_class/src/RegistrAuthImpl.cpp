@@ -13,7 +13,7 @@ ParserObject RegistrationImpl::process(const ParserObject& request_body) {
         return response_body;
     };
 
-    std::string id = GetId(user);
+    std::string id = SupportProcess::GetId(user);
 
     response_body.user.user_id = id;
 
@@ -33,7 +33,7 @@ ParserObject AuthenticationImpl::process(const ParserObject& request_body) {
         return response_body;
     };
 
-    std::string id = GetId(user);
+    std::string id = SupportProcess::GetId(user);
 
     response_body.user.user_id = id;
 
@@ -41,7 +41,6 @@ ParserObject AuthenticationImpl::process(const ParserObject& request_body) {
 }
 
 int RegistrationImpl::RegistrationTo(user_t& r) {
-    
     char check[] = "SELECT nickname, password FROM user_m WHERE (nickname = $1) AND (password = $2)";
 
     const char* reg[2];
@@ -80,7 +79,6 @@ int RegistrationImpl::RegistrationTo(user_t& r) {
 }
 
 int AuthenticationImpl::AutorizationTo(user_t& r) {
-
     char check[] = "SELECT nickname, password "
                     "FROM user_m WHERE (nickname = $1) AND (password = $2)";
 
@@ -108,23 +106,3 @@ int AuthenticationImpl::AutorizationTo(user_t& r) {
 
     return SUCCESS;
 };
-
-char* GetId(user_t& r) {
-
-    char return_id[] = "SELECT user_id FROM user_m WHERE (nickname = $1)";
-
-    const char* reg[1];
-
-    reg[0] = r.nickname.c_str();
-
-    PGresult *res = PQexecParams(PGConnection::GetConnection(), return_id, 1, NULL, reg, NULL, NULL, 0);
-
-    if (PQresultStatus(res) != PGRES_TUPLES_OK) {
-        printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
-        PQclear(res);
-    };
-
-    char* id = PQgetvalue(res, 0, 0);
-    PQclear(res);
-    return id;
-}

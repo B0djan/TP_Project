@@ -18,9 +18,6 @@ INCLUDE_DIRECTORIES(parser_class/include/virtual)
 INCLUDE_DIRECTORIES(database_connector/PostgreSQL/include/impl)
 
 INCLUDE_DIRECTORIES(database_connector/libs/PostgreSQL)
-#INCLUDE_DIRECTORIES(database_connector/libs/PostgreSQL/libpq)
-#INCLUDE_DIRECTORIES(database_connector/libs/PostgreSQL/internal)
-
 
 SET(SOURCE_LIST_SERVER
         base_architecture/src/AsyncFileInputStream.cpp
@@ -41,7 +38,8 @@ SET(SOURCE_LIST_PROCESSING_CLASS
         processing_class/src/RegistrAuthImpl.cpp
         processing_class/src/SynchroClientImpl.cpp
         processing_class/src/WriteAddressDataImpl.cpp
-        processing_class/src/WritePersonalDataImpl.cpp)
+        processing_class/src/WritePersonalDataImpl.cpp
+        processing_class/src/SupportProcess.cpp)
 
 SET(SOURCE_LIST_PARSER_CLASS
         parser_class/src_json/ParserContactsImpl.cpp
@@ -50,6 +48,12 @@ SET(SOURCE_LIST_PARSER_CLASS
         parser_class/src_json/ParserRegistrAuthImpl.cpp
         parser_class/src_json/ParserWriteAddressDataImpl.cpp
         parser_class/src_json/ParserWritePersonalDataImpl.cpp)
+
+SET(SOURCE_LIST_PARSER_OBJECT
+        parser_object/src/ParserObject.cpp)
+
+SET(SOURCE_LIST_DATA
+        database_connector/PostgreSQL/src/PGConnection.cpp)
 
 SET(SOURCE_LIST_DATA
         database_connector/PostgreSQL/src/PGConnection.cpp)
@@ -60,5 +64,6 @@ ADD_EXECUTABLE(${PROJECT_NAME}
         ${SOURCE_LIST_ROUTE}
         ${SOURCE_LIST_PROCESSING_CLASS}
         ${SOURCE_LIST_PARSER_CLASS}
+        ${SOURCE_LIST_PARSER_OBJECT}
         ${SOURCE_LIST_DATA})
 
