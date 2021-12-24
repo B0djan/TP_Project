@@ -76,7 +76,7 @@ int WriteEventImpl::WriteEvent(event_t& e) {
     char command[] = "UPDATE event_m "
                      "SET (event_date = $1, time_begin = $2, time_end = $3, description = $4)"
                      "WHERE (fk_user_id = $5)";
-    //  (nickname = $1) AND (password = $2)
+
     const char* arguments[5];
 
     arguments[0] = e.event_name.c_str();
