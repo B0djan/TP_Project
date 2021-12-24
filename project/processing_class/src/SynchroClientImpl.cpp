@@ -6,7 +6,6 @@ ParserObject SynchroClientEventsImpl::process(const ParserObject& request_body) 
 }
 
 ParserObject SynchroClientContactsImpl::process(const ParserObject& request_body) {
-
     contacts_t user;
 
     user.user_id = request_body.contacts.user_id;
@@ -26,7 +25,6 @@ ParserObject SynchroClientGroupsImpl::process(const ParserObject& request_body) 
 }
 
 std::set<std::string> SynchroClientContactsImpl::GetContacts(contacts_t& c) {
-
     char command[] = "SELECT contacts.fk_user_id, user_m.nickname FROM contacts LEFT JOIN user_m ON contacts.fk_friend_id = user_m.user_id WHERE fk_user_id = $1";
 
     const char* parametrs[1];
@@ -40,9 +38,9 @@ std::set<std::string> SynchroClientContactsImpl::GetContacts(contacts_t& c) {
     if (PQgetisnull(res, 0, 1))
         return friends;
 
-    int nrows = PQnfields(res);
+    int n_rows = PQnfields(res);
 
-    for (int i = 0; i < nrows; i ++)
+    for (int i = 0; i < n_rows; i ++)
     {
         char* Friend = PQgetvalue(res, i, 1);
         friends.insert(Friend);

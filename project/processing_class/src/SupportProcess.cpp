@@ -1,6 +1,5 @@
 #include <Handler.hpp>
 
-
 namespace SupportProcess {
     char* GetId(user_t &r) {
         char return_id[] = "SELECT user_id FROM user_m WHERE (nickname = $1)";

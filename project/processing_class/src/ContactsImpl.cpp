@@ -1,7 +1,6 @@
 #include <ContactsImpl.hpp>
 
 ParserObject AddUserContactsImpl::process(const ParserObject& request_body) {
-
     contacts_t contacts = request_body.contacts;
 
     std::string code = AddFriend(contacts);
@@ -14,7 +13,6 @@ ParserObject AddUserContactsImpl::process(const ParserObject& request_body) {
 }
 
 ParserObject RmUserContactsImpl::process(const ParserObject& request_body) {
-
     contacts_t contacts = request_body.contacts;
 
     std::string code = DeleteFriend(contacts);
@@ -56,11 +54,11 @@ std::string AddUserContactsImpl::AddFriend(contacts_t& c) {
     };
 
     PQclear(res);
+
     return c.user_id.c_str();
 };
 
 std::string RmUserContactsImpl::DeleteFriend(contacts_t& c) {
-
     std::string friend_nickname;
 
     for (auto f: c.contacts) {
@@ -89,5 +87,6 @@ std::string RmUserContactsImpl::DeleteFriend(contacts_t& c) {
     };
 
     PQclear(res);
+
     return c.user_id.c_str();
 };

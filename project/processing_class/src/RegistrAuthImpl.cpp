@@ -1,7 +1,6 @@
 #include <RegistrAuthImpl.hpp>
 
 ParserObject RegistrationImpl::process(const ParserObject& request_body) {
-
     user_t user = request_body.user;
 
     int code = RegistrationTo(user);
@@ -21,7 +20,6 @@ ParserObject RegistrationImpl::process(const ParserObject& request_body) {
 }
 
 ParserObject AuthenticationImpl::process(const ParserObject& request_body) {
-
     user_t user = request_body.user;
 
     int code = AutorizationTo(user);
@@ -52,7 +50,9 @@ int RegistrationImpl::RegistrationTo(user_t& r) {
 
     if (PQresultStatus(res) != PGRES_TUPLES_OK) {
         printf("command faild: %s", PQerrorMessage(PGConnection::GetConnection()));
+
         PQclear(res);
+
         return ERROR;
     };
 
@@ -71,9 +71,12 @@ int RegistrationImpl::RegistrationTo(user_t& r) {
 
     if (PQresultStatus(res) != PGRES_COMMAND_OK) {
         printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+
         PQclear(res);
+
         return ERROR;
     };
+
     PQclear(res);
     return SUCCESS;
 }
@@ -91,7 +94,9 @@ int AuthenticationImpl::AutorizationTo(user_t& r) {
 
     if (PQresultStatus(res) != PGRES_TUPLES_OK) {
         printf("command faild: %s", PQerrorMessage(PGConnection::GetConnection()));
+
         PQclear(res);
+
         return ERROR;
     };
 
