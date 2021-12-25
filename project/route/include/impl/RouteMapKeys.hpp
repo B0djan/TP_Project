@@ -34,10 +34,10 @@
 //  input: user_id, data, description, time_begin, time_end; output: OK
 
 //  list_contacts
-#define ADD_USER_CONTACTS                "add_friend"  //  completed
+#define ADD_USER_CONTACTS                "add_friend"  //  completed + test
 //  input: user_id, nickname; output: OK
 
-#define RM_USER_CONTACTS                 "delete_friend"  //  completed
+#define RM_USER_CONTACTS                 "delete_friend"  //  completed + test
 //  input: user_id, nickname; output: OK
 
 //  group
