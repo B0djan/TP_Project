@@ -28,7 +28,7 @@ RES: {"kick":OK}
 TEST get_groups: {"get_groups":{"user_id":"56"}}
 RES {"get_groups":["BMSTU","Texnosrak"]}
 
-TEST get_contacts: {"get_contacts"{"user_id":"56}}
+TEST get_contacts: {"get_contacts":{"user_id":"56"}}
 RES {"get_contacts":["Misha","Maxim"]}
 
 TEST get_events: {"get_events"[{"user_id":"56"}
