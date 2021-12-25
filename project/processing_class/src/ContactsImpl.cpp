@@ -7,7 +7,16 @@ ParserObject AddUserContactsImpl::process(const ParserObject& request_body) {
 
     ParserObject response_body;
 
-    code = AddFriend(request_body.contacts.user_id, SupportProcess::GetUserId(*it_m));
+    char* check = SupportProcess::GetUserId(*it_m);
+    if (check == NULL) {
+        response_body.error = "Error get user id";
+
+        return response_body;
+    }
+
+    std::string user_id = check;
+
+    code = AddFriend(request_body.contacts.user_id, user_id);
     if (code != 0) {
         response_body.error = "Error add contact";
         return response_body;
