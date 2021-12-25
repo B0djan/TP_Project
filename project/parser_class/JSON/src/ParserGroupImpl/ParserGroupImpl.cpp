@@ -9,23 +9,21 @@ ParserObject ParserGroupImpl::StrToObject(const std::string& parser_str) const{
 
     std::set<group_t> groups;
 
-    for (auto& json_group : value) {
-        group_t group;
+    group_t group;
 
-        if(json_group.contains("group_id"))
-            group.group_id = json_group["group_id"];
+    if(value.contains("group_id"))
+        group.group_id = value["group_id"];
 
-        if(json_group.contains("title"))
-            group.title = json_group["title"];
+    if(value.contains("title"))
+        group.title = value["title"];
 
-        if(json_group.contains("members"))
-        {
-            for (auto& element : json_group["members"])
-                group.members.insert(element.dump());
-        };
-
-        groups.insert(group);
+    if(value.contains("members"))
+    {
+        for (auto& element : value["members"])
+            group.members.insert(element.dump());
     };
+
+    groups.insert(group);
 
     ParserObject res;
 

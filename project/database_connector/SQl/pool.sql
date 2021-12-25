@@ -42,7 +42,7 @@ CREATE TABLE event_m
     fk_user_id bigint REFERENCES user_m(user_id) NOT NULL   
 );
 
-CREATE TABLE list_contacts
+CREATE TABLE contacts
 (
 	fk_user_id bigint REFERENCES user_m(user_id) NOT NULL,
 	fk_friend_id bigint REFERENCES user_m(user_id) NOT NULL
