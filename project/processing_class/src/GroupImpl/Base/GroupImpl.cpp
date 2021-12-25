@@ -14,11 +14,15 @@ ParserObject AddGroupImpl::process(const ParserObject& request_body) {
         return response_body;
     }
 
-    std::string group_id = SupportProcess::GetGroupId((*it_g).title);
-    if (group_id.empty()) {
-        response_body.error = "Error get id group";
+
+    char* check = SupportProcess::GetGroupId((*it_g).title);
+    if (check == NULL) {
+        response_body.error = "Error get user id";
+
         return response_body;
     }
+
+    std::string group_id = check;
 
     code = SupportProcessGroup::AddMember(*it_m, group_id);
     if (code != 0) {
@@ -42,21 +46,26 @@ ParserObject RmGroupImpl::process(const ParserObject& request_body) {
     std::set<group_t> :: iterator it_g = request_body.groups.begin();
     std::set<std::string> :: iterator it_m = (*it_g).members.begin();
 
-    std::string group_id = SupportProcess::GetGroupId((*it_g).title);
-    if (group_id.empty()) {
-        response_body.error = "Error get id group";
+    char* check = SupportProcess::GetGroupId((*it_g).title);
+    if (check == NULL) {
+        response_body.error = "Error get user id";
+
         return response_body;
     }
+
+    std::string group_id = check;
 
     code = DeleteAllMembers(group_id);
     if (code != 0) {
         response_body.error = "Error of delete group members";
+
         return response_body;
     }
 
     code = DeleteGroup(group_id);
     if (code != 0) {
         response_body.error = "Error of delete group";
+
         return response_body;
     }
 
@@ -68,11 +77,14 @@ ParserObject SearchGroupImpl::process(const ParserObject& request_body) {
 
     std::set<group_t> :: iterator it_g = request_body.groups.begin();;
 
-    std::string group_id = SupportProcess::GetGroupId((*it_g).title);
-    if (group_id.empty()) {
-        response_body.error = "Error get id group";
+    char* check = SupportProcess::GetGroupId((*it_g).title);
+    if (check == NULL) {
+        response_body.error = "Error get user id";
+
         return response_body;
     }
+
+    std::string group_id = check;
 
     //  Тут должны вернуться все данные нужна доп функция GetGroupData(title)
     group_t group;
