@@ -11,21 +11,30 @@ ParserObject ParserGroupImpl::StrToObject(const std::string& parser_str) const {
 
     std::set<group_t> groups;
 
-    group_t group;
-
-    if(value.contains("group_id"))
-        group.group_id = value["group_id"];
-
-    if(value.contains("title"))
-        group.title = value["title"];
-
-    if(value.contains("members"))
+    for (auto& element : value)
     {
-        for (auto& element : value["members"])
-            group.members.insert(element.dump());
-    };
+        group_t group;
 
-    groups.insert(group);
+        if (element.contains("group_id"))
+        {
+            group.group_id = value["group_id"];
+        }
+
+        if (element.contains("title"))
+        {
+            group.title = value["title"];
+        }
+
+        if (element.contains("members")) {
+            for (auto &element_in : element)
+            {
+                std::string member = element_in["members"];
+                group.members.insert(member);
+            }
+        };
+
+        groups.insert(group);
+    }
 
     ParserObject res;
 
@@ -44,6 +53,7 @@ ParserObject ParserGroupImpl::StrToObject(const std::string& parser_str) const {
 
 std::string ParserGroupImpl::ObjectToStr(const std::string type_response, const ParserObject& other) const {
     // {"add_event":{["user_id":"56","event_name":"breakfast","event_date":"01:06:2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"]}} TODO: Отредачить
+
     nlohmann::json j;
     std::string res;
 
