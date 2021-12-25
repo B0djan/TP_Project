@@ -4,51 +4,57 @@
 
 ParserObject AddEventImpl::process(const ParserObject& request_body) {
     int code;
+
+    ParserObject response_body;
+
     std::set<event_t> :: iterator it = request_body.events.begin();
 
-    code += AddEvent(*it);
-
+    //  Отладка
     if (GLOBAL_KEY_TEST_PROCESSING) {
         for (std::set<event_t>::iterator it = request_body.events.begin(); it != request_body.events.end(); ++it) {
             Debugging::print_event_t(*it);
         }
     }
 
+    size_t iter = 0;
     for (auto event: request_body.events) {
-        code += AddEvent(event);
-    }
+        code = AddEvent(event);
+        if (code != 0) {
+            response_body.error = "Error add event on iteration: ";
 
-    ParserObject response_body;
+            response_body.error + std::to_string(iter);
 
-    if (code != 0) {
-        return response_body;
+            return response_body;
+        }
+
+        iter++;
     }
 
     return response_body;
 }
 
 ParserObject WriteEventImpl::process(const ParserObject& request_body) {
+    int code;
+
     event_t event;
 
     ParserObject response_body;
 
-    for (auto e: request_body.events) {
-        event = e;
-    }
+    std::set<event_t> :: iterator it = request_body.events.begin();
 
     if (id.empty()) {
         char* check = SupportProcess::GetEventId(event);
         if (check == NULL) {
-            response_body.error = "Error get user id";
+            response_body.error = "Error get event id";
 
             return response_body;
         }
 
-        std::string id = check;
+        id = check;
     }
 
 
-    int code = WriteEvent(event);
+    code = WriteEvent(event);
     if (code != 0) {
         response_body.error = "Error write event";
     }
@@ -60,17 +66,31 @@ ParserObject WriteEventImpl::process(const ParserObject& request_body) {
 }
 
 ParserObject RmEventImpl::process(const ParserObject& request_body) {
-
     int code;
-
-    for (auto event: request_body.events) {
-        code += DeleteEvent(event);
-    }
 
     ParserObject response_body;
 
-    if (code != 0) {
-        return response_body;
+    std::set<event_t> :: iterator it = request_body.events.begin();
+
+    //  Отладка
+    if (GLOBAL_KEY_TEST_PROCESSING) {
+        for (std::set<event_t>::iterator it = request_body.events.begin(); it != request_body.events.end(); ++it) {
+            Debugging::print_event_t(*it);
+        }
+    }
+
+    size_t iter = 0;
+    for (auto event: request_body.events) {
+        code = DeleteEvent(event);
+        if (code != 0) {
+            response_body.error = "Error delete event on iteration: ";
+
+            response_body.error + std::to_string(iter);
+
+            return response_body;
+        }
+
+        iter++;
     }
 
     return response_body;
@@ -85,6 +105,7 @@ int AddEventImpl::AddEvent(const event_t& e) {
     }
 
     const char* arguments[5];
+
     arguments[0] = e.date.c_str();
     arguments[1] = e.time_begin.c_str();
     arguments[2] = e.time_end.c_str();
@@ -110,13 +131,13 @@ int WriteEventImpl::WriteEvent(const event_t& e) {
                      "SET (event_date = $1, time_begin = $2, time_end = $3, description = $4)"
                      "WHERE (fk_user_id = $5)";
 
-    const char* arguments[5];
 
-    std::cout << e.date << std::endl;
-    std::cout << e.time_begin << std::endl;
-    std::cout << e.time_end << std::endl;
-    std::cout << e.description << std::endl;
-    std::cout << e.user_id << std::endl;
+    //  Отладка
+    if (GLOBAL_KEY_TEST_PROCESSING) {
+        Debugging::print_event_t(e);
+    }
+
+    const char* arguments[5];
 
     arguments[0] = e.event_name.c_str();
     arguments[1] = e.time_begin.c_str();
@@ -143,11 +164,10 @@ int RmEventImpl::DeleteEvent(const event_t& e){
 
     const char* arguments[4];
 
-    std::cout << e.date << std::endl;
-    std::cout << e.time_begin << std::endl;
-    std::cout << e.time_end << std::endl;
-    std::cout << e.description << std::endl;
-    std::cout << e.user_id << std::endl;
+    //  Отладка
+    if (GLOBAL_KEY_TEST_PROCESSING) {
+        Debugging::print_event_t(e);
+    }
 
     arguments[0] = e.event_name.c_str();
     arguments[1] = e.time_begin.c_str();

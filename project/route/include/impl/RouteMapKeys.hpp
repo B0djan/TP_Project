@@ -35,10 +35,10 @@
 #define ADD_EVENT                        "add_event"  //  completed + test
 //  input: user_id, data, description, time_begin, time_end; output: OK
 
-#define WRITE_EVENT                      "change_event"  //  completed
+#define WRITE_EVENT                      "write_event"  //  in process
 //  input: user_id, data, description, time_begin, time_end; output: OK
 
-#define RM_EVENT                         "delete_event"  //  completed
+#define RM_EVENT                         "delete_event"  //  completed + test
 //  input: user_id, data, description, time_begin, time_end; output: OK
 
 

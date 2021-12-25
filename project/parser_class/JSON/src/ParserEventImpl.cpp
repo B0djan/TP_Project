@@ -67,6 +67,7 @@ std::string ParserEventImpl::ObjectToStr(const std::string type_response, const 
     // {"add_event":{["user_id":"56","event_name":"breakfast","event_date":"01:06:2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"]}} TODO: Отредачить
 
     nlohmann::json j;
+
     std::string res;
 
     if (type_response == ADD_EVENT || type_response == WRITE_EVENT || type_response == RM_EVENT) {
