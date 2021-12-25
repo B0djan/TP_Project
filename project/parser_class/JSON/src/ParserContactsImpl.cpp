@@ -56,9 +56,7 @@ std::string ParserUserContactsImpl::ObjectToStr(const std::string type_response,
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
-        for (std::set<std::string>::iterator it = contacts.list_contacts.begin(); it != contacts.list_contacts.end(); ++it) {
-            std::cout << "contacts" << *it << std::endl;
-        }
+        Debugging::print_contacts_t(contacts);
         std::cout << "From processing  :---: " << res << std::endl;
     }
 

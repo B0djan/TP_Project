@@ -98,4 +98,5 @@ public:
 namespace Debugging {
     void print_event_t(const event_t& e);
     void print_user_t(const user_t& u);
+    void print_contacts_t(const contacts_t c);
 }

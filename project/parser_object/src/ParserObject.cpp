@@ -35,4 +35,11 @@ namespace Debugging {
         std::cout << u.password << std::endl;
         std::cout << u.nickname << std::endl;
     }
+
+    void print_contacts_t(const contacts_t c) {
+        std::cout << "user_id      :---: " << c.user_id << std::endl;
+        for (std::set<std::string>::iterator it = c.list_contacts.begin(); it != c.list_contacts.end(); ++it) {
+            std::cout << "contacts :---: " << *it << std::endl;
+        }
+    }
 }
