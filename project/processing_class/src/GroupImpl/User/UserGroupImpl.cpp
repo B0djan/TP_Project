@@ -7,7 +7,7 @@ ParserObject AddUserImpl::process(const ParserObject& request_body) {
     std::set<group_t> :: iterator it_g = request_body.groups.begin();
 
     std::string group_id = SupportProcess::GetGroupId((*it_g).title);
-    if (group_id.empty()) {
+    if (group_id == "Not found") {
         response_body.error = "Error get id group";
         return response_body;
     }
@@ -29,7 +29,7 @@ ParserObject RmUserImpl::process(const ParserObject& request_body) {
     std::set<group_t> :: iterator it_g = request_body.groups.begin();
 
     std::string group_id = SupportProcess::GetGroupId((*it_g).title);
-    if (group_id.empty()) {
+    if (group_id == "Not found") {
         response_body.error = "Error get id group";
         return response_body;
     }
