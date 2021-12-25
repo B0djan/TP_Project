@@ -47,6 +47,7 @@ SET(SOURCE_LIST_PARSER_CLASS
         parser_class/JSON/src/ParserContactsImpl.cpp
         parser_class/JSON/src/ParserEventImpl.cpp
         parser_class/JSON/src/ParserGroupImpl/ParserGroupImpl.cpp
+        parser_class/JSON/src/ParserGroupImpl/ParserUserGroupImpl.cpp
         parser_class/JSON/src/ParserGroupImpl/ParserMeetUpImpl.cpp
         parser_class/JSON/src/ParserRegistrAuthImpl.cpp
         parser_class/JSON/src/ParserWriteAddressDataImpl.cpp
