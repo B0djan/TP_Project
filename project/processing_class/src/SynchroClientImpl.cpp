@@ -85,3 +85,14 @@ std::set<std::string> SynchroClientContactsImpl::GetContacts(contacts_t& c) {
 
     return friends;
 };
+
+// std::set<std::string> SynchroClientGroupsImpl::GetGroups(user_t& user) {
+
+//     std::string id = user.user_id;
+
+//     char command[] = "SELECT fk_user_id, title "
+//                     FROM group_members 
+// LEFT JOIN group_m 
+// ON fk_group_id = group_id"
+
+// }
