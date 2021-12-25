@@ -16,7 +16,8 @@ namespace SupportProcess {
         }
 
         if (PQgetisnull(res,0,0)) {
-            return "Not found";
+            char* error = "Not found";
+            return error;
         }
 
         char* id = PQgetvalue(res, 0, 0);
