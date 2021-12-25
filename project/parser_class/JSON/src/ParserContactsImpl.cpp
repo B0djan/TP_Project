@@ -1,7 +1,7 @@
 #include <ParserContactsImpl.hpp>
 
 ParserObject ParserUserContactsImpl::StrToObject(const std::string& parser_str) const {
-    //  {"add_friend":{"user_id":"56","list_contacts":["Ibragim"]}}
+    //  {"add_friend":{"user_id":"56","list_contacts":["Ibragim", "Misha"]}}
 
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
@@ -57,7 +57,7 @@ std::string ParserUserContactsImpl::ObjectToStr(const std::string type_response,
 
     nlohmann::json value;
 
-    if (contacts.user_id != "")
+    if (!contacts.user_id.empty())
         value["user_id"] = contacts.user_id;
 
     if (!contacts.list_contacts.empty())

@@ -25,7 +25,7 @@ ParserObject RmUserContactsImpl::process(const ParserObject& request_body) {
 
     code = DeleteFriend(request_body.contacts.user_id, *it_m);
     if (code != 0) {
-        response_body.error = "Error add contact";
+        response_body.error = "Error delete contact";
         return response_body;
     }
 
@@ -56,7 +56,7 @@ int AddUserContactsImpl::AddFriend(const std::string& user_id_main, const std::s
 };
 
 int RmUserContactsImpl::DeleteFriend(const std::string& user_id_main, const std::string& user_id_friend) {
-    char command[] = "DELETE FROM list_contacts WHERE (fk_user_id = $1) AND (fk_friend_id = $2)";
+    char command[] = "DELETE FROM contacts WHERE (fk_user_id = $1) AND (fk_friend_id = $2)";
 
     const char* arguments[2];
 
