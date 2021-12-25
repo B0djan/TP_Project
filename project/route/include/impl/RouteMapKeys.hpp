@@ -12,7 +12,7 @@
 //  input: user_id, date; output: set<event_t> [description, time_begin, time_end]
 
 #define GET_CONTACTS                     "get_friends"  //  completed
-//  input: user_id; output: set<sring> [nickname]
+//  input: user_id; output: set<string> [nickname]
 
 #define GET_GROUPS                       "get_groups"
 //  input: user_id; output: set<string> [title]
@@ -41,13 +41,13 @@
 //  input: user_id, nickname; output: OK
 
 //  group
-#define ADD_GROUP                        "create_group"
+#define ADD_GROUP                        "create_group"  //  completed + test
 //  input: title; output: group_id ???
 
 #define WRITE_GROUP                      "change_group"
 //  input: title; output OK
 
-#define RM_GROUP                         "delete_group"
+#define RM_GROUP                         "delete_group"  //  completed + test
 //  input: title; output OK
 
 #define ADD_USER                         "invite"
