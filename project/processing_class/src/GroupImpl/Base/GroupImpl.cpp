@@ -47,7 +47,7 @@ ParserObject AddGroupImpl::process(const ParserObject& request_body) {
     return response_body;
 }
 
-ParserObject WriteGroupImpl ::process(const ParserObject& request_body) {
+ParserObject WriteGroupImpl::process(const ParserObject& request_body) {
     ParserObject response_body;
     return response_body;
 }
