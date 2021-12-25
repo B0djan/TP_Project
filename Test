@@ -13,3 +13,5 @@ RES: {"add_contact":OK}
 TEST delete_friend: {"delete_friend":{"user_id":"56","list_contacts":["Ibragim"]}}
 RES: {"delete_friend":OK}
 
+TEST join_group: {"join_group":{"group":"BMSTU", "members":["56"]}}
+
