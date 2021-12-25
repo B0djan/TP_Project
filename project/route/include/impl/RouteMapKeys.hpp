@@ -42,7 +42,7 @@
 
 //  group
 #define ADD_GROUP                        "create_group"  //  completed + test
-//  input: title; output: group_id ???
+//  input: title, nickname; output: OK
 
 #define WRITE_GROUP                      "change_group"
 //  input: title; output OK
