@@ -16,7 +16,9 @@ namespace SupportProcess {
         }
 
         char* id = PQgetvalue(res, 0, 0);
+
         PQclear(res);
+
         return id;
     }
 
@@ -39,7 +41,9 @@ namespace SupportProcess {
         };
 
         char* id = PQgetvalue(res, 0, 0);
+
         PQclear(res);
+
         return id;
     }
 
