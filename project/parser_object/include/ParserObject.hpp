@@ -114,5 +114,5 @@ namespace Debugging {
 
     void print_address_data_t(const address_data_t& a);
 
-    void print_user_group(const user_t& u, const group_t& g);
+    bool check_null_address_data_t(const address_data_t& a);
 }

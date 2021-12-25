@@ -88,6 +88,7 @@ int RegistrationImpl::RegistrationTo(user_t& r) {
     }
 
     PQclear(res);
+
     return SUCCESS;
 }
 
@@ -114,6 +115,8 @@ int AuthenticationImpl::AutorizationTo(user_t& r) {
     int p = PQgetisnull(res, 0, 1);
 
     if (n == 1 || p == 1) {
+        PQclear(res);
+
         return ERROR;
     }
 

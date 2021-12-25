@@ -121,9 +121,11 @@ int AddEventImpl::AddEvent(const event_t& e) {
         PQclear(res);
 
         return ERROR;
-    } else {
-        return SUCCESS;
     }
+
+    PQclear(res);
+
+    return SUCCESS;
 }
 
 
@@ -154,9 +156,11 @@ int WriteEventImpl::WriteEvent(const event_t& e) {
         PQclear(res);
 
         return ERROR;
-    } else {
-        return SUCCESS;
     }
+
+    PQclear(res);
+
+    return SUCCESS;
 }
 
 
@@ -183,7 +187,10 @@ int RmEventImpl::DeleteEvent(const event_t& e){
         PQclear(res);
 
         return ERROR;
-    } else {
-        return SUCCESS;
     }
+
+    PQclear(res);
+
+    return SUCCESS;
+
 }

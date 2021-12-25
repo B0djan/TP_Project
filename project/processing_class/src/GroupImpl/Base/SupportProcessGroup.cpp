@@ -2,7 +2,7 @@
 
 
 namespace SupportProcessGroup {
-    int AddMember(const std::string& user_id, const std::string group_id) {
+    int AddMember(const std::string &user_id, const std::string group_id) {
         char command[] = "INSERT INTO group_members (fk_group_id, fk_user_id) VALUES ($1, $2)";
 
         //  Отладка
@@ -11,7 +11,7 @@ namespace SupportProcessGroup {
             Debugging::print_from_processing(group_id);
         }
 
-        const char* arguments[2];
+        const char *arguments[2];
 
         arguments[0] = group_id.c_str();
         arguments[1] = user_id.c_str();
@@ -24,12 +24,14 @@ namespace SupportProcessGroup {
             PQclear(res);
 
             return ERROR;
-        } else {
-            return SUCCESS;
         }
+
+        PQclear(res);
+
+        return SUCCESS;
     }
 
-    int RmMember(const std::string& user_id, const std::string group_id) {
+    int RmMember(const std::string &user_id, const std::string group_id) {
         char command[] = "DELETE FROM group_members WHERE (fk_group_id = $1) AND (fk_user_id = $2)";
 
         //  Отладка
@@ -38,7 +40,7 @@ namespace SupportProcessGroup {
             Debugging::print_from_processing(group_id);
         }
 
-        const char* arguments[2];
+        const char *arguments[2];
 
         arguments[0] = group_id.c_str();
         arguments[1] = user_id.c_str();
@@ -51,8 +53,10 @@ namespace SupportProcessGroup {
             PQclear(res);
 
             return ERROR;
-        } else {
-            return SUCCESS;
         }
+
+        PQclear(res);
+
+        return SUCCESS;
     }
 }

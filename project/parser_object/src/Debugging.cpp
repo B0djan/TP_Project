@@ -73,10 +73,18 @@ namespace Debugging {
         std::cout << "country          :---: " << a.country << std::endl;
     }
 
-    void print_user_group(const user_t& u, const group_t& g) {
-        std::cout << "user_id         :---: " << u.user_id << std::endl;
-        std::cout << "nickname        :---: " << u.nickname << std::endl;
+    bool check_null_address_data_t(const address_data_t& a) {
+        if (a.user_id.empty() ||
+        a.building.empty() ||
+        a.housing.empty() ||
+        a.street.empty() ||
+        a.city.empty() ||
+        a.district.empty() ||
+        a.index.empty() ||
+        a.country.empty()) {
+            return true;
+        }
 
-        std::cout << "title           :---: " << g.title << std::endl;
+        return false;
     }
 }

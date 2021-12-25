@@ -130,9 +130,11 @@ int AddGroupImpl::CreateGroup(const std::string& title) {
         PQclear(res);
 
         return ERROR;
-    } else {
-        return SUCCESS;
     }
+
+    PQclear(res);
+
+    return SUCCESS;
 }
 
 int RmGroupImpl::DeleteGroup(const std::string &group_id) {
@@ -155,9 +157,11 @@ int RmGroupImpl::DeleteGroup(const std::string &group_id) {
         PQclear(res);
 
         return ERROR;
-    } else {
-        return SUCCESS;
     }
+
+    PQclear(res);
+
+    return SUCCESS;
 }
 
 int RmGroupImpl::DeleteAllMembers(const std::string &group_id) {
@@ -180,7 +184,9 @@ int RmGroupImpl::DeleteAllMembers(const std::string &group_id) {
         PQclear(res);
 
         return ERROR;
-    } else {
-        return SUCCESS;
     }
+
+    PQclear(res);
+
+    return SUCCESS;
 }
