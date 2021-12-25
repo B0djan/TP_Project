@@ -41,7 +41,7 @@
 #define WRITE_ADDRESS                    "..."
 
         //  event
-#define ADD_EVENT                        "add_event"  //  completed
+#define ADD_EVENT                        "add_event"  //  completed + test
 //  input: user_id, data, description, time_begin, time_end; output: OK
 
 #define WRITE_EVENT                      "change_event"  //  completed
