@@ -7,10 +7,10 @@ RES: {"registration":{"user_id":"56"}}
 TEST add_event: {"add_event":[{"user_id":"56","event_name":"breakfast","event_date":"01-06-2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"}]}
 RES: {"add_event":"OK}
 
-TEST add_friend: {"add_friend":{"user_id":"56","list_contacts":["Ibragim"]}}
+TEST add_friend: {"add_friend":{"user_id":"56","list_contacts":["IbraASDASDgim"]}}
 RES: {"add_contact":OK}
 
-TEST delete_friend: {"delete_friend":{"user_id":"56","list_contacts":["Ibragim"]}}
+TEST delete_friend: {"delete_friend":{"user_id":"56","list_contacts":["Ibrasdasasagim"]}}
 RES: {"delete_friend":OK}
 
 TEST join_group: {"join_group":{"group":"BMSTU", "members":["56"]}}

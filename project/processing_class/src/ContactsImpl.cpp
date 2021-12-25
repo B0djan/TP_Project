@@ -7,7 +7,7 @@ ParserObject AddUserContactsImpl::process(const ParserObject& request_body) {
 
     ParserObject response_body;
 
-    code = AddFriend(request_body.contacts.user_id, *it_m);
+    code = AddFriend(request_body.contacts.user_id, SupportProcess::GetUserId(*it_m));
     if (code != 0) {
         response_body.error = "Error add contact";
         return response_body;
@@ -23,7 +23,9 @@ ParserObject RmUserContactsImpl::process(const ParserObject& request_body) {
 
     ParserObject response_body;
 
-    code = DeleteFriend(request_body.contacts.user_id, *it_m);
+
+
+    code = DeleteFriend(request_body.contacts.user_id, SupportProcess::GetUserId(*it_m));
     if (code != 0) {
         response_body.error = "Error delete contact";
         return response_body;

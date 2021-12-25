@@ -16,7 +16,7 @@ namespace SupportProcess {
         }
 
         if (PQgetisnull(res,0,0)) {
-            return "not_found";
+            return "Not found";
         }
 
         char* id = PQgetvalue(res, 0, 0);
@@ -43,7 +43,7 @@ namespace SupportProcess {
         };
 
         if (PQgetisnull(res, 0, 0)) {
-            return "not_found";
+            return "Not found";
         }
 
         char* id = PQgetvalue(res, 0, 0);
@@ -66,7 +66,7 @@ namespace SupportProcess {
         }
 
         if (PQgetisnull(res, 0, 0)) {
-            return "not_found";
+            return "Not found";
         }
 
         char* id = PQgetvalue(res, 0, 0);
