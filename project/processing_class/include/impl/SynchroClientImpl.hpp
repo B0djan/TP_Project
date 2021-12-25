@@ -14,7 +14,7 @@ public:
 };
 
 class SynchroClientGroupsImpl : public Handler {
-    std::set<std::string> GetGroups(user_t&);
+    std::set<std::string> GetGroups(const std::string&);
 public:
     ParserObject process(const ParserObject& request_body) override;
 };

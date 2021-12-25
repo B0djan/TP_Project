@@ -55,6 +55,21 @@ ParserObject SynchroClientContactsImpl::process(const ParserObject& request_body
 }
 
 ParserObject SynchroClientGroupsImpl::process(const ParserObject& request_body) {
+
+    ParserObject response_body;
+
+    if (request_body.groups.empty()) {
+        response_body.error = "Not found groups";
+        return response_body;      
+    };
+
+    std::set<std::string> names_groups = GetGroups(request_body.user.user_id);
+
+    for (auto ng: names_groups) {
+        group_t group { .title = ng };
+        response_body.groups.insert(group);
+    };
+
     ParserObject response_body;
     return response_body;
 }
@@ -86,13 +101,32 @@ std::set<std::string> SynchroClientContactsImpl::GetContacts(contacts_t& c) {
     return friends;
 };
 
-// std::set<std::string> SynchroClientGroupsImpl::GetGroups(user_t& user) {
+std::set<std::string> SynchroClientGroupsImpl::GetGroups(const std::string& id) {
 
-//     std::string id = user.user_id;
+    char command[] = "SELECT fk_user_id, title "
+                     "FROM group_members "
+                     "LEFT JOIN group_m "
+                     "ON fk_group_id = group_id "
+                     "WHERE fk_user_id = $1";
 
-//     char command[] = "SELECT fk_user_id, title "
-//                     FROM group_members 
-// LEFT JOIN group_m 
-// ON fk_group_id = group_id"
+    const char* arguments[1];
 
-// }
+    arguments[0] = id.c_str();
+
+    PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 1, NULL, arguments, NULL, NULL, 0);
+
+    std::set<std::string> groups;
+
+    if (PQgetisnull(res, 0, 1))
+        return groups;                // в верхней функции првоерить пустое ли множество, если да то Not found
+
+    int n_rows = PQnfields(res);
+
+    for (int i = 0; i < n_rows; i++) {
+        char* Group_name = PQgetvalue(res, i, 1);
+
+        groups.insert(Group_name);
+    }
+
+    return groups;
+};
