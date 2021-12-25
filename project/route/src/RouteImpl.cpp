@@ -51,11 +51,11 @@ RouteImpl::RouteImpl() {
 
     route_map.insert({SEARCH_GROUP,           std::make_pair(new ParserGroupImpl,              new SearchGroupImpl)});
 
-    route_map.insert({ADD_USER,               std::make_pair(new ParserUserGroupImpl,          new AddUserImpl)});
-    route_map.insert({RM_USER,                std::make_pair(new ParserUserGroupImpl,          new RmUserImpl)});
+    route_map.insert({ADD_USER,               std::make_pair(new ParserGroupImpl,          new AddUserImpl)});
+    route_map.insert({RM_USER,                std::make_pair(new ParserGroupImpl,          new RmUserImpl)});
 
-    route_map.insert({JOIN,                   std::make_pair(new ParserUserGroupImpl,          new JoinImpl)});
-    route_map.insert({LEAVE,                  std::make_pair(new ParserUserGroupImpl,          new LeaveImpl)});
+    //route_map.insert({JOIN,                   std::make_pair(new ParserGroupImpl,          new JoinImpl)});
+    //route_map.insert({LEAVE,                  std::make_pair(new ParserGroupImpl,          new LeaveImpl)});
 
     route_map.insert({SEARCH_FREE_TIME,       std::make_pair(new ParserMeetUpImpl,             new SearchFreeTimeImpl)});
 

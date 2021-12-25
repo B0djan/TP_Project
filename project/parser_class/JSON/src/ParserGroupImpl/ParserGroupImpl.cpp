@@ -1,8 +1,6 @@
 #include <ParserGroupImpl.hpp>
 
 ParserObject ParserGroupImpl::StrToObject(const std::string& parser_str) const {
-    // {"add_event":{["user_id":"56","event_name":"breakfast","event_date":"01:06:2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"]}} TODO: Отредачить
-
     // {"create_group":{"title":"Texnosrac","members":["56"]}};
 
     nlohmann::json j = nlohmann::json::parse(parser_str);
@@ -29,7 +27,7 @@ ParserObject ParserGroupImpl::StrToObject(const std::string& parser_str) const {
             {
                 group.members.insert(element_in.get<std::string>());
             }
-        };
+        }
     }
 
     ParserObject res;
@@ -57,7 +55,7 @@ std::string ParserGroupImpl::ObjectToStr(const std::string type_response, const 
     nlohmann::json j;
     std::string res;
 
-    if (type_response == ADD_GROUP || type_response == WRITE_GROUP || type_response == RM_GROUP) {
+    if (type_response == ADD_GROUP || type_response == WRITE_GROUP || type_response == RM_GROUP || type_response == ADD_USER || type_response == RM_USER) {
         if (other.error.empty()) {
             j[type_response] = "OK";
 
