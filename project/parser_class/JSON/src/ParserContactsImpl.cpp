@@ -48,7 +48,7 @@ std::string ParserUserContactsImpl::ObjectToStr(const std::string type_response,
 
     nlohmann::json j;
 
-    j[type_response] = value;
+    j[type_response] = "OK";
 
     std::string res = j.dump();
 
