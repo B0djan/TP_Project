@@ -10,12 +10,10 @@ ParserObject AddEventImpl::process(const ParserObject& request_body) {
 
     code += AddEvent(*it);
 
-    for (std::set<event_t>::iterator it = request_body.events.begin(); it != request_body.events.end(); ++it) {
-        std::cout << (*it).date << std::endl;
-        std::cout << (*it).time_begin << std::endl;
-        std::cout << (*it).time_end << std::endl;
-        std::cout << (*it).description << std::endl;
-        std::cout << (*it).user_id << std::endl;
+    if (GLOBAL_KEY_TEST_PROCESSING) {
+        for (std::set<event_t>::iterator it = request_body.events.begin(); it != request_body.events.end(); ++it) {
+            Debugging::print_event_t(*it);
+        }
     }
 
 
@@ -80,11 +78,11 @@ int AddEventImpl::AddEvent(const event_t& e) {
 
     const char* arguments[5];
 
-    std::cout << e.date << std::endl;
-    std::cout << e.time_begin << std::endl;
-    std::cout << e.time_end << std::endl;
-    std::cout << e.description << std::endl;
-    std::cout << e.user_id << std::endl;
+    //  Отладка
+    if (GLOBAL_KEY_TEST_PROCESSING) {
+        Debugging::print_event_t(e);
+    }
+
 
     arguments[0] = e.date.c_str();
     arguments[1] = e.time_begin.c_str();

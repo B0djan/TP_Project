@@ -10,7 +10,7 @@
 
 #include <PGConnection.hpp>
 
-#define global_key_test_processing true
+#define GLOBAL_KEY_TEST_PROCESSING true
 
 #define SUCCESS     0
 #define ERROR      -1

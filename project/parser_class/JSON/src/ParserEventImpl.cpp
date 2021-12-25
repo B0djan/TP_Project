@@ -56,12 +56,7 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
     if (GLOBAL_KEY_TEST_PARSER) {
         std::cout  << "From client  :---: " << parser_str << std::endl;
         for (std::set<event_t>::iterator it = events.begin(); it != events.end(); ++it) {
-            std::cout << "user_id      :---: " << (*it).user_id << std::endl;
-            std::cout << "event_name   :---: " << (*it).event_name << std::endl;
-            std::cout << "date         :---: " << (*it).date << std::endl;
-            std::cout << "description  :---: " << (*it).description << std::endl;
-            std::cout << "time_begin   :---: " << (*it).time_begin << std::endl;
-            std::cout << "time_end     :---: " << (*it).time_end << std::endl;
+            Debugging::print_event_t(*it);
         }
     }
 
@@ -69,7 +64,6 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
 }
 
 std::string ParserEventImpl::ObjectToStr(const std::string type_response, const ParserObject& other) const {
-
     std::set<event_t> events = other.events;
 
     nlohmann::json json_events;
@@ -108,12 +102,7 @@ std::string ParserEventImpl::ObjectToStr(const std::string type_response, const 
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
         for (std::set<event_t>::iterator it = events.begin(); it != events.end(); ++it) {
-            std::cout << "user_id      :---: " << (*it).user_id << std::endl;
-            std::cout << "event_name   :---: " << (*it).event_name << std::endl;
-            std::cout << "date         :---: " << (*it).date << std::endl;
-            std::cout << "description  :---: " << (*it).description << std::endl;
-            std::cout << "time_begin   :---: " << (*it).time_begin << std::endl;
-            std::cout << "time_end     :---: " << (*it).time_end << std::endl;
+            Debugging::print_event_t(*it);
         }
         std::cout << "From processing  :---: " << res << std::endl;
     }
