@@ -71,12 +71,14 @@ std::string ParserGroupImpl::ObjectToStr(const std::string type_response, const 
         return res;
     }
 
-    std::set<group_t> groups;
+    std::set<group_t> groups = other.groups;
 
     nlohmann::json json_groups;
 
-    if (!groups.empty())
-    {
+    if (groups.empty()) {
+        json_groups[type_response] = "Not found";
+    }
+
         for (auto& group: groups)
         {
             nlohmann::json json_group;

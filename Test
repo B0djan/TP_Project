@@ -17,3 +17,7 @@ TEST join_group: {"join_group":{"group":"BMSTU", "members":["56"]}}
 
 
 TEST create_group: {"create_group":{"title":"Texnosrac","members":["56"]}}
+
+
+TEST get_groups: {"get_groups":{"user_id":"56"}}
+RES {"get_groups":["BMSTU","Texnosrak"]}
