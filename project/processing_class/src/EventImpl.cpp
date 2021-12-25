@@ -28,26 +28,33 @@ ParserObject AddEventImpl::process(const ParserObject& request_body) {
 }
 
 ParserObject WriteEventImpl::process(const ParserObject& request_body) {
-    
     event_t event;
+
+    ParserObject response_body;
 
     for (auto e: request_body.events) {
         event = e;
     }
 
     if (id.empty()) {
-        std::string id = SupportProcess::GetEventId(event);
+        char* check = SupportProcess::GetEventId(event);
+        if (check == NULL) {
+            response_body.error = "Error get user id";
+
+            return response_body;
+        }
+
+        std::string id = check;
     }
 
+
     int code = WriteEvent(event);
+    if (code != 0) {
+        response_body.error = "Error write event";
+    }
 
     id.clear();
 
-    ParserObject response_body;
-
-    if (code) {
-        response_body.error = "null";
-    }
 
     return response_body;
 }

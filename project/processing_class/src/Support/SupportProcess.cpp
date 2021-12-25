@@ -15,11 +15,6 @@ namespace SupportProcess {
             PQclear(res);
         }
 
-        if (PQgetisnull(res,0,0)) {
-            char* error = "Not found";
-            return error;
-        }
-
         char* id = PQgetvalue(res, 0, 0);
 
         PQclear(res);
@@ -45,10 +40,6 @@ namespace SupportProcess {
             PQclear(res);
         };
 
-        if (PQgetisnull(res, 0, 0)) {
-            return "Not found";
-        }
-
         char* id = PQgetvalue(res, 0, 0);
 
         PQclear(res);
@@ -68,10 +59,6 @@ namespace SupportProcess {
         if (PQresultStatus(res) != PGRES_TUPLES_OK) {
             printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
             PQclear(res);
-        }
-
-        if (PQgetisnull(res, 0, 0)) {
-            return "Not found";
         }
 
         char* id = PQgetvalue(res, 0, 0);
