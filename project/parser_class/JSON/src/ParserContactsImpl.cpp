@@ -10,10 +10,10 @@ ParserObject ParserUserContactsImpl::StrToObject(const std::string& parser_str) 
 
     contacts_t contacts;
 
-    if(j.contains("user_id"))
+    if(value.contains("user_id"))
             contacts.user_id = value["user_id"];
 
-    if(j.contains("list_contacts"))
+    if(value.contains("list_contacts"))
     {
         for (auto& element : value["list_contacts"])
         contacts.list_contacts.insert(element.dump());
