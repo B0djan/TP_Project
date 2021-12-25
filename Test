@@ -19,5 +19,12 @@ RES: {"create_group":OK}
 TEST delete_group: {"delete_group":{"title":"Texnosrac"}}
 RES: {"delete_group":OK}
 
+TEST add_user: {"invite":{"group":"Texnosrac", "members":["Sasha"]}}
+RES: {"invite":OK}
+
+TEST rm_user: {"kick":{"group":"Texnosrac", "members":["Sasha"]}}
+RES: {"kick":OK}
+
 TEST get_groups: {"get_groups":{"user_id":"56"}}
 RES {"get_groups":["BMSTU","Texnosrak"]}
+
