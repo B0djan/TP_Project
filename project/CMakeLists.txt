@@ -52,7 +52,8 @@ SET(SOURCE_LIST_PARSER_CLASS
         parser_class/JSON/src/ParserWritePersonalDataImpl.cpp)
 
 SET(SOURCE_LIST_PARSER_OBJECT
-        parser_object/src/ParserObject.cpp)
+        parser_object/src/ParserObject.cpp
+        parser_object/src/Debugging.cpp)
 
 SET(SOURCE_LIST_DATA
         database_connector/PostgreSQL/src/PGConnection.cpp)
