@@ -47,7 +47,7 @@ ParserObject RmUserImpl::process(const ParserObject& request_body) {
 
     char* check = SupportProcess::GetGroupId((*it_g).title);
     if (check == NULL) {
-        response_body.error = "Error get user id";
+        response_body.error = "Error get group id";
 
         return response_body;
     }
@@ -69,7 +69,6 @@ ParserObject RmUserImpl::process(const ParserObject& request_body) {
 
         return response_body;
     }
-
 
     return response_body;
 }

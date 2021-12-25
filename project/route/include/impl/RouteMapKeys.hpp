@@ -50,10 +50,10 @@
 #define RM_GROUP                         "delete_group"  //  completed + test
 //  input: title; output OK
 
-#define ADD_USER                         "invite"
+#define ADD_USER                         "invite"  //  completed + test
 //  input: nickname, title(group); output: OK
 
-#define RM_USER                          "kick"
+#define RM_USER                          "kick"  //  completed + test
 //  input: nickname, title(group); output: OK
 
 #define JOIN                             "join_group"
