@@ -74,36 +74,30 @@ std::string ParserGroupImpl::ObjectToStr(const std::string type_response, const 
     nlohmann::json json_groups;
 
     if (groups.empty()) {
-        json_groups[type_response] = "Not found";
+        j[type_response] = "Not found";
     }
 
-        for (auto& group: groups)
+    for (auto& group: groups)
+    {
+        nlohmann::json json_group;
+
+        if (!group.group_id.empty())
         {
-            nlohmann::json json_group;
-            nlohmann::json json_group_members;
-
-            if (!group.group_id.empty())
-            {
-                json_group["group_id"] = group.group_id;
-            }
-
-            if (!group.title.empty())
-            {
-                json_group["title"] = group.title;
-            }
-
-            if (!(group.members.empty()))
-            {
-                for (auto& member: group.members)
-                {
-                    json_group_members["members"] = member;
-                }
-
-                json_group.push_back(json_group_members);
-            }
-
-            json_groups.push_back(json_group);
+            json_group["group_id"] = group.group_id;
         }
+
+        if (!group.title.empty())
+        {
+            json_group["title"] = group.title;
+        }
+
+        if (!(group.members.empty()))
+        {
+            json_group["members"] = group.members;
+
+        }
+
+        json_groups.push_back(json_group);
     }
 
     j[type_response] = json_groups;
