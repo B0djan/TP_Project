@@ -7,7 +7,7 @@ ParserObject AddUserContactsImpl::process(const ParserObject& request_body) {
 
     ParserObject response_body;
 
-    response_body.contacts.user_id = code;
+    response_body.error;
 
     return response_body;
 }
@@ -51,12 +51,12 @@ std::string AddUserContactsImpl::AddFriend(contacts_t& c) {
     if (PQresultStatus(res) != PGRES_COMMAND_OK) {
         printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
         PQclear(res);
-        return "null";
+        return "ERROR";
     };
 
     PQclear(res);
 
-    return c.user_id.c_str();
+    return "OK";
 };
 
 std::string RmUserContactsImpl::DeleteFriend(contacts_t& c) {
@@ -84,10 +84,10 @@ std::string RmUserContactsImpl::DeleteFriend(contacts_t& c) {
     if (PQresultStatus(res) != PGRES_COMMAND_OK) {
         printf("command field: %s\n", PQerrorMessage(PGConnection::GetConnection()));
         PQclear(res);
-        return "null";
-    }
+        return "ERROR";
+    };
 
     PQclear(res);
 
-    return c.user_id.c_str();
+    return "OK";
 };

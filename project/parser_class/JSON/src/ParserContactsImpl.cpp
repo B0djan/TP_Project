@@ -36,31 +36,31 @@ ParserObject ParserUserContactsImpl::StrToObject(const std::string& parser_str) 
 
 std::string ParserUserContactsImpl::ObjectToStr(const std::string type_response, const ParserObject& other) const {
 
-    contacts_t contacts = other.contacts;
+    // contacts_t contacts = other.contacts;
 
-    nlohmann::json value;
+    // nlohmann::json value;
 
-    if (contacts.user_id != "")
-        value["user_id"] = contacts.user_id;
+    // if (contacts.user_id != "")
+    //     value["user_id"] = contacts.user_id;
         
-    if (!contacts.list_contacts.empty())
-        value["list_contacts"] = contacts.list_contacts;
+    // if (!contacts.list_contacts.empty())
+    //     value["list_contacts"] = contacts.list_contacts;
 
     nlohmann::json j;
 
-    j[type_response] = "OK";
+    j[type_response] = other.error;
 
     std::string res = j.dump();
 
     // {"registration":{"user_id":"value"}}
 
     //  Отладка
-    if (GLOBAL_KEY_TEST_PARSER) {
-        for (std::set<std::string>::iterator it = contacts.list_contacts.begin(); it != contacts.list_contacts.end(); ++it) {
-            std::cout << "contacts" << *it << std::endl;
-        }
-        std::cout << "From processing  :---: " << res << std::endl;
-    }
+    // if (GLOBAL_KEY_TEST_PARSER) {
+    //     for (std::set<std::string>::iterator it = contacts.list_contacts.begin(); it != contacts.list_contacts.end(); ++it) {
+    //         std::cout << "contacts" << *it << std::endl;
+    //     }
+    //     std::cout << "From processing  :---: " << res << std::endl;
+    // }
 
     return res;
 }
