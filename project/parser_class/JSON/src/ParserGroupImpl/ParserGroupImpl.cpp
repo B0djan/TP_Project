@@ -3,6 +3,8 @@
 ParserObject ParserGroupImpl::StrToObject(const std::string& parser_str) const {
     // {"add_event":{["user_id":"56","event_name":"breakfast","event_date":"01:06:2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"]}} TODO: Отредачить
 
+    // {"create_group":{"title":"Texnosrac","members":["56"]}};
+
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
     nlohmann::json::iterator it = j.begin();

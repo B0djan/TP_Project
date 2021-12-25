@@ -20,11 +20,8 @@ SearchFreeTimeImpl::Duration::Duration(const std::string& time) {
 
 unsigned char SearchFreeTimeImpl::Duration::GetTimeInterval() {
     int total = hour * 60 * min;
-
     return (unsigned char)(total / 15 + 1);
 }
-
-
 
 
 //  support class Day
@@ -52,6 +49,7 @@ void SearchFreeTimeImpl::Day::EraseEvent(Duration& begin_time, Duration& end_tim
 bool SearchFreeTimeImpl::Day::IsFree(Duration& begin_time, Duration& end_time) {
     return true;
 }
+
 
 //  Support methods
 std::vector<std::set<event_t>> SearchFreeTimeImpl::GetData(group_t) {
