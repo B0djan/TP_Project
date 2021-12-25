@@ -11,7 +11,7 @@ namespace SupportProcess {
         PGresult *res = PQexecParams(PGConnection::GetConnection(), return_id, 1, NULL, arguments, NULL, NULL, 0);
 
         if (PQresultStatus(res) != PGRES_TUPLES_OK) {
-            printf("command field: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+            printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
             PQclear(res);
         }
 
@@ -34,7 +34,7 @@ namespace SupportProcess {
         PGresult *res = PQexecParams(PGConnection::GetConnection(), return_id, 4, NULL, arguments, NULL, NULL, 0);
 
         if (PQresultStatus(res) != PGRES_TUPLES_OK) {
-            printf("command field: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+            printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
             PQclear(res);
         };
 

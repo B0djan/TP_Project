@@ -1,6 +1,7 @@
 #include <ParserContactsImpl.hpp>
 
 ParserObject ParserUserContactsImpl::StrToObject(const std::string& parser_str) const {
+    //  {"add_friend":{"user_id":"56","list_contacts":["Ibragim"]}}
 
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
@@ -25,39 +26,51 @@ ParserObject ParserUserContactsImpl::StrToObject(const std::string& parser_str) 
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
-        std::cout  << "From client  :---: " << parser_str << std::endl;
-        for (std::set<std::string>::iterator it = contacts.list_contacts.begin(); it != contacts.list_contacts.end(); ++it) {
-            std::cout << "contacts" << *it << std::endl;
-        }
+        Debugging::print_from_client(parser_str);
+        Debugging::print_contacts_t(contacts);
     }
 
     return res;
 }
 
 std::string ParserUserContactsImpl::ObjectToStr(const std::string type_response, const ParserObject& other) const {
-
-    // contacts_t contacts = other.contacts;
-
-    // nlohmann::json value;
-
-    // if (contacts.user_id != "")
-    //     value["user_id"] = contacts.user_id;
-        
-    // if (!contacts.list_contacts.empty())
-    //     value["list_contacts"] = contacts.list_contacts;
+    // {"registration":{"user_id":"value"}} TODO: Отредачить
 
     nlohmann::json j;
+    std::string res;
 
-    j[type_response] = other.error;
+    if (type_response == ADD_USER_CONTACTS || type_response == RM_USER_CONTACTS) {
+        if (other.error.empty()) {
+            j[type_response] = "OK";
 
-    std::string res = j.dump();
+            res = j.dump();
+        } else  {
+            j[type_response] = other.error;
 
-    // {"registration":{"user_id":"value"}}
+            res = j.dump();
+        }
+
+        return res;
+    }
+
+    contacts_t contacts = other.contacts;
+
+    nlohmann::json value;
+
+    if (contacts.user_id != "")
+        value["user_id"] = contacts.user_id;
+
+    if (!contacts.list_contacts.empty())
+        value["list_contacts"] = contacts.list_contacts;
+
+    j[type_response] = value;
+
+    res = j.dump();
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
         Debugging::print_contacts_t(contacts);
-        std::cout << "From processing  :---: " << res << std::endl;
+        Debugging::print_from_processing(res);
     }
 
     return res;

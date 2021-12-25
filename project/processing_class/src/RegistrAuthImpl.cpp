@@ -49,7 +49,7 @@ int RegistrationImpl::RegistrationTo(user_t& r) {
     PGresult *res = PQexecParams(PGConnection::GetConnection(), check, 2, NULL, arguments, NULL, NULL, 0);
 
     if (PQresultStatus(res) != PGRES_TUPLES_OK) {
-        printf("command field: %s", PQerrorMessage(PGConnection::GetConnection()));
+        printf("command faild: %s", PQerrorMessage(PGConnection::GetConnection()));
 
         PQclear(res);
 
@@ -70,7 +70,7 @@ int RegistrationImpl::RegistrationTo(user_t& r) {
     res = PQexecParams(PGConnection::GetConnection(), command, 2, NULL, arguments, NULL, NULL, 0);
 
     if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-        printf("command field: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+        printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
 
         PQclear(res);
 
@@ -93,7 +93,7 @@ int AuthenticationImpl::AutorizationTo(user_t& r) {
     PGresult *res = PQexecParams(PGConnection::GetConnection(), check, 2, NULL, arguments, NULL, NULL, 0);
 
     if (PQresultStatus(res) != PGRES_TUPLES_OK) {
-        printf("command field: %s", PQerrorMessage(PGConnection::GetConnection()));
+        printf("command faild: %s", PQerrorMessage(PGConnection::GetConnection()));
 
         PQclear(res);
 

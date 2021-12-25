@@ -1,7 +1,7 @@
 #include <ParserWritePersonalDataImpl.hpp>
 
 ParserObject ParserWritePersonalDataImpl::StrToObject(const std::string& parser_str) const {
-    
+    // {"registration":{"user_id":"value"}} Отредачить
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
     nlohmann::json::iterator it = j.begin();
@@ -40,21 +40,25 @@ ParserObject ParserWritePersonalDataImpl::StrToObject(const std::string& parser_
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
-        std::cout  << "From client  :---: " << parser_str << std::endl;
-        std::cout << personal_data.user_id << std::endl;
-        std::cout << personal_data.first_name << std::endl;
-        std::cout << personal_data.surname << std::endl;
-        std::cout << personal_data.age << std::endl;
-        std::cout << personal_data.phone_number << std::endl;
-        std::cout << personal_data.status << std::endl;
-        std::cout << personal_data.label << std::endl;
-        std::cout << personal_data.description << std::endl;
+        Debugging::print_from_client(parser_str);
+        Debugging::print_personal_data_t(personal_data);
     }
 
     return res;
 }
 
 std::string ParserWritePersonalDataImpl::ObjectToStr(const std::string type_response, const ParserObject& other) const {
+    // {"registration":{"user_id":"value"}} Отредачить
+    nlohmann::json j;
+    std::string res;
+
+    if (!other.error.empty()) {
+        j[type_response] = other.error;
+
+        res = j.dump();
+
+        return res;
+    }
 
     personal_data_t personal_data = other.personal_data;
 
@@ -84,26 +88,15 @@ std::string ParserWritePersonalDataImpl::ObjectToStr(const std::string type_resp
     if (personal_data.description != "")
         value["description"] = personal_data.description;
 
-    nlohmann::json j;
-
     j[type_response] = value;
 
-    std::string res = j.dump();
+    res = j.dump();
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
-        std::cout << personal_data.user_id << std::endl;
-        std::cout << personal_data.first_name << std::endl;
-        std::cout << personal_data.surname << std::endl;
-        std::cout << personal_data.age << std::endl;
-        std::cout << personal_data.phone_number << std::endl;
-        std::cout << personal_data.status << std::endl;
-        std::cout << personal_data.label << std::endl;
-        std::cout << personal_data.description << std::endl;
-        std::cout << "From processing  :---: " << res << std::endl;
+        Debugging::print_personal_data_t(personal_data);
+        Debugging::print_from_processing(res);
     }
-
-    // {"registration":{"user_id":"value"}}
 
     return res;
 }

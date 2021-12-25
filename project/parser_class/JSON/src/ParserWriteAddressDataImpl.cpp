@@ -1,7 +1,8 @@
 #include <ParserWriteAddressDataImpl.hpp>
 
 ParserObject ParserWriteAddressDataImpl::StrToObject(const std::string& parser_str) const {
-    
+    // {"registration":{"user_id":"value"}} TODO: Отредачить
+
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
     nlohmann::json::iterator it = j.begin();
@@ -40,21 +41,26 @@ ParserObject ParserWriteAddressDataImpl::StrToObject(const std::string& parser_s
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
-        std::cout  << "From client  :---: " << parser_str << std::endl;
-        std::cout << address_data.user_id << std::endl;
-        std::cout << address_data.building << std::endl;
-        std::cout << address_data.housing << std::endl;
-        std::cout << address_data.street << std::endl;
-        std::cout << address_data.city << std::endl;
-        std::cout << address_data.district << std::endl;
-        std::cout << address_data.index << std::endl;
-        std::cout << address_data.country << std::endl;
+        Debugging::print_from_client(parser_str);
+        Debugging::print_address_data_t(address_data);
     }
 
     return res;
 }
 
 std::string ParserWriteAddressDataImpl::ObjectToStr(const std::string type_response, const ParserObject& other) const {
+    // {"registration":{"user_id":"value"}} TODO: Отредачить
+
+    nlohmann::json j;
+    std::string res;
+
+    if (!other.error.empty()) {
+        j[type_response] = other.error;
+
+        res = j.dump();
+
+        return res;
+    }
 
     address_data_t address_data = other.address_data;
 
@@ -84,26 +90,15 @@ std::string ParserWriteAddressDataImpl::ObjectToStr(const std::string type_respo
     if (address_data.country != "")
         value["country"] = address_data.country;
 
-    nlohmann::json j;
-
     j[type_response] = value;
 
-    std::string res = j.dump();
+    res = j.dump();
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
-        std::cout << address_data.user_id << std::endl;
-        std::cout << address_data.building << std::endl;
-        std::cout << address_data.housing << std::endl;
-        std::cout << address_data.street << std::endl;
-        std::cout << address_data.city << std::endl;
-        std::cout << address_data.district << std::endl;
-        std::cout << address_data.index << std::endl;
-        std::cout << address_data.country << std::endl;
-        std::cout << "From processing  :---: " << res << std::endl;
+        Debugging::print_address_data_t(address_data);
+        Debugging::print_from_processing(res);
     }
-
-    // {"registration":{"user_id":"value"}}
 
     return res;
 }

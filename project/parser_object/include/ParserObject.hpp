@@ -4,6 +4,85 @@
 
 #include <set>
 
+//  base
+#define REGISTRATION                     "registration"  //  completed + test
+//  input: nickname, password; output: user_id; error:"null" (если пользователь уже существует)
+
+#define AUTHENTICATION                   "autorization"  //  completed + test
+//  input: nickname, password; output: user_id; error:"null" (если введены некорректные данные)
+
+//  synchro
+#define GET_EVENTS                       "get_events"  //  completed
+//  input: user_id, date; output: set<event_t> [description, time_begin, time_end]
+
+#define GET_CONTACTS                     "get_friends"  //  completed
+//  input: user_id; output: set<sring> [nickname]
+
+#define GET_GROUPS                       "get_groups"
+//  input: user_id; output: set<string> [title]
+
+//  personal data
+#define WRITE_PERSONAL_DATA              "..."
+
+//  user address
+#define WRITE_ADDRESS                    "..."
+
+//  event
+#define ADD_EVENT                        "add_event"  //  completed + test
+//  input: user_id, data, description, time_begin, time_end; output: OK
+
+#define WRITE_EVENT                      "change_event"  //  completed
+//  input: user_id, data, description, time_begin, time_end; output: OK
+
+#define RM_EVENT                         "delete_event"  //  completed
+//  input: user_id, data, description, time_begin, time_end; output: OK
+
+//  list_contacts
+#define ADD_USER_CONTACTS                "add_friend"  //  completed
+//  input: user_id, nickname; output: OK
+
+#define RM_USER_CONTACTS                 "delete_friend"  //  completed
+//  input: user_id, nickname; output: OK
+
+//  group
+#define ADD_GROUP                        "create_group"
+//  input: title; output: group_id ???
+
+#define WRITE_GROUP                      "change_group"
+//  input: title; output OK
+
+#define RM_GROUP                         "delete_group"
+//  input: title; output OK
+
+#define ADD_USER                         "invite"
+//  input: nickname, title(group); output: OK
+
+#define RM_USER                          "kick"
+//  input: nickname, title(group); output: OK
+
+#define JOIN                             "join_group"
+//  input: nickname, title(group); output: OK
+
+#define LEAVE                            "leave_group"
+//  input: nickname, title(group); output: OK
+
+#define SEARCH_GROUP                     "search_group"
+//  input: title; output: title; error:"null" (не найдена такая группа)
+
+//  meetup in group
+#define SEARCH_FREE_TIME                 "get_meetup"
+//  input: title, date; output: set<meetup_t>[description, time_begin, time_end]
+
+#define HISTORY_MEETUP                   "get_history"
+//  input: title; output: set<meetup_t>[description, time_begin, time_end, date]
+
+
+/*
+Идеи по функционалу:
+ - match (голосование по времени встречи)
+*/
+
+
 typedef struct {
     std::string user_id  = "";
     std::string email    = "";
@@ -44,7 +123,7 @@ typedef struct {
 
 typedef struct {
     std::string group_id    = "";
-    std::string event_name  = "";
+    std::string meetup_name = "";
     std::string date        = "";
     std::string description = "";
     std::string time_begin  = "";
@@ -97,6 +176,22 @@ public:
 //  Отладка
 namespace Debugging {
     void print_event_t(const event_t& e);
+
+    void print_meetup_t(const meetup_t& e);
+
     void print_user_t(const user_t& u);
-    void print_contacts_t(const contacts_t c);
+
+    void print_contacts_t(const contacts_t& c);
+
+    void print_group_t(const group_t& g);
+
+    void print_from_client(const std::string& in);
+
+    void print_from_processing(const std::string& in);
+
+    void print_personal_data_t(const personal_data_t& d);
+
+    void print_address_data_t(const address_data_t& a);
+
+    void print_user_group(const user_t& u, const group_t& g);
 }

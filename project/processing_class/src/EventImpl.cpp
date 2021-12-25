@@ -93,7 +93,7 @@ int AddEventImpl::AddEvent(const event_t& e) {
     PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 5, NULL, arguments, NULL, NULL, 0);
 
     if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-        printf("command field: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+        printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
         PQclear(res);
         return ERROR;
     } else {
@@ -124,7 +124,7 @@ int WriteEventImpl::WriteEvent(event_t& e) {
     PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 5, NULL, arguments, NULL, NULL, 0);
 
     if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-        printf("command field: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+        printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
         PQclear(res);
         return ERROR;
     } else {
@@ -153,7 +153,7 @@ int RmEventImpl::DeleteEvent(event_t& e){
     PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 4, NULL, arguments, NULL, NULL, 0);
 
     if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-        printf("command field: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+        printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
         PQclear(res);
         return ERROR;
     } else {

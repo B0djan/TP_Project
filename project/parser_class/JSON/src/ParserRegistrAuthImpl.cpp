@@ -4,9 +4,7 @@
 #include <iostream>
 
 ParserObject ParserRegistrAuthImpl::StrToObject(const std::string& parser_str) const {
-    //  std::cout << parser_str << "    - parser_str\n" << std::endl;
-    
-    // {"registration":{"login":"mars444","password":"qqqqqqqqqqqqqqqq"}}
+    //  {"registration":{"login":"mars444","password":"qqqqqqqqqqqqqqqq"}}
 
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
@@ -28,14 +26,12 @@ ParserObject ParserRegistrAuthImpl::StrToObject(const std::string& parser_str) c
     if (value.contains("nickname"))
         user.nickname = value["nickname"].get<std::string>();
 
-    //  std::cout << user.user_id << " " << user.email << " " << user.password << " " << user.nickname << " \n" << std::endl;
-
     ParserObject res;
 
     res = user;
 
     if (GLOBAL_KEY_TEST_PARSER) {
-        std::cout  << "From client  :---: " << parser_str << std::endl;
+        Debugging::print_from_client(parser_str);
         Debugging::print_user_t(user);
     }
 
@@ -43,6 +39,18 @@ ParserObject ParserRegistrAuthImpl::StrToObject(const std::string& parser_str) c
 }
 
 std::string ParserRegistrAuthImpl::ObjectToStr(const std::string type_response, const ParserObject& other) const {
+    // {"registration":{"user_id":"value"}}
+
+    nlohmann::json j;
+    std::string res;
+
+    if (!other.error.empty()) {
+        j[type_response] = other.error;
+
+        res = j.dump();
+
+        return res;
+    }
 
     user_t user = other.user;
 
@@ -60,19 +68,15 @@ std::string ParserRegistrAuthImpl::ObjectToStr(const std::string type_response, 
     if (user.nickname != "")
         value["nickname"] = user.nickname;
 
-    nlohmann::json j;
-
     j[type_response] = value;
 
-    std::string res = j.dump();
+    res = j.dump();
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
         Debugging::print_user_t(user);
-        std::cout << "From processing  :---: " << res << std::endl;
+        Debugging::print_from_processing(res);
     }
-
-    // {"registration":{"user_id":"value"}}
 
     return res;
 }

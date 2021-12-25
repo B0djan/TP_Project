@@ -82,7 +82,7 @@ std::string RmUserContactsImpl::DeleteFriend(contacts_t& c) {
     PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 2, NULL, arguments, NULL, NULL, 0);
 
     if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-        printf("command field: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+        printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
         PQclear(res);
         return "ERROR";
     };
