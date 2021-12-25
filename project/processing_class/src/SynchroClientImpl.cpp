@@ -4,8 +4,8 @@ ParserObject SynchroClientEventsImpl::process(const ParserObject& request_body) 
     event_t event_buf;
 
     for (auto e: request_body.events) {
-
         event_buf.date = e.date;
+
         event_buf.user_id = e.user_id;
     }
 
@@ -35,7 +35,7 @@ ParserObject SynchroClientEventsImpl::process(const ParserObject& request_body) 
 
     ParserObject response_body;
 
-    response_body.events = events;
+    response_body = events;
     
     return response_body;
 }
@@ -55,11 +55,11 @@ ParserObject SynchroClientContactsImpl::process(const ParserObject& request_body
 }
 
 ParserObject SynchroClientGroupsImpl::process(const ParserObject& request_body) {
-
     ParserObject response_body;
 
     if (request_body.groups.empty()) {
         response_body.error = "Not found groups";
+
         return response_body;      
     };
 
@@ -67,10 +67,10 @@ ParserObject SynchroClientGroupsImpl::process(const ParserObject& request_body) 
 
     for (auto ng: names_groups) {
         group_t group { .title = ng };
+
         response_body.groups.insert(group);
     };
 
-    ParserObject response_body;
     return response_body;
 }
 
