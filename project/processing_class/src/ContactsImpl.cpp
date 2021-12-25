@@ -1,15 +1,13 @@
 #include <ContactsImpl.hpp>
 
 ParserObject AddUserContactsImpl::process(const ParserObject& request_body) {
-    contacts_t contacts = request_body.contacts;
-
-    std::set<std::string> :: iterator it_m = contacts.list_contacts.begin();
+    std::set<std::string> :: iterator it_m = request_body.contacts.list_contacts.begin();
 
     int code;
 
     ParserObject response_body;
 
-    code = AddFriend(contacts.user_id, *it_m);
+    code = AddFriend(request_body.contacts.user_id, *it_m);
     if (code != 0) {
         response_body.error = "Error add contact";
         return response_body;
@@ -19,15 +17,13 @@ ParserObject AddUserContactsImpl::process(const ParserObject& request_body) {
 }
 
 ParserObject RmUserContactsImpl::process(const ParserObject& request_body) {
-    contacts_t contacts = request_body.contacts;
-
-    std::set<std::string> :: iterator it_m = contacts.list_contacts.begin();
+    std::set<std::string> :: iterator it_m = request_body.contacts.list_contacts.begin();
 
     int code;
 
     ParserObject response_body;
 
-    code = DeleteFriend(contacts.user_id, *it_m);
+    code = DeleteFriend(request_body.contacts.user_id, *it_m);
     if (code != 0) {
         response_body.error = "Error add contact";
         return response_body;
