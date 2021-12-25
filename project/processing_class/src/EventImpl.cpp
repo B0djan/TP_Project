@@ -14,7 +14,6 @@ ParserObject AddEventImpl::process(const ParserObject& request_body) {
         }
     }
 
-
     for (auto event: request_body.events) {
         code += AddEvent(event);
     }

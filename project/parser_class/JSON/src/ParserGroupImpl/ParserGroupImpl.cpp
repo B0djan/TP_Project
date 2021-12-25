@@ -17,18 +17,18 @@ ParserObject ParserGroupImpl::StrToObject(const std::string& parser_str) const {
 
         if (element.contains("group_id"))
         {
-            group.group_id = value["group_id"];
+            group.group_id = value["group_id"].get<std::string>();
         }
 
         if (element.contains("title"))
         {
-            group.title = value["title"];
+            group.title = value["title"].get<std::string>();
         }
 
         if (element.contains("members")) {
             for (auto &element_in : element["members"])
             {
-                group.members.insert(element_in.dump());
+                group.members.insert(element_in.get<std::string>());
             }
         };
 
