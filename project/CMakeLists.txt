@@ -33,6 +33,7 @@ SET(SOURCE_LIST_PROCESSING_CLASS
         processing_class/src/ContactsImpl.cpp
         processing_class/src/EventImpl.cpp
         processing_class/src/GroupImpl/Base/GroupImpl.cpp
+        processing_class/src/GroupImpl/Base/SupportProcessGroup.cpp
         processing_class/src/GroupImpl/User/UserGroupImpl.cpp
         processing_class/src/GroupImpl/MeetUp/MeetUpImpl.cpp
         processing_class/src/GroupImpl/MeetUp/SupportMeetUp.cpp

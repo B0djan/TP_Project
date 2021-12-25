@@ -1,7 +1,6 @@
 #include <SynchroClientImpl.hpp>
 
 ParserObject SynchroClientEventsImpl::process(const ParserObject& request_body) {
-
     event_t event_buf;
 
     for (auto e: request_body.events) {
@@ -61,8 +60,8 @@ ParserObject SynchroClientGroupsImpl::process(const ParserObject& request_body) 
 }
 
 std::set<std::string> SynchroClientContactsImpl::GetContacts(contacts_t& c) {
-    char command[] = "SELECT list_contacts.fk_user_id, user_m.nickname "
-                     "FROM list_contacts LEFT JOIN user_m ON list_contacts.fk_friend_id = user_m.user_id"
+    char command[] = "SELECT fk_user_id, nickname "
+                     "FROM contacts LEFT JOIN user_m ON fk_friend_id = user_id"
                      "WHERE fk_user_id = $1";
 
     const char* arguments[1];

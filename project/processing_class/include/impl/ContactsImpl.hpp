@@ -3,13 +3,13 @@
 #include <Handler.hpp>
 
 class AddUserContactsImpl : public Handler {
-    std::string AddFriend(contacts_t& c);
+    int AddFriend(const std::string& user_id_main, const std::string& user_id_friend);
 public:
     ParserObject process(const ParserObject& request_body) override;
 };
 
 class RmUserContactsImpl : public Handler {
-    std::string DeleteFriend(contacts_t& c);
+    int DeleteFriend(const std::string& user_id_main, const std::string& user_id_friend);
 public:
     ParserObject process(const ParserObject& request_body) override;  
 };

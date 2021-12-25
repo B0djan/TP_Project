@@ -54,7 +54,7 @@ typedef struct {
 typedef struct {
     std::string           group_id;
     std::string           title;
-    std::set<std::string> members;
+    std::set<std::string> members;  //  user_id
 } group_t;
 
 typedef struct {

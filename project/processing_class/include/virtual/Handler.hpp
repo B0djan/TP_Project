@@ -25,7 +25,14 @@ public:
 };
 
 namespace SupportProcess {
-    char* GetUserId(user_t& r);  //  промежуточный класс
+    char* GetUserId(const std::string& nickname);  //  промежуточный класс
 
-    char* GetEventId(event_t& r);  //  промежуточный класс
+    char* GetEventId(const event_t& e);  //  промежуточный класс
+
+    char* GetGroupId(const std::string& title);  //  промежуточный класс
+}
+
+namespace SupportProcessGroup {
+    int AddMember(const std::string& member, const std::string);
+    int RmMember(const std::string& member, const std::string);
 }

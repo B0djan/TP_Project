@@ -3,11 +3,17 @@
 ParserObject AddUserContactsImpl::process(const ParserObject& request_body) {
     contacts_t contacts = request_body.contacts;
 
-    std::string code = AddFriend(contacts);
+    std::set<std::string> :: iterator it_m = contacts.list_contacts.begin();
+
+    int code;
 
     ParserObject response_body;
 
-    response_body.error;
+    code = AddFriend(contacts.user_id, *it_m);
+    if (code != 0) {
+        response_body.error = "Error add contact";
+        return response_body;
+    }
 
     return response_body;
 }
@@ -15,79 +21,63 @@ ParserObject AddUserContactsImpl::process(const ParserObject& request_body) {
 ParserObject RmUserContactsImpl::process(const ParserObject& request_body) {
     contacts_t contacts = request_body.contacts;
 
-    std::string code = DeleteFriend(contacts);
-    
+    std::set<std::string> :: iterator it_m = contacts.list_contacts.begin();
+
+    int code;
+
     ParserObject response_body;
 
-    response_body.contacts.user_id = code;
+    code = DeleteFriend(contacts.user_id, *it_m);
+    if (code != 0) {
+        response_body.error = "Error add contact";
+        return response_body;
+    }
 
     return response_body;
 }
 
-std::string AddUserContactsImpl::AddFriend(contacts_t& c) {
-    std::string friend_nickname;
-
-    //  friend_nickname.front() (TODO) : чекни обращение чтоб без костылей
-
-    for (auto f: c.list_contacts) {
-        friend_nickname = f;
-    }
-
-    user_t friend_;
-
-    friend_.nickname = friend_nickname;
-
-    std::string friend_id = SupportProcess::GetUserId(friend_);
-
-    char command[] = "INSERT INTO contacts VALUES ($1, $2)";
+int AddUserContactsImpl::AddFriend(const std::string& user_id_main, const std::string& user_id_friend) {
+    char command[] = "INSERT INTO contacts (fk_user_id, fk_friend_id) VALUES ($1, $2)";
 
     const char* arguments[2];
 
-    arguments[0] = c.user_id.c_str();
-    arguments[1] = friend_id.c_str();
+    arguments[0] = user_id_main.c_str();
+    arguments[1] = user_id_friend.c_str();
 
     PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 2, NULL, arguments, NULL, NULL, 0);
 
     if (PQresultStatus(res) != PGRES_COMMAND_OK) {
         printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+
         PQclear(res);
-        return "ERROR";
+
+        return ERROR;
     };
 
     PQclear(res);
 
-    return "OK";
+    return SUCCESS;
 };
 
-std::string RmUserContactsImpl::DeleteFriend(contacts_t& c) {
-    std::string friend_nickname;
-
-    for (auto f: c.list_contacts) {
-        friend_nickname = f;
-    };
-
-    user_t friend_;
-
-    friend_.nickname = friend_nickname;
-
-    std::string friend_id = SupportProcess::GetUserId(friend_);
-
+int RmUserContactsImpl::DeleteFriend(const std::string& user_id_main, const std::string& user_id_friend) {
     char command[] = "DELETE FROM list_contacts WHERE (fk_user_id = $1) AND (fk_friend_id = $2)";
 
     const char* arguments[2];
 
-    arguments[0] = c.user_id.c_str();
-    arguments[1] = friend_id.c_str();
+    arguments[0] = user_id_main.c_str();
+    arguments[1] = user_id_friend.c_str();
 
     PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 2, NULL, arguments, NULL, NULL, 0);
 
     if (PQresultStatus(res) != PGRES_COMMAND_OK) {
         printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+
         PQclear(res);
-        return "ERROR";
+
+        return ERROR;
     };
 
     PQclear(res);
 
-    return "OK";
+    return SUCCESS;
 };

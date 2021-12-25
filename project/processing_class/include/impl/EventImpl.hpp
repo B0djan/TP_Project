@@ -12,13 +12,13 @@ public:
 
 class WriteEventImpl : public Handler {
     std::string id;
-    int WriteEvent(event_t&);
+    int WriteEvent(const event_t&);
 public:
     ParserObject process(const ParserObject& request_body) override;
 };
 
 class RmEventImpl : public Handler {
-    int DeleteEvent(event_t&);
+    int DeleteEvent(const event_t&);
 public:
     ParserObject process(const ParserObject& request_body) override;
 

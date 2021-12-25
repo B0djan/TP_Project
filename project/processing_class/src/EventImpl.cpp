@@ -4,8 +4,6 @@
 
 ParserObject AddEventImpl::process(const ParserObject& request_body) {
     int code;
-    std::cout << request_body.events.size() << std::endl;
-
     std::set<event_t> :: iterator it = request_body.events.begin();
 
     code += AddEvent(*it);
@@ -73,17 +71,14 @@ ParserObject RmEventImpl::process(const ParserObject& request_body) {
 }
 
 int AddEventImpl::AddEvent(const event_t& e) {
-
     char command[] = "INSERT INTO event_m (event_date, time_begin, time_end, description, fk_user_id) VALUES ($1, $2, $3, $4, $5)";
-
-    const char* arguments[5];
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PROCESSING) {
         Debugging::print_event_t(e);
     }
 
-
+    const char* arguments[5];
     arguments[0] = e.date.c_str();
     arguments[1] = e.time_begin.c_str();
     arguments[2] = e.time_end.c_str();
@@ -94,7 +89,9 @@ int AddEventImpl::AddEvent(const event_t& e) {
 
     if (PQresultStatus(res) != PGRES_COMMAND_OK) {
         printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+
         PQclear(res);
+
         return ERROR;
     } else {
         return SUCCESS;
@@ -102,7 +99,7 @@ int AddEventImpl::AddEvent(const event_t& e) {
 }
 
 
-int WriteEventImpl::WriteEvent(event_t& e) {
+int WriteEventImpl::WriteEvent(const event_t& e) {
     char command[] = "UPDATE event_m "
                      "SET (event_date = $1, time_begin = $2, time_end = $3, description = $4)"
                      "WHERE (fk_user_id = $5)";
@@ -125,7 +122,9 @@ int WriteEventImpl::WriteEvent(event_t& e) {
 
     if (PQresultStatus(res) != PGRES_COMMAND_OK) {
         printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+
         PQclear(res);
+
         return ERROR;
     } else {
         return SUCCESS;
@@ -133,8 +132,7 @@ int WriteEventImpl::WriteEvent(event_t& e) {
 }
 
 
-int RmEventImpl::DeleteEvent(event_t& e){
-
+int RmEventImpl::DeleteEvent(const event_t& e){
     char command[] = "DELETE FROM event_m WHERE (event_date = $1) AND (time_begin = $2) AND (time_end = $3) AND (fk_user_id = $4)";
 
     const char* arguments[4];
@@ -154,7 +152,9 @@ int RmEventImpl::DeleteEvent(event_t& e){
 
     if (PQresultStatus(res) != PGRES_COMMAND_OK) {
         printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+
         PQclear(res);
+
         return ERROR;
     } else {
         return SUCCESS;

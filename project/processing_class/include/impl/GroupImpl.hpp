@@ -7,6 +7,7 @@
 #include <Handler.hpp>
 
 class AddGroupImpl : public Handler {
+    int CreateGroup(const std::string& title);
 public:
     ParserObject process(const ParserObject& request_body) override;
 };
@@ -17,9 +18,13 @@ public:
 };
 
 class RmGroupImpl : public Handler {
+    int DeleteAllMembers(const std::string& title);
+    int DeleteGroup(const std::string& title);
 public:
     ParserObject process(const ParserObject& request_body) override;
 };
+
+
 
 class AddUserImpl : public Handler {
 public:
@@ -40,6 +45,8 @@ class LeaveImpl : public Handler {
 public:
     ParserObject process(const ParserObject& request_body) override;
 };
+
+
 
 class SearchGroupImpl : public Handler {
 public:

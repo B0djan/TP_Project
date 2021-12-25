@@ -3,18 +3,15 @@
 ParserObject RegistrationImpl::process(const ParserObject& request_body) {
     user_t user = request_body.user;
 
-    int code = RegistrationTo(user);
-
     ParserObject response_body;
 
-    if (code == ERROR) {
-        response_body.error = "USER_COLLISION";
+    int code = RegistrationTo(user);
+    if (code != 0) {
+        response_body.error = "Error registration";
         return response_body;
     }
 
-    std::string id = SupportProcess::GetUserId(user);
-
-    response_body.user.user_id = id;
+    response_body.user.user_id = SupportProcess::GetUserId(user.nickname);
 
     return response_body;
 }
@@ -22,18 +19,15 @@ ParserObject RegistrationImpl::process(const ParserObject& request_body) {
 ParserObject AuthenticationImpl::process(const ParserObject& request_body) {
     user_t user = request_body.user;
 
-    int code = AutorizationTo(user);
-
     ParserObject response_body;
 
-    if (code == ERROR) {
-        response_body.error = "ERROR";
+    int code = AutorizationTo(user);
+    if (code != 0) {
+        response_body.error = "Error autorization";
         return response_body;
     }
 
-    std::string id = SupportProcess::GetUserId(user);
-
-    response_body.user.user_id = id;
+    response_body.user.user_id = SupportProcess::GetUserId(user.nickname);
 
     return response_body;
 }
