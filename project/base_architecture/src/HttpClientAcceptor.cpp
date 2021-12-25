@@ -64,7 +64,7 @@ void HttpClientAcceptor::HttpClientProcessor::get_start_line() {
                 std::string_view start_string(buf, size);
 
                 std::cout << buf << std::endl;
-                std::cout << "--------------THIS DATA FIRST HEADER------------" << std::endl;
+                std::cout << "--------------THIS DATA FIRST HEADER-------------" << std::endl;
                 std::cout << start_string << std::endl;
                 std::cout << "---------------------------------" << std::endl;
 
