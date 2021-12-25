@@ -39,7 +39,7 @@ std::string AddUserContactsImpl::AddFriend(contacts_t& c) {
 
     std::string friend_id = SupportProcess::GetUserId(friend_);
 
-    char command[] = "INSERT INTO list_contacts VALUES ($1, $2)";
+    char command[] = "INSERT INTO contacts VALUES ($1, $2)";
 
     const char* arguments[2];
 
