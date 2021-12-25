@@ -89,7 +89,8 @@ ParserObject RmGroupImpl::process(const ParserObject& request_body) {
 ParserObject SearchGroupImpl::process(const ParserObject& request_body) {
     ParserObject response_body;
 
-    std::set<group_t> :: iterator it_g = request_body.groups.begin();;
+    //  Отложили, данный функционал пока не нужен
+    /*std::set<group_t> :: iterator it_g = request_body.groups.begin();;
 
     char* check = SupportProcess::GetGroupId((*it_g).title);
     if (check == NULL) {
@@ -104,7 +105,7 @@ ParserObject SearchGroupImpl::process(const ParserObject& request_body) {
     group_t group;
     group.group_id = group_id;
 
-    response_body.groups.insert(group);
+    response_body.groups.insert(group);*/
 
     return response_body;
 }

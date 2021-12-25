@@ -74,8 +74,8 @@
 #define LEAVE                            "leave_group"
 //  input: nickname, title(group); output: OK
 
-#define SEARCH_GROUP                     "search_group"
-//  input: title; output: title; error:"null" (не найдена такая группа)
+//#define SEARCH_GROUP                     "search_group"
+//  input: title; output: title, members; error:"null" (не найдена такая группа)
 
 //  meetup in group
 #define SEARCH_FREE_TIME                 "get_meetup"
