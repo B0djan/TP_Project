@@ -12,6 +12,7 @@ ParserObject RegistrationImpl::process(const ParserObject& request_body) {
     }
 
     response_body.user.user_id = SupportProcess::GetUserId(user.nickname);
+    if (response_body.user.user_id == "Not found")
 
     return response_body;
 }
