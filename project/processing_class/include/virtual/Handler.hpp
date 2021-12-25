@@ -4,9 +4,9 @@
 
 #include <string>
 
-#include <ParserObject.hpp>
-
 #include <libpq-fe.h>
+
+#include <ParserObject.hpp>
 
 #include <PGConnection.hpp>
 
