@@ -10,13 +10,13 @@
 
 
 //  synchro
-#define GET_EVENTS                       "get_events"  //  completed
+#define GET_EVENTS                       "get_events"  //  in process
 //  input: user_id, date; output: set<event_t> [description, time_begin, time_end]
 
-#define GET_CONTACTS                     "get_friends"  //  completed
+#define GET_CONTACTS                     "get_friends"  //  in process
 //  input: user_id; output: set<string> [nickname]
 
-#define GET_GROUPS                       "get_groups"
+#define GET_GROUPS                       "get_groups"  // in process
 //  input: user_id; output: set<string> [title]
 
 
@@ -56,7 +56,7 @@
 #define ADD_GROUP                        "create_group"  //  completed + test
 //  input: title, nickname; output: OK
 
-#define WRITE_GROUP                      "change_group"
+#define WRITE_GROUP                      "change_group"  //  На будущее. Пока идентефикация по title
 //  input: title; output OK
 
 #define RM_GROUP                         "delete_group"  //  completed + test
@@ -68,13 +68,13 @@
 #define RM_USER                          "kick"  //  completed + test
 //  input: nickname, title(group); output: OK
 
-#define JOIN                             "join_group"
+#define JOIN                             "join_group"  //  В первом приближении похоже на add_user
 //  input: nickname, title(group); output: OK
 
-#define LEAVE                            "leave_group"
+#define LEAVE                            "leave_group"  //  В первом приближении похоже на rm_user
 //  input: nickname, title(group); output: OK
 
-//#define SEARCH_GROUP                     "search_group"
+//#define SEARCH_GROUP                     "search_group"   //  Данный фукнционал пока не нужен
 //  input: title; output: title, members; error:"null" (не найдена такая группа)
 
 //  meetup in group

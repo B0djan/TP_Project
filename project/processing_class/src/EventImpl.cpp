@@ -40,7 +40,8 @@ ParserObject WriteEventImpl::process(const ParserObject& request_body) {
 
     ParserObject response_body;
 
-    std::set<event_t> :: iterator it = request_body.events.begin();
+    //  Сложности с определением нового и старого
+    /*std::set<event_t> :: iterator it = request_body.events.begin();
 
     if (id.empty()) {
         char* check = SupportProcess::GetEventId(event);
@@ -59,7 +60,7 @@ ParserObject WriteEventImpl::process(const ParserObject& request_body) {
         response_body.error = "Error write event";
     }
 
-    id.clear();
+    id.clear();*/
 
 
     return response_body;
