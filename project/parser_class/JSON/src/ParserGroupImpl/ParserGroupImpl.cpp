@@ -11,33 +11,32 @@ ParserObject ParserGroupImpl::StrToObject(const std::string& parser_str) const {
 
     nlohmann::json value = j[it.key()];
 
-    std::set<group_t> groups;
+    group_t group;
 
-    for (auto& element : value)
     {
-        group_t group;
-
-        if (element.contains("group_id"))
+        if (value.contains("group_id"))
         {
             group.group_id = value["group_id"].get<std::string>();
         }
 
-        if (element.contains("title"))
+        if (value.contains("title"))
         {
             group.title = value["title"].get<std::string>();
         }
 
-        if (element.contains("members")) {
-            for (auto &element_in : element["members"])
+        if (value.contains("members")) {
+            for (auto &element_in : value["members"])
             {
                 group.members.insert(element_in.get<std::string>());
             }
         };
-
-        groups.insert(group);
     }
 
     ParserObject res;
+
+    std::set<group_t> groups;
+
+    groups.insert(group);
 
     res = groups;
 
