@@ -94,7 +94,6 @@ std::string ParserGroupImpl::ObjectToStr(const std::string type_response, const 
         if (!(group.members.empty()))
         {
             json_group["members"] = group.members;
-
         }
 
         json_groups.push_back(json_group);
