@@ -93,3 +93,9 @@ public:
     ParserObject& operator=(const std::set<meetup_t> other)         { this->meetups = other;             return *this; };
     ParserObject& operator=(const contacts_t other)                 { this->contacts = other;            return *this; };
 };
+
+//  Отладка
+namespace Debugging {
+    void print_event_t(const event_t& e);
+    void print_user_t(const user_t& u);
+}
