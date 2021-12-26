@@ -35,11 +35,11 @@ namespace DatabaseConnector {
     }
 
     namespace Synchro {
-        std::set<std::string> Contacts(const std::string& user_id);
+        std::set<std::string> GetContacts(const std::string& user_id);
 
-        std::set<std::string> Groups(const std::string& user_id);
+        std::set<std::string> GetGroups(const std::string& user_id);
 
-        std::set<event_t> Events(const event_t& e);
+        std::set<event_t> GetEvents(const event_t& e);
     }
 
     namespace RegAuth {

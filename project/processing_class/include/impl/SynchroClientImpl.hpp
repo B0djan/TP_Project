@@ -8,7 +8,7 @@ public:
 };
 
 class SynchroClientContactsImpl : public Handler {
-    std::set<std::string> GetContacts(contacts_t&);
+    std::set<std::string> GetContacts(const std::string&);
 public:
     ParserObject process(const ParserObject& request_body) override;
 };
