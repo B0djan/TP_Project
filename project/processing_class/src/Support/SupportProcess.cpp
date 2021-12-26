@@ -70,8 +70,32 @@ namespace SupportProcess {
 }
 
 namespace SupportPersonalData {
-    int CreateWriteAddress(const std::string& user_id) {
+    int CreateAddressData(const std::string& user_id) {
         char command[] = "INSERT INTO user_address (fk_address_user) "
+                         "VALUES ($1)";
+
+        const char* arguments[1];
+
+        arguments[0] = user_id.c_str();
+
+
+        PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 1, NULL, arguments, NULL, NULL, 0);
+
+        if (PQresultStatus(res) != PGRES_COMMAND_OK) {
+            printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+
+            PQclear(res);
+
+            return ERROR;
+        }
+
+        PQclear(res);
+
+        return SUCCESS;
+    }
+
+    int CreatePersonalData(const std::string& user_id) {
+        char command[] = "INSERT INTO personal_data (fk_address_user) "
                          "VALUES ($1)";
 
         const char* arguments[1];

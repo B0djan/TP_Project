@@ -39,7 +39,7 @@ namespace SupportProcessGroup {
 }
 
 namespace SupportPersonalData {
-    int AddMember(const std::string& member, const std::string);
+    int CreateAddressData(const std::string& user_id);
 
-    int RmMember(const std::string& member, const std::string);
+    int CreatePersonalData(const std::string& user_id);
 }
