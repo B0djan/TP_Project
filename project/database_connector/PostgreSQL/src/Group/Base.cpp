@@ -105,6 +105,7 @@ namespace DatabaseConnector {
             }
 
             group.title = PQgetvalue(res_t, 0, 0);
+            std::cout << "2" << std::endl;
 
             PQclear(res_t);
 
@@ -127,24 +128,31 @@ namespace DatabaseConnector {
             std::string buf;
             for (int i = 0; i < n_rows; i++) {
                 char *member = PQgetvalue(res, i, 0);
+                std::cout << "2" << std::endl;
 
                 buf = member;
 
-                char* check_user_id = DatabaseConnector::GetID::User(buf);
+                char* check_user_id = DatabaseConnector::GetNickname::User(buf);
                 if (check_user_id == NULL) {
                     group.group_id = "Error";
 
                     return group;
                 }
 
+                std::cout << "3" << std::endl;
+
                 group.members.insert(check_user_id);
 
                 Print_struct::_group_t(group);
             }
 
+            group.group_id = group_id;
+
+            std::cout << "1" << std::endl;
+
             //  Отладка
             if (GLOBAL_KEY_TEST_DATABASE_CON) {
-                Print_struct::from_client(group_id);
+                Print_struct::_group_t(group);
             }
 
 

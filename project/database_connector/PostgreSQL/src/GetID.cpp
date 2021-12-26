@@ -4,7 +4,7 @@
 
 namespace DatabaseConnector {
     namespace GetID {
-        char *User(const std::string &nickname) {
+        char *User(const std::string& nickname) {
             char return_id[] = "SELECT user_id FROM user_m WHERE (nickname = $1)";
 
             const char *arguments[1];
@@ -25,7 +25,7 @@ namespace DatabaseConnector {
             return id;
         }
 
-        char *Event(const event_t &e) {
+        char *Event(const event_t& e) {
             char return_id[] = "SELECT event_id FROM event_m WHERE (event_date = $1) AND (time_begin = $2) AND (time_end = $3) AND (description = $4)";
 
             const char *arguments[4];
@@ -50,7 +50,7 @@ namespace DatabaseConnector {
             return id;
         }
 
-        char *Group(const std::string &title) {
+        char *Group(const std::string& title) {
             char return_id[] = "SELECT group_id FROM group_m WHERE (title = $1)";
 
             const char *arguments[1];
@@ -71,6 +71,29 @@ namespace DatabaseConnector {
             if (GLOBAL_KEY_TEST_DATABASE_CON) {
                 Print_struct::from_client(title);
             }
+
+            return id;
+        }
+    }
+
+    namespace GetNickname {
+        char *User(const std::string& user_id) {
+            char return_id[] = "SELECT nickname FROM user_m WHERE (user_id = $1)";
+
+            const char *arguments[1];
+
+            arguments[0] = user_id.c_str();
+
+            PGresult *res = PQexecParams(PGConnection::GetConnection(), return_id, 1, NULL, arguments, NULL, NULL, 0);
+
+            if (PQresultStatus(res) != PGRES_TUPLES_OK) {
+                printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+                PQclear(res);
+            }
+
+            char *id = PQgetvalue(res, 0, 0);
+
+            PQclear(res);
 
             return id;
         }

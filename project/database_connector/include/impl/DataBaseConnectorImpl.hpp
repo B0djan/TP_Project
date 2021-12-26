@@ -3,7 +3,7 @@
 #define SUCCESS     0
 #define ERROR      -1
 
-#define GLOBAL_KEY_TEST_DATABASE_CON false
+#define GLOBAL_KEY_TEST_DATABASE_CON true
 
 namespace DatabaseConnector {
     namespace GetID {
@@ -12,6 +12,10 @@ namespace DatabaseConnector {
         char* Event(const std::string& user_id, const std::string& date);
 
         char* Group(const std::string& title);
+    }
+
+    namespace GetNickname {
+        char* User(const std::string& user_id);
     }
 
     namespace Group {
