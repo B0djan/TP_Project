@@ -1,11 +1,9 @@
 #include <WriteAddressDataImpl.hpp>
 
 ParserObject WriteAddressDataImpl::process(const ParserObject& request_body) {
-    address_data_t address = request_body.address_data;
-
     ParserObject response_body;
 
-    int code = ReWriteAddress(address);
+    int code = ReWriteAddress(request_body.address_data);
     if (code != 0) {
         response_body.error = "Error write address data";
 
@@ -16,11 +14,9 @@ ParserObject WriteAddressDataImpl::process(const ParserObject& request_body) {
 }
 
 ParserObject GetAddressDataImpl::process(const ParserObject& request_body) {
-    address_data_t address = request_body.address_data;
-
     ParserObject response_body;
 
-    address_data_t check_address = GetAddressData(address.user_id);
+    address_data_t check_address = GetAddressData(request_body.address_data.user_id);
     if (check_address.user_id == "Error") {
         response_body.error = "Error get address data";
 

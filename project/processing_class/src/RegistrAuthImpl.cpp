@@ -1,11 +1,9 @@
 #include <RegistrAuthImpl.hpp>
 
 ParserObject RegistrationImpl::process(const ParserObject& request_body) {
-    user_t user = request_body.user;
-
     ParserObject response_body;
 
-    int code = RegistrationTo(user);
+    int code = RegistrationTo(request_body.user);
     if (code != 0) {
         response_body.error = "Error registration";
 
@@ -25,11 +23,9 @@ ParserObject RegistrationImpl::process(const ParserObject& request_body) {
 }
 
 ParserObject AuthenticationImpl::process(const ParserObject& request_body) {
-    user_t user = request_body.user;
-
     ParserObject response_body;
 
-    int code = AutorizationTo(user);
+    int code = AutorizationTo(request_body.user);
     if (code != 0) {
         response_body.error = "Error autorization";
 
@@ -48,7 +44,7 @@ ParserObject AuthenticationImpl::process(const ParserObject& request_body) {
     return response_body;
 }
 
-int RegistrationImpl::RegistrationTo(user_t& r) {
+int RegistrationImpl::RegistrationTo(const user_t& r) {
     char check[] = "SELECT nickname, password FROM user_m WHERE (nickname = $1) AND (password = $2)";
 
     const char* arguments[2];
@@ -92,7 +88,7 @@ int RegistrationImpl::RegistrationTo(user_t& r) {
     return SUCCESS;
 }
 
-int AuthenticationImpl::AutorizationTo(user_t& r) {
+int AuthenticationImpl::AutorizationTo(const user_t& r) {
     char check[] = "SELECT nickname, password "
                     "FROM user_m WHERE (nickname = $1) AND (password = $2)";
 

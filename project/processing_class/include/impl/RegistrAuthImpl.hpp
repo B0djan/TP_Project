@@ -3,14 +3,14 @@
 #include <Handler.hpp>
 
 class RegistrationImpl : public Handler {
-    int RegistrationTo(user_t& r);
+    int RegistrationTo(const user_t&);
 public:
     RegistrationImpl() = default;
     ParserObject process(const ParserObject& request_body) override;
 };
 
 class AuthenticationImpl : public Handler {
-    int AutorizationTo(user_t& r);
+    int AutorizationTo(const user_t&);
 public:
     AuthenticationImpl() = default;
     ParserObject process(const ParserObject& request_body) override;
