@@ -95,24 +95,23 @@ public:
 };
 
 //  Отладка
-namespace Debugging {
-    void print_event_t(const event_t& e);
+namespace Print_struct {
+    void event_t(const event_t& e);
 
-    void print_meetup_t(const meetup_t& e);
+    void meetup_t(const meetup_t& e);
 
-    void print_user_t(const user_t& u);
+    void user_t(const user_t& u);
 
-    void print_contacts_t(const contacts_t& c);
+    void contacts_t(const contacts_t& c);
 
-    void print_group_t(const group_t& g);
+    void group_t(const group_t& g);
 
-    void print_from_client(const std::string& in);
+    void from_client(const std::string& in);
 
-    void print_from_processing(const std::string& in);
+    void from_processing(const std::string& in);
 
-    void print_personal_data_t(const personal_data_t& d);
+    void personal_data_t(const personal_data_t& d);
 
-    void print_address_data_t(const address_data_t& a);
-
-    bool check_null_address_data_t(const address_data_t& a);
+    void address_data_t(const address_data_t& a);
 }
+

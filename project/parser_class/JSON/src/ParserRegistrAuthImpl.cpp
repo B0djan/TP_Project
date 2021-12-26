@@ -31,8 +31,8 @@ ParserObject ParserRegistrAuthImpl::StrToObject(const std::string& parser_str) c
     res = user;
 
     if (GLOBAL_KEY_TEST_PARSER) {
-        Debugging::print_from_client(parser_str);
-        Debugging::print_user_t(user);
+        Print_struct::from_client(parser_str);
+        Print_struct::user_t(user);
     }
 
     return res;
@@ -74,8 +74,8 @@ std::string ParserRegistrAuthImpl::ObjectToStr(const std::string type_response, 
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
-        Debugging::print_user_t(user);
-        Debugging::print_from_processing(res);
+        Print_struct::user_t(user);
+        Print_struct::from_processing(res);
     }
 
     return res;

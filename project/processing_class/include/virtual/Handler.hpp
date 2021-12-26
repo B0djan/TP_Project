@@ -34,5 +34,12 @@ namespace SupportProcess {
 
 namespace SupportProcessGroup {
     int AddMember(const std::string& member, const std::string);
+
+    int RmMember(const std::string& member, const std::string);
+}
+
+namespace SupportPersonalData {
+    int AddMember(const std::string& member, const std::string);
+
     int RmMember(const std::string& member, const std::string);
 }

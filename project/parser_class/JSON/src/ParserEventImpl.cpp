@@ -55,9 +55,9 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
-        Debugging::print_from_client(parser_str);
+        Print_struct::from_client(parser_str);
         for (std::set<event_t>::iterator it = events.begin(); it != events.end(); ++it) {
-            Debugging::print_event_t(*it);
+            Print_struct::event_t(*it);
         }
     }
 
@@ -121,9 +121,9 @@ std::string ParserEventImpl::ObjectToStr(const std::string type_response, const 
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
         for (std::set<event_t>::iterator it = events.begin(); it != events.end(); ++it) {
-            Debugging::print_event_t(*it);
+            Print_struct::event_t(*it);
         }
-        Debugging::print_from_processing(res);
+        Print_struct::from_processing(res);
     }
 
     return res;

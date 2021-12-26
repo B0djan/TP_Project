@@ -1,45 +1,35 @@
 #include <WriteAddressDataImpl.hpp>
 
 ParserObject WriteAddressDataImpl::process(const ParserObject& request_body) {
+    address_data_t address = request_body.address_data;
+
     ParserObject response_body;
+
+    int code = ReWriteAddress(address);
+    if (code != 0) {
+        response_body.error = "Error write address data";
+
+        return response_body;
+    }
+
     return response_body;
 }
 
 ParserObject GetAddressDataImpl::process(const ParserObject& request_body) {
+    address_data_t address = request_body.address_data;
+
     ParserObject response_body;
+
+    address_data_t check_address = GetAddressData(address.user_id);
+    if (check_address.user_id == "Error") {
+        response_body.error = "Error get address data";
+
+        return response_body;
+    }
+
     return response_body;
 }
 
-
-int WriteAddressDataImpl::CreateWriteAddress(const address_data_t& a) {
-    char command[] = "INSERT INTO user_address (building, housing, street, city, district, index, country, fk_address_user) "
-                     "VALUES ($1, $2, $3, $4, $5, $6, $7, $8)";
-
-    const char* arguments[8];
-
-    arguments[0] = a.building.c_str();
-    arguments[1] = a.housing.c_str();
-    arguments[2] = a.street.c_str();
-    arguments[3] = a.city.c_str();
-    arguments[4] = a.district.c_str();
-    arguments[5] = a.index.c_str();
-    arguments[6] = a.country.c_str();
-    arguments[7] = a.user_id.c_str();
-
-    PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 8, NULL, arguments, NULL, NULL, 0);
-
-    if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-        printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
-
-        PQclear(res);
-
-        return ERROR;
-    }
-
-    PQclear(res);
-
-    return SUCCESS;
-}
 
 int WriteAddressDataImpl::ReWriteAddress(const address_data_t& a) {
     char command[] = "UPDATE user_address "
@@ -88,6 +78,8 @@ address_data_t GetAddressDataImpl::GetAddressData(const std::string &user_id) {
 
         PQclear(res);
 
+        Data.user_id = "Error";
+
         return Data;
     }
 
@@ -103,10 +95,3 @@ address_data_t GetAddressDataImpl::GetAddressData(const std::string &user_id) {
 
     return Data;
 }
-
-/*int GetAddressDataImpl::Check_address_data(const address_data_t& a) {
-    address_data_t Data = GetAddressData(a);
-    if (!Debugging::check_null_address_data_t(Data)) {
-
-    }
-}*/

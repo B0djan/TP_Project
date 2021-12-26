@@ -9,7 +9,7 @@ ParserObject AddGroupImpl::process(const ParserObject& request_body) {
     std::set<std::string> :: iterator it_m = (*it_g).members.begin();
 
     if (GLOBAL_KEY_TEST_PROCESSING) {
-        Debugging::print_group_t(*it_g);
+        Print_struct::group_t(*it_g);
     }
 
     code = CreateGroup((*it_g).title);
@@ -115,7 +115,7 @@ int AddGroupImpl::CreateGroup(const std::string& title) {
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PROCESSING) {
-        Debugging::print_from_client(title);
+        Print_struct::from_client(title);
     }
 
     const char* arguments[1];
@@ -142,7 +142,7 @@ int RmGroupImpl::DeleteGroup(const std::string &group_id) {
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PROCESSING) {
-        Debugging::print_from_client(group_id);
+        Print_struct::from_client(group_id);
     }
 
     const char* arguments[1];
@@ -169,7 +169,7 @@ int RmGroupImpl::DeleteAllMembers(const std::string &group_id) {
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PROCESSING) {
-        Debugging::print_from_client(group_id);
+        Print_struct::from_client(group_id);
     }
 
     const char* arguments[1];

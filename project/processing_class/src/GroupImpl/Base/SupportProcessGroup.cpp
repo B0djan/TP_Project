@@ -7,8 +7,8 @@ namespace SupportProcessGroup {
 
         //  Отладка
         if (GLOBAL_KEY_TEST_PROCESSING) {
-            Debugging::print_from_client(user_id);
-            Debugging::print_from_processing(group_id);
+            Print_struct::from_client(user_id);
+            Print_struct::from_processing(group_id);
         }
 
         const char *arguments[2];
@@ -36,8 +36,8 @@ namespace SupportProcessGroup {
 
         //  Отладка
         if (GLOBAL_KEY_TEST_PROCESSING) {
-            Debugging::print_from_client(user_id);
-            Debugging::print_from_processing(group_id);
+            Print_struct::from_client(user_id);
+            Print_struct::from_processing(group_id);
         }
 
         const char *arguments[2];

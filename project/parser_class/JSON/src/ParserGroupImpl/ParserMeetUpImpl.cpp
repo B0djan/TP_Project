@@ -54,9 +54,9 @@ ParserObject ParserMeetUpImpl::StrToObject(const std::string& parser_str) const 
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
-        Debugging::print_from_client(parser_str);
+        Print_struct::from_client(parser_str);
         for (std::set<meetup_t>::iterator it = meetups.begin(); it != meetups.end(); ++it) {
-            Debugging::print_meetup_t(*it);
+            Print_struct::meetup_t(*it);
         }
     }
 
@@ -117,9 +117,9 @@ std::string ParserMeetUpImpl::ObjectToStr(const std::string type_response, const
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
         for (std::set<meetup_t>::iterator it = meetups.begin(); it != meetups.end(); ++it) {
-            Debugging::print_meetup_t(*it);
+            Print_struct::meetup_t(*it);
         }
-        Debugging::print_from_processing(res);
+        Print_struct::from_processing(res);
     }
 
     return res;

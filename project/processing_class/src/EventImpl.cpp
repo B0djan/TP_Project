@@ -12,7 +12,7 @@ ParserObject AddEventImpl::process(const ParserObject& request_body) {
     //  Отладка
     if (GLOBAL_KEY_TEST_PROCESSING) {
         for (std::set<event_t>::iterator it = request_body.events.begin(); it != request_body.events.end(); ++it) {
-            Debugging::print_event_t(*it);
+            Print_struct::event_t(*it);
         }
     }
 
@@ -76,7 +76,7 @@ ParserObject RmEventImpl::process(const ParserObject& request_body) {
     //  Отладка
     if (GLOBAL_KEY_TEST_PROCESSING) {
         for (std::set<event_t>::iterator it = request_body.events.begin(); it != request_body.events.end(); ++it) {
-            Debugging::print_event_t(*it);
+            Print_struct::event_t(*it);
         }
     }
 
@@ -102,7 +102,7 @@ int AddEventImpl::AddEvent(const event_t& e) {
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PROCESSING) {
-        Debugging::print_event_t(e);
+        Print_struct::event_t(e);
     }
 
     const char* arguments[5];
@@ -137,7 +137,7 @@ int WriteEventImpl::WriteEvent(const event_t& e) {
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PROCESSING) {
-        Debugging::print_event_t(e);
+        Print_struct::event_t(e);
     }
 
     const char* arguments[5];
@@ -171,7 +171,7 @@ int RmEventImpl::DeleteEvent(const event_t& e){
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PROCESSING) {
-        Debugging::print_event_t(e);
+        Print_struct::event_t(e);
     }
 
     arguments[0] = e.event_name.c_str();
