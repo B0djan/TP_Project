@@ -7,6 +7,9 @@ RES: {"registration":{"user_id":"56"}}
 TEST add_event: {"add_event":[{"user_id":"56","event_name":"breakfast","event_date":"01-06-2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"}]}
 RES: {"add_event":"OK}
 
+TEST add_event: {"delete_event":[{"user_id":"56","event_name":"breakfast","event_date":"01-06-2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"}]}
+RES: {"add_event":"OK}
+
 TEST add_friend: {"add_friend":{"user_id":"56","list_contacts":["Ibragim"]}}
 RES: {"add_contact":OK}
 
