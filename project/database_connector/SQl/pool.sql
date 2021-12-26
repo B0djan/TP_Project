@@ -78,7 +78,7 @@ drop table user_address;
 
 drop table event_m;
 
-drop table list_contacts;
+drop table contacts;
 
 drop table group_members;
 
