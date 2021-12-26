@@ -37,6 +37,8 @@ ParserObject SynchroClientContactsImpl::process(const ParserObject& request_body
 
     response_body.contacts.list_contacts = friends;
 
+    Print_struct::_contacts_t(response_body.contacts);
+
     return response_body;
 }
 
