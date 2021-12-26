@@ -50,9 +50,9 @@ namespace DatabaseConnector {
 
             std::cout << "количество ивентов, полученное из базы: " << n_rows << std::endl;
 
-            for (int i = 0; i < n_rows; i++) {
-                event_t event;
+            event_t event;
 
+            for (int i = 0; i < n_rows; i++) {
                 event.event_name = PQgetvalue(res, i, 0);
                 event.time_begin = PQgetvalue(res, i, 1);
                 event.time_end = PQgetvalue(res, i, 2);

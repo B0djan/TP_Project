@@ -34,6 +34,8 @@ class SearchFreeTimeImpl : public Handler {
 
     std::vector<std::set<event_t>> GetData(const group_t& g,  const std::string& date);
 
+    std::set<meetup_t> SearchMeetUp();
+
     std::set<meetup_t> GetMeetUps(std::vector<std::set<event_t>>);
 
 public:

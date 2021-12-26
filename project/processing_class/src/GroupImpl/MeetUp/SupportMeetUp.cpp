@@ -115,7 +115,7 @@ std::set<meetup_t> SearchFreeTimeImpl::GetMeetUps(std::vector<std::set<event_t>>
             free_day.UnionDays(user_day);
         }
         free_day.InvertDay();
-        set<meetup> res = free_day.SeachMeetUps();
+        set<meetup> res = free_day.SearchMeetUps();
      */
     std::set<meetup_t> res;
     return res;
