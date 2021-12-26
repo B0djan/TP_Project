@@ -47,7 +47,7 @@ namespace DatabaseConnector {
 
         std::set<std::string> Groups(const std::string& user_id);
 
-        std::set<event_t> Events(const event_t& e);
+        std::set<event_t> Events(const std::string& user_id, const std::string& date);
     }
 
     namespace RegAuth {

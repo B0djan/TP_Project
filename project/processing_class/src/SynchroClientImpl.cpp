@@ -22,7 +22,7 @@ ParserObject SynchroClientEventsImpl::process(const ParserObject& request_body) 
     ParserObject response_body;
 
 
-    response_body.events = DatabaseConnector::Synchro::Events(params_search_events);
+    response_body.events = DatabaseConnector::Synchro::Events(user_id, date);
     if (response_body.events.empty()) {
         response_body.error = "Not found events";
 
