@@ -48,6 +48,8 @@ namespace DatabaseConnector {
 
             int n_rows = PQntuples(res);
 
+            std::cout << "количество ивентов, полученное из базы: " << n_rows << std::endl;
+
             for (int i = 0; i < n_rows; i++) {
                 event_t event;
 
@@ -57,6 +59,8 @@ namespace DatabaseConnector {
 
                 events.insert(event);
             }
+
+            std::cout << "количество ивентов, переданное в обработчик: " << events.size() << std::endl;
 
             return events;
         };

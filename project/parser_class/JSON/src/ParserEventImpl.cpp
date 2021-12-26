@@ -1,5 +1,7 @@
 #include <ParserEventImpl.hpp>
 
+#include <iostream>
+
 ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
     // {"add_event":{["user_id":"56","event_name":"breakfast","event_date":"01:06:2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"]}}
 
@@ -88,13 +90,15 @@ std::string ParserEventImpl::ObjectToStr(const std::string type_response, const 
 
     std::set<event_t> events = other.events;
 
-    nlohmann::json json_events;
+    std::cout << "столько ивентов было получено из обработичка: " << events.size() << std::endl; 
 
     if (events.empty()) {
         j[type_response] = "Not foud events";
         res = j.dump();
         return res;
     }
+
+    nlohmann::json json_events;
 
     for (auto& event: events) 
     {
