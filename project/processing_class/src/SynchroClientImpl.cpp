@@ -16,9 +16,14 @@ ParserObject SynchroClientEventsImpl::process(const ParserObject& request_body) 
 
     std::cout << "event's date :" << date << std::endl;
 
+    std::cout << "если значения пустые - не произошло "
+    "присвоения значений итератору. SynhroClientImpl" << std::endl;
+
     //
 
     ParserObject response_body;
+
+    // ТЫ ВЫШЕЛ ЗДЕСЬ, СУКА!
 
     response_body.events = DatabaseConnector::Synchro::Events(params_search_events);
     if (response_body.events.empty()) {
@@ -26,6 +31,18 @@ ParserObject SynchroClientEventsImpl::process(const ParserObject& request_body) 
 
         return response_body;
     }
+
+    // отладка
+
+    for (auto e: response_body.events) {
+        std::cout << "event_name:" << e.event_name << std::endl;
+        std::cout << "time_begin" << e.time_begin << std::endl;
+        std::cout << "time_end" << e.time_end << std::endl;
+    }
+
+    std::cout << "Если строки пустые - то response не получил ничего от Synhro::Events" <<std::endl;
+
+    //
 
     return response_body;
 }
