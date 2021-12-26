@@ -3,7 +3,6 @@
 CREATE TABLE user_m
 (
 	user_id bigserial PRIMARY KEY NOT NULL,
-	email varchar(63),
 	password varchar(63) NOT NULL,
 	nickname varchar(63) NOT NULL
 );
@@ -12,6 +11,7 @@ CREATE TABLE personal_data
 (
 	first_name varchar(63),
 	last_name varchar(63),
+	email varchar(63),
 	age int,
 	phone_number varchar(20),
 	status int,
