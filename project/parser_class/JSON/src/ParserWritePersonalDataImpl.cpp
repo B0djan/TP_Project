@@ -41,7 +41,7 @@ ParserObject ParserWritePersonalDataImpl::StrToObject(const std::string& parser_
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
         Print_struct::from_client(parser_str);
-        Print_struct::personal_data_t(personal_data);
+        Print_struct::_personal_data_t(personal_data);
     }
 
     return res;
@@ -94,7 +94,7 @@ std::string ParserWritePersonalDataImpl::ObjectToStr(const std::string type_resp
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
-        Print_struct::personal_data_t(personal_data);
+        Print_struct::_personal_data_t(personal_data);
         Print_struct::from_processing(res);
     }
 

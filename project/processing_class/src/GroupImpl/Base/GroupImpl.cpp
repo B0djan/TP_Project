@@ -9,7 +9,7 @@ ParserObject AddGroupImpl::process(const ParserObject& request_body) {
     std::set<std::string> :: iterator it_m = (*it_g).members.begin();
 
     if (GLOBAL_KEY_TEST_PROCESSING) {
-        Print_struct::group_t(*it_g);
+        Print_struct::_group_t(*it_g);
     }
 
     code = CreateGroup((*it_g).title);

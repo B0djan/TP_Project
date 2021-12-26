@@ -96,22 +96,22 @@ public:
 
 //  Отладка
 namespace Print_struct {
-    void event_t(const event_t& e);
+    void _event_t(const event_t& e);
 
-    void meetup_t(const meetup_t& e);
+    void _meetup_t(const meetup_t& e);
 
-    void user_t(const user_t& u);
+    void _user_t(const user_t& u);
 
-    void contacts_t(const contacts_t& c);
+    void _contacts_t(const contacts_t& c);
 
-    void group_t(const group_t& g);
+    void _group_t(const group_t& g);
 
     void from_client(const std::string& in);
 
     void from_processing(const std::string& in);
 
-    void personal_data_t(const personal_data_t& d);
+    void _personal_data_t(const personal_data_t& d);
 
-    void address_data_t(const address_data_t& a);
+    void _address_data_t(const address_data_t& a);
 }
 
