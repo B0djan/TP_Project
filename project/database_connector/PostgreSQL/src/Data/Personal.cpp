@@ -6,7 +6,7 @@ namespace DatabaseConnector {
     namespace Data {
         namespace Personal {
             int CreateNull(const std::string& user_id) {
-                char command[] = "INSERT INTO personal_data (fk_address_user) "
+                char command[] = "INSERT INTO personal_data (fk_data_user) "
                                  "VALUES ($1)";
 
                 const char* arguments[1];
@@ -31,10 +31,10 @@ namespace DatabaseConnector {
 
             int ReWrite(const personal_data_t &d) {
                 char command[] = "UPDATE user_address "
-                                 "SET (building = $1, housing = $2, housing = $3, city = $4, district = $5, index = $6, country = $7)"
+                                 "SET (building = $1, housing = $2, housing = $3, city = $4, district = $5, index = $6, country = $7, email = $8)"
                                  "WHERE (fk_address_user = $8)";
 
-                const char *arguments[8];
+                const char *arguments[9];
 
                 arguments[0] = d.first_name.c_str();
                 arguments[1] = d.surname.c_str();
@@ -44,8 +44,9 @@ namespace DatabaseConnector {
                 arguments[5] = d.label.c_str();
                 arguments[6] = d.description.c_str();
                 arguments[7] = d.user_id.c_str();
+                arguments[8] = d.email.c_str();
 
-                PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 8, NULL, arguments, NULL, NULL, 0);
+                PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 9, NULL, arguments, NULL, NULL, 0);
 
                 if (PQresultStatus(res) != PGRES_COMMAND_OK) {
                     printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
@@ -63,7 +64,7 @@ namespace DatabaseConnector {
             personal_data_t Get(const std::string &user_id) {
                 personal_data_t Data;
 
-                char command[] = "SELECT first_name, last_name, age, phone_number, status, label, description FROM personal_data WHERE fk_data_user = $1";
+                char command[] = "SELECT first_name, last_name, age, phone_number, status, label, description, email FROM personal_data WHERE fk_data_user = $1";
 
                 const char *arguments[1];
 
@@ -88,6 +89,7 @@ namespace DatabaseConnector {
                 Data.status = PQgetvalue(res, 0, 4);
                 Data.label = PQgetvalue(res, 0, 5);
                 Data.description = PQgetvalue(res, 0, 6);
+                Data.email = PQgetvalue(res, 0, 7);
 
                 PQclear(res);
 

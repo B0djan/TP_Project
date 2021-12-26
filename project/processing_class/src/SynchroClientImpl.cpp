@@ -3,17 +3,9 @@
 ParserObject SynchroClientEventsImpl::process(const ParserObject& request_body) {
     std::set<event_t>::iterator it = request_body.events.begin();
 
-    event_t params_search_events = *it;
-
-    std::string user_id = params_search_events.user_id;
-
-    std::string date = params_search_events.date;
-
-    Print_struct::_event_t(*it);
-
     ParserObject response_body;
 
-    response_body.events = DatabaseConnector::Synchro::Events(user_id, date);
+    response_body.events = DatabaseConnector::Synchro::Events((*it).user_id, (*it).date);
     if (response_body.events.empty()) {
         response_body.error = "Not found events";
 
@@ -26,8 +18,6 @@ ParserObject SynchroClientEventsImpl::process(const ParserObject& request_body) 
 ParserObject SynchroClientContactsImpl::process(const ParserObject& request_body) {
     ParserObject response_body;
 
-    Print_struct::_contacts_t(request_body.contacts);
-
     std::set<std::string> friends = DatabaseConnector::Synchro::Contacts(request_body.contacts.user_id);
     if (friends.empty()) {
         response_body.error = "Not found contacts";
@@ -37,18 +27,16 @@ ParserObject SynchroClientContactsImpl::process(const ParserObject& request_body
 
     response_body.contacts.list_contacts = friends;
 
-    Print_struct::_contacts_t(response_body.contacts);
-
     return response_body;
 }
 
 ParserObject SynchroClientGroupsImpl::process(const ParserObject& request_body) {
     ParserObject response_body;
 
-    std::set<group_t> :: iterator it_g = response_body.groups.begin();
-    std::set<std::string> :: iterator it_m = (*it_g).members.begin();
+    std::set<group_t>::iterator it_g = request_body.groups.begin();
+    std::set<std::string>::iterator it_m = (*it_g).members.begin();;
 
-    char* check_user_id = DatabaseConnector::GetID::User(*it_m);
+    char *check_user_id = DatabaseConnector::GetID::User(*it_m);
     if (check_user_id == NULL) {
         response_body.error = "Error get user id";
 
@@ -65,7 +53,7 @@ ParserObject SynchroClientGroupsImpl::process(const ParserObject& request_body) 
     }
 
     for (auto ng: names_groups) {
-        group_t group { .title = ng };
+        group_t group {.title = ng};
 
         response_body.groups.insert(group);
     };

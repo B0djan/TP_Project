@@ -32,14 +32,14 @@ ParserObject AddEventImpl::process(const ParserObject& request_body) {
 }
 
 ParserObject WriteEventImpl::process(const ParserObject& request_body) {
-    int code;
+    /*int code;
 
     event_t event;
 
     ParserObject response_body;
 
     //  Сложности с определением нового и старого
-    /*std::set<event_t> :: iterator it = request_body.events.begin();
+    std::set<event_t> :: iterator it = request_body.events.begin();
 
     if (id.empty()) {
         char* check = GetID::Event(event);
@@ -60,6 +60,7 @@ ParserObject WriteEventImpl::process(const ParserObject& request_body) {
 
     id.clear();*/
 
+    ParserObject response_body;
 
     return response_body;
 }

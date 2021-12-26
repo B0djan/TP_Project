@@ -52,12 +52,19 @@ std::string ParserWriteAddressDataImpl::ObjectToStr(const std::string type_respo
     // {"registration":{"user_id":"value"}} TODO: Отредачить
 
     nlohmann::json j;
+
     std::string res;
 
-    if (!other.error.empty()) {
-        j[type_response] = other.error;
+    if (type_response == WRITE_ADDRESS) {
+        if (other.error.empty()) {
+            j[type_response] = "OK";
 
-        res = j.dump();
+            res = j.dump();
+        } else  {
+            j[type_response] = other.error;
+
+            res = j.dump();
+        }
 
         return res;
     }

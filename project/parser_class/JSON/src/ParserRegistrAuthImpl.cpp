@@ -17,9 +17,6 @@ ParserObject ParserRegistrAuthImpl::StrToObject(const std::string& parser_str) c
     if (value.contains("user_id"))
         user.user_id = value["user_id"].get<std::string>();
 
-    if (value.contains("email"))
-        user.email = value["email"].get<std::string>();
-
     if (value.contains("password"))
         user.password = value["password"].get<std::string>();
 
@@ -58,9 +55,6 @@ std::string ParserRegistrAuthImpl::ObjectToStr(const std::string type_response, 
 
     if (!user.user_id.empty())
         value["user_id"] = user.user_id;
-
-    if (!user.email.empty())
-        value["email"] = user.email;
 
     if (!user.password.empty())
         value["password"] = user.password;

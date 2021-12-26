@@ -16,17 +16,23 @@
 #define GET_CONTACTS                     "get_contacts"  //  in process + test
 //  input: user_id; output: set<string> [nickname]
 
-#define GET_GROUPS                       "get_groups"  // in process
+#define GET_GROUPS                       "get_groups"  // in process + test
 //  input: user_id; output: set<string> [title]
 
 
 
-                            //  personal data  //  in process
-#define WRITE_PERSONAL_DATA              "..."
+                            //  personal data
+#define WRITE_PERSONAL_DATA              "write_personal"  //  in process
+//  input: data...; output: OK
+
+#define GET_PERSONAL_DATA                "get_personal"  //  in process
 //  input: data...; output: OK
 
                             //  user address
-#define WRITE_ADDRESS                    "..."  //  in process
+#define WRITE_ADDRESS                    "write_address"  //  in process
+//  input: data...; output: OK
+
+#define GET_ADDRESS                    "get_address"  //  in process
 //  input: data...; output: OK
 
 
@@ -87,6 +93,5 @@
 /*
 Идеи по функционалу:
  - match (голосование по времени встречи)
- - id на получение данных из базы (синхро) должны передаваться через user_t
  - в Table event_m добавить поле event_name
 */

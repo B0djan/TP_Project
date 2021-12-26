@@ -74,7 +74,7 @@ std::string ParserGroupImpl::ObjectToStr(const std::string type_response, const 
     nlohmann::json json_groups;
 
     if (groups.empty()) {
-        j[type_response] = "Not found group, parser";
+        j[type_response] = "Not found group";
 
         res = j.dump();
 

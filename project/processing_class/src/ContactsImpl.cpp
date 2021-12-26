@@ -37,6 +37,7 @@ ParserObject RmUserContactsImpl::process(const ParserObject& request_body) {
                                               DatabaseConnector::GetID::User(*it_m));
     if (code != 0) {
         response_body.error = "Error delete contact";
+
         return response_body;
     }
 

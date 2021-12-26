@@ -81,15 +81,14 @@ namespace Print_struct {
 
     void _user_t(const user_t& u) {
         std::cout << "user_id           :---: " << u.user_id << std::endl;
-        std::cout << "email             :---: " << u.email << std::endl;
         std::cout << "password          :---: " << u.password << std::endl;
         std::cout << "nickname          :---: " << u.nickname << std::endl;
     }
 
     void _contacts_t(const contacts_t& c) {
-        std::cout << "user_id      :---: " << c.user_id << std::endl;
+        std::cout << "user_id          :---: " << c.user_id << std::endl;
         for (std::set<std::string>::iterator it = c.list_contacts.begin(); it != c.list_contacts.end(); ++it) {
-            std::cout << "contacts :---: " << *it << std::endl;
+            std::cout << "contacts :---:         " << *it << std::endl;
         }
     }
 
@@ -97,13 +96,14 @@ namespace Print_struct {
         std::cout << "group_id         :---: " << g.group_id << std::endl;
         std::cout << "title            :---: " << g.title << std::endl;
         for (std::set<std::string>::iterator it = g.members.begin(); it != g.members.end(); ++it) {
-            std::cout << "member          :---: " << *it << std::endl;
+            std::cout << "member           :---: " << *it << std::endl;
         }
     }
 
     void _personal_data_t(const personal_data_t& d) {
         std::cout << "user_id          :---: " << d.user_id << std::endl;
         std::cout << "first_name       :---: " << d.first_name << std::endl;
+        std::cout << "email            :---: " << d.email << std::endl;
         std::cout << "surname          :---: " << d.surname << std::endl;
         std::cout << "age              :---: " << d.age << std::endl;
         std::cout << "phone_number     :---: " << d.phone_number << std::endl;

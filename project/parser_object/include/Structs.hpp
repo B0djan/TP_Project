@@ -6,7 +6,6 @@
 
 typedef struct {
     std::string user_id  = "";
-    std::string email    = "";
     std::string password = "";
     std::string nickname = "";
 } user_t;
@@ -25,6 +24,7 @@ typedef struct {
 typedef struct {
     std::string user_id      = "";
     std::string first_name   = "";
+    std::string email        = "";
     std::string surname      = "";
     std::string age          = "";
     std::string phone_number = "";
