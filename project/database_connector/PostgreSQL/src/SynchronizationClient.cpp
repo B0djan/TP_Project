@@ -2,6 +2,8 @@
 
 #include <DataBaseConnectorImpl.hpp>
 
+#include <iostream>
+
 namespace DatabaseConnector {
     namespace Synchro {
         std::set<std::string> Contacts(const std::string& user_id) {
@@ -14,6 +16,8 @@ namespace DatabaseConnector {
             const char *arguments[1];
 
             arguments[0] = user_id.c_str();
+
+            std::cout << "Полученный обработчиком id: " << arguments[0] << std::endl;
 
             PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 1, NULL, arguments, NULL, NULL, 0);
 
@@ -30,11 +34,15 @@ namespace DatabaseConnector {
 
             int n_rows = PQnfields(res);
 
+            std::cout << "Количество строк (друзей), которые нашел SQL: " << n_rows << std::endl;
+
             for (int i = 0; i < n_rows; i++) {
                 char *user_friend = PQgetvalue(res, i, 1);
 
                 friends.insert(user_friend);
             }
+
+            std::cout << "Количество строк (друзей), добавленных в множество: " << friends.size() << std::endl;
 
             PQclear(res);
 

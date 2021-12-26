@@ -1,5 +1,7 @@
 #include <ParserContactsImpl.hpp>
 
+#include <iostream>
+
 ParserObject ParserUserContactsImpl::StrToObject(const std::string& parser_str) const {
     //  {"add_friend":{"user_id":"56","list_contacts":["Ibragim", "Misha"]}}
 
@@ -19,6 +21,8 @@ ParserObject ParserUserContactsImpl::StrToObject(const std::string& parser_str) 
         for (auto& element : value["list_contacts"])
         contacts.list_contacts.insert(element.get<std::string>());
     }
+
+    std::cout << "прешедший с клиента id: " << contacts.user_id << std::endl;
 
     ParserObject res;
 
