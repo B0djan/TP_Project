@@ -2,6 +2,10 @@
 
 #include <MeetUp.hpp>
 
+#define NUMBER_INTERVAL 12
+
+enum { BITS = sizeof(unsigned char) };
+
 // support class Duration
 duration_t SearchFreeTimeImpl::get_format(const std::string &time) {
     std::stringstream stream(time);
@@ -34,29 +38,69 @@ unsigned char* SearchFreeTimeImpl::Day::GetStorage() const {
 }
 
 void SearchFreeTimeImpl::Day::UnionDays(Day& added_day) {
-
+    for (unsigned char i = 0; i < NUMBER_INTERVAL; i ++) {
+        storage[i] |= added_day.GetStorage()[i];
+    };
 }
 
 void SearchFreeTimeImpl::Day::InvertDay(Day& busy_day) {
-
+    for (unsigned char i = 0; i < NUMBER_INTERVAL; i ++) {
+        storage[i] = ~busy_day.GetStorage()[i];
+    };
 }
 
-void SearchFreeTimeImpl::Day::InsertEvent(duration_t& begin_time, duration_t& end_time) {
+/*void SearchFreeTimeImpl::Day::InsertEvent(duration_t& begin_time, duration_t& end_time) {
+    unsigned char begin = begin_time.GetTimeInterval();
+    unsigned char end = end_time.GetTimeInterval();
 
+    while (begin < end) {
+        storage[begin / BITS] |= ((unsigned char)1 << (begin % BITS));
+        begin ++;
+    }
 }
 
 void SearchFreeTimeImpl::Day::EraseEvent(duration_t& begin_time, duration_t& end_time) {
+    char begin = begin_time.GetTimeInterval();
+    char end = end_time.GetTimeInterval();
 
-}
+    while (begin < end) {
+        storage[begin / BITS] &= ~((unsigned char)1 << (begin % BITS));
+        begin++;
+    }
+}*/
 
 bool SearchFreeTimeImpl::Day::IsFree(duration_t& begin_time, duration_t& end_time) {
+    // bool Day::IsFree(Duration& begin_time, Duration& end_time) {
+
+    //     char begin = begin_time.GetTimeInterval();
+    //     char end = end_time.GetTimeInterval();
+
+    //     bool answer = true;
+
+    //     while (begin < end) {
+    //         answer = bool(storage[begin / BITS] >> (begin % BITS) & 1);
+    //     }
+    //     return answer;
+    //}
     return true;
 }
 
 
 //  DatabaseConnector methods
-std::vector<std::set<event_t>> SearchFreeTimeImpl::GetData(group_t) {
+std::vector<std::set<event_t>> SearchFreeTimeImpl::GetData(const group_t& g, const std::string& date) {
     std::vector<std::set<event_t>> res;
+
+    for (std::set<std::string> :: iterator it_m = g.members.begin(); it_m != g.members.end(); it_m++) {
+        char* check_user_id = DatabaseConnector::GetID::User(*it_m);
+        if (check_user_id == NULL) {
+            return res;
+        }
+
+        std::string user_id = check_user_id;
+
+        //res.push_back(DatabaseConnector::Synchro::Events(user_id));
+    }
+
     return res;
 }
 

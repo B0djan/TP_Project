@@ -32,7 +32,7 @@ class SearchFreeTimeImpl : public Handler {
         bool IsFree(duration_t& begin_time, duration_t& end_time);
     };
 
-    std::vector<std::set<event_t>> GetData(group_t);
+    std::vector<std::set<event_t>> GetData(const group_t& g,  const std::string& date);
 
     std::set<meetup_t> GetMeetUps(std::vector<std::set<event_t>>);
 
