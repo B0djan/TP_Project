@@ -57,6 +57,8 @@ namespace DatabaseConnector {
                 event.time_begin = PQgetvalue(res, i, 1);
                 event.time_end = PQgetvalue(res, i, 2);
 
+                Print_struct::_event_t(event);
+                
                 events.insert(event);
             }
 
