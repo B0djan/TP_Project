@@ -31,13 +31,13 @@ namespace DatabaseConnector {
             return friends;
         };
 
-        std::set<event_t> Events(const event_t& event) {
+        std::set<event_t> Events(const std::string& user_id, const std::string& date) {
             char command[] = "SELECT description, time_begin, time_end FROM event_m WHERE (event_date = $1) AND (fk_user_id = $2)";
 
             const char* arguments[2];
 
-            arguments[0] = event.date.c_str();
-            arguments[1] = event.user_id.c_str();
+            arguments[0] = date.c_str();
+            arguments[1] = user_id.c_str();
 
             PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 2, NULL, arguments, NULL, NULL, 0);
 
