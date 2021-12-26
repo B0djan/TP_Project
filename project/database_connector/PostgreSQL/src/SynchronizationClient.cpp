@@ -72,7 +72,7 @@ namespace DatabaseConnector {
             if (PQgetisnull(res, 0, 1))
                 return events;
 
-            int n_rows = PQntuples(res);
+            int n_rows = PQnfields(res);
 
             event_t event;
 
