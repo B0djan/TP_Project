@@ -105,8 +105,14 @@ LEFT JOIN user_m
 ON list_contacts.fk_friend_id = user_m.user_id
 WHERE fk_user_id = 10;
 
-
 SELECT fk_user_id, title
 FROM group_members 
 LEFT JOIN group_m 
 ON fk_group_id = group_id
+WHERE fk_user_id = 56
+
+SELECT fk_user_id, nickname
+FROM contacts
+LEFT JOIN user_m
+ON fk_friend_id = user_id
+WHERE fk_user_id = 56
