@@ -36,35 +36,30 @@ ParserObject ParserUserContactsImpl::StrToObject(const std::string& parser_str) 
 std::string ParserUserContactsImpl::ObjectToStr(const std::string type_response, const ParserObject& other) const {
     // {"registration":{"user_id":"value"}} TODO: Отредачить
 
-    nlohmann::json j;
     std::string res;
+
+    nlohmann::json j;
 
     if (type_response == ADD_USER_CONTACTS || type_response == RM_USER_CONTACTS) {
         if (other.error.empty()) {
             j[type_response] = "OK";
-
             res = j.dump();
         } else  {
             j[type_response] = other.error;
-
             res = j.dump();
         }
-
         return res;
     }
 
     contacts_t contacts = other.contacts;
 
-    nlohmann::json value;
-
-    if (!contacts.user_id.empty())
-        value["user_id"] = contacts.user_id;
-
-    if (!contacts.list_contacts.empty())
-        value["list_contacts"] = contacts.list_contacts;
-
-    j[type_response] = value;
-
+    if (contacts.list_contacts.empty()) {
+        j[type_response] = "Not found contacts";
+        res = j.dump();
+        return res;
+    }
+    
+    j[type_response] = contacts.list_contacts;
     res = j.dump();
 
     //  Отладка

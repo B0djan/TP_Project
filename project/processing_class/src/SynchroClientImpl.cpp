@@ -10,15 +10,6 @@ ParserObject SynchroClientEventsImpl::process(const ParserObject& request_body) 
 
     std::string date = params_search_events.date;
 
-    // отладка
-
-    std::cout << "user id: " << user_id << std::endl;
-
-    std::cout << "event's date :" << date << std::endl;
-
-    std::cout << "если значения пустые - не произошло "
-    "присвоения значений итератору. SynhroClientImpl" << std::endl;
-
     ParserObject response_body;
 
 
@@ -29,23 +20,13 @@ ParserObject SynchroClientEventsImpl::process(const ParserObject& request_body) 
         return response_body;
     }
 
-    // отладка
-
-    for (auto e: response_body.events) {
-        Print_struct::_event_t(e);
-    }
-
-    std::cout << "Если строки пустые - то response не получил ничего от Synhro::Events" <<std::endl;
-
-    //
-
     return response_body;
 }
 
 ParserObject SynchroClientContactsImpl::process(const ParserObject& request_body) {
     ParserObject response_body;
 
-    std::set<std::string> friends = DatabaseConnector::Synchro::Contacts(request_body.user.user_id);
+    std::set<std::string> friends = DatabaseConnector::Synchro::Contacts(request_body.contacts.user_id);
     if (friends.empty()) {
         response_body.error = "Not found contacts";
         
