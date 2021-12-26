@@ -9,7 +9,7 @@ ParserObject SynchroClientEventsImpl::process(const ParserObject& request_body) 
 
     response_body.events = DatabaseConnector::Synchro::GetEvents(params_search_events);
     if (response_body.events.empty()) {
-        response_body.error = "Error synchronization events";
+        response_body.error = "Not found events";
 
         return response_body;
     }
