@@ -1,9 +1,22 @@
 #include <SynchroClientImpl.hpp>
 
 ParserObject SynchroClientEventsImpl::process(const ParserObject& request_body) {
+
     std::set<event_t>::iterator it = request_body.events.begin();
 
     event_t params_search_events = *it;
+
+    std::string user_id = params_search_events.user_id;
+
+    std::string date = params_search_events.date;
+
+    // отладка
+
+    std::cout << "user id: " << user_id << std::endl;
+
+    std::cout << "event's date :" << date << std::endl;
+
+    //
 
     ParserObject response_body;
 
