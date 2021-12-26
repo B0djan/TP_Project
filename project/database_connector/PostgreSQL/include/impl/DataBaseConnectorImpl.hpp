@@ -9,7 +9,7 @@ namespace DatabaseConnector {
     namespace GetID {
         char* User(const std::string& nickname);
 
-        char* Event(const event_t& e);
+        char* Event(const std::string& user_id, const std::string& date);
 
         char* Group(const std::string& title);
     }
