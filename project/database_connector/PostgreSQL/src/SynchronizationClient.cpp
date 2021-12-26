@@ -28,11 +28,15 @@ namespace DatabaseConnector {
                 friends.insert(Friend);
             }
 
+            PQclear(res);
+
             return friends;
         };
 
         std::set<event_t> Events(const std::string& user_id, const std::string& date) {
-            char command[] = "SELECT description, time_begin, time_end FROM event_m WHERE (event_date = $1) AND (fk_user_id = $2)";
+            char command[] = "SELECT description, time_begin, time_end "
+                             "FROM event_m "
+                             "WHERE (event_date = $1) AND (fk_user_id = $2)";
 
             const char* arguments[2];
 
@@ -48,8 +52,6 @@ namespace DatabaseConnector {
 
             int n_rows = PQntuples(res);
 
-            std::cout << "количество ивентов, полученное из базы: " << n_rows << std::endl;
-
             event_t event;
 
             for (int i = 0; i < n_rows; i++) {
@@ -62,7 +64,7 @@ namespace DatabaseConnector {
                 events.insert(event);
             }
 
-            std::cout << "количество ивентов, переданное в обработчик: " << events.size() << std::endl;
+            PQclear(res);
 
             return events;
         };
@@ -93,6 +95,8 @@ namespace DatabaseConnector {
 
                 groups.insert(Group_name);
             }
+
+            PQclear(res);
 
             return groups;
         }

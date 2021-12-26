@@ -11,7 +11,7 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
 
     nlohmann::json::iterator it = j.begin();
 
-    nlohmann::json value = j[it.key()];  // []
+    nlohmann::json value = j[it.key()];
 
     std::set<event_t> events;
 
@@ -68,8 +68,6 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
 }
 
 std::string ParserEventImpl::ObjectToStr(const std::string type_response, const ParserObject& other) const {
-    // {"add_event":{["user_id":"56","event_name":"breakfast","event_date":"01:06:2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"]}} TODO: Отредачить
-
     nlohmann::json j;
 
     std::string res;
@@ -89,8 +87,6 @@ std::string ParserEventImpl::ObjectToStr(const std::string type_response, const 
     }
 
     std::set<event_t> events = other.events;
-
-    std::cout << "столько ивентов было получено из обработичка: " << events.size() << std::endl; 
 
     if (events.empty()) {
         j[type_response] = "Not foud events";
