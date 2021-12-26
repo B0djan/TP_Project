@@ -31,11 +31,22 @@ RES: {"kick":OK}
 TEST get_events: {"get_events":[{"user_id":"56", "event_date":yyyy-mm-dd"}]}
 RES {"get_events":[{"description":"breakfast", "time_begin":"10:00", "time_end":"10:45"}, {"description":"lansh", "time_begin":"19:00", "time_end":"20:00"}]}
 
-TEST get_groups: {"get_groups":{members":["Sasha"]}}
-RES {"get_groups":[{"title":"Texnosrac"},{"title":"Texnosrac1"},{"title":"Texnosrac12"},{"title":"Texnosrac124"}]}
-
 TEST get_contacts: {"get_contacts":{"user_id":"56"}}
 RES {"get_contacts":["Misha","Maxim"]}
 
+TEST get_groups: {"get_groups":{members":["Sasha"]}}
+RES {"get_groups":[{"title":"Texnosrac"},{"title":"Texnosrac1"},{"title":"Texnosrac12"},{"title":"Texnosrac124"}]}
+
+TEST write_personal: {"write_personal":{"user_id":"1", "first_name":"Bogdan", "surname":"Kazimirov", "age":"21", "phone_number":"+79017453550", "status":"WTF?", "label": "null", "description":"MT11-72", "email":"bs@mt11.su"}}
+RES write_personal: {"write_personal:"OK"}
+
+TEST get_personal: {"get_personal":{"user_id":"1"}}
+RES get_personal: {"get_personal":{"user_id":"1", "first_name":"Bogdan", "surname":"Kazimirov", "age":"21", "phone_number":"+79017453550", "status":"WTF?", "label": "null", "description":"MT11-72", "email":"bs@mt11.su"}}
+
+TEST write_addres: {"write_addres":{"user_id":"1", "building":"1", "housing":"1","city":"Krasnogorsk","district":"Krasnogorskiy","index":"143430", "country":"Russia"}}
+RES write_addres: {"write_addres:"OK"}
+
+TEST get_personal: {"get_personal":{"user_id":"1"}}
+RES get_personal: {"get_personal":{"user_id":"1", "building":"1", "housing":"1","city":"Krasnogorsk","district":"Krasnogorskiy","index":"143430", "country":"Russia"}}
 
 
