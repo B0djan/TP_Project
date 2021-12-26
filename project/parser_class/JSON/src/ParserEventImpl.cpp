@@ -89,8 +89,10 @@ std::string ParserEventImpl::ObjectToStr(const std::string type_response, const 
     std::set<event_t> events = other.events;
 
     if (events.empty()) {
-        j[type_response] = "Not foud events";
+        j[type_response] = "Not found events, parser";
+
         res = j.dump();
+
         return res;
     }
 

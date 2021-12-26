@@ -13,7 +13,7 @@
 #define GET_EVENTS                       "get_events"  //  in process + test
 //  input: user_id, date; output: set<event_t> [description, time_begin, time_end]
 
-#define GET_CONTACTS                     "get_contacts"  //  in process
+#define GET_CONTACTS                     "get_contacts"  //  in process + test
 //  input: user_id; output: set<string> [nickname]
 
 #define GET_GROUPS                       "get_groups"  // in process

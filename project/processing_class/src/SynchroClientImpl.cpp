@@ -1,7 +1,6 @@
 #include <SynchroClientImpl.hpp>
 
 ParserObject SynchroClientEventsImpl::process(const ParserObject& request_body) {
-
     std::set<event_t>::iterator it = request_body.events.begin();
 
     event_t params_search_events = *it;
@@ -10,8 +9,9 @@ ParserObject SynchroClientEventsImpl::process(const ParserObject& request_body) 
 
     std::string date = params_search_events.date;
 
-    ParserObject response_body;
+    Print_struct::_event_t(*it);
 
+    ParserObject response_body;
 
     response_body.events = DatabaseConnector::Synchro::Events(user_id, date);
     if (response_body.events.empty()) {
