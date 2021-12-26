@@ -37,6 +37,7 @@ SET(SOURCE_LIST_PROCESSING_CLASS
         processing_class/src/GroupImpl/User/UserGroupImpl.cpp
         processing_class/src/GroupImpl/MeetUp/MeetUpImpl.cpp
         processing_class/src/GroupImpl/MeetUp/SupportMeetUp.cpp
+        processing_class/src/SynchroClientImpl.cpp
         processing_class/src/RegistrAuthImpl.cpp
         processing_class/src/WriteAddressDataImpl.cpp
         processing_class/src/WritePersonalDataImpl.cpp
@@ -60,6 +61,7 @@ SET(SOURCE_LIST_DATABASE
         database_connector/PostgreSQL/src/Contact.cpp
         database_connector/PostgreSQL/src/Event.cpp
         database_connector/PostgreSQL/src/Address.cpp
+        database_connector/PostgreSQL/src/Personal.cpp
         database_connector/PostgreSQL/src/GroupManagement.cpp
         database_connector/PostgreSQL/src/SynchronizationClient.cpp
         database_connector/PostgreSQL/src/PGConnection.cpp)

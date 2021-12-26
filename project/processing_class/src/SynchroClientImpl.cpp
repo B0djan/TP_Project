@@ -7,7 +7,7 @@ ParserObject SynchroClientEventsImpl::process(const ParserObject& request_body) 
 
     ParserObject response_body;
 
-    response_body.events = DatabaseConnector::Synchro::GetEvents(params_search_events);
+    response_body.events = DatabaseConnector::Synchro::Events(params_search_events);
     if (response_body.events.empty()) {
         response_body.error = "Not found events";
 
@@ -20,8 +20,7 @@ ParserObject SynchroClientEventsImpl::process(const ParserObject& request_body) 
 ParserObject SynchroClientContactsImpl::process(const ParserObject& request_body) {
     ParserObject response_body;
 
-    std::set<std::string> friends = DatabaseConnector::Synchro::GetContacts(request_body.user.user_id);
-
+    std::set<std::string> friends = DatabaseConnector::Synchro::Contacts(request_body.user.user_id);
     if (friends.empty()) {
         response_body.error = "Not found contacts";
         
@@ -36,8 +35,7 @@ ParserObject SynchroClientContactsImpl::process(const ParserObject& request_body
 ParserObject SynchroClientGroupsImpl::process(const ParserObject& request_body) {
     ParserObject response_body;
 
-    std::set<std::string> names_groups = DatabaseConnector::Synchro::GetGroups(request_body.user.user_id);
-
+    std::set<std::string> names_groups = DatabaseConnector::Synchro::Groups(request_body.user.user_id);
     if (names_groups.empty()) {
         response_body.error = "Not found groups";
 

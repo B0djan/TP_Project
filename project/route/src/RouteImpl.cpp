@@ -25,7 +25,7 @@ RouteImpl::RouteImpl() {
     route_map.insert({AUTHENTICATION,         std::make_pair(new ParserRegistrAuthImpl,        new AuthenticationImpl)});
 
     // Synchro
-    route_map.insert({GET_EVENTS,             std::make_pair(new ParserEventImpl ,             new SynchroClientEventsImpl)});
+    route_map.insert({GET_EVENTS,             std::make_pair(new ParserEventImpl,              new SynchroClientEventsImpl)});
     route_map.insert({GET_CONTACTS,           std::make_pair(new ParserRegistrAuthImpl,        new SynchroClientContactsImpl)});
     route_map.insert({GET_GROUPS,             std::make_pair(new ParserRegistrAuthImpl,        new SynchroClientGroupsImpl)});
 
