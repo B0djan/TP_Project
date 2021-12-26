@@ -89,29 +89,32 @@ std::string ParserEventImpl::ObjectToStr(const std::string type_response, const 
 
     nlohmann::json json_events;
 
-    if (!events.empty()) 
+    if (events.empty()) {
+        j[type_response] = "Not foud events";
+        res = j.dump();
+        return res;
+    }
+
+    for (auto& event: events) 
     {
-        for (auto& event: events) 
-        {
-            nlohmann::json json_event;
+        nlohmann::json json_event;
 
-            if (!event.event_name.empty())
-                json_event["event_name"] = event.event_name;
-            
-            if (!event.time_begin.empty())
-                json_event["time_begin"] = event.time_begin;
+        if (!event.event_name.empty())
+            json_event["event_name"] = event.event_name;
+        
+        if (!event.time_begin.empty())
+            json_event["time_begin"] = event.time_begin;
 
-            if (!event.time_end.empty())
-                json_event["time_end"]   = event.time_end;
+        if (!event.time_end.empty())
+            json_event["time_end"]   = event.time_end;
 
-            if (!event.description.empty())
-                json_event["description"] = event.description;
-            
-            if (!event.date.empty())
-                json_event["event_date"] = event.date;
+        if (!event.description.empty())
+            json_event["description"] = event.description;
+        
+        if (!event.date.empty())
+            json_event["event_date"] = event.date;
 
-            json_events.push_back(json_event);
-        }
+        json_events.push_back(json_event);
     }
 
     j[type_response] = json_events;
