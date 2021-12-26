@@ -41,7 +41,7 @@ SET(SOURCE_LIST_PROCESSING_CLASS
         processing_class/src/SynchroClientImpl.cpp
         processing_class/src/WriteAddressDataImpl.cpp
         processing_class/src/WritePersonalDataImpl.cpp
-        database_connector/PostgreSQL/src/GetId.cpp)
+        database_connector/PostgreSQL/src/GetID.cpp)
 
 SET(SOURCE_LIST_PARSER_CLASS
         parser_class/JSON/src/ParserContactsImpl.cpp
@@ -56,8 +56,11 @@ SET(SOURCE_LIST_PARSER_OBJECT
         parser_object/src/Structs.cpp)
 
 SET(SOURCE_LIST_DATABASE
-        database_connector/PostgreSQL/src/GetId.cpp
+        database_connector/PostgreSQL/src/GetID.cpp
         database_connector/PostgreSQL/src/RegAuth.cpp
+        database_connector/PostgreSQL/src/Contact.cpp
+        database_connector/PostgreSQL/src/Event.cpp
+        database_connector/PostgreSQL/src/Address.cpp
         database_connector/PostgreSQL/src/GroupManagement.cpp
         database_connector/PostgreSQL/src/SynchronizationClient.cpp
         database_connector/PostgreSQL/src/PGConnection.cpp)

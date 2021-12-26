@@ -4,7 +4,7 @@
 
 namespace DatabaseConnector {
     namespace RegAuth {
-        int RegistrationTo(const user_t &r) {
+        int Registration(const user_t &r) {
             char check[] = "SELECT nickname, password FROM user_m WHERE (nickname = $1) AND (password = $2)";
 
             const char *arguments[2];
@@ -48,7 +48,7 @@ namespace DatabaseConnector {
             return SUCCESS;
         }
 
-        int AutorizationTo(const user_t &r) {
+        int Autorization(const user_t &r) {
             char check[] = "SELECT nickname, password "
                            "FROM user_m WHERE (nickname = $1) AND (password = $2)";
 

@@ -4,7 +4,7 @@
 
 namespace DatabaseConnector {
     namespace Synchro {
-        std::set<std::string> GetContacts(const std::string& user_id) {
+        std::set<std::string> Contacts(const std::string& user_id) {
             char command[] = "SELECT fk_user_id, nickname "
                              "FROM contacts LEFT JOIN user_m ON fk_friend_id = user_id"
                              "WHERE fk_user_id = $1";
@@ -31,7 +31,7 @@ namespace DatabaseConnector {
             return friends;
         };
 
-        std::set<event_t> GetEvents(const event_t& event) {
+        std::set<event_t> Events(const event_t& event) {
             char command[] = "SELECT description, time_begin, time_end FROM event_m WHERE (date = $1, fk_user_id = $2)";
 
             const char* arguments[2];
@@ -60,7 +60,7 @@ namespace DatabaseConnector {
             return events;
         };
 
-        std::set<std::string> GetGroups(const std::string &user_id) {
+        std::set<std::string> Groups(const std::string &user_id) {
 
             char command[] = "SELECT fk_user_id, title "
                              "FROM group_members "

@@ -3,8 +3,8 @@
 #include <DataBaseConnectorImpl.hpp>
 
 namespace DatabaseConnector {
-    namespace Process {
-        char *GetUserId(const std::string &nickname) {
+    namespace GetID {
+        char *User(const std::string &nickname) {
             char return_id[] = "SELECT user_id FROM user_m WHERE (nickname = $1)";
 
             const char *arguments[1];
@@ -25,7 +25,7 @@ namespace DatabaseConnector {
             return id;
         }
 
-        char *GetEventId(const event_t &e) {
+        char *Event(const event_t &e) {
             char return_id[] = "SELECT event_id FROM event_m WHERE (event_date = $1) AND (time_begin = $2) AND (time_end = $3) AND (description = $4)";
 
             const char *arguments[4];
@@ -50,7 +50,7 @@ namespace DatabaseConnector {
             return id;
         }
 
-        char *GetGroupId(const std::string &title) {
+        char *Group(const std::string &title) {
             char return_id[] = "SELECT group_id FROM group_m WHERE (title = $1)";
 
             const char *arguments[1];
@@ -72,8 +72,8 @@ namespace DatabaseConnector {
         }
     }
 
-    namespace PersonalData {
-        int CreateAddressData(const std::string &user_id) {
+    namespace Data {
+        int CreateAddress(const std::string &user_id) {
             char command[] = "INSERT INTO user_address (fk_address_user) "
                              "VALUES ($1)";
 
@@ -97,7 +97,7 @@ namespace DatabaseConnector {
             return SUCCESS;
         }
 
-        int CreatePersonalData(const std::string &user_id) {
+        int CreatePersonal(const std::string &user_id) {
             char command[] = "INSERT INTO personal_data (fk_address_user) "
                              "VALUES ($1)";
 

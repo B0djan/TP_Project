@@ -3,14 +3,14 @@
 ParserObject RegistrationImpl::process(const ParserObject& request_body) {
     ParserObject response_body;
 
-    int code =  DatabaseConnector::RegAuth::RegistrationTo(request_body.user);
+    int code = DatabaseConnector::RegAuth::Registration(request_body.user);
     if (code != 0) {
         response_body.error = "Error registration";
 
         return response_body;
     }
 
-    char* check = DatabaseConnector::Process::GetUserId(request_body.user.nickname);
+    char* check = DatabaseConnector::GetID::User(request_body.user.nickname);
     if (check == NULL) {
         response_body.error = "Error get user id";
 
@@ -25,14 +25,14 @@ ParserObject RegistrationImpl::process(const ParserObject& request_body) {
 ParserObject AuthenticationImpl::process(const ParserObject& request_body) {
     ParserObject response_body;
 
-    int code = DatabaseConnector::RegAuth::AutorizationTo(request_body.user);
+    int code = DatabaseConnector::RegAuth::Autorization(request_body.user);
     if (code != 0) {
         response_body.error = "Error autorization";
 
         return response_body;
     }
 
-    char* check = DatabaseConnector::Process::GetUserId(request_body.user.nickname);
+    char* check = DatabaseConnector::GetID::User(request_body.user.nickname);
     if (check == NULL) {
         response_body.error = "Error get user id";
 

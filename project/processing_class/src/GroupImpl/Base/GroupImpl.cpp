@@ -19,7 +19,7 @@ ParserObject AddGroupImpl::process(const ParserObject& request_body) {
     }
 
 
-    char* check_group_id = DatabaseConnector::Process::GetGroupId((*it_g).title);
+    char* check_group_id = DatabaseConnector::GetID::Group((*it_g).title);
     if (check_group_id == NULL) {
         response_body.error = "Error get group id";
 
@@ -28,7 +28,7 @@ ParserObject AddGroupImpl::process(const ParserObject& request_body) {
 
     std::string group_id = check_group_id;
 
-    char* check_user_id = DatabaseConnector::Process::GetUserId(*it_m);
+    char* check_user_id = DatabaseConnector::GetID::User(*it_m);
     if (check_user_id == NULL) {
         response_body.error = "Error get user id";
 
@@ -60,7 +60,7 @@ ParserObject RmGroupImpl::process(const ParserObject& request_body) {
     std::set<group_t> :: iterator it_g = request_body.groups.begin();
     std::set<std::string> :: iterator it_m = (*it_g).members.begin();
 
-    char* check = DatabaseConnector::Process::GetGroupId((*it_g).title);
+    char* check = DatabaseConnector::GetID::Group((*it_g).title);
     if (check == NULL) {
         response_body.error = "Error get user id";
 
@@ -92,7 +92,7 @@ ParserObject SearchGroupImpl::process(const ParserObject& request_body) {
     //  Отложили, данный функционал пока не нужен
     /*std::set<group_t> :: iterator it_g = request_body.groups.begin();;
 
-    char* check = Process::GetGroupId((*it_g).title);
+    char* check = GetID::Group((*it_g).title);
     if (check == NULL) {
         response_body.error = "Error get user id";
 
