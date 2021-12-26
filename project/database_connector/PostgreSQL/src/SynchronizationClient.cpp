@@ -8,7 +8,7 @@ namespace DatabaseConnector {
             char command[] = "SELECT fk_user_id, nickname "
                              "FROM contacts "
                              "LEFT JOIN user_m "
-                             "ON fk_friend_id = user_id"
+                             "ON fk_friend_id = user_id "
                              "WHERE fk_user_id = $1";
 
             const char *arguments[1];
