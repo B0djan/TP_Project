@@ -41,13 +41,15 @@ ParserObject SynchroClientEventsImpl::process(const ParserObject& request_body) 
 }
 
 ParserObject SynchroClientContactsImpl::process(const ParserObject& request_body) {
-    contacts_t user;
-
-    user.user_id = request_body.contacts.user_id;
-
-    std::set<std::string> friends = GetContacts(user);
-
     ParserObject response_body;
+
+    std::set<std::string> friends = GetContacts(request_body.user.user_id);
+
+    if (friends.empty()) {
+        response_body.error = "Not found groups";
+        
+        return response_body;
+    }
 
     response_body.contacts.list_contacts = friends;
 
@@ -57,13 +59,13 @@ ParserObject SynchroClientContactsImpl::process(const ParserObject& request_body
 ParserObject SynchroClientGroupsImpl::process(const ParserObject& request_body) {
     ParserObject response_body;
 
-    if (request_body.groups.empty()) {
+    std::set<std::string> names_groups = GetGroups(request_body.user.user_id);
+
+    if (names_groups.empty()) {
         response_body.error = "Not found groups";
 
         return response_body;      
     };
-
-    std::set<std::string> names_groups = GetGroups(request_body.user.user_id);
 
     for (auto ng: names_groups) {
         group_t group { .title = ng };
@@ -74,14 +76,14 @@ ParserObject SynchroClientGroupsImpl::process(const ParserObject& request_body) 
     return response_body;
 }
 
-std::set<std::string> SynchroClientContactsImpl::GetContacts(contacts_t& c) {
+std::set<std::string> SynchroClientContactsImpl::GetContacts(const std::string& id) {
     char command[] = "SELECT fk_user_id, nickname "
                      "FROM contacts LEFT JOIN user_m ON fk_friend_id = user_id"
                      "WHERE fk_user_id = $1";
 
     const char* arguments[1];
 
-    arguments[0] = c.user_id.c_str();
+    arguments[0] = id.c_str();
 
     PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 1, NULL, arguments, NULL, NULL, 0);
 
