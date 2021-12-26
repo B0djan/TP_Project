@@ -33,7 +33,7 @@ SET(SOURCE_LIST_PROCESSING_CLASS
         processing_class/src/ContactsImpl.cpp
         processing_class/src/EventImpl.cpp
         processing_class/src/GroupImpl/Base/GroupImpl.cpp
-        "database_connector/PostgreSQL/src/GroupManagement.cpp"
+        "database_connector/PostgreSQL/src/Group/Management.cpp"
         processing_class/src/GroupImpl/User/UserGroupImpl.cpp
         processing_class/src/GroupImpl/MeetUp/MeetUpImpl.cpp
         processing_class/src/GroupImpl/MeetUp/SupportMeetUp.cpp
@@ -60,9 +60,10 @@ SET(SOURCE_LIST_DATABASE
         database_connector/PostgreSQL/src/RegAuth.cpp
         database_connector/PostgreSQL/src/Contact.cpp
         database_connector/PostgreSQL/src/Event.cpp
-        database_connector/PostgreSQL/src/Address.cpp
-        database_connector/PostgreSQL/src/Personal.cpp
-        database_connector/PostgreSQL/src/GroupManagement.cpp
+        database_connector/PostgreSQL/src/Data/Address.cpp
+        database_connector/PostgreSQL/src/Data/Personal.cpp
+        database_connector/PostgreSQL/src/Group/Base.cpp
+        database_connector/PostgreSQL/src/Group/Management.cpp
         database_connector/PostgreSQL/src/SynchronizationClient.cpp
         database_connector/PostgreSQL/src/PGConnection.cpp)
 

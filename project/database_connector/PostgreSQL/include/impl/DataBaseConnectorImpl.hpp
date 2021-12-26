@@ -15,9 +15,17 @@ namespace DatabaseConnector {
     }
 
     namespace Group {
-        int AddMember(const std::string& member, const std::string);
+        int Create(const std::string& title);
 
-        int RmMember(const std::string& member, const std::string);
+        int DeleteAllMembers(const std::string &group_id);
+
+        int Delete(const std::string &group_id);
+
+        namespace Management {
+            int AddMember(const std::string& member, const std::string);
+
+            int RmMember(const std::string& member, const std::string);
+        }
     }
 
     namespace Data {

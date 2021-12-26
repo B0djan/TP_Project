@@ -27,7 +27,7 @@ ParserObject AddUserImpl::process(const ParserObject& request_body) {
 
     std::string user_id = check_user_id;
 
-    code = DatabaseConnector::Group::AddMember(user_id, group_id);
+    code = DatabaseConnector::Group::Management::AddMember(user_id, group_id);
     if (code != 0) {
         response_body.error = "Error add new member in group";
 
@@ -63,7 +63,7 @@ ParserObject RmUserImpl::process(const ParserObject& request_body) {
 
     std::string user_id = check_user_id;
 
-    code = DatabaseConnector::Group::RmMember(user_id, group_id);
+    code = DatabaseConnector::Group::Management::RmMember(user_id, group_id);
     if (code != 0) {
         response_body.error = "Error of delete 1 member group";
 

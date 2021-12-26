@@ -12,7 +12,7 @@ ParserObject AddGroupImpl::process(const ParserObject& request_body) {
         Print_struct::_group_t(*it_g);
     }
 
-    code = CreateGroup((*it_g).title);
+    code = DatabaseConnector::Group::Create((*it_g).title);
     if (code != 0) {
         response_body.error = "Error of creation group";
         return response_body;
@@ -37,7 +37,7 @@ ParserObject AddGroupImpl::process(const ParserObject& request_body) {
 
     std::string user_id = check_user_id;
 
-    code = DatabaseConnector::Group::AddMember(user_id, group_id);
+    code = DatabaseConnector::Group::Management::AddMember(user_id, group_id);
     if (code != 0) {
         response_body.error = "Error add owner in group";
 
@@ -69,14 +69,14 @@ ParserObject RmGroupImpl::process(const ParserObject& request_body) {
 
     std::string group_id = check;
 
-    code = DeleteAllMembers(group_id);
+    code = DatabaseConnector::Group::DeleteAllMembers(group_id);
     if (code != 0) {
         response_body.error = "Error of delete group members";
 
         return response_body;
     }
 
-    code = DeleteGroup(group_id);
+    code = DatabaseConnector::Group::Delete(group_id);
     if (code != 0) {
         response_body.error = "Error of delete group";
 
@@ -110,83 +110,3 @@ ParserObject SearchGroupImpl::process(const ParserObject& request_body) {
     return response_body;
 }
 
-int AddGroupImpl::CreateGroup(const std::string& title) {
-    char command[] = "INSERT INTO group_m (title) VALUES ($1)";
-
-    //  Отладка
-    if (GLOBAL_KEY_TEST_PROCESSING) {
-        Print_struct::from_client(title);
-    }
-
-    const char* arguments[1];
-
-    arguments[0] = title.c_str();
-
-    PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 1, NULL, arguments, NULL, NULL, 0);
-
-    if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-        printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
-
-        PQclear(res);
-
-        return ERROR;
-    }
-
-    PQclear(res);
-
-    return SUCCESS;
-}
-
-int RmGroupImpl::DeleteGroup(const std::string &group_id) {
-    char command[] = "DELETE FROM group_m WHERE (group_id = $1)";
-
-    //  Отладка
-    if (GLOBAL_KEY_TEST_PROCESSING) {
-        Print_struct::from_client(group_id);
-    }
-
-    const char* arguments[1];
-
-    arguments[0] = group_id.c_str();
-
-    PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 1, NULL, arguments, NULL, NULL, 0);
-
-    if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-        printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
-
-        PQclear(res);
-
-        return ERROR;
-    }
-
-    PQclear(res);
-
-    return SUCCESS;
-}
-
-int RmGroupImpl::DeleteAllMembers(const std::string &group_id) {
-    char command[] = "DELETE FROM group_members WHERE (fk_group_id = $1)";
-
-    //  Отладка
-    if (GLOBAL_KEY_TEST_PROCESSING) {
-        Print_struct::from_client(group_id);
-    }
-
-    const char* arguments[1];
-
-    arguments[0] = group_id.c_str();
-
-    PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 1, NULL, arguments, NULL, NULL, 0);
-
-    if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-        printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
-
-        PQclear(res);
-
-        return ERROR;
-    }
-
-    PQclear(res);
-
-    return SUCCESS;
-}
