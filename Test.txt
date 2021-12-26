@@ -28,7 +28,7 @@ RES: {"invite":OK}
 TEST rm_user: {"kick":{"group":"Texnosrac", "members":["Sasha"]}}
 RES: {"kick":OK}
 
-TEST get_events: {"get_events":[{"user_id":"56", "event_date":mm-dd-yyyy"}]}
+TEST get_events: {"get_events":[{"user_id":"56", "event_date":yyyy-mm-dd"}]}
 RES {"get_events":[{"description":"breakfast", "time_begin":"10:00", "time_end":"10:45"}, {"description":"lansh", "time_begin":"19:00", "time_end":"20:00"}]}
 
 // НЕ ПРОВЕРЕНО И НЕ УТВЕРЖДЕНО! ЯВЛЯЕТСЯ ЛИШЬ ПРЕДПОЛОЖЕНИЕМ)))
