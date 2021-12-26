@@ -1,7 +1,6 @@
 #include <ParserWriteAddressDataImpl.hpp>
 
 ParserObject ParserWriteAddressDataImpl::StrToObject(const std::string& parser_str) const {
-    // {"registration":{"user_id":"value"}} TODO: Отредачить
 
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
@@ -11,29 +10,29 @@ ParserObject ParserWriteAddressDataImpl::StrToObject(const std::string& parser_s
 
     address_data_t address_data;
 
-    if(j.contains("user_id"))
-        address_data.user_id = j["user_id"].get<std::string>();
+    if(value.contains("user_id"))
+        address_data.user_id = value["user_id"].get<std::string>();
 
-    if (j.contains("building"))
-        address_data.building = j["building"].get<std::string>();
+    if (value.contains("building"))
+        address_data.building = value["building"].get<std::string>();
 
-    if (j.contains("housing"))
-        address_data.housing = j["housing"].get<std::string>();
+    if (value.contains("housing"))
+        address_data.housing = value["housing"].get<std::string>();
 
-    if (j.contains("street"))
-        address_data.street = j["street"].get<std::string>();
+    if (value.contains("street"))
+        address_data.street = value["street"].get<std::string>();
 
-    if (j.contains("city"))
-        address_data.city = j["city"].get<std::string>();
+    if (value.contains("city"))
+        address_data.city = value["city"].get<std::string>();
 
-    if (j.contains("district"))
-        address_data.district = j["district"].get<std::string>();
+    if (value.contains("district"))
+        address_data.district = value["district"].get<std::string>();
     
-    if (j.contains("index"))
-        address_data.index = j["index"].get<std::string>();
+    if (value.contains("index"))
+        address_data.index = value["index"].get<std::string>();
 
-    if (j.contains("country"))
-        address_data.country = j["country"].get<std::string>();
+    if (value.contains("country"))
+        address_data.country = value["country"].get<std::string>();
 
     ParserObject res;
 
