@@ -6,6 +6,7 @@
 #include <ContactsImpl.hpp>
 #include <EventImpl.hpp>
 #include <GroupImpl.hpp>
+#include <MeetUp.hpp>
 #include <RegistrAuthImpl.hpp>
 #include <SynchroClientImpl.hpp>
 #include <WriteAddressDataImpl.hpp>

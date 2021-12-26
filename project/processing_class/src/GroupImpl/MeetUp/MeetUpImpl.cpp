@@ -1,4 +1,4 @@
-#include <GroupImpl.hpp>
+#include <MeetUp.hpp>
 
 ParserObject SearchFreeTimeImpl::process(const ParserObject& request_body) {
     /*

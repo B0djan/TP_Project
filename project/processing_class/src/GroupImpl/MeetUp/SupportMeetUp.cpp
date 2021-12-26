@@ -1,9 +1,9 @@
 #include <sstream>
 
-#include <GroupImpl.hpp>
+#include <MeetUp.hpp>
 
 // support class Duration
-SearchFreeTimeImpl::Duration::Duration(const std::string& time) {
+duration_t SearchFreeTimeImpl::get_format(const std::string &time) {
     std::stringstream stream(time);
 
     int h, m = 0;
@@ -14,12 +14,15 @@ SearchFreeTimeImpl::Duration::Duration(const std::string& time) {
 
     int total = h * 60 + m;
 
-    hour = total / 60;
-    min = total % 60;
+    duration_t dur;
+    dur.hour = total / 60;
+    dur.min = total % 60;
+
+    return dur;
 }
 
-unsigned char SearchFreeTimeImpl::Duration::GetTimeInterval() {
-    int total = hour * 60 * min;
+unsigned char SearchFreeTimeImpl::GetTimeInterval(const duration_t& dur) {
+    int total = dur.hour * 60 * dur.min;
     return (unsigned char)(total / 15 + 1);
 }
 
@@ -38,15 +41,15 @@ void SearchFreeTimeImpl::Day::InvertDay(Day& busy_day) {
 
 }
 
-void SearchFreeTimeImpl::Day::InsertEvent(Duration& begin_time, Duration& end_time) {
+void SearchFreeTimeImpl::Day::InsertEvent(duration_t& begin_time, duration_t& end_time) {
 
 }
 
-void SearchFreeTimeImpl::Day::EraseEvent(Duration& begin_time, Duration& end_time) {
+void SearchFreeTimeImpl::Day::EraseEvent(duration_t& begin_time, duration_t& end_time) {
 
 }
 
-bool SearchFreeTimeImpl::Day::IsFree(Duration& begin_time, Duration& end_time) {
+bool SearchFreeTimeImpl::Day::IsFree(duration_t& begin_time, duration_t& end_time) {
     return true;
 }
 
