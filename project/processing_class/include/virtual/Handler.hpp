@@ -10,10 +10,9 @@
 
 #include <PGConnection.hpp>
 
-#define GLOBAL_KEY_TEST_PROCESSING true
+#include <DataBaseConnectorImpl.hpp>
 
-#define SUCCESS     0
-#define ERROR      -1
+#define GLOBAL_KEY_TEST_PROCESSING false
 
 class Handler {
 public:
@@ -23,16 +22,3 @@ public:
 
     virtual ~Handler() = default;
 };
-
-namespace SupportProcess {
-    char* GetUserId(const std::string& nickname);  //  промежуточный класс
-
-    char* GetEventId(const event_t& e);  //  промежуточный класс
-
-    char* GetGroupId(const std::string& title);  //  промежуточный класс
-}
-
-namespace SupportProcessGroup {
-    int AddMember(const std::string& member, const std::string);
-    int RmMember(const std::string& member, const std::string);
-}

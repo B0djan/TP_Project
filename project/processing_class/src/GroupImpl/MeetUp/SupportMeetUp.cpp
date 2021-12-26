@@ -51,7 +51,7 @@ bool SearchFreeTimeImpl::Day::IsFree(Duration& begin_time, Duration& end_time) {
 }
 
 
-//  Support methods
+//  DatabaseConnector methods
 std::vector<std::set<event_t>> SearchFreeTimeImpl::GetData(group_t) {
     std::vector<std::set<event_t>> res;
     return res;

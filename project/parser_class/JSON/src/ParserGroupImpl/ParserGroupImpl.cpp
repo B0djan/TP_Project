@@ -40,9 +40,9 @@ ParserObject ParserGroupImpl::StrToObject(const std::string& parser_str) const {
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
-        Debugging::print_from_client(parser_str);
+        Print_struct::from_client(parser_str);
         for (std::set<group_t>::iterator it = groups.begin(); it != groups.end(); ++it) {
-            Debugging::print_group_t(*it);
+            Print_struct::_group_t(*it);
         }
     }
 
@@ -106,9 +106,9 @@ std::string ParserGroupImpl::ObjectToStr(const std::string type_response, const 
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
         for (std::set<group_t>::iterator it = groups.begin(); it != groups.end(); ++it) {
-            Debugging::print_group_t(*it);
+            Print_struct::_group_t(*it);
         }
-        Debugging::print_from_processing(res);
+        Print_struct::from_processing(res);
     }
 
     return res;

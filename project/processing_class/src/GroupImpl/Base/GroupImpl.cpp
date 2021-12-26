@@ -9,7 +9,7 @@ ParserObject AddGroupImpl::process(const ParserObject& request_body) {
     std::set<std::string> :: iterator it_m = (*it_g).members.begin();
 
     if (GLOBAL_KEY_TEST_PROCESSING) {
-        Debugging::print_group_t(*it_g);
+        Print_struct::_group_t(*it_g);
     }
 
     code = CreateGroup((*it_g).title);
@@ -19,7 +19,7 @@ ParserObject AddGroupImpl::process(const ParserObject& request_body) {
     }
 
 
-    char* check_group_id = SupportProcess::GetGroupId((*it_g).title);
+    char* check_group_id = DatabaseConnector::GetID::Group((*it_g).title);
     if (check_group_id == NULL) {
         response_body.error = "Error get group id";
 
@@ -28,7 +28,7 @@ ParserObject AddGroupImpl::process(const ParserObject& request_body) {
 
     std::string group_id = check_group_id;
 
-    char* check_user_id = SupportProcess::GetUserId(*it_m);
+    char* check_user_id = DatabaseConnector::GetID::User(*it_m);
     if (check_user_id == NULL) {
         response_body.error = "Error get user id";
 
@@ -37,7 +37,7 @@ ParserObject AddGroupImpl::process(const ParserObject& request_body) {
 
     std::string user_id = check_user_id;
 
-    code = SupportProcessGroup::AddMember(user_id, group_id);
+    code = DatabaseConnector::Group::AddMember(user_id, group_id);
     if (code != 0) {
         response_body.error = "Error add owner in group";
 
@@ -60,7 +60,7 @@ ParserObject RmGroupImpl::process(const ParserObject& request_body) {
     std::set<group_t> :: iterator it_g = request_body.groups.begin();
     std::set<std::string> :: iterator it_m = (*it_g).members.begin();
 
-    char* check = SupportProcess::GetGroupId((*it_g).title);
+    char* check = DatabaseConnector::GetID::Group((*it_g).title);
     if (check == NULL) {
         response_body.error = "Error get user id";
 
@@ -92,7 +92,7 @@ ParserObject SearchGroupImpl::process(const ParserObject& request_body) {
     //  Отложили, данный функционал пока не нужен
     /*std::set<group_t> :: iterator it_g = request_body.groups.begin();;
 
-    char* check = SupportProcess::GetGroupId((*it_g).title);
+    char* check = GetID::Group((*it_g).title);
     if (check == NULL) {
         response_body.error = "Error get user id";
 
@@ -115,7 +115,7 @@ int AddGroupImpl::CreateGroup(const std::string& title) {
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PROCESSING) {
-        Debugging::print_from_client(title);
+        Print_struct::from_client(title);
     }
 
     const char* arguments[1];
@@ -142,7 +142,7 @@ int RmGroupImpl::DeleteGroup(const std::string &group_id) {
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PROCESSING) {
-        Debugging::print_from_client(group_id);
+        Print_struct::from_client(group_id);
     }
 
     const char* arguments[1];
@@ -169,7 +169,7 @@ int RmGroupImpl::DeleteAllMembers(const std::string &group_id) {
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PROCESSING) {
-        Debugging::print_from_client(group_id);
+        Print_struct::from_client(group_id);
     }
 
     const char* arguments[1];

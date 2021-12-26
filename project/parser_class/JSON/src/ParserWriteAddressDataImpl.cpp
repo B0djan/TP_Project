@@ -41,8 +41,8 @@ ParserObject ParserWriteAddressDataImpl::StrToObject(const std::string& parser_s
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
-        Debugging::print_from_client(parser_str);
-        Debugging::print_address_data_t(address_data);
+        Print_struct::from_client(parser_str);
+        Print_struct::_address_data_t(address_data);
     }
 
     return res;
@@ -96,8 +96,8 @@ std::string ParserWriteAddressDataImpl::ObjectToStr(const std::string type_respo
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
-        Debugging::print_address_data_t(address_data);
-        Debugging::print_from_processing(res);
+        Print_struct::_address_data_t(address_data);
+        Print_struct::from_processing(res);
     }
 
     return res;

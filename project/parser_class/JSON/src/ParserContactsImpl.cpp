@@ -26,8 +26,8 @@ ParserObject ParserUserContactsImpl::StrToObject(const std::string& parser_str) 
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
-        Debugging::print_from_client(parser_str);
-        Debugging::print_contacts_t(contacts);
+        Print_struct::from_client(parser_str);
+        Print_struct::_contacts_t(contacts);
     }
 
     return res;
@@ -69,8 +69,8 @@ std::string ParserUserContactsImpl::ObjectToStr(const std::string type_response,
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
-        Debugging::print_contacts_t(contacts);
-        Debugging::print_from_processing(res);
+        Print_struct::_contacts_t(contacts);
+        Print_struct::from_processing(res);
     }
 
     return res;

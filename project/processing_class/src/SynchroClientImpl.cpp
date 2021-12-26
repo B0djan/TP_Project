@@ -1,52 +1,29 @@
 #include <SynchroClientImpl.hpp>
 
 ParserObject SynchroClientEventsImpl::process(const ParserObject& request_body) {
-    event_t event_buf;
+    std::set<event_t>::iterator it = request_body.events.begin();
 
-    for (auto e: request_body.events) {
-        event_buf.date = e.date;
-
-        event_buf.user_id = e.user_id;
-    }
-
-    char command[] = "SELECT description, time_begin, time_end FROM event_m WHERE (date = $1, fk_user_id = $2)";
-
-    const char* arguments[2];
-
-    arguments[0] = event_buf.date.c_str();
-    arguments[1] = event_buf.user_id.c_str();
-
-    PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 2, NULL, arguments, NULL, NULL, 0);
-
-    std::set<event_t> events;
-
-    event_t event;
-
-    int n_rows = PQntuples(res);
-
-    for (int i = 0; i < n_rows; i++) {
-
-        event.description = PQgetvalue(res, i, 0);
-        event.time_begin = PQgetvalue(res, i, 1);
-        event.time_end = PQgetvalue(res, i, 2);
-
-        events.insert(event);
-    }
+    event_t params_search_events = *it;
 
     ParserObject response_body;
 
-    response_body = events;
-    
+    response_body.events = DatabaseConnector::Synchro::GetEvents(params_search_events);
+    if (response_body.events.empty()) {
+        response_body.error = "Error synchronization events";
+
+        return response_body;
+    }
+
     return response_body;
 }
 
 ParserObject SynchroClientContactsImpl::process(const ParserObject& request_body) {
     ParserObject response_body;
 
-    std::set<std::string> friends = GetContacts(request_body.user.user_id);
+    std::set<std::string> friends = DatabaseConnector::Synchro::GetContacts(request_body.user.user_id);
 
     if (friends.empty()) {
-        response_body.error = "Not found groups";
+        response_body.error = "Not found contacts";
         
         return response_body;
     }
@@ -59,13 +36,13 @@ ParserObject SynchroClientContactsImpl::process(const ParserObject& request_body
 ParserObject SynchroClientGroupsImpl::process(const ParserObject& request_body) {
     ParserObject response_body;
 
-    std::set<std::string> names_groups = GetGroups(request_body.user.user_id);
+    std::set<std::string> names_groups = DatabaseConnector::Synchro::GetGroups(request_body.user.user_id);
 
     if (names_groups.empty()) {
         response_body.error = "Not found groups";
 
-        return response_body;      
-    };
+        return response_body;
+    }
 
     for (auto ng: names_groups) {
         group_t group { .title = ng };
