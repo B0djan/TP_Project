@@ -6,7 +6,9 @@ namespace DatabaseConnector {
     namespace Synchro {
         std::set<std::string> Contacts(const std::string& user_id) {
             char command[] = "SELECT fk_user_id, nickname "
-                             "FROM contacts LEFT JOIN user_m ON fk_friend_id = user_id"
+                             "FROM contacts "
+                             "LEFT JOIN user_m "
+                             "ON fk_friend_id = user_id"
                              "WHERE fk_user_id = $1";
 
             const char *arguments[1];
@@ -14,6 +16,12 @@ namespace DatabaseConnector {
             arguments[0] = user_id.c_str();
 
             PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 1, NULL, arguments, NULL, NULL, 0);
+
+            if (PQresultStatus(res) != PGRES_TUPLES_OK) {
+                printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+
+                PQclear(res);
+            }
 
             std::set<std::string> friends;
 
@@ -44,6 +52,12 @@ namespace DatabaseConnector {
             arguments[1] = user_id.c_str();
 
             PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 2, NULL, arguments, NULL, NULL, 0);
+
+            if (PQresultStatus(res) != PGRES_TUPLES_OK) {
+                printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+
+                PQclear(res);
+            }
 
             std::set<event_t> events;
 

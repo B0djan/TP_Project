@@ -26,6 +26,8 @@ ParserObject SynchroClientEventsImpl::process(const ParserObject& request_body) 
 ParserObject SynchroClientContactsImpl::process(const ParserObject& request_body) {
     ParserObject response_body;
 
+    Print_struct::_contacts_t(request_body.contacts);
+
     std::set<std::string> friends = DatabaseConnector::Synchro::Contacts(request_body.contacts.user_id);
     if (friends.empty()) {
         response_body.error = "Not found contacts";
@@ -34,6 +36,8 @@ ParserObject SynchroClientContactsImpl::process(const ParserObject& request_body
     }
 
     response_body.contacts.list_contacts = friends;
+
+    Print_struct::_contacts_t(response_body.contacts);
 
     return response_body;
 }
