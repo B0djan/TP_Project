@@ -23,9 +23,9 @@ namespace DatabaseConnector {
             int n_rows = PQnfields(res);
 
             for (int i = 0; i < n_rows; i++) {
-                char *Friend = PQgetvalue(res, i, 1);
+                char *user_friend = PQgetvalue(res, i, 1);
 
-                friends.insert(Friend);
+                friends.insert(user_friend);
             }
 
             PQclear(res);

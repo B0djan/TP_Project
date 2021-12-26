@@ -25,14 +25,16 @@ RES: {"invite":OK}
 TEST rm_user: {"kick":{"group":"Texnosrac", "members":["Sasha"]}}
 RES: {"kick":OK}
 
+TEST get_events: {"get_events":[{"user_id":"56", "event_date":mm-dd-yyyy"}]}
+RES {"get_events":[{"description":"breakfast", "begin":"10:00", "end":"10:45"}, {"description":"lansh", "begin":"19:00", "end":"20:00"}]}
+
 // НЕ ПРОВЕРЕНО И НЕ УТВЕРЖДЕНО! ЯВЛЯЕТСЯ ЛИШЬ ПРЕДПОЛОЖЕНИЕМ)))
 
-TEST get_groups: {"get_groups":{"user_id":"56"}}        // Использовать ParserRegAutImpl
+TEST get_groups: {"get_groups":{"user_id":"56"}}
 RES {"get_groups":["BMSTU","Texnosrak"]}
 
-TEST get_contacts: {"get_contacts":{"user_id":"56"}}    // Использовать ParserRegAutImpl
+TEST get_contacts: {"get_contacts":{"user_id":"56"}}
 RES {"get_contacts":["Misha","Maxim"]}
 
-TEST get_events: {"get_events":[{"user_id":"56", "event_date":10-11-2021"}]}        // Вернуть ParserEventImpl!!!
-RES {"get_events":[{"description":"breakfast", "begin":"10:00", "end":"10:45"}, {"description":"lansh", "begin":"19:00", "end":"20:00"}]}
+
 
