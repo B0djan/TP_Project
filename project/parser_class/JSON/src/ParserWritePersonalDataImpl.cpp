@@ -2,6 +2,7 @@
 
 ParserObject ParserWritePersonalDataImpl::StrToObject(const std::string& parser_str) const {
     // {"registration":{"user_id":"value"}} Отредачить
+
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
     nlohmann::json::iterator it = j.begin();
@@ -52,13 +53,21 @@ ParserObject ParserWritePersonalDataImpl::StrToObject(const std::string& parser_
 
 std::string ParserWritePersonalDataImpl::ObjectToStr(const std::string type_response, const ParserObject& other) const {
     // {"registration":{"user_id":"value"}} Отредачить
+
     nlohmann::json j;
+
     std::string res;
 
-    if (!other.error.empty()) {
-        j[type_response] = other.error;
+    if (type_response == WRITE_PERSONAL_DATA) {
+        if (other.error.empty()) {
+            j[type_response] = "OK";
 
-        res = j.dump();
+            res = j.dump();
+        } else  {
+            j[type_response] = other.error;
+
+            res = j.dump();
+        }
 
         return res;
     }

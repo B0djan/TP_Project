@@ -22,17 +22,17 @@
 
 
                             //  personal data
-#define WRITE_PERSONAL_DATA              "..."  //  in process
+#define WRITE_PERSONAL_DATA              "write_personal"  //  in process
 //  input: data...; output: OK
 
-#define GET_PERSONAL_DATA                "..."  //  in process
+#define GET_PERSONAL_DATA                "get_personal"  //  in process
 //  input: data...; output: OK
 
                             //  user address
-#define WRITE_ADDRESS                    "..."  //  in process
+#define WRITE_ADDRESS                    "write_address"  //  in process
 //  input: data...; output: OK
 
-#define GET_ADDRESS                    "..."  //  in process
+#define GET_ADDRESS                    "get_address"  //  in process
 //  input: data...; output: OK
 
 
