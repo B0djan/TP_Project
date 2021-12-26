@@ -16,7 +16,7 @@
 #define GET_CONTACTS                     "get_contacts"  //  in process + test
 //  input: user_id; output: set<string> [nickname]
 
-#define GET_GROUPS                       "get_groups"  // in process
+#define GET_GROUPS                       "get_groups"  // in process + test
 //  input: user_id; output: set<string> [title]
 
 
