@@ -32,7 +32,7 @@
 #define WRITE_ADDRESS                    "write_address"  //  in process
 //  input: data...; output: OK
 
-#define GET_ADDRESS                    "get_address"  //  in process
+#define GET_ADDRESS                      "get_address"  //  in process
 //  input: data...; output: OK
 
 
@@ -67,11 +67,23 @@
 #define RM_GROUP                         "delete_group"  //  completed + test
 //  input: title; output OK
 
+
+#define GET_GROUP                         "get_data_group"  //  completed + test
+//  input: title(group); output: members
+
+
+
 #define ADD_USER                         "invite"  //  completed + test
 //  input: nickname, title(group); output: OK
 
 #define RM_USER                          "kick"  //  completed + test
 //  input: nickname, title(group); output: OK
+
+
+//  meetup in group
+#define SEARCH_FREE_TIME                 "get_meetup"
+//  input: title, date; output: set<meetup_t>[description, time_begin, time_end]
+
 
 #define JOIN                             "join_group"  //  В первом приближении похоже на add_user
 //  input: nickname, title(group); output: OK
@@ -81,10 +93,6 @@
 
 //#define SEARCH_GROUP                     "search_group"   //  Данный фукнционал пока не нужен
 //  input: title; output: title, members; error:"null" (не найдена такая группа)
-
-                            //  meetup in group
-#define SEARCH_FREE_TIME                 "get_meetup"
-//  input: title, date; output: set<meetup_t>[description, time_begin, time_end]
 
 //#define HISTORY_MEETUP                   "get_history"
 //  input: title; output: set<meetup_t>[description, time_begin, time_end, date]

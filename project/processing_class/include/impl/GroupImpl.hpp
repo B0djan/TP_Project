@@ -19,6 +19,13 @@ public:
 
 
 
+class GetGroupImpl : public Handler {
+public:
+    ParserObject process(const ParserObject& request_body) override;
+};
+
+
+
 class AddUserImpl : public Handler {
 public:
     ParserObject process(const ParserObject& request_body) override;
@@ -29,6 +36,10 @@ public:
     ParserObject process(const ParserObject& request_body) override;
 };
 
+
+
+
+
 class JoinImpl : public Handler {
 public:
     ParserObject process(const ParserObject& request_body) override;
@@ -38,6 +49,8 @@ class LeaveImpl : public Handler {
 public:
     ParserObject process(const ParserObject& request_body) override;
 };
+
+
 
 
 
