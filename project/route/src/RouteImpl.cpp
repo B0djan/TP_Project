@@ -27,8 +27,8 @@ RouteImpl::RouteImpl() {
 
     // Synchro
     route_map.insert({GET_EVENTS,             std::make_pair(new ParserEventImpl,              new SynchroClientEventsImpl)});
-    route_map.insert({GET_CONTACTS,           std::make_pair(new ParserUserContactsImpl,        new SynchroClientContactsImpl)});
-    route_map.insert({GET_GROUPS,             std::make_pair(new ParserGroupImpl,        new SynchroClientGroupsImpl)});
+    route_map.insert({GET_CONTACTS,           std::make_pair(new ParserUserContactsImpl,       new SynchroClientContactsImpl)});
+    route_map.insert({GET_GROUPS,             std::make_pair(new ParserGroupImpl,              new SynchroClientGroupsImpl)});
 
     //  Write user personal data
     route_map.insert({WRITE_PERSONAL_DATA,    std::make_pair(new ParserWritePersonalDataImpl,  new WritePersonalDataImpl)});
@@ -52,8 +52,8 @@ RouteImpl::RouteImpl() {
 
     //route_map.insert({SEARCH_GROUP,           std::make_pair(new ParserGroupImpl,              new SearchGroupImpl)});
 
-    route_map.insert({ADD_USER,               std::make_pair(new ParserGroupImpl,          new AddUserImpl)});
-    route_map.insert({RM_USER,                std::make_pair(new ParserGroupImpl,          new RmUserImpl)});
+    route_map.insert({ADD_USER,               std::make_pair(new ParserGroupImpl,             new AddUserImpl)});
+    route_map.insert({RM_USER,                std::make_pair(new ParserGroupImpl,             new RmUserImpl)});
 
     //route_map.insert({JOIN,                   std::make_pair(new ParserGroupImpl,          new JoinImpl)});
     //route_map.insert({LEAVE,                  std::make_pair(new ParserGroupImpl,          new LeaveImpl)});
