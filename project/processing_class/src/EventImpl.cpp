@@ -44,7 +44,7 @@ ParserObject WriteEventImpl::process(const ParserObject& request_body) {
     /*std::set<event_t> :: iterator it = request_body.events.begin();
 
     if (id.empty()) {
-        char* check = SupportProcess::GetEventId(event);
+        char* check = Process::GetEventId(event);
         if (check == NULL) {
             response_body.error = "Error get event id";
 

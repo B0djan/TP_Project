@@ -33,7 +33,7 @@ SET(SOURCE_LIST_PROCESSING_CLASS
         processing_class/src/ContactsImpl.cpp
         processing_class/src/EventImpl.cpp
         processing_class/src/GroupImpl/Base/GroupImpl.cpp
-        processing_class/src/GroupImpl/Base/SupportProcessGroup.cpp
+        "database_connector/PostgreSQL/src/GroupManagement.cpp"
         processing_class/src/GroupImpl/User/UserGroupImpl.cpp
         processing_class/src/GroupImpl/MeetUp/MeetUpImpl.cpp
         processing_class/src/GroupImpl/MeetUp/SupportMeetUp.cpp
@@ -41,7 +41,7 @@ SET(SOURCE_LIST_PROCESSING_CLASS
         processing_class/src/SynchroClientImpl.cpp
         processing_class/src/WriteAddressDataImpl.cpp
         processing_class/src/WritePersonalDataImpl.cpp
-        processing_class/src/Support/SupportProcess.cpp)
+        database_connector/PostgreSQL/src/GetId.cpp)
 
 SET(SOURCE_LIST_PARSER_CLASS
         parser_class/JSON/src/ParserContactsImpl.cpp
@@ -53,10 +53,13 @@ SET(SOURCE_LIST_PARSER_CLASS
         parser_class/JSON/src/ParserWritePersonalDataImpl.cpp)
 
 SET(SOURCE_LIST_PARSER_OBJECT
-        parser_object/src/ParserObject.cpp
-        parser_object/src/StructFunctional.cpp)
+        parser_object/src/Structs.cpp)
 
-SET(SOURCE_LIST_DATA
+SET(SOURCE_LIST_DATABASE
+        database_connector/PostgreSQL/src/GetId.cpp
+        database_connector/PostgreSQL/src/RegAuth.cpp
+        database_connector/PostgreSQL/src/GroupManagement.cpp
+        database_connector/PostgreSQL/src/SynchronizationClient.cpp
         database_connector/PostgreSQL/src/PGConnection.cpp)
 
 
@@ -66,5 +69,5 @@ ADD_EXECUTABLE(${PROJECT_NAME}
         ${SOURCE_LIST_PROCESSING_CLASS}
         ${SOURCE_LIST_PARSER_CLASS}
         ${SOURCE_LIST_PARSER_OBJECT}
-        ${SOURCE_LIST_DATA})
+        ${SOURCE_LIST_DATABASE})
 

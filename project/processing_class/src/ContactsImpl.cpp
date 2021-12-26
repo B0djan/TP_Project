@@ -7,7 +7,7 @@ ParserObject AddUserContactsImpl::process(const ParserObject& request_body) {
 
     ParserObject response_body;
 
-    char* check = SupportProcess::GetUserId(*it_m);
+    char* check = DatabaseConnector::Process::GetUserId(*it_m);
     if (check == NULL) {
         response_body.error = "Error get user id";
 
@@ -34,7 +34,7 @@ ParserObject RmUserContactsImpl::process(const ParserObject& request_body) {
 
 
 
-    code = DeleteFriend(request_body.contacts.user_id, SupportProcess::GetUserId(*it_m));
+    code = DeleteFriend(request_body.contacts.user_id, DatabaseConnector::Process::GetUserId(*it_m));
     if (code != 0) {
         response_body.error = "Error delete contact";
         return response_body;
