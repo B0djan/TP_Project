@@ -87,9 +87,9 @@ namespace Print_struct {
     }
 
     void _contacts_t(const contacts_t& c) {
-        std::cout << "user_id      :---: " << c.user_id << std::endl;
+        std::cout << "user_id          :---: " << c.user_id << std::endl;
         for (std::set<std::string>::iterator it = c.list_contacts.begin(); it != c.list_contacts.end(); ++it) {
-            std::cout << "contacts :---: " << *it << std::endl;
+            std::cout << "contacts :---:         " << *it << std::endl;
         }
     }
 
@@ -97,7 +97,7 @@ namespace Print_struct {
         std::cout << "group_id         :---: " << g.group_id << std::endl;
         std::cout << "title            :---: " << g.title << std::endl;
         for (std::set<std::string>::iterator it = g.members.begin(); it != g.members.end(); ++it) {
-            std::cout << "member          :---: " << *it << std::endl;
+            std::cout << "member           :---: " << *it << std::endl;
         }
     }
 

@@ -8,10 +8,6 @@ ParserObject AddGroupImpl::process(const ParserObject& request_body) {
     std::set<group_t> :: iterator it_g = request_body.groups.begin();
     std::set<std::string> :: iterator it_m = (*it_g).members.begin();
 
-    if (GLOBAL_KEY_TEST_PROCESSING) {
-        Print_struct::_group_t(*it_g);
-    }
-
     code = DatabaseConnector::Group::Create((*it_g).title);
     if (code != 0) {
         response_body.error = "Error of creation group";
@@ -42,6 +38,10 @@ ParserObject AddGroupImpl::process(const ParserObject& request_body) {
         response_body.error = "Error add owner in group";
 
         return response_body;
+    }
+
+    if (GLOBAL_KEY_TEST_PROCESSING) {
+        Print_struct::_group_t(*it_g);
     }
 
     return response_body;
@@ -81,6 +81,10 @@ ParserObject RmGroupImpl::process(const ParserObject& request_body) {
         response_body.error = "Error of delete group";
 
         return response_body;
+    }
+
+    if (GLOBAL_KEY_TEST_PROCESSING) {
+        Print_struct::_group_t(*it_g);
     }
 
     return response_body;
