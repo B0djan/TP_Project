@@ -45,10 +45,10 @@ ParserObject SynchroClientContactsImpl::process(const ParserObject& request_body
 ParserObject SynchroClientGroupsImpl::process(const ParserObject& request_body) {
     ParserObject response_body;
 
-    std::set<group_t> :: iterator it_g = response_body.groups.begin();
-    std::set<std::string> :: iterator it_m = (*it_g).members.begin();
+    std::set<group_t>::iterator it_g = request_body.groups.begin();
+    std::set<std::string>::iterator it_m = (*it_g).members.begin();;
 
-    char* check_user_id = DatabaseConnector::GetID::User(*it_m);
+    char *check_user_id = DatabaseConnector::GetID::User(*it_m);
     if (check_user_id == NULL) {
         response_body.error = "Error get user id";
 
