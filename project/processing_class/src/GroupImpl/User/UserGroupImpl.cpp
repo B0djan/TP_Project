@@ -11,7 +11,7 @@ ParserObject AddUserImpl::process(const ParserObject& request_body) {
 
     char *check_group_id = DatabaseConnector::GetID::Group((*it_g).title);
     if (check_group_id == NULL) {
-        response_body.error = "Error get user id";
+        response_body.error = "Error get group id";
 
         return response_body;
     }

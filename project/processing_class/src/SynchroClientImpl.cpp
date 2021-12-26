@@ -45,7 +45,19 @@ ParserObject SynchroClientContactsImpl::process(const ParserObject& request_body
 ParserObject SynchroClientGroupsImpl::process(const ParserObject& request_body) {
     ParserObject response_body;
 
-    std::set<std::string> names_groups = DatabaseConnector::Synchro::Groups(request_body.user.user_id);
+    std::set<group_t> :: iterator it_g = response_body.groups.begin();
+    std::set<std::string> :: iterator it_m = (*it_g).members.begin();
+
+    char* check_user_id = DatabaseConnector::GetID::User(*it_m);
+    if (check_user_id == NULL) {
+        response_body.error = "Error get user id";
+
+        return response_body;
+    }
+
+    std::string user_id = check_user_id;
+
+    std::set<std::string> names_groups = DatabaseConnector::Synchro::Groups(user_id);
     if (names_groups.empty()) {
         response_body.error = "Not found groups";
 

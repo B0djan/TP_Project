@@ -91,7 +91,6 @@ namespace DatabaseConnector {
         };
 
         std::set<std::string> Groups(const std::string &user_id) {
-
             char command[] = "SELECT fk_user_id, title "
                              "FROM group_members "
                              "LEFT JOIN group_m "
