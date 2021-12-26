@@ -10,7 +10,7 @@ ParserObject RegistrationImpl::process(const ParserObject& request_body) {
         return response_body;
     }
 
-    char* check = SupportProcess::GetUserId(user.nickname);
+    char* check = SupportProcess::GetUserId(request_body.user.nickname);
     if (check == NULL) {
         response_body.error = "Error get user id";
 
@@ -32,7 +32,7 @@ ParserObject AuthenticationImpl::process(const ParserObject& request_body) {
         return response_body;
     }
 
-    char* check = SupportProcess::GetUserId(user.nickname);
+    char* check = SupportProcess::GetUserId(request_body.user.nickname);
     if (check == NULL) {
         response_body.error = "Error get user id";
 
