@@ -7,8 +7,6 @@ ParserObject AddEventImpl::process(const ParserObject& request_body) {
 
     ParserObject response_body;
 
-    std::set<event_t> :: iterator it = request_body.events.begin();
-
     //  Отладка
     if (GLOBAL_KEY_TEST_PROCESSING) {
         for (std::set<event_t>::iterator it = request_body.events.begin(); it != request_body.events.end(); ++it) {
@@ -70,8 +68,6 @@ ParserObject RmEventImpl::process(const ParserObject& request_body) {
     int code;
 
     ParserObject response_body;
-
-    std::set<event_t> :: iterator it = request_body.events.begin();
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PROCESSING) {
