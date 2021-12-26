@@ -17,8 +17,6 @@ namespace DatabaseConnector {
 
             arguments[0] = user_id.c_str();
 
-            std::cout << "Полученный обработчиком id: " << arguments[0] << std::endl;
-
             PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 1, NULL, arguments, NULL, NULL, 0);
 
             if (PQresultStatus(res) != PGRES_TUPLES_OK) {
@@ -32,9 +30,7 @@ namespace DatabaseConnector {
             if (PQgetisnull(res, 0, 1))
                 return friends;
 
-            int n_rows = PQnfields(res);
-
-            std::cout << "Количество строк (друзей), которые нашел SQL: " << n_rows << std::endl;
+            int n_rows = PQntuples(res);
 
             for (int i = 0; i < n_rows; i++) {
                 char *user_friend = PQgetvalue(res, i, 1);
@@ -42,9 +38,11 @@ namespace DatabaseConnector {
                 friends.insert(user_friend);
             }
 
-            std::cout << "Количество строк (друзей), добавленных в множество: " << friends.size() << std::endl;
-
             PQclear(res);
+
+            std::cout << "Полученный обработчиком id: " << arguments[0] << std::endl;
+            std::cout << "Количество строк (друзей), которые нашел SQL: " << n_rows << std::endl;
+            std::cout << "Количество строк (друзей), добавленных в множество: " << friends.size() << std::endl;
 
             return friends;
         };
@@ -110,7 +108,7 @@ namespace DatabaseConnector {
             if (PQgetisnull(res, 0, 1))
                 return groups;                // в верхней функции првоерить пустое ли множество, если да то Not found
 
-            int n_rows = PQnfields(res);
+            int n_rows = PQntuples(res);
 
             for (int i = 0; i < n_rows; i++) {
                 char *Group_name = PQgetvalue(res, i, 1);
@@ -119,6 +117,10 @@ namespace DatabaseConnector {
             }
 
             PQclear(res);
+
+            std::cout << "Полученный обработчиком id: " << arguments[0] << std::endl;
+            std::cout << "Количество строк (групп), которые нашел SQL: " << n_rows << std::endl;
+            std::cout << "Количество строк (групп), добавленных в множество: " << groups.size() << std::endl;
 
             return groups;
         }
