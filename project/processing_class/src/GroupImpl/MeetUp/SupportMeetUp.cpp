@@ -98,7 +98,7 @@ std::vector<std::set<event_t>> SearchFreeTimeImpl::GetData(const group_t& g, con
 
         std::string user_id = check_user_id;
 
-        //res.push_back(DatabaseConnector::Synchro::Events(user_id));
+        res.push_back(DatabaseConnector::Synchro::Events(user_id));
     }
 
     return res;
