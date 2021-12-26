@@ -86,7 +86,7 @@
 #define SEARCH_FREE_TIME                 "get_meetup"
 //  input: title, date; output: set<meetup_t>[description, time_begin, time_end]
 
-#define HISTORY_MEETUP                   "get_history"
+//#define HISTORY_MEETUP                   "get_history"
 //  input: title; output: set<meetup_t>[description, time_begin, time_end, date]
 
 

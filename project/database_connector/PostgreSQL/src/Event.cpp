@@ -1,6 +1,6 @@
-#include <PGConnection.hpp>
+#include "../include/PGConnection.hpp"
 
-#include <DataBaseConnectorImpl.hpp>
+#include "../../include/impl/DataBaseConnectorImpl.hpp"
 
 namespace DatabaseConnector {
     namespace Event {

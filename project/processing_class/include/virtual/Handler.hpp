@@ -8,9 +8,9 @@
 
 #include <ParserObject.hpp>
 
-#include <PGConnection.hpp>
+#include "../../../database_connector/PostgreSQL/include/PGConnection.hpp"
 
-#include <DataBaseConnectorImpl.hpp>
+#include "../../../database_connector/include/impl/DataBaseConnectorImpl.hpp"
 
 #define GLOBAL_KEY_TEST_PROCESSING false
 

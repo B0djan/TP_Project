@@ -1,4 +1,4 @@
-#include "PGConnection.hpp"
+#include "../include/PGConnection.hpp"
 
     PGconn* PGConnection::GetConnection()
     {
