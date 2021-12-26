@@ -81,7 +81,6 @@ namespace Print_struct {
 
     void _user_t(const user_t& u) {
         std::cout << "user_id           :---: " << u.user_id << std::endl;
-        std::cout << "email             :---: " << u.email << std::endl;
         std::cout << "password          :---: " << u.password << std::endl;
         std::cout << "nickname          :---: " << u.nickname << std::endl;
     }
@@ -104,6 +103,7 @@ namespace Print_struct {
     void _personal_data_t(const personal_data_t& d) {
         std::cout << "user_id          :---: " << d.user_id << std::endl;
         std::cout << "first_name       :---: " << d.first_name << std::endl;
+        std::cout << "email            :---: " << d.email << std::endl;
         std::cout << "surname          :---: " << d.surname << std::endl;
         std::cout << "age              :---: " << d.age << std::endl;
         std::cout << "phone_number     :---: " << d.phone_number << std::endl;

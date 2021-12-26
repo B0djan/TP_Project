@@ -21,12 +21,18 @@
 
 
 
-                            //  personal data  //  in process
-#define WRITE_PERSONAL_DATA              "..."
+                            //  personal data
+#define WRITE_PERSONAL_DATA              "..."  //  in process
+//  input: data...; output: OK
+
+#define GET_PERSONAL_DATA                "..."  //  in process
 //  input: data...; output: OK
 
                             //  user address
 #define WRITE_ADDRESS                    "..."  //  in process
+//  input: data...; output: OK
+
+#define GET_ADDRESS                    "..."  //  in process
 //  input: data...; output: OK
 
 

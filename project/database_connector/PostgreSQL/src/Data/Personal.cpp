@@ -6,7 +6,7 @@ namespace DatabaseConnector {
     namespace Data {
         namespace Personal {
             int CreateNull(const std::string& user_id) {
-                char command[] = "INSERT INTO personal_data (fk_address_user) "
+                char command[] = "INSERT INTO personal_data (fk_data_user) "
                                  "VALUES ($1)";
 
                 const char* arguments[1];

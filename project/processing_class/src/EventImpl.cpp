@@ -31,8 +31,8 @@ ParserObject AddEventImpl::process(const ParserObject& request_body) {
     return response_body;
 }
 
-/*ParserObject WriteEventImpl::process(const ParserObject& request_body) {
-    int code;
+ParserObject WriteEventImpl::process(const ParserObject& request_body) {
+    /*int code;
 
     event_t event;
 
@@ -58,11 +58,12 @@ ParserObject AddEventImpl::process(const ParserObject& request_body) {
         response_body.error = "Error write event";
     }
 
-    id.clear();
+    id.clear();*/
 
+    ParserObject response_body;
 
     return response_body;
-}*/
+}
 
 ParserObject RmEventImpl::process(const ParserObject& request_body) {
     int code;

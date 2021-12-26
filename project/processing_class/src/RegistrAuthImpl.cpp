@@ -19,6 +19,20 @@ ParserObject RegistrationImpl::process(const ParserObject& request_body) {
 
     response_body.user.user_id = check;
 
+    code = DatabaseConnector::Data::Personal::CreateNull(response_body.user.user_id);
+    if (code != 0) {
+        response_body.error = "Error create first personal data";
+
+        return response_body;
+    }
+
+    code = DatabaseConnector::Data::Address::CreateNull(response_body.user.user_id);
+    if (code != 0) {
+        response_body.error = "Error create first address data";
+
+        return response_body;
+    }
+
     return response_body;
 }
 
