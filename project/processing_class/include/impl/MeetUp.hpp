@@ -10,9 +10,9 @@ typedef struct {
 class Day {
     unsigned char *storage = nullptr;
 
-    duration_t Day::StrToDuration(const std::string &time);
+    duration_t StrToDuration(const std::string &time);
 
-    std::string Day::DurationToStr(const duration_t& time);
+    std::string DurationToStr(const duration_t& time);
 
     duration_t CharToDuration(const unsigned char& time_interval);
 
@@ -20,9 +20,9 @@ class Day {
 
     std::string CharToStr(const unsigned char& time);
 
-    unsigned char Day::DurarationToChar(const duration_t& duraton);
+    //unsigned char DurarationToChar(const duration_t& duraton);
 
-    unsigned char Day::DurarationToChar(const duration_t& duraton);
+    //unsigned char DurarationToChar(const duration_t& duraton);
 
 public:
     Day() = default;
