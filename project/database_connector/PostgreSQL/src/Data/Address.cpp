@@ -63,7 +63,7 @@ namespace DatabaseConnector {
             address_data_t Get(const std::string &user_id) {
                 address_data_t Data;
 
-                char command[] = "SELECT building, housing, street, city, district, index, country FROM address_data WHERE fk_address_user = $1";
+                char command[] = "SELECT building, housing, street, city, district, index, country FROM user_address WHERE (fk_address_user = $1)";
 
                 const char *arguments[1];
 
@@ -88,6 +88,8 @@ namespace DatabaseConnector {
                 Data.district = PQgetvalue(res, 0, 4);
                 Data.index = PQgetvalue(res, 0, 5);
                 Data.country = PQgetvalue(res, 0, 6);
+
+                Print_struct::_address_data_t(Data);
 
                 PQclear(res);
 
