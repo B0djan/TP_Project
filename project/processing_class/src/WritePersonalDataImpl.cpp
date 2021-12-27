@@ -23,7 +23,7 @@ ParserObject GetPersonalDataImpl::process(const ParserObject& request_body) {
         return response_body;
     }
 
-    response_body.personal_data = check_personal_data;
+    response_body = check_personal_data;
 
     return response_body;
 }

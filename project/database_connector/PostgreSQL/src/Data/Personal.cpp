@@ -64,7 +64,7 @@ namespace DatabaseConnector {
             personal_data_t Get(const std::string &user_id) {
                 personal_data_t Data;
 
-                char command[] = "SELECT first_name, last_name, age, phone_number, status, label, description, email FROM personal_data WHERE fk_data_user = $1";
+                char command[] = "SELECT first_name, last_name, age, phone_number, status, label, description, email FROM personal_data WHERE (fk_data_user = $1)";
 
                 const char *arguments[1];
 
@@ -72,7 +72,7 @@ namespace DatabaseConnector {
 
                 PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 1, NULL, arguments, NULL, NULL, 0);
 
-                if (PQresultStatus(res) != PGRES_COMMAND_OK) {
+                if (PQresultStatus(res) != PGRES_TUPLES_OK) {
                     printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
 
                     PQclear(res);
@@ -82,6 +82,8 @@ namespace DatabaseConnector {
                     return Data;
                 }
 
+                std::cout << user_id << std::endl;
+
                 Data.first_name = PQgetvalue(res, 0, 0);
                 Data.surname = PQgetvalue(res, 0, 1);
                 Data.age = PQgetvalue(res, 0, 2);
@@ -90,6 +92,8 @@ namespace DatabaseConnector {
                 Data.label = PQgetvalue(res, 0, 5);
                 Data.description = PQgetvalue(res, 0, 6);
                 Data.email = PQgetvalue(res, 0, 7);
+
+                Print_struct::_personal_data_t(Data);
 
                 PQclear(res);
 

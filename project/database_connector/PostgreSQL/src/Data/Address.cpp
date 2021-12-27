@@ -71,7 +71,7 @@ namespace DatabaseConnector {
 
                 PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 1, NULL, arguments, NULL, NULL, 0);
 
-                if (PQresultStatus(res) != PGRES_COMMAND_OK) {
+                if (PQresultStatus(res) != PGRES_TUPLES_OK) {
                     printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
 
                     PQclear(res);

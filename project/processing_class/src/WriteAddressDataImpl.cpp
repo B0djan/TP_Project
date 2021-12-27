@@ -23,7 +23,7 @@ ParserObject GetAddressDataImpl::process(const ParserObject& request_body) {
         return response_body;
     }
 
-    response_body.address_data = check_address;
+    response_body = check_address;
 
     return response_body;
 }

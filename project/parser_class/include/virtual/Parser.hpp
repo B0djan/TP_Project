@@ -8,7 +8,7 @@
 
 #include <RouteMapKeys.hpp>
 
-#define GLOBAL_KEY_TEST_PARSER false
+#define GLOBAL_KEY_TEST_PARSER true
 
 class Parser {
 public:

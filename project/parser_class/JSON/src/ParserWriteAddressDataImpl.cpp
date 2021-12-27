@@ -68,6 +68,14 @@ std::string ParserWriteAddressDataImpl::ObjectToStr(const std::string type_respo
         return res;
     }
 
+    if (!other.error.empty()) {
+        j[type_response] = other.error;
+
+        res = j.dump();
+
+        return res;
+    }
+
     address_data_t address_data = other.address_data;
 
     nlohmann::json value;

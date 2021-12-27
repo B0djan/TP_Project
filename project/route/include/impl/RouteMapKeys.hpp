@@ -26,14 +26,14 @@
 //  input: data...; output: OK
 
 #define GET_PERSONAL_DATA                "get_personal"  //  in process
-//  input: data...; output: OK
+//  input: id; output: data
 
                             //  user address
 #define WRITE_ADDRESS                    "write_address"  //  in process
 //  input: data...; output: OK
 
 #define GET_ADDRESS                      "get_address"  //  in process
-//  input: data...; output: OK
+//  input: id; output: data
 
 
                             //  event

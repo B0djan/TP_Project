@@ -149,3 +149,17 @@ std::set<meetup_t> SearchFreeTimeImpl::GetMeetUps(std::vector<std::set<event_t>>
 
 
 
+// Test
+/*
+ *
+while (it != all.end) {
+meetup.begin = *it
+
+while (true) {
+ if (*it == *(it++)) {
+ meetup.end = *(it)
+ } else {
+ meetups.insert(meetup)
+ }
+ }
+ */
