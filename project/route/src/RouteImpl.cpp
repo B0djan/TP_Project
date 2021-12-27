@@ -62,7 +62,7 @@ RouteImpl::RouteImpl() {
     //route_map.insert({JOIN,                   std::make_pair(new ParserGroupImpl,          new JoinImpl)});
     //route_map.insert({LEAVE,                  std::make_pair(new ParserGroupImpl,          new LeaveImpl)});
 
-    route_map.insert({SEARCH_FREE_TIME,       std::make_pair(new ParserMeetUpImpl,             new SearchFreeTimeImpl)});
+    route_map.insert({SEARCH_FREE_TIME,       std::make_pair(new ParserEventImpl,             new SearchFreeTimeImpl)});
 
     //route_map.insert({HISTORY_MEETUP,         std::make_pair(new ParserMeetUpImpl,             new OutputHistoryMeetUpImpl)});
 }

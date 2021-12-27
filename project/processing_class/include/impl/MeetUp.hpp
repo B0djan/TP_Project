@@ -57,11 +57,11 @@ Day CreateFreeDay(std::vector<std::set<event_t>> members_evets);
 
 class SearchFreeTimeImpl : public Handler {
 
-    std::set<meetup_t> SearchMeetUps(std::set<std::string>);
+    std::set<event_t> SearchMeetUps(std::set<std::string>);
 
     std::vector<std::set<event_t>> GetData(const group_t& g, const std::string& date);
 
-    std::set<meetup_t> GetMeetUps(std::vector<std::set<event_t>>);
+    std::set<event_t> GetMeetUps(std::vector<std::set<event_t>>);
 
 public:
 

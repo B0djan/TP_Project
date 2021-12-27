@@ -118,6 +118,7 @@ std::vector<std::set<event_t>> SearchFreeTimeImpl::GetData(const group_t& g, con
         }
 
         std::string user_id = check_user_id;
+
         res.push_back(DatabaseConnector::Synchro::Events(user_id, date));
     }
 
@@ -166,30 +167,30 @@ std::set<std::string> Day::GetSetOfFreeTime() {
     return all_free_times;
 }
 
-std::set<meetup_t> SearchFreeTimeImpl::SearchMeetUps(std::set<std::string> all_free_times) {
+std::set<event_t> SearchFreeTimeImpl::SearchMeetUps(std::set<std::string> all_free_times) {
 
-    std::set<meetup_t> meetups;
+    std::set<event_t> events;
 
     for (std::set<std::string>::iterator it = all_free_times.begin(); it != all_free_times.end();) {
 
-        meetup_t meetup;
+        event_t event;
 
-        meetup.time_begin = *it;
+        event.time_begin = *it;
 
         while (IsMeetUp(StrToDuration(*++it), StrToDuration(*it))) {
-            meetup.time_end = *it;
+            event.time_end = *it;
         }
-        meetups.insert(meetup);
+        events.insert(event);
     }
-    return meetups;
+    return events;
 }
 
-std::set<meetup_t> SearchFreeTimeImpl::GetMeetUps(std::vector<std::set<event_t>> members_evets) {
+std::set<event_t> SearchFreeTimeImpl::GetMeetUps(std::vector<std::set<event_t>> members_evets) {
     Day day = CreateFreeDay(members_evets);
 
     std::set<std::string> all_free_times = day.GetSetOfFreeTime();
 
-    std::set<meetup_t> meetups = SearchMeetUps(all_free_times);
+    std::set<event_t> meetups = SearchMeetUps(all_free_times);
 
     return meetups;
 }

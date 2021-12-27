@@ -146,6 +146,8 @@ void HttpClientAcceptor::HttpClientProcessor::get_massage(const char* input) {
 
     massage_d = buff.substr(key_start, key_end - key_start + 3);
 
+    std::cout << massage_d << std::endl;
+
     massage = true;
 }
 
