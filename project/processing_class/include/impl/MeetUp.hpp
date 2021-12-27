@@ -31,12 +31,12 @@ unsigned char DurarationToChar(const duration_t& duraton);
 enum { BITS = sizeof(unsigned char) };
 
 class Day {
-
+    unsigned char *storage = nullptr;
 public:
     
-    Day() {};
+    Day();
 
-    ~Day() {};
+    ~Day();
 
     unsigned char* GetStorage() const;
 
@@ -57,7 +57,7 @@ Day CreateFreeDay(std::vector<std::set<event_t>> members_evets);
 
 class SearchFreeTimeImpl : public Handler {
 
-    std::set<meetup_t> SearchMeetUps();
+    std::set<meetup_t> SearchMeetUps(std::set<std::string>);
 
     std::vector<std::set<event_t>> GetData(const group_t& g,  const std::string& date);
 
@@ -72,38 +72,3 @@ class OutputHistoryMeetUpImpl : public Handler {
 public:
     ParserObject process(const ParserObject& request_body) override;
 };
-
-
-//  Оригиналы
-/*
-class Duration {
-    private:
-        int hour;
-        int min;
-    public:
-        Duration(const std::string& time);
-
-        unsigned char GetTimeInterval();
-    }
-
-    class Day {
-    private:
-        unsigned char *storage = nullptr;
-    public:
-        Day() = default;
-        ~Day() = default;
-
-        unsigned char* GetStorage() const;
-
-        void UnionDays(Day& added_day);
-
-        void InvertDay(Day& busy_day);
-
-        void InsertEvent(Duration& begin_time, Duration& end_time);
-
-        void EraseEvent(Duration& begin_time, Duration& end_time);
-
-        bool IsFree(Duration& begin_time, Duration& end_time);
-    };
-
-*/

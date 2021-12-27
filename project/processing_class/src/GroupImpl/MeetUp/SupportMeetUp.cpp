@@ -56,7 +56,7 @@ std::string CharToStr(const unsigned char& time) {
 //  support class Day
 
 
-/*Day::Day() {
+Day::Day() {
     storage = new unsigned char [NUMBER_INTERVAL];
 }
 
@@ -135,19 +135,3 @@ std::set<meetup_t> SearchFreeTimeImpl::GetMeetUps(std::vector<std::set<event_t>>
 
     return meetups;
 }
-
-
-// Test
-/*
- *
-while (it != all.end) {
-meetup.begin = *it
-
-while (true) {
- if (*it == *(it++)) {
- meetup.end = *(it)
- } else {
- meetups.insert(meetup)
- }
- }
- */

@@ -27,7 +27,7 @@ ParserObject OutputHistoryMeetUpImpl::process(const ParserObject& request_body) 
 // Main functions
 
 
-/*
+
 Day CreateFreeDay(std::vector<std::set<event_t>> members_evets) {
     Day busy_day;
 
@@ -86,4 +86,3 @@ std::set<std::string> Day::GetSetOfFreeTime() {
     return all_free_times;
 }
 
-*/
