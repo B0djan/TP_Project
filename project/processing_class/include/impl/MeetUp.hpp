@@ -21,6 +21,9 @@ class Day {
     std::string CharToStr(const unsigned char& time);
 
     unsigned char Day::DurarationToChar(const duration_t& duraton);
+
+    unsigned char Day::DurarationToChar(const duration_t& duraton);
+
 public:
     Day() = default;
     ~Day() = default;
