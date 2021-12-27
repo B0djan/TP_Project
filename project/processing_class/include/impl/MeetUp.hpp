@@ -16,6 +16,10 @@ class Day {
 
     duration_t CharToDuration(const unsigned char& time_interval);
 
+    unsigned char StrToChar(const std::string& time);
+
+    std::string CharToStr(const unsigned char& time);
+
     unsigned char Day::DurarationToChar(const duration_t& duraton);
 public:
     Day() = default;

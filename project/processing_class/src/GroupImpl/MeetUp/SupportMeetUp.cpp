@@ -44,6 +44,13 @@ unsigned char Day::DurarationToChar(const duration_t& duraton) {
     return (unsigned char)(total / 15 + 1);
 }
 
+unsigned char Day::StrToChar(const std::string& time) {
+    return (DurarationToChar(StrToDuration(time)));
+};
+
+std::string Day::CharToStr(const unsigned char& time) {
+    return (DurationToStr(CharToDuration(time)));
+}
 
 //  support class Day
 unsigned char* Day::GetStorage() const {
@@ -74,8 +81,8 @@ void Day::InsertEvent(std::string& begin_time, std::string& end_time) {
 }
 
 void Day::EraseEvent(std::string& begin_time, std::string& end_time) {
-    unsigned char begin = DurarationToChar(StrToDuration(begin_time));
-    unsigned char end = DurarationToChar(StrToDuration(end_time));
+    unsigned char begin = StrToChar(begin_time);
+    unsigned char end = StrToChar(end_time);
 
     while (begin < end) {
         storage[begin / BITS] &= ~((unsigned char)1 << (begin % BITS));
@@ -84,8 +91,8 @@ void Day::EraseEvent(std::string& begin_time, std::string& end_time) {
 }
 
 bool Day::IsFree(std::string& begin_time, std::string& end_time) {
-    unsigned char begin = DurarationToChar(StrToDuration(begin_time));
-    unsigned char end = DurarationToChar(StrToDuration(end_time));;
+    unsigned char begin = StrToChar(begin_time);
+    unsigned char end = StrToChar(end_time);;
 
     bool answer = true;
 
@@ -125,10 +132,11 @@ std::set<meetup_t> SearchFreeTimeImpl::GetMeetUps(std::vector<std::set<event_t>>
     Day free_day;
 
     for (auto member: user_events) {
+
         Day user_day;
 
         for (auto event: member) {
-            user_day.InsertEvent(event.time_begin, event.time_end);
+            user_day.InsertEvent(event.time_begin, event.time_end);  // все нормально
         }
 
         free_day.UnionDays(user_day);
