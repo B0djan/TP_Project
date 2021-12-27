@@ -6,8 +6,13 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
     // {"add_event":{["user_id":"56","event_name":"breakfast","event_date":"01:06:2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"]}}
 
     // {"get_events":[{"user_id":"56", "date":"date"}]}
+    std::cout << "!" << parser_str << "!" << std::endl;
+
+    std::cout << "C" << parser_str.data() << "C" << std::endl;
 
     nlohmann::json j = nlohmann::json::parse(parser_str);
+
+    std::cout << "!!!!!!ENDDDDDDDDDDDDDDDDDD!!!!" << std::endl;
 
     nlohmann::json::iterator it = j.begin();
 
@@ -119,6 +124,14 @@ std::string ParserEventImpl::ObjectToStr(const std::string type_response, const 
 
         json_events.push_back(json_event);
     }
+    //  Отладка
+    if (GLOBAL_KEY_TEST_PARSER) {
+        for (std::set<event_t>::iterator it = events.begin(); it != events.end(); ++it) {
+            Print_struct::_event_t(*it);
+        }
+        Print_struct::from_processing(res);
+    }
+
 
     j[type_response] = json_events;
 

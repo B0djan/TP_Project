@@ -3,7 +3,7 @@
 #define SUCCESS     0
 #define ERROR      -1
 
-#define GLOBAL_KEY_TEST_DATABASE_CON true
+#define GLOBAL_KEY_TEST_DATABASE_CON false
 
 namespace DatabaseConnector {
     namespace GetID {

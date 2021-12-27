@@ -46,15 +46,13 @@ void HttpClientAcceptor::HttpClientProcessor::reply(std::string response) {
 
     stream->write(write_buffer, writebuf_filled, [this] (bool success) {
         if (!success) {
-            memset(write_buffer, 0, (massage_d.size() + 1));
-
             return end_cb();
         }
-        if (keep_alive) {
-            memset(write_buffer, 0, (massage_d.size() + 1));
 
+        if (keep_alive) {
             return get_start_line();
         }
+
         end_cb();
     });
 }
@@ -138,17 +136,15 @@ void HttpClientAcceptor::HttpClientProcessor::get_massage(const char* input) {
     }
 
 
-    size_t key_end = buff.find("}}");
+    size_t key_end = buff.find_first_of("}}");
     if (key_end == buff.npos) {
-        size_t key_end = buff.find("]}");
+        size_t key_end = buff.find_first_of("]}");
         if (key_end == buff.npos) {
             return;
         }
     }
 
-    massage_d = buff.substr(key_start, key_end - key_start + 2);
-
-    std::cout << massage_d << std::endl;
+    massage_d = buff.substr(key_start, key_end - key_start + 3);
 
     massage = true;
 }

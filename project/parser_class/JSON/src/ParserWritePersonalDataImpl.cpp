@@ -71,6 +71,15 @@ std::string ParserWritePersonalDataImpl::ObjectToStr(const std::string type_resp
         return res;
     }
 
+    if (!other.error.empty()) {
+        j[type_response] = other.error;
+
+        res = j.dump();
+
+        return res;
+    }
+
+
     personal_data_t personal_data = other.personal_data;
 
     nlohmann::json value;

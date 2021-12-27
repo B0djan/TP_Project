@@ -16,15 +16,17 @@ duration_t StrToDuration(const std::string &time);
 
 std::string DurationToStr(const duration_t& time);
 
-duration_t CharToDuration(const unsigned char& time_interval);
+
 
 unsigned char StrToChar(const std::string& time);
 
 std::string CharToStr(const unsigned char& time);
 
+
 unsigned char DurarationToChar(const duration_t& duraton);
 
 unsigned char DurarationToChar(const duration_t& duraton);
+
 
 Day CreateFreeDay(std::vector<std::set<event_t>> members_evets);
 
@@ -32,7 +34,6 @@ Day CreateFreeDay(std::vector<std::set<event_t>> members_evets);
 enum { BITS = sizeof(unsigned char) };
 
 class Day {
-    unsigned char *storage = nullptr;
 
 public:
     
