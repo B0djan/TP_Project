@@ -37,7 +37,7 @@ RES {"get_contacts":["Misha","Maxim"]}
 TEST get_groups: {"get_groups":{members":["Sasha"]}}
 RES {"get_groups":[{"title":"Texnosrac"},{"title":"Texnosrac1"},{"title":"Texnosrac12"},{"title":"Texnosrac124"}]}
 
-TEST write_personal: {"write_personal":{"user_id":"1", "first_name":"Bogdan", "surname":"Kazimirov", "age":"21", "phone_number":"+79017453550", "status":"WTF?", "label": "null", "description":"MT11-72", "email":"bs@mt11.su"}}
+TEST write_personal: "write_personal":{"user_id":"8", "first_name":"Bogdan", "surname":"Kazimirov", "age":"21", "phone_number":"+79017453550", "status":"asdas", "label":"1asd", "description":"MT11-72", "email":"bs@mt11.su"}}
 RES write_personal: {"write_personal:"OK"}
 
 TEST get_personal: {"get_personal":{"user_id":"1"}}
