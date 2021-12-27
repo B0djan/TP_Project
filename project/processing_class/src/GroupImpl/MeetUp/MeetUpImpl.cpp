@@ -26,6 +26,8 @@ ParserObject OutputHistoryMeetUpImpl::process(const ParserObject& request_body) 
 
 // Main functions
 
+
+/*
 Day CreateFreeDay(std::vector<std::set<event_t>> members_evets) {
     Day busy_day;
 
@@ -46,6 +48,15 @@ Day CreateFreeDay(std::vector<std::set<event_t>> members_evets) {
     return free_day;
 }
 
+bool IsMeetUp (duration_t duration1, duration_t duration2) {
+    if (duration2 - duration1 <= 15) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
 std::set<meetup_t> SearchMeetUps(std::set<std::string> all_free_times) {
 
     std::set<meetup_t> meetups;
@@ -56,22 +67,13 @@ std::set<meetup_t> SearchMeetUps(std::set<std::string> all_free_times) {
 
         meetup.time_begin = *it;
 
-        while ( IsMeetUp (StrToDuration(*++it), StrToDuration(*it)) ) {
+        while (IsMeetUp(StrToDuration(*++it), StrToDuration(*it))) {
             meetup.time_end = *it;
         }
         meetups.insert(meetup);
     }
     return meetups;
 }
-
-bool IsMeetUp (duration_t duration1, duration_t duration2) {
-    if (duration2 - duration1 <= 15) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
 std::set<std::string> Day::GetSetOfFreeTime() {
     std::set<std::string> all_free_times;
 
@@ -84,3 +86,4 @@ std::set<std::string> Day::GetSetOfFreeTime() {
     return all_free_times;
 }
 
+*/

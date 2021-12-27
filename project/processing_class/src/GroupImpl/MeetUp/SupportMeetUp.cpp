@@ -56,7 +56,7 @@ std::string CharToStr(const unsigned char& time) {
 //  support class Day
 
 
-Day::Day() {
+/*Day::Day() {
     storage = new unsigned char [NUMBER_INTERVAL];
 }
 

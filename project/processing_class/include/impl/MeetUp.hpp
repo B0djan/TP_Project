@@ -28,9 +28,6 @@ unsigned char DurarationToChar(const duration_t& duraton);
 unsigned char DurarationToChar(const duration_t& duraton);
 
 
-Day CreateFreeDay(std::vector<std::set<event_t>> members_evets);
-
-
 enum { BITS = sizeof(unsigned char) };
 
 class Day {
@@ -51,14 +48,16 @@ public:
 
     void EraseEvent(std::string& begin_time, std::string& end_time);
 
-    bool Day::IsFree(unsigned char time_interval);
+    bool IsFree(unsigned char time_interval);
 
-    std::set<meetup_t> SearchMeetUps();
-
-    std::set<std::string> Day::GetSetOfFreeTime();
+    std::set<std::string> GetSetOfFreeTime();
 };
 
+Day CreateFreeDay(std::vector<std::set<event_t>> members_evets);
+
 class SearchFreeTimeImpl : public Handler {
+
+    std::set<meetup_t> SearchMeetUps();
 
     std::vector<std::set<event_t>> GetData(const group_t& g,  const std::string& date);
 
