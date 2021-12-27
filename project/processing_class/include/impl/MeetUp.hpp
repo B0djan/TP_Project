@@ -59,7 +59,7 @@ class SearchFreeTimeImpl : public Handler {
 
     std::set<meetup_t> SearchMeetUps(std::set<std::string>);
 
-    std::vector<std::set<event_t>> GetData(std::vector<std::set<event_t>> members_evets);
+    std::vector<std::set<event_t>> GetData(const group_t& g, const std::string& date);
 
     std::set<meetup_t> GetMeetUps(std::vector<std::set<event_t>>);
 

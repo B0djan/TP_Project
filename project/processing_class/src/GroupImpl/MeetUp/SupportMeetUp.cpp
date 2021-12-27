@@ -107,23 +107,22 @@ bool Day::IsFree(unsigned char time_interval) {
 
 
 
-// DatabaseConnector::methods
-// std::vector<std::set<event_t>> SearchFreeTimeImpl::GetData(const group_t& g, const std::string& date) {
-//     std::vector<std::set<event_t>> res;
+//  DatabaseConnector::methods
+std::vector<std::set<event_t>> SearchFreeTimeImpl::GetData(const group_t& g, const std::string& date) {
+    std::vector<std::set<event_t>> res;
 
-//     for (std::set<std::string> :: iterator it_m = g.members.begin(); it_m != g.members.end(); it_m++) {
-//         char* check_user_id = DatabaseConnector::GetID::User(*it_m);
-//         if (check_user_id == NULL) {
-//             return res;
-//         }
+    for (std::set<std::string> :: iterator it_m = g.members.begin(); it_m != g.members.end(); it_m++) {
+        char* check_user_id = DatabaseConnector::GetID::User(*it_m);
+        if (check_user_id == NULL) {
+            return res;
+        }
 
-//         std::string user_id = check_user_id;
+        std::string user_id = check_user_id;
+        res.push_back(DatabaseConnector::Synchro::Events(user_id, date));
+    }
 
-//         res.push_back(DatabaseConnector::Synchro::Events(user_id, date));
-//     }
-
-//     return res;
-// }
+return res;
+}
 
 
 bool IsMeetUp (duration_t duration1, duration_t duration2) {

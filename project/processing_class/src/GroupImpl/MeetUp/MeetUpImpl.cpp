@@ -1,21 +1,13 @@
 #include <MeetUp.hpp>
 
 ParserObject SearchFreeTimeImpl::process(const ParserObject& request_body) {
-    /*
     ParserObject response_body;
 
-        group_t group
+    std::set<group_t> :: iterator it_g = request_body.groups.begin();
+    std::set<event_t> :: iterator it_e = request_body.events.begin();
 
-        for (auto gr: request_body.groups) {
-            group = gr;
-        }
+    response_body = GetMeetUps(GetData(*it_g, (*it_e).date));
 
-        res = GetMeetUps(GetData(group));
-
-        return res;
-
-    */
-    ParserObject response_body;
     return response_body;
 }
 
