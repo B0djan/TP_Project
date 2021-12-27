@@ -2,12 +2,8 @@
 
 #include <MeetUp.hpp>
 
-#define NUMBER_INTERVAL 12
 
-enum { BITS = sizeof(unsigned char) };
-
-// support class Duration
-/*duration_t Day::StrToDuration(const std::string &time) {
+duration_t StrToDuration(const std::string &time) {
     std::stringstream stream(time);
 
     int h, m = 0;
@@ -24,8 +20,12 @@ enum { BITS = sizeof(unsigned char) };
 
     return dur;
 }
-///
-std::string Day::DurationToStr(const duration_t& time) {
+
+int operator-(const duration_t& lhs, const duration_t& rhs) {
+    return lhs.total - rhs.total;
+};
+
+std::string DurationToStr(const duration_t& time) {
     std::string time_s = std::to_string(time.hour) + ":" + std::to_string(time.min);
 
     return time_s;
@@ -39,40 +39,39 @@ duration_t CharToDuration(const unsigned char& time_interval) {
     return duration;
 }
 
-unsigned char Day::DurarationToChar(const duration_t& duraton) {
+unsigned char DurarationToChar(const duration_t& duraton) {
     int total = duraton.hour * 60 * duraton.min;
     return (unsigned char)(total / 15 + 1);
 }
 
-unsigned char Day::StrToChar(const std::string& time) {
+unsigned char StrToChar(const std::string& time) {
     return (DurarationToChar(StrToDuration(time)));
 };
 
-std::string Day::CharToStr(const unsigned char& time) {
+std::string CharToStr(const unsigned char& time) {
     return (DurationToStr(CharToDuration(time)));
 }
 
+
 //  support class Day
+
+
+Day::Day() {
+    storage = new unsigned char [NUMBER_INTERVAL];
+}
+
+Day::~Day() {
+    delete [] storage;
+}
+
 unsigned char* Day::GetStorage() const {
-    unsigned char* res;
-    return res;
+    return storage;
 }
 
-void Day::UnionDays(Day& added_day) {
-    for (unsigned char i = 0; i < NUMBER_INTERVAL; i ++) {
-        storage[i] |= added_day.GetStorage()[i];
-    };
-}
-
-void Day::InvertDay() {
-    for (unsigned char i = 0; i < NUMBER_INTERVAL; i ++) {
-        storage[i] = ~this->GetStorage()[i];
-    };
-}
 
 void Day::InsertEvent(std::string& begin_time, std::string& end_time) {
-    unsigned char begin = DurarationToChar(StrToDuration(begin_time));
-    unsigned char end = DurarationToChar(StrToDuration(end_time));
+    unsigned char begin = StrToChar(begin_time);
+    unsigned char end = StrToChar(end_time);
 
     while (begin < end) {
         storage[begin / BITS] |= ((unsigned char)1 << (begin % BITS));
@@ -90,18 +89,22 @@ void Day::EraseEvent(std::string& begin_time, std::string& end_time) {
     }
 }
 
-bool Day::IsFree(std::string& begin_time, std::string& end_time) {
-    unsigned char begin = StrToChar(begin_time);
-    unsigned char end = StrToChar(end_time);;
-
-    bool answer = true;
-
-    while (begin < end) {
-        answer = bool(storage[begin / BITS] >> (begin % BITS) & 1);
-    }
-
-    return answer;
+void Day::UnionDays(Day& added_day) {
+    for (unsigned char i = 0; i < NUMBER_INTERVAL; i ++) {
+        storage[i] |= added_day.GetStorage()[i];
+    };
 }
+
+void Day::InvertDay(Day& busy_day) {
+    for (unsigned char i = 0; i < NUMBER_INTERVAL; i ++) {
+        storage[i] = ~busy_day.GetStorage()[i];
+    };
+}
+
+bool Day::IsFree(unsigned char time_interval) {
+    return (storage[time_interval / BITS] >> (time_interval % BITS)) & 1; 
+}
+
 
 
 // DatabaseConnector::methods
@@ -122,30 +125,15 @@ bool Day::IsFree(std::string& begin_time, std::string& end_time) {
 //     return res;
 // }
 
-std::set<meetup_t> Day::SearchMeetUps() {
-    std::set<meetup_t> res;
 
-    return res;
+std::set<meetup_t> SearchFreeTimeImpl::GetMeetUps(std::vector<std::set<event_t>> members_evets) {
+    Day day = CreateFreeDay(members_evets);
+
+    std::set<std::string> all_free_times = day.GetSetOfFreeTime();
+
+    std::set<meetup_t> meetups = SearchMeetUps(all_free_times);
+
+    return meetups;
 }
-
-std::set<meetup_t> SearchFreeTimeImpl::GetMeetUps(std::vector<std::set<event_t>> user_events) {
-    Day free_day;
-
-    for (auto member: user_events) {
-
-        Day user_day;
-
-        for (auto event: member) {
-            user_day.InsertEvent(event.time_begin, event.time_end);  // все нормально
-        }
-
-        free_day.UnionDays(user_day);
-    }
-
-    free_day.InvertDay();
-
-    return free_day.SearchMeetUps();
-}*/
-
 
 
