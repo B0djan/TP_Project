@@ -31,8 +31,8 @@ namespace DatabaseConnector {
 
             int ReWrite(const address_data_t &a) {
                 char command[] = "UPDATE user_address "
-                                 "SET (building = $1, housing = $2, housing = $3, city = $4, district = $5, index = $6, country = $7)"
-                                 "WHERE (fk_address_user = $8)";
+                                 "SET building = $1, housing = $2, street = $3, city = $4, district = $5, index = $6, country = $7 "
+                                 "WHERE fk_address_user = $8";
 
                 const char *arguments[8];
 

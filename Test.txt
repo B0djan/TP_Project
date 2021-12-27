@@ -43,7 +43,7 @@ RES write_personal: {"write_personal:"OK"}
 TEST get_personal: {"get_personal":{"user_id":"1"}}
 RES get_personal: {"get_personal":{"user_id":"1", "first_name":"Bogdan", "surname":"Kazimirov", "age":"21", "phone_number":"+79017453550", "status":"WTF?", "label": "null", "description":"MT11-72", "email":"bs@mt11.su"}}
 
-TEST write_address: {"write_address":{"user_id":"1", "building":"1", "housing":"1", "street":"Bolshaya Voskresenskaya","city":"Krasnogorsk","district":"Krasnogorskiy","index":"143430", "country":"Russia"}}"
+TEST write_address: {"write_address":{"user_id":"1", "building":"1", "housing":"1", "street":"Bolshaya Voskresenskaya","city":"Krasnogorsk","district":"Krasnogorskiy","index":"143430", "country":"Russia"}}
 RES write_address: {"write_address:"OK"}
 
 TEST get_personal: {"get_personal":{"user_id":"1"}}

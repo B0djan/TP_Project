@@ -30,9 +30,9 @@ namespace DatabaseConnector {
             }
 
             int ReWrite(const personal_data_t &d) {
-                char command[] = "UPDATE user_address "
-                                 "SET (building = $1, housing = $2, housing = $3, city = $4, district = $5, index = $6, country = $7, email = $8)"
-                                 "WHERE (fk_address_user = $8)";
+                char command[] = "UPDATE personal_data "
+                                 "SET first_name = $1, last_name = $2, age = $3, phone_number = $4, status = $5, label = $6, description = $7, email = $8 "
+                                 "WHERE fk_data_user = $9";
 
                 const char *arguments[9];
 
@@ -43,8 +43,8 @@ namespace DatabaseConnector {
                 arguments[4] = d.status.c_str();
                 arguments[5] = d.label.c_str();
                 arguments[6] = d.description.c_str();
-                arguments[7] = d.user_id.c_str();
-                arguments[8] = d.email.c_str();
+                arguments[7] = d.email.c_str();
+                arguments[8] = d.user_id.c_str();
 
                 PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 9, NULL, arguments, NULL, NULL, 0);
 
