@@ -26,13 +26,13 @@ ParserObject ParserWritePersonalDataImpl::StrToObject(const std::string& parser_
         personal_data.phone_number = value["phone_number"].get<std::string>();
 
     if (value.contains("status"))
-        personal_data.phone_number = value["status"].get<std::string>();
+        personal_data.status = value["status"].get<std::string>();
 
     if (value.contains("label"))
-        personal_data.phone_number = value["label"].get<std::string>();
+        personal_data.label = value["label"].get<std::string>();
 
     if (value.contains("description"))
-        personal_data.phone_number = value["description"].get<std::string>();
+        personal_data.description = value["description"].get<std::string>();
 
     if (value.contains("email"))
         personal_data.email = value["email"].get<std::string>();
