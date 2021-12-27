@@ -52,7 +52,7 @@ RouteImpl::RouteImpl() {
     route_map.insert({WRITE_GROUP,            std::make_pair(new ParserGroupImpl,              new WriteGroupImpl)});
     route_map.insert({RM_GROUP,               std::make_pair(new ParserGroupImpl,              new RmGroupImpl)});
 
-    route_map.insert({GET_GROUP,               std::make_pair(new ParserGroupImpl,              new GetGroupImpl)});
+    route_map.insert({GET_GROUP,              std::make_pair(new ParserGroupImpl,              new GetGroupImpl)});
 
     //route_map.insert({SEARCH_GROUP,           std::make_pair(new ParserGroupImpl,              new SearchGroupImpl)});
 
