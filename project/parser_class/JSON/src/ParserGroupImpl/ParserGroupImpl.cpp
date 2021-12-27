@@ -81,6 +81,18 @@ std::string ParserGroupImpl::ObjectToStr(const std::string type_response, const 
         return res;
     }
 
+    if (type_response == GET_GROUP) {
+        for (auto& group: groups){
+
+            if (!group.title.empty())
+            {
+                json_groups.push_back(group.title);
+            }
+        }
+        j[type_response] = json_groups;
+        res = j.dump();
+    }
+
     for (auto& group: groups)
     {
         nlohmann::json json_group;

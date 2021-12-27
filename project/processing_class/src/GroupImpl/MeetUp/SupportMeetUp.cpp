@@ -24,7 +24,7 @@ duration_t Day::get_format_24(const std::string &time) {
 
     return dur;
 }
-
+///
 std::string Day::get_format_str(const duration_t& time) {
     std::string time_s = std::to_string(time.hour) + ":" + std::to_string(time.min);
 
