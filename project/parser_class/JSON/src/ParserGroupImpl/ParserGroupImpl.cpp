@@ -91,6 +91,7 @@ std::string ParserGroupImpl::ObjectToStr(const std::string type_response, const 
         }
         j[type_response] = json_groups;
         res = j.dump();
+        return res;
     }
 
     for (auto& group: groups)

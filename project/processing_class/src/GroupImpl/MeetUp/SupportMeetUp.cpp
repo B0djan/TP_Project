@@ -90,22 +90,22 @@ bool Day::IsFree(std::string& begin_time, std::string& end_time) {
 
 
 //  DatabaseConnector methods
-std::vector<std::set<event_t>> SearchFreeTimeImpl::GetData(const group_t& g, const std::string& date) {
-    std::vector<std::set<event_t>> res;
+// std::vector<std::set<event_t>> SearchFreeTimeImpl::GetData(const group_t& g, const std::string& date) {
+//     std::vector<std::set<event_t>> res;
 
-    for (std::set<std::string> :: iterator it_m = g.members.begin(); it_m != g.members.end(); it_m++) {
-        char* check_user_id = DatabaseConnector::GetID::User(*it_m);
-        if (check_user_id == NULL) {
-            return res;
-        }
+//     for (std::set<std::string> :: iterator it_m = g.members.begin(); it_m != g.members.end(); it_m++) {
+//         char* check_user_id = DatabaseConnector::GetID::User(*it_m);
+//         if (check_user_id == NULL) {
+//             return res;
+//         }
 
-        std::string user_id = check_user_id;
+//         std::string user_id = check_user_id;
 
-        res.push_back(DatabaseConnector::Synchro::Events(user_id, date));
-    }
+//         res.push_back(DatabaseConnector::Synchro::Events(user_id, date));
+//     }
 
-    return res;
-}
+//     return res;
+// }
 
 std::set<meetup_t> Day::SearchMeetUps() {
     std::set<meetup_t> res;
@@ -113,23 +113,23 @@ std::set<meetup_t> Day::SearchMeetUps() {
     return res;
 }
 
-std::set<meetup_t> SearchFreeTimeImpl::GetMeetUps(std::vector<std::set<event_t>> user_events) {
-    Day free_day;
+// std::set<meetup_t> SearchFreeTimeImpl::GetMeetUps(std::vector<std::set<event_t>> user_events) {
+//     Day free_day;
 
-    for (auto member: user_events) {
-        Day user_day;
+//     for (auto member: user_events) {
+//         Day user_day;
 
-        for (auto event: member) {
-            user_day.InsertEvent(event.time_begin, event.time_end);
-        }
+//         for (auto event: member) {
+//             user_day.InsertEvent(event.time_begin, event.time_end);
+//         }
 
-        free_day.UnionDays(user_day);
-    }
+//         free_day.UnionDays(user_day);
+//     }
 
-    free_day.InvertDay();
+//     free_day.InvertDay();
 
-    return free_day.SearchMeetUps();
-}
+//     return free_day.SearchMeetUps();
+// }
 
 
 
