@@ -7,7 +7,7 @@
 enum { BITS = sizeof(unsigned char) };
 
 // support class Duration
-duration_t Day::StrToDuration(const std::string &time) {
+/*duration_t Day::StrToDuration(const std::string &time) {
     std::stringstream stream(time);
 
     int h, m = 0;
@@ -137,7 +137,7 @@ std::set<meetup_t> SearchFreeTimeImpl::GetMeetUps(std::vector<std::set<event_t>>
     free_day.InvertDay();
 
     return free_day.SearchMeetUps();
-}
+}*/
 
 
 
