@@ -45,10 +45,16 @@ void HttpClientAcceptor::HttpClientProcessor::reply(std::string response) {
     ASSERT(writebuf_filled > 0 && writebuf_filled < sizeof(write_buffer), "too small reply buffer");
 
     stream->write(write_buffer, writebuf_filled, [this] (bool success) {
-        if (!success)
+        if (!success) {
+            memset(write_buffer, 0, (massage_d.size() + 1));
+
             return end_cb();
-        if (keep_alive)
+        }
+        if (keep_alive) {
+            memset(write_buffer, 0, (massage_d.size() + 1));
+
             return get_start_line();
+        }
         end_cb();
     });
 }
@@ -141,6 +147,8 @@ void HttpClientAcceptor::HttpClientProcessor::get_massage(const char* input) {
     }
 
     massage_d = buff.substr(key_start, key_end - key_start + 2);
+
+    std::cout << massage_d << std::endl;
 
     massage = true;
 }
