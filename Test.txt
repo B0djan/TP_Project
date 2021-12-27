@@ -1,33 +1,56 @@
+//  REGAUTH
 TEST autorization: {"autorization":{"nickname":"Sasha","password":"123456asd64569898989"}}
 RES: {"autorization":{"user_id":"56"}}
 
 TEST registration: {"registration":{"nickname":"Sasha","password":"123456asd64569898989"}}
 RES: {"registration":{"user_id":"56"}}
 
+
+
+// EVETS
 TEST add_event: {"add_event":[{"user_id":"56","event_name":"breakfast","event_date":"01-06-2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"}]}
 RES: {"add_event":"OK}
 
 TEST delete_event: {"delete_event":[{"user_id":"56","event_name":"breakfast","event_date":"01-06-2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"}]}
 RES: {"add_event":"OK}
 
+
+
+//  CONTACTS
 TEST add_friend: {"add_friend":{"user_id":"56","list_contacts":["Ibragim"]}}
 RES: {"add_contact":OK}
 
 TEST delete_friend: {"delete_friend":{"user_id":"56","list_contacts":["Ibragim"]}}
 RES: {"delete_friend":OK}
 
+
+
+//  GROUP BASE
 TEST create_group: {"create_group":{"title":"Texnosrac","members":["Ibragim"]}}
 RES: {"create_group":OK}
 
 TEST delete_group: {"delete_group":{"title":"Texnosrac"}}
 RES: {"delete_group":OK}
 
+
+
+//  GET MEMBERS
+TEST get_group_data: {"get_data_group":{"title":"Texnosrac"}}
+RES: {"get_data_group":[{"group_id":"2","members":["Danzan123","mars1234","user333"],"title":"group techno"}]}
+
+
+
+
+// GROUP MANAGEMENT
 TEST add_user: {"invite":{"title":"Texnosrac", "members":["Sasha"]}}
 RES: {"invite":OK}
 
 TEST rm_user: {"kick":{"title":"Texnosrac", "members":["Sasha"]}}
 RES: {"kick":OK}
 
+
+
+//  SYNCRO
 TEST get_events: {"get_events":[{"user_id":"56", "event_date":yyyy-mm-dd"}]}
 RES {"get_events":[{"description":"breakfast", "time_begin":"10:00", "time_end":"10:45"}, {"description":"lansh", "time_begin":"19:00", "time_end":"20:00"}]}
 
@@ -35,19 +58,24 @@ TEST get_contacts: {"get_contacts":{"user_id":"56"}}
 RES {"get_contacts":["Misha","Maxim"]}
 
 TEST get_groups: {"get_groups":{members":["Sasha"]}}
-RES {"get_groups":[{"title":"Texnosrac"},{"title":"Texnosrac1"},{"title":"Texnosrac12"},{"title":"Texnosrac124"}]}
+RES {"get_groups":["group techno","qqaa","qqqqqqqqqq","qwe1"]}
 
+
+
+
+
+//  PERSONAL DATA
 TEST write_personal: "write_personal":{"user_id":"8", "first_name":"Bogdan", "surname":"Kazimirov", "age":"21", "phone_number":"+79017453550", "status":"asdas", "label":"1asd", "description":"MT11-72", "email":"bs@mt11.su"}}
 RES write_personal: {"write_personal:"OK"}
 
 TEST get_personal: {"get_personal":{"user_id":"1"}}
 RES get_personal: {"get_personal":{"user_id":"1", "first_name":"Bogdan", "surname":"Kazimirov", "age":"21", "phone_number":"+79017453550", "status":"WTF?", "label": "null", "description":"MT11-72", "email":"bs@mt11.su"}}
 
+
+//  ADDRESS
 TEST write_address: {"write_address":{"user_id":"1", "building":"1", "housing":"1", "street":"Bolshaya Voskresenskaya","city":"Krasnogorsk","district":"Krasnogorskiy","index":"143430", "country":"Russia"}}
 RES write_address: {"write_address:"OK"}
 
-TEST get_personal: {"get_personal":{"user_id":"1"}}
+TEST get_personal: {"get_address":{"user_id":"1"}}
 RES get_personal: {"get_personal":{"user_id":"1", "building":"1", "housing":"1","city":"Krasnogorsk","district":"Krasnogorskiy","index":"143430", "country":"Russia"}}
-
-TEST get_group_data: {"get_data_group":{"title":"Texnosrac"}}
 

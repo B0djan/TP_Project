@@ -81,7 +81,7 @@ std::string ParserGroupImpl::ObjectToStr(const std::string type_response, const 
         return res;
     }
 
-    if (type_response == GET_GROUP) {
+    if (type_response == GET_GROUPS) {
         for (auto& group: groups){
 
             if (!group.title.empty())
@@ -89,8 +89,11 @@ std::string ParserGroupImpl::ObjectToStr(const std::string type_response, const 
                 json_groups.push_back(group.title);
             }
         }
+
         j[type_response] = json_groups;
+
         res = j.dump();
+
         return res;
     }
 
