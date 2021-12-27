@@ -109,6 +109,7 @@ std::set<meetup_t> Day::SearchMeetUps() {
 
 std::set<meetup_t> SearchFreeTimeImpl::GetMeetUps(std::vector<std::set<event_t>> user_events) {
     Day free_day;
+
     for (auto member: user_events) {
         Day user_day;
 
