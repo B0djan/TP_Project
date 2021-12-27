@@ -7,7 +7,7 @@
 enum { BITS = sizeof(unsigned char) };
 
 // support class Duration
-duration_t SearchFreeTimeImpl::get_format(const std::string &time) {
+duration_t Day::get_format(const std::string &time) {
     std::stringstream stream(time);
 
     int h, m = 0;
@@ -25,33 +25,33 @@ duration_t SearchFreeTimeImpl::get_format(const std::string &time) {
     return dur;
 }
 
-unsigned char SearchFreeTimeImpl::GetTimeInterval(const duration_t& dur) {
+unsigned char Day::GetTimeInterval(const duration_t& dur) {
     int total = dur.hour * 60 * dur.min;
     return (unsigned char)(total / 15 + 1);
 }
 
 
 //  support class Day
-unsigned char* SearchFreeTimeImpl::Day::GetStorage() const {
+unsigned char* Day::GetStorage() const {
     unsigned char* res;
     return res;
 }
 
-void SearchFreeTimeImpl::Day::UnionDays(Day& added_day) {
+void Day::UnionDays(Day& added_day) {
     for (unsigned char i = 0; i < NUMBER_INTERVAL; i ++) {
         storage[i] |= added_day.GetStorage()[i];
     };
 }
 
-void SearchFreeTimeImpl::Day::InvertDay(Day& busy_day) {
+void Day::InvertDay() {
     for (unsigned char i = 0; i < NUMBER_INTERVAL; i ++) {
-        storage[i] = ~busy_day.GetStorage()[i];
+        storage[i] = ~this->GetStorage()[i];
     };
 }
 
-/*void SearchFreeTimeImpl::Day::InsertEvent(duration_t& begin_time, duration_t& end_time) {
-    unsigned char begin = begin_time.GetTimeInterval();
-    unsigned char end = end_time.GetTimeInterval();
+void Day::InsertEvent(std::string& begin_time, std::string& end_time) {
+    unsigned char begin = GetTimeInterval(get_format(begin_time));
+    unsigned char end = GetTimeInterval(get_format(end_time));
 
     while (begin < end) {
         storage[begin / BITS] |= ((unsigned char)1 << (begin % BITS));
@@ -59,30 +59,27 @@ void SearchFreeTimeImpl::Day::InvertDay(Day& busy_day) {
     }
 }
 
-void SearchFreeTimeImpl::Day::EraseEvent(duration_t& begin_time, duration_t& end_time) {
-    char begin = begin_time.GetTimeInterval();
-    char end = end_time.GetTimeInterval();
+void Day::EraseEvent(std::string& begin_time, std::string& end_time) {
+    unsigned char begin = GetTimeInterval(get_format(begin_time));
+    unsigned char end = GetTimeInterval(get_format(end_time));
 
     while (begin < end) {
         storage[begin / BITS] &= ~((unsigned char)1 << (begin % BITS));
         begin++;
     }
-}*/
+}
 
-bool SearchFreeTimeImpl::Day::IsFree(duration_t& begin_time, duration_t& end_time) {
-    // bool Day::IsFree(Duration& begin_time, Duration& end_time) {
+bool Day::IsFree(std::string& begin_time, std::string& end_time) {
+    unsigned char begin = GetTimeInterval(get_format(begin_time));
+    unsigned char end = GetTimeInterval(get_format(end_time));;
 
-    //     char begin = begin_time.GetTimeInterval();
-    //     char end = end_time.GetTimeInterval();
+    bool answer = true;
 
-    //     bool answer = true;
+    while (begin < end) {
+        answer = bool(storage[begin / BITS] >> (begin % BITS) & 1);
+    }
 
-    //     while (begin < end) {
-    //         answer = bool(storage[begin / BITS] >> (begin % BITS) & 1);
-    //     }
-    //     return answer;
-    //}
-    return true;
+    return answer;
 }
 
 
@@ -104,21 +101,27 @@ std::vector<std::set<event_t>> SearchFreeTimeImpl::GetData(const group_t& g, con
     return res;
 }
 
-std::set<meetup_t> SearchFreeTimeImpl::GetMeetUps(std::vector<std::set<event_t>>) {
-    /*
-     Day free_day;
-        for (auto member: members) {
-            Day user_day;
-            for (auto event: events) {
-                user_day.InsertEvent(begin, end);
-            }
-            free_day.UnionDays(user_day);
-        }
-        free_day.InvertDay();
-        set<meetup> res = free_day.SearchMeetUps();
-     */
+std::set<meetup_t> Day::SearchMeetUps() {
     std::set<meetup_t> res;
+
     return res;
+}
+
+std::set<meetup_t> SearchFreeTimeImpl::GetMeetUps(std::vector<std::set<event_t>> user_events) {
+    Day free_day;
+    for (auto member: user_events) {
+        Day user_day;
+
+        for (auto event: member) {
+            user_day.InsertEvent(event.time_begin, event.time_end);
+        }
+
+        free_day.UnionDays(user_day);
+    }
+
+    free_day.InvertDay();
+
+    return free_day.SearchMeetUps();
 }
 
 

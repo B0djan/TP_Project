@@ -7,34 +7,34 @@ typedef struct {
     int min;
 } duration_t;
 
-class SearchFreeTimeImpl : public Handler {
+class Day {
+    unsigned char *storage = nullptr;
+
     duration_t get_format(const std::string& time);
 
     unsigned char GetTimeInterval(const duration_t& dur);
+public:
+    Day() = default;
+    ~Day() = default;
 
-    class Day {
-    private:
-        unsigned char *storage = nullptr;
-    public:
-        Day() = default;
-        ~Day() = default;
+    unsigned char* GetStorage() const;
 
-        unsigned char* GetStorage() const;
+    void UnionDays(Day& added_day);
 
-        void UnionDays(Day& added_day);
+    void InvertDay();
 
-        void InvertDay(Day& busy_day);
+    void InsertEvent(std::string& begin_time, std::string& end_time);
 
-        void InsertEvent(duration_t& begin_time, duration_t& end_time);
+    void EraseEvent(std::string& begin_time, std::string& end_time);
 
-        void EraseEvent(duration_t& begin_time, duration_t& end_time);
+    bool IsFree(std::string& begin_time, std::string& end_time);
 
-        bool IsFree(duration_t& begin_time, duration_t& end_time);
-    };
+    std::set<meetup_t> SearchMeetUps();
+};
+
+class SearchFreeTimeImpl : public Handler {
 
     std::vector<std::set<event_t>> GetData(const group_t& g,  const std::string& date);
-
-    std::set<meetup_t> SearchMeetUp();
 
     std::set<meetup_t> GetMeetUps(std::vector<std::set<event_t>>);
 
