@@ -10,7 +10,9 @@ typedef struct {
 class Day {
     unsigned char *storage = nullptr;
 
-    duration_t get_format(const std::string& time);
+    duration_t get_format_24(const std::string& time);
+
+    std::string get_format_str(const duration_t& time);
 
     unsigned char GetTimeInterval(const duration_t& dur);
 public:

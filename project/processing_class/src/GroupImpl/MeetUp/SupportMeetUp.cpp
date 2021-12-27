@@ -7,7 +7,7 @@
 enum { BITS = sizeof(unsigned char) };
 
 // support class Duration
-duration_t Day::get_format(const std::string &time) {
+duration_t Day::get_format_24(const std::string &time) {
     std::stringstream stream(time);
 
     int h, m = 0;
@@ -23,6 +23,12 @@ duration_t Day::get_format(const std::string &time) {
     dur.min = total % 60;
 
     return dur;
+}
+
+std::string Day::get_format_str(const duration_t& time) {
+    std::string time_s = std::to_string(time.hour) + ":" + std::to_string(time.min);
+
+    return time_s;
 }
 
 unsigned char Day::GetTimeInterval(const duration_t& dur) {
@@ -50,8 +56,8 @@ void Day::InvertDay() {
 }
 
 void Day::InsertEvent(std::string& begin_time, std::string& end_time) {
-    unsigned char begin = GetTimeInterval(get_format(begin_time));
-    unsigned char end = GetTimeInterval(get_format(end_time));
+    unsigned char begin = GetTimeInterval(get_format_24(begin_time));
+    unsigned char end = GetTimeInterval(get_format_24(end_time));
 
     while (begin < end) {
         storage[begin / BITS] |= ((unsigned char)1 << (begin % BITS));
@@ -60,8 +66,8 @@ void Day::InsertEvent(std::string& begin_time, std::string& end_time) {
 }
 
 void Day::EraseEvent(std::string& begin_time, std::string& end_time) {
-    unsigned char begin = GetTimeInterval(get_format(begin_time));
-    unsigned char end = GetTimeInterval(get_format(end_time));
+    unsigned char begin = GetTimeInterval(get_format_24(begin_time));
+    unsigned char end = GetTimeInterval(get_format_24(end_time));
 
     while (begin < end) {
         storage[begin / BITS] &= ~((unsigned char)1 << (begin % BITS));
@@ -70,8 +76,8 @@ void Day::EraseEvent(std::string& begin_time, std::string& end_time) {
 }
 
 bool Day::IsFree(std::string& begin_time, std::string& end_time) {
-    unsigned char begin = GetTimeInterval(get_format(begin_time));
-    unsigned char end = GetTimeInterval(get_format(end_time));;
+    unsigned char begin = GetTimeInterval(get_format_24(begin_time));
+    unsigned char end = GetTimeInterval(get_format_24(end_time));;
 
     bool answer = true;
 
