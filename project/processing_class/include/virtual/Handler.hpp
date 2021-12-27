@@ -1,8 +1,10 @@
 #pragma once
 
-#include <functional>
-
 #include <string>
+#include <set>
+#include <vector>
+
+#include <functional>
 
 #include <libpq-fe.h>
 

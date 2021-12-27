@@ -10,11 +10,13 @@ typedef struct {
 class Day {
     unsigned char *storage = nullptr;
 
-    duration_t get_format_24(const std::string& time);
+    duration_t Day::StrToDuration(const std::string &time);
 
-    std::string get_format_str(const duration_t& time);
+    std::string Day::DurationToStr(const duration_t& time);
 
-    unsigned char GetTimeInterval(const duration_t& dur);
+    duration_t CharToDuration(const unsigned char& time_interval);
+
+    unsigned char Day::DurarationToChar(const duration_t& duraton);
 public:
     Day() = default;
     ~Day() = default;

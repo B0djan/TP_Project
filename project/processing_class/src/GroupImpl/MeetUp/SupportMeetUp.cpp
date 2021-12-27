@@ -7,7 +7,7 @@
 enum { BITS = sizeof(unsigned char) };
 
 // support class Duration
-duration_t Day::get_format_24(const std::string &time) {
+duration_t Day::StrToDuration(const std::string &time) {
     std::stringstream stream(time);
 
     int h, m = 0;
@@ -25,14 +25,22 @@ duration_t Day::get_format_24(const std::string &time) {
     return dur;
 }
 ///
-std::string Day::get_format_str(const duration_t& time) {
+std::string Day::DurationToStr(const duration_t& time) {
     std::string time_s = std::to_string(time.hour) + ":" + std::to_string(time.min);
 
     return time_s;
 }
 
-unsigned char Day::GetTimeInterval(const duration_t& dur) {
-    int total = dur.hour * 60 * dur.min;
+duration_t CharToDuration(const unsigned char& time_interval) {
+    int total = int(time_interval) * 15;
+    duration_t duration;
+    duration.hour = total / 60;
+    duration.min = total % 60;
+    return duration;
+}
+
+unsigned char Day::DurarationToChar(const duration_t& duraton) {
+    int total = duraton.hour * 60 * duraton.min;
     return (unsigned char)(total / 15 + 1);
 }
 
@@ -56,8 +64,8 @@ void Day::InvertDay() {
 }
 
 void Day::InsertEvent(std::string& begin_time, std::string& end_time) {
-    unsigned char begin = GetTimeInterval(get_format_24(begin_time));
-    unsigned char end = GetTimeInterval(get_format_24(end_time));
+    unsigned char begin = DurarationToChar(StrToDuration(begin_time));
+    unsigned char end = DurarationToChar(StrToDuration(end_time));
 
     while (begin < end) {
         storage[begin / BITS] |= ((unsigned char)1 << (begin % BITS));
@@ -66,8 +74,8 @@ void Day::InsertEvent(std::string& begin_time, std::string& end_time) {
 }
 
 void Day::EraseEvent(std::string& begin_time, std::string& end_time) {
-    unsigned char begin = GetTimeInterval(get_format_24(begin_time));
-    unsigned char end = GetTimeInterval(get_format_24(end_time));
+    unsigned char begin = DurarationToChar(StrToDuration(begin_time));
+    unsigned char end = DurarationToChar(StrToDuration(end_time));
 
     while (begin < end) {
         storage[begin / BITS] &= ~((unsigned char)1 << (begin % BITS));
@@ -76,8 +84,8 @@ void Day::EraseEvent(std::string& begin_time, std::string& end_time) {
 }
 
 bool Day::IsFree(std::string& begin_time, std::string& end_time) {
-    unsigned char begin = GetTimeInterval(get_format_24(begin_time));
-    unsigned char end = GetTimeInterval(get_format_24(end_time));;
+    unsigned char begin = DurarationToChar(StrToDuration(begin_time));
+    unsigned char end = DurarationToChar(StrToDuration(end_time));;
 
     bool answer = true;
 
@@ -89,7 +97,7 @@ bool Day::IsFree(std::string& begin_time, std::string& end_time) {
 }
 
 
-//  DatabaseConnector methods
+// DatabaseConnector::methods
 // std::vector<std::set<event_t>> SearchFreeTimeImpl::GetData(const group_t& g, const std::string& date) {
 //     std::vector<std::set<event_t>> res;
 
@@ -113,23 +121,23 @@ std::set<meetup_t> Day::SearchMeetUps() {
     return res;
 }
 
-// std::set<meetup_t> SearchFreeTimeImpl::GetMeetUps(std::vector<std::set<event_t>> user_events) {
-//     Day free_day;
+std::set<meetup_t> SearchFreeTimeImpl::GetMeetUps(std::vector<std::set<event_t>> user_events) {
+    Day free_day;
 
-//     for (auto member: user_events) {
-//         Day user_day;
+    for (auto member: user_events) {
+        Day user_day;
 
-//         for (auto event: member) {
-//             user_day.InsertEvent(event.time_begin, event.time_end);
-//         }
+        for (auto event: member) {
+            user_day.InsertEvent(event.time_begin, event.time_end);
+        }
 
-//         free_day.UnionDays(user_day);
-//     }
+        free_day.UnionDays(user_day);
+    }
 
-//     free_day.InvertDay();
+    free_day.InvertDay();
 
-//     return free_day.SearchMeetUps();
-// }
+    return free_day.SearchMeetUps();
+}
 
 
 
