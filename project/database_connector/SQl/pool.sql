@@ -14,8 +14,8 @@ CREATE TABLE personal_data
 	email varchar(63),
 	age int,
 	phone_number varchar(20),
-	status int,
-	label int,
+	status varchar(31),
+	label varchar(31),
 	description varchar(127),
 	fk_data_user bigint REFERENCES user_m(user_id) NOT NULL
 );
