@@ -114,10 +114,10 @@ bool IsMeetUp (duration_t duration1, duration_t duration2) {
     }
 }
 
-Day CreateFreeDay(std::vector<std::set<event_t>> members_evets) {
+Day CreateFreeDay(std::vector<std::set<event_t>> members_events) {
     Day busy_day;
 
-    for (auto user_events: members_evets) {
+    for (auto user_events: members_events) {
 
         Day user_day;
 

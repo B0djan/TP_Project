@@ -36,30 +36,30 @@ std::vector<std::set<event_t>> SearchFreeTimeImpl::GetData(const group_t& g, con
     return res;
 }
 
-std::set<event_t> SearchFreeTimeImpl::SearchMeetUps(std::set<std::string> all_free_times) {
+std::set<meetup_t> SearchFreeTimeImpl::SearchMeetUps(std::set<std::string> all_free_times) {
 
-    std::set<event_t> events;
+    std::set<meetup_t> meetups;
 
     for (std::set<std::string>::iterator it = all_free_times.begin(); it != all_free_times.end();) {
 
-        event_t event;
+        meetup_t meetup;
 
-        event.time_begin = *it;
+        meetup.time_begin = *it;
 
         while (IsMeetUp(StrToDuration(*++it), StrToDuration(*it))) {
-            event.time_end = *it;
+            meetup.time_end = *it;
         }
-        events.insert(event);
+        meetups.insert(meetup);
     }
-    return events;
+    return meetups;
 }
 
-std::set<event_t> SearchFreeTimeImpl::GetMeetUps(std::vector<std::set<event_t>> members_evets) {
-    Day day = CreateFreeDay(members_evets);
+std::set<meetup_t> SearchFreeTimeImpl::GetMeetUps(std::vector<std::set<event_t>> members_events) {
+    Day day = CreateFreeDay(members_events);
 
     std::set<std::string> all_free_times = day.GetSetOfFreeTime();
 
-    std::set<event_t> meetups = SearchMeetUps(all_free_times);
+    std::set<meetup_t> meetups = SearchMeetUps(all_free_times);
 
     return meetups;
 }
