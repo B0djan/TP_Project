@@ -27,6 +27,8 @@ unsigned char DurarationToChar(const duration_t& duraton);
 
 unsigned char DurarationToChar(const duration_t& duraton);
 
+bool IsMeetUp (duration_t duration1, duration_t duration2);
+
 
 enum { BITS = sizeof(unsigned char) };
 

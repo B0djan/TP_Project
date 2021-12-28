@@ -1,62 +1,48 @@
-    #include <ParserGroupImpl.hpp>
+#include <ParserMeetUpImpl.hpp>
 
 ParserObject ParserMeetUpImpl::StrToObject(const std::string& parser_str) const {
-    // {"add_event":{["user_id":"56","event_name":"breakfast","event_date":"01:06:2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"]}} TODO: Отредачить
+    // {"create_group":{"title":"Texnosrac","members":["56"]}};
 
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
     nlohmann::json::iterator it = j.begin();
 
-    nlohmann::json value = j[it.key()];  // []
+    nlohmann::json value = j[it.key()];
 
-    std::set<meetup_t> meetups;
+    group_t group;
 
-    for (auto& element : value)
     {
-        meetup_t meetup;
-
-        if(element.contains("group_id"))
+        if (value.contains("group_id"))
         {
-            meetup.group_id = element["group_id"].get<std::string>();
-        };
+            group.group_id = value["group_id"].get<std::string>();
+        }
 
-        if(element.contains("meetup_name"))
+        if (value.contains("title"))
         {
-            meetup.meetup_name = element["meetup_name"].get<std::string>();
-        };
+            group.title = value["title"].get<std::string>();
+        }
 
-        if(element.contains("meetup_date"))
-        {
-            meetup.date = element["meetup_date"].get<std::string>();
-        };
-
-        if(element.contains("description"))
-        {
-            meetup.description = element["description"].get<std::string>();
-        };
-
-        if(element.contains("time_begin"))
-        {
-            meetup.time_begin = element["time_begin"].get<std::string>();
-        };
-
-        if(element.contains("time_end"))
-        {
-            meetup.time_end = element["time_end"].get<std::string>();
-        };
-
-        meetups.insert(meetup);
-    };
+        if (value.contains("members")) {
+            for (auto &element_in : value["members"])
+            {
+                group.members.insert(element_in.get<std::string>());
+            }
+        }
+    }
 
     ParserObject res;
 
-    res = meetups;
+    std::set<group_t> groups;
+
+    groups.insert(group);
+
+    res = groups;
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
         Print_struct::from_client(parser_str);
-        for (std::set<meetup_t>::iterator it = meetups.begin(); it != meetups.end(); ++it) {
-            Print_struct::_meetup_t(*it);
+        for (std::set<group_t>::iterator it = groups.begin(); it != groups.end(); ++it) {
+            Print_struct::_group_t(*it);
         }
     }
 

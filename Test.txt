@@ -79,3 +79,7 @@ RES write_address: {"write_address:"OK"}
 TEST get_personal: {"get_address":{"user_id":"1"}}
 RES get_personal: {"get_personal":{"user_id":"1", "building":"1", "housing":"1","city":"Krasnogorsk","district":"Krasnogorskiy","index":"143430", "country":"Russia"}}
 
+{"get_meetup":{{"title":"2021-05-05", "members":["Danzan123","mars1234"]}}}
+
+
+{"get_meetup":{{"title":"2021-05-05", "members":["Danzan123","mars1234"]}}
