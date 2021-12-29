@@ -18,3 +18,4 @@ public:
 
     virtual ~Parser() = default;
 };
+
