@@ -24,7 +24,7 @@ Duration::Duration(const int& number) {
 }
 
 int Duration::GetNumberInterval() const {
-    return (total + 14) / 15;
+    return (total) / 15;
 }
 
 // как вывести объект??;

@@ -1,6 +1,4 @@
-#include "duration.hpp"
-#include "event.hpp"
-#include "day.hpp"
+#include "include/include_business/day.hpp"
 
 int main() {
     std::string time1 = "11:40";
@@ -27,9 +25,30 @@ int main() {
     std::cout << "interval of time 11:40 = " << t1.GetNumberInterval() << std::endl;
     std::cout << "interval of time 02:55 = " << t2.GetNumberInterval() << std::endl;
 
+    std::cout << "   ///   Test Events   ///   " << std::endl;
 
+    Event event1 (t2, t1);
+    std::cout << "event begin = " << event1.GetBegin() << std::endl;
+    std::cout << "event end = " << event1.GetEnd() << std::endl;
 
+    Day day1;
 
+    //day1.InsertEvent(event1);
+
+    std::string x = "00:08";
+    std::string y = "02:47";
+
+    Event event2 (x,y);
+
+    day1.InsertEvent(event2);
+
+    std::cout << day1.GetStorage()[0] << std::endl;
+
+    std::cout << "   ///   Invitation   ///" << std::endl;
+
+    day1.InvertDay();
+
+    std::cout << day1.GetStorage()[0] << std::endl;
 
     return 0;
 }

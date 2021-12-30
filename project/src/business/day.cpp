@@ -5,17 +5,20 @@
 #include "../../include/include_business/day.hpp"
 
     Day::Day() {
-        storage = new char[NUMBER_INTERVAL];
+        storage = new uint16_t[NUMBER_INTERVAL];
     }
     Day::~Day() {
         delete [] storage;
     }
-    char* Day::GetStorage() const {
+    uint16_t* Day::GetStorage() const {
         return storage;
+    }
+    int Day::GetSize() const{
+        return size;
     }
 
     void Day::UnionDays(Day& added_day) {
-        for (int i = 0; i < NUMBER_INTERVAL; i ++) {
+        for (uint16_t i = 0; i < NUMBER_INTERVAL; i ++) {
             storage[i] |= added_day.GetStorage()[i];
         }
     }
@@ -23,8 +26,8 @@
     // (TODO) сделать InvertDay(void) - меняет состоянии исходного объекта;
 
     void Day::InvertDay() {
-        for (int i = 0; i < NUMBER_INTERVAL; i ++) {
-            storage[i] = ~storage[i];
+        for (uint16_t i = 0; i < NUMBER_INTERVAL; i ++) {
+            storage[i] = ~ storage[i];
         }
     }
 
@@ -35,12 +38,17 @@
     // имеет ли смысл duration как отдельный класс
 
     void Day::InsertEvent(Event& event) {
-        int begin = event.GetBegin().GetNumberInterval();
-        int end = event.GetEnd().GetNumberInterval();
-        while (begin < end) {
-            storage[begin / BITS] |= ((unsigned char)1 << (begin % BITS));
+        uint16_t begin = event.GetBegin().GetNumberInterval();
+        uint16_t end = event.GetEnd().GetNumberInterval();
+        std::cout << "begin = " << begin << std::endl;
+        std::cout << "end = " << begin << std::endl;
+        while (begin <= end) {
+            storage[begin / BITS] |= ((uint16_t)1 << (begin % BITS));
             begin ++;
         };
+    }
+    bool Day::IntervalIs(uint16_t number) {
+        return storage[number / BITS] >> (number % BITS) & 1;
     }
 
     /*
@@ -86,12 +94,10 @@
     */
 
     void Day::EraseEvent(Duration& begin_time, Duration& end_time) {
-
-        char begin = begin_time.GetNumberInterval();
-        char end = end_time.GetNumberInterval();
-
+        uint16_t begin = begin_time.GetNumberInterval();
+        uint16_t end = end_time.GetNumberInterval();
         while (begin < end) {
-            storage[begin / BITS] &= ~((unsigned char)1 << (begin % BITS));            
+            storage[begin / BITS] &= ~((uint16_t)1 << (begin % BITS));
             begin++;
         }
     }

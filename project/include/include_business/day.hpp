@@ -3,20 +3,24 @@
 #include <stdio.h>
 #include <assert.h>
 #include <map>
+#include <cstdint>
 
 #include "../../include/include_business/event.hpp"
 
-#define NUMBER_INTERVAL 12
+#define NUMBER_INTERVAL 6
 
-enum { BITS = sizeof(char) };
+enum { BITS = sizeof(uint16_t) * 8 };
 
 class Day {
-    char *storage = nullptr;
+    uint16_t* storage = nullptr;
+    int size = sizeof(uint16_t) * NUMBER_INTERVAL;
 public:
     Day();
     ~Day();
 
-    char* GetStorage() const;
+    uint16_t* GetStorage() const;
+
+    int GetSize() const;
 
     void UnionDays(Day& added_day);
 
@@ -24,10 +28,10 @@ public:
 
     void InsertEvent(Event& event);
 
-    void InsertEvent(Duration& begin_time, Duration& end_time);
-
     void EraseEvent(Duration& begin_time, Duration& end_time);
     
     bool IsFree(Duration& begin_time, Duration& end_time);
+
+    bool IntervalIs(uint16_t number);
 
 };

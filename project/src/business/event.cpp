@@ -17,3 +17,9 @@ Duration Event::GetBegin() {
 Duration Event::GetEnd() {
     return end;
 }
+std::set<int> Event::GetIntervals() {
+    std::set<int> intervals;
+    for (auto i = this->GetBegin().GetNumberInterval(); i < this->GetEnd().GetNumberInterval(); i++)
+        intervals.insert(i);
+    return intervals;
+}

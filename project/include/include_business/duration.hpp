@@ -12,6 +12,7 @@ class Duration {
 
     Duration(const int& h, const int& m);
 public:
+    Duration() = default;
     Duration(const std::string &time);
     Duration(const int& number);
 
