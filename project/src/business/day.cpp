@@ -1,29 +1,31 @@
-#include "day.h"
+#include <stdio.h>
+#include <assert.h>
+#include <map>
 
-#define NUMBER_INTERVAL 12
+#include "../../include/include_business/day.hpp"
 
-    enum { BITS = sizeof(unsigned char) };
     Day::Day() {
-        storage = new unsigned char[NUMBER_INTERVAL];
+        storage = new char[NUMBER_INTERVAL];
     }
     Day::~Day() {
         delete [] storage;
     }
-
-    unsigned char* Day::GetStorage() const { return storage; };
-
-    void Day::UnionDays(Day& aded_day) {
-        for (unsigned char i = 0; i < NUMBER_INTERVAL; i ++) {
-            storage[i] |= aded_day.GetStorage()[i];  
-        };       
+    char* Day::GetStorage() const {
+        return storage;
     }
 
-    // (TODO) сделать InverDay(void) - меняет состоянии исходного объекта;
+    void Day::UnionDays(Day& added_day) {
+        for (int i = 0; i < NUMBER_INTERVAL; i ++) {
+            storage[i] |= added_day.GetStorage()[i];
+        }
+    }
 
-    void Day::InvertDay(Day& busy_day) {
-        for (unsigned char i = 0; i < NUMBER_INTERVAL; i ++) {
-            storage[i] = ~busy_day.GetStorage()[i];  
-        };
+    // (TODO) сделать InvertDay(void) - меняет состоянии исходного объекта;
+
+    void Day::InvertDay() {
+        for (int i = 0; i < NUMBER_INTERVAL; i ++) {
+            storage[i] = ~storage[i];
+        }
     }
 
     // (TODO) : InsertEvent(std::string, std::string)
@@ -32,14 +34,13 @@
 
     // имеет ли смысл duration как отдельный класс
 
-    void Day::InsertEvent(Duration& begin_time, Duration& end_time) {
-        unsigned char begin = begin_time.GetTimeInterval();
-        unsigned char end = end_time.GetTimeInterval();
-
+    void Day::InsertEvent(Event& event) {
+        int begin = event.GetBegin().GetNumberInterval();
+        int end = event.GetEnd().GetNumberInterval();
         while (begin < end) {
             storage[begin / BITS] |= ((unsigned char)1 << (begin % BITS));
             begin ++;
-        }
+        };
     }
 
     /*
@@ -86,8 +87,8 @@
 
     void Day::EraseEvent(Duration& begin_time, Duration& end_time) {
 
-        char begin = begin_time.GetTimeInterval();
-        char end = end_time.GetTimeInterval();
+        char begin = begin_time.GetNumberInterval();
+        char end = end_time.GetNumberInterval();
 
         while (begin < end) {
             storage[begin / BITS] &= ~((unsigned char)1 << (begin % BITS));            
