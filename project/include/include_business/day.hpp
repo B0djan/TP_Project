@@ -22,9 +22,13 @@ public:
 
     int GetSize() const;
 
+    void Print() const;
+
+    void ShowDay() const;
+
     void UnionDays(Day& added_day);
 
-    void InvertDay();
+    void InversionDay();
 
     void InsertEvent(Event& event);
 
@@ -32,6 +36,6 @@ public:
     
     bool IsFree(Duration& begin_time, Duration& end_time);
 
-    bool IntervalIs(uint16_t number);
+    bool IntervalIs(uint16_t number) const;
 
 };

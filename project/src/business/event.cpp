@@ -7,7 +7,7 @@ Event::Event(Duration& begin, Duration& end) {
     this->begin = begin;
     this->end = end;
 }
-Event::Event(std::string& begin, std::string& end) {
+Event::Event(const std::string& begin, const std::string& end) {
     this->begin = Duration(begin);
     this->end = Duration(end);
 }

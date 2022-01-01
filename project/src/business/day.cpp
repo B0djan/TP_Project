@@ -17,16 +17,34 @@
         return size;
     }
 
+    void Day::Print() const {
+        for (int i = 0; i < 96; i++) {
+            if (IntervalIs(i)) {
+                std::cout << "interval number " << std::setw(2) << i << " there is an event" << std::endl;
+            } else {
+                std::cout << "interval number " << std::setw(2) << i << " no event" << std::endl;
+            }
+        }
+    }
+
+
     void Day::UnionDays(Day& added_day) {
-        for (uint16_t i = 0; i < NUMBER_INTERVAL; i ++) {
+        for (int i = 0; i < NUMBER_INTERVAL; i ++) {
             storage[i] |= added_day.GetStorage()[i];
+            std::cout << '[' << i << ']' << storage[i] << std::endl;
+        }
+    }
+
+    void Day::ShowDay() const{
+        for (int i = 0; i < NUMBER_INTERVAL; i ++) {
+            std::cout << '[' << i << ']' << storage[i] << std::endl;
         }
     }
 
     // (TODO) сделать InvertDay(void) - меняет состоянии исходного объекта;
 
-    void Day::InvertDay() {
-        for (uint16_t i = 0; i < NUMBER_INTERVAL; i ++) {
+    void Day::InversionDay() {
+        for (int i = 0; i < NUMBER_INTERVAL; i ++) {
             storage[i] = ~ storage[i];
         }
     }
@@ -40,14 +58,12 @@
     void Day::InsertEvent(Event& event) {
         uint16_t begin = event.GetBegin().GetNumberInterval();
         uint16_t end = event.GetEnd().GetNumberInterval();
-        std::cout << "begin = " << begin << std::endl;
-        std::cout << "end = " << begin << std::endl;
         while (begin <= end) {
             storage[begin / BITS] |= ((uint16_t)1 << (begin % BITS));
             begin ++;
         };
     }
-    bool Day::IntervalIs(uint16_t number) {
+    bool Day::IntervalIs(uint16_t number) const{
         return storage[number / BITS] >> (number % BITS) & 1;
     }
 

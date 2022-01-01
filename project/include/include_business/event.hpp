@@ -10,7 +10,7 @@ class Event {
     Duration end;
 public:
     Event(Duration& begin, Duration& end);
-    Event(std::string& begin, std::string& end);
+    Event(const std::string& begin, const std::string& end);
 
     Duration GetBegin();
     Duration GetEnd();
