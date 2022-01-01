@@ -1,11 +1,7 @@
-#include <stdio.h>
-#include <assert.h>
-#include <map>
-
 #include "../../include/include_business/day.hpp"
 
     Day::Day() {
-        storage = new uint16_t[NUMBER_INTERVAL];
+        storage = new uint16_t[NUMBER_INTERVAL] { 0 };
     }
     Day::~Day() {
         delete [] storage;
@@ -16,7 +12,9 @@
     int Day::GetSize() const{
         return size;
     }
-
+    bool Day::IntervalIs(uint16_t number) const{
+        return storage[number / BITS] >> (number % BITS) & 1;
+    }
     void Day::Print() const {
         for (int i = 0; i < 96; i++) {
             if (IntervalIs(i)) {
@@ -26,45 +24,36 @@
             }
         }
     }
-
-
-    void Day::UnionDays(Day& added_day) {
-        for (int i = 0; i < NUMBER_INTERVAL; i ++) {
-            storage[i] |= added_day.GetStorage()[i];
-            std::cout << '[' << i << ']' << storage[i] << std::endl;
-        }
-    }
-
     void Day::ShowDay() const{
         for (int i = 0; i < NUMBER_INTERVAL; i ++) {
             std::cout << '[' << i << ']' << storage[i] << std::endl;
         }
     }
-
-    // (TODO) сделать InvertDay(void) - меняет состоянии исходного объекта;
-
+    void Day::UnionDays(Day& added_day) {
+        for (int i = 0; i < NUMBER_INTERVAL; i ++) {
+            storage[i] |= added_day.GetStorage()[i];
+        }
+    }
     void Day::InversionDay() {
         for (int i = 0; i < NUMBER_INTERVAL; i ++) {
             storage[i] = ~ storage[i];
         }
     }
-
-    // (TODO) : InsertEvent(std::string, std::string)
-
-    // конвертация в Duration внутри InsertEvent
-
-    // имеет ли смысл duration как отдельный класс
-
     void Day::InsertEvent(Event& event) {
         uint16_t begin = event.GetBegin().GetNumberInterval();
         uint16_t end = event.GetEnd().GetNumberInterval();
         while (begin <= end) {
             storage[begin / BITS] |= ((uint16_t)1 << (begin % BITS));
             begin ++;
-        };
+        }
     }
-    bool Day::IntervalIs(uint16_t number) const{
-        return storage[number / BITS] >> (number % BITS) & 1;
+    void Day::EraseEvent(Duration& begin_time, Duration& end_time) {
+        uint16_t begin = begin_time.GetNumberInterval();
+        uint16_t end = end_time.GetNumberInterval();
+        while (begin < end) {
+            storage[begin / BITS] &= ~((uint16_t)1 << (begin % BITS));
+            begin++;
+        }
     }
 
     /*
@@ -109,27 +98,6 @@
 
     */
 
-    void Day::EraseEvent(Duration& begin_time, Duration& end_time) {
-        uint16_t begin = begin_time.GetNumberInterval();
-        uint16_t end = end_time.GetNumberInterval();
-        while (begin < end) {
-            storage[begin / BITS] &= ~((uint16_t)1 << (begin % BITS));
-            begin++;
-        }
-    }
-
-    // bool Day::IsFree(Duration& begin_time, Duration& end_time) {
-
-    //     char begin = begin_time.GetTimeInterval();
-    //     char end = end_time.GetTimeInterval();
-
-    //     bool answer = true;
-
-    //     while (begin < end) {
-    //         answer = bool(storage[begin / BITS] >> (begin % BITS) & 1);
-    //     }
-    //     return answer;
-    //}
 
     // (TODO) : реализовать метод, который бегаю по дню, и метод создает set<meetup>
 

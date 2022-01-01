@@ -19,23 +19,17 @@ public:
     ~Day();
 
     uint16_t* GetStorage() const;
-
     int GetSize() const;
 
+    bool IntervalIs(uint16_t number) const;
     void Print() const;
-
     void ShowDay() const;
 
     void UnionDays(Day& added_day);
-
     void InversionDay();
-
     void InsertEvent(Event& event);
-
     void EraseEvent(Duration& begin_time, Duration& end_time);
     
     bool IsFree(Duration& begin_time, Duration& end_time);
-
-    bool IntervalIs(uint16_t number) const;
 
 };
