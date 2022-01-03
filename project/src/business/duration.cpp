@@ -27,7 +27,6 @@ int Duration::GetNumberInterval() const {
     return (total) / 15;
 }
 
-// как вывести объект??;
 std::string Duration::GetTimeString() const{
     std::stringstream stream;
     stream << this;

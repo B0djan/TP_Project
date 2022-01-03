@@ -1,4 +1,4 @@
-#include "include/include_business/function.hpp"
+#include "include/include_business/MeetUp.hpp"
 
 int main() {
     std::set<std::set<event_t>> group_events;
@@ -37,6 +37,6 @@ int main() {
     group_events.insert(d2);
     group_events.insert(d3);
 
-    Day free = GetFreeDay(group_events);
-    free.Print();
+    MeetUp meetup (group_events);
+    meetup.Get().ShowDay();
 }

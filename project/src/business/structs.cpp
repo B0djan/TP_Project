@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "../../include/include_business/structs.hpp"
 
 bool operator< (const event_t& lhs, const event_t& rhs) {

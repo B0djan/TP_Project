@@ -14,7 +14,7 @@ Day GetFreeDay(std::set<std::set<event_t>> group_events) {
     return free_time;
 }
 
-//  event to set of duration
+//  day to set of duration
 
 //  set of duration to set of meetups
 

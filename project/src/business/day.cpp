@@ -1,60 +1,77 @@
 #include "../../include/include_business/day.hpp"
 
-    Day::Day() {
-        storage = new uint16_t[NUMBER_INTERVAL] { 0 };
-    }
-    Day::~Day() {
-        delete [] storage;
-    }
-    uint16_t* Day::GetStorage() const {
-        return storage;
-    }
-    int Day::GetSize() const{
-        return size;
-    }
-    bool Day::IntervalIs(uint16_t number) const{
-        return storage[number / BITS] >> (number % BITS) & 1;
-    }
-    void Day::Print() const {
-        for (int i = 0; i < 96; i++) {
-            if (IntervalIs(i)) {
-                std::cout << "interval number " << std::setw(2) << i << " there is an event" << std::endl;
-            } else {
-                std::cout << "interval number " << std::setw(2) << i << " no event" << std::endl;
-            }
+Day::Day() {
+    storage = new uint8_t[NUMBER_INTERVAL] { 0 };
+}
+
+Day::~Day() {
+    delete [] storage;
+}
+
+uint8_t* Day::GetStorage() const {
+    return storage;
+}
+
+int Day::GetSize() const{
+    return size;
+}
+
+bool Day::IntervalIs(uint8_t number) const{
+    return storage[number / BITS] >> (number % BITS) & 1;
+}
+
+void Day::Print() const {
+    for (int i = 0; i < 96; i++) {
+        if (IntervalIs(i)) {
+            std::cout << "interval number " << std::setw(2) << i << " there is an event" << std::endl;
+        } else {
+            std::cout << "interval number " << std::setw(2) << i << " no event" << std::endl;
         }
     }
-    void Day::ShowDay() const{
-        for (int i = 0; i < NUMBER_INTERVAL; i ++) {
-            std::cout << '[' << i << ']' << storage[i] << std::endl;
-        }
+}
+
+void Day::ShowDay() const{
+    for (int i = 0; i < NUMBER_INTERVAL; i ++) {
+        std::cout << '[' << i << ']' << storage[i] << std::endl;
     }
-    void Day::UnionDays(Day& added_day) {
-        for (int i = 0; i < NUMBER_INTERVAL; i ++) {
-            storage[i] |= added_day.GetStorage()[i];
-        }
+}
+
+void Day::UnionDays(Day& added_day) {
+    for (int i = 0; i < NUMBER_INTERVAL; i ++) {
+        storage[i] |= added_day.GetStorage()[i];
     }
-    void Day::InversionDay() {
-        for (int i = 0; i < NUMBER_INTERVAL; i ++) {
-            storage[i] = ~ storage[i];
-        }
+}
+
+void Day::InversionDay() {
+    for (int i = 0; i < NUMBER_INTERVAL; i ++) {
+        storage[i] = ~ storage[i];
     }
-    void Day::InsertEvent(Event& event) {
-        uint16_t begin = event.GetBegin().GetNumberInterval();
-        uint16_t end = event.GetEnd().GetNumberInterval();
-        while (begin <= end) {
-            storage[begin / BITS] |= ((uint16_t)1 << (begin % BITS));
-            begin ++;
-        }
+}
+
+void Day::InsertEvent(Event& event) {
+    uint8_t begin = event.GetBegin().GetNumberInterval();
+    uint8_t end = event.GetEnd().GetNumberInterval();
+    while (begin <= end) {
+        storage[begin / BITS] |= ((uint8_t)1 << (begin % BITS));
+        begin ++;
     }
-    void Day::EraseEvent(Duration& begin_time, Duration& end_time) {
-        uint16_t begin = begin_time.GetNumberInterval();
-        uint16_t end = end_time.GetNumberInterval();
-        while (begin < end) {
-            storage[begin / BITS] &= ~((uint16_t)1 << (begin % BITS));
-            begin++;
-        }
+}
+
+void Day::EraseEvent(Duration& begin_time, Duration& end_time) {
+    uint8_t begin = begin_time.GetNumberInterval();
+    uint8_t end = end_time.GetNumberInterval();
+    while (begin < end) {
+        storage[begin / BITS] &= ~((uint8_t)1 << (begin % BITS));
+        begin++;
     }
+}
+
+void Day::Free() {
+    for (int i = 0; i < NUMBER_INTERVAL; i++) {
+        storage[i] = 0;
+    }
+}
+
 
     /*
     vector<set<event_t>> GetData(group_t) {

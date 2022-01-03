@@ -1,7 +1,4 @@
-#include <string>
-
 #include "../../include/include_business/event.hpp"
-
 
 Event::Event(Duration& begin, Duration& end) {
     this->begin = begin;
@@ -19,7 +16,7 @@ Duration Event::GetEnd() {
 }
 std::set<int> Event::GetIntervals() {
     std::set<int> intervals;
-    for (auto i = this->GetBegin().GetNumberInterval(); i < this->GetEnd().GetNumberInterval(); i++)
+    for (auto i = GetBegin().GetNumberInterval(); i < GetEnd().GetNumberInterval(); i++)
         intervals.insert(i);
     return intervals;
 }

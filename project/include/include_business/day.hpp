@@ -1,35 +1,33 @@
 #pragma once
 
-#include <stdio.h>
-#include <assert.h>
-#include <map>
 #include <cstdint>
 
 #include "../../include/include_business/event.hpp"
+#include "../../include/include_business/structs.hpp"
 
-#define NUMBER_INTERVAL 6
+#define NUMBER_INTERVAL 12
 
-enum { BITS = sizeof(uint16_t) * 8 };
+enum { BITS = sizeof(uint8_t) * 8 };
 
 class Day {
-    uint16_t* storage = nullptr;
-    int size = sizeof(uint16_t) * NUMBER_INTERVAL;
+    uint8_t* storage = nullptr;
+    int size = sizeof(uint8_t) * NUMBER_INTERVAL;
+
 public:
     Day();
     ~Day();
 
-    uint16_t* GetStorage() const;
-    int GetSize() const;
-
-    bool IntervalIs(uint16_t number) const;
-    void Print() const;
-    void ShowDay() const;
-
-    void UnionDays(Day& added_day);
-    void InversionDay();
     void InsertEvent(Event& event);
     void EraseEvent(Duration& begin_time, Duration& end_time);
+    void Free();
+    bool IntervalIs(uint8_t number) const;
+    void InversionDay();
+    void UnionDays(Day& added_day);
+
+    uint8_t* GetStorage() const;
+    int GetSize() const;
+    void Print() const;
+    void ShowDay() const;
     
     bool IsFree(Duration& begin_time, Duration& end_time);
-
 };

@@ -3,8 +3,6 @@
 #include <set>
 #include "../../include/include_business/duration.hpp"
 
-#include "../../include/include_business/duration.hpp"
-
 class Event {
     Duration begin;
     Duration end;

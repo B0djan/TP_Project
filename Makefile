@@ -5,8 +5,9 @@ HDRS = \
 CC = g++
 
 SRCS = \
+		project/src/business/MeetUp.cpp \
+		\
 	   	project/src/business/duration.cpp \
-	   	project/src/business/function.cpp \
 	   	project/src/business/structs.cpp \
 	   	project/src/business/event.cpp \
 	   	project/src/business/day.cpp \
