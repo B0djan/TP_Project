@@ -9,7 +9,7 @@ namespace DatabaseConnector {
     namespace GetID {
         char* User(const std::string& nickname);
 
-        char* Event(const std::string& user_id, const std::string& date);
+        char* Event(const event_t& e);
 
         char* Group(const std::string& title);
     }
@@ -19,13 +19,15 @@ namespace DatabaseConnector {
     }
 
     namespace Group {
-        int Create(const std::string& title);
+        int Create(const group_t& group);
+
+        int Write(const group_t& group);
 
         int DeleteAllMembers(const std::string &group_id);
 
-        int Delete(const std::string &group_id);
+        int Delete(const std::string& group_id);
 
-        group_t GetData(const std::string &group_id);
+        group_t GetData(const std::string& group_id);
 
         namespace Management {
             int AddMember(const std::string& member, const std::string);
@@ -51,7 +53,7 @@ namespace DatabaseConnector {
     namespace Synchro {
         std::set<std::string> Contacts(const std::string& user_id);
 
-        std::set<std::string> Groups(const std::string& user_id);
+        std::set<group_t> Groups(const std::string& user_id);
 
         std::set<event_t> Events(const std::string& user_id, const std::string& date);
     }
@@ -73,6 +75,6 @@ namespace DatabaseConnector {
 
         int Write(const event_t& e);
 
-        int Delete(const event_t& e);
+        int Delete(const std::string& event_id);
     }
 }

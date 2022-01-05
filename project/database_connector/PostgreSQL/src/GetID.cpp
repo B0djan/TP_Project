@@ -5,6 +5,11 @@
 namespace DatabaseConnector {
     namespace GetID {
         char *User(const std::string& nickname) {
+            //  Отладка
+            if (GLOBAL_KEY_TEST_DATABASE_CON) {
+                Print_struct::from_processing(nickname);
+            }
+
             char return_id[] = "SELECT user_id FROM user_m WHERE (nickname = $1)";
 
             const char *arguments[1];
@@ -14,7 +19,8 @@ namespace DatabaseConnector {
             PGresult *res = PQexecParams(PGConnection::GetConnection(), return_id, 1, NULL, arguments, NULL, NULL, 0);
 
             if (PQresultStatus(res) != PGRES_TUPLES_OK) {
-                printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+                printf("User command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+
                 PQclear(res);
             }
 
@@ -26,20 +32,27 @@ namespace DatabaseConnector {
         }
 
         char *Event(const event_t& e) {
-            char return_id[] = "SELECT event_id FROM event_m WHERE (event_date = $1) AND (time_begin = $2) AND (time_end = $3) AND (description = $4)";
+            //  Отладка
+            if (GLOBAL_KEY_TEST_DATABASE_CON) {
+                Print_struct::_event_t(e);
+            }
 
-            const char *arguments[4];
+            char return_id[] = "SELECT event_id FROM event_m WHERE (event_name = $1) AND (event_date = $2) AND (time_begin = $3) AND (time_end = $4) AND (description = $5)";
 
-            arguments[0] = e.date.c_str();
-            arguments[1] = e.time_begin.c_str();
-            arguments[2] = e.time_end.c_str();
-            arguments[3] = e.description.c_str();
+            const char *arguments[5];
+
+            arguments[0] = e.event_name.c_str();
+            arguments[1] = e.date.c_str();
+            arguments[2] = e.time_begin.c_str();
+            arguments[3] = e.time_end.c_str();
+            arguments[4] = e.description.c_str();
 
 
-            PGresult *res = PQexecParams(PGConnection::GetConnection(), return_id, 4, NULL, arguments, NULL, NULL, 0);
+            PGresult *res = PQexecParams(PGConnection::GetConnection(), return_id, 5, NULL, arguments, NULL, NULL, 0);
 
             if (PQresultStatus(res) != PGRES_TUPLES_OK) {
-                printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+                printf("Event command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+
                 PQclear(res);
             };
 
@@ -51,6 +64,11 @@ namespace DatabaseConnector {
         }
 
         char *Group(const std::string& title) {
+            //  Отладка
+            if (GLOBAL_KEY_TEST_DATABASE_CON) {
+                Print_struct::from_client(title);
+            }
+
             char return_id[] = "SELECT group_id FROM group_m WHERE (title = $1)";
 
             const char *arguments[1];
@@ -60,17 +78,14 @@ namespace DatabaseConnector {
             PGresult *res = PQexecParams(PGConnection::GetConnection(), return_id, 1, NULL, arguments, NULL, NULL, 0);
 
             if (PQresultStatus(res) != PGRES_TUPLES_OK) {
-                printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+                printf("Group command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+
                 PQclear(res);
             }
 
             char *id = PQgetvalue(res, 0, 0);
 
             PQclear(res);
-
-            if (GLOBAL_KEY_TEST_DATABASE_CON) {
-                Print_struct::from_client(title);
-            }
 
             return id;
         }
@@ -88,6 +103,7 @@ namespace DatabaseConnector {
 
             if (PQresultStatus(res) != PGRES_TUPLES_OK) {
                 printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+
                 PQclear(res);
             }
 

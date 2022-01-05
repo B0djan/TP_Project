@@ -8,7 +8,7 @@ ParserObject AddGroupImpl::process(const ParserObject& request_body) {
     std::set<group_t> :: iterator it_g = request_body.groups.begin();
     std::set<std::string> :: iterator it_m = (*it_g).members.begin();
 
-    code = DatabaseConnector::Group::Create((*it_g).title);
+    code = DatabaseConnector::Group::Create(*it_g);
     if (code != 0) {
         response_body.error = "Error of creation group";
         return response_body;
@@ -40,6 +40,12 @@ ParserObject AddGroupImpl::process(const ParserObject& request_body) {
         return response_body;
     }
 
+    group_t buf;
+
+    buf.group_id = group_id;
+
+    response_body.groups.insert(buf);
+
     if (GLOBAL_KEY_TEST_PROCESSING) {
         Print_struct::_group_t(*it_g);
     }
@@ -48,7 +54,19 @@ ParserObject AddGroupImpl::process(const ParserObject& request_body) {
 }
 
 ParserObject WriteGroupImpl::process(const ParserObject& request_body) {
+    int code;
+
     ParserObject response_body;
+
+    std::set<group_t> :: iterator it = request_body.groups.begin();
+
+    code = DatabaseConnector::Group::Write(*it);
+    if (code != 0) {
+        response_body.error = "Error write group";
+
+        return response_body;
+    }
+
     return response_body;
 }
 
@@ -60,23 +78,16 @@ ParserObject RmGroupImpl::process(const ParserObject& request_body) {
     std::set<group_t> :: iterator it_g = request_body.groups.begin();
     std::set<std::string> :: iterator it_m = (*it_g).members.begin();
 
-    char* check = DatabaseConnector::GetID::Group((*it_g).title);
-    if (check == NULL) {
-        response_body.error = "Error get group id";
+    Print_struct::from_client((*it_g).group_id);
 
-        return response_body;
-    }
-
-    std::string group_id = check;
-
-    code = DatabaseConnector::Group::DeleteAllMembers(group_id);
+    code = DatabaseConnector::Group::DeleteAllMembers((*it_g).group_id);
     if (code != 0) {
         response_body.error = "Error of delete group members";
 
         return response_body;
     }
 
-    code = DatabaseConnector::Group::Delete(group_id);
+    code = DatabaseConnector::Group::Delete((*it_g).group_id);
     if (code != 0) {
         response_body.error = "Error of delete group";
 
@@ -95,16 +106,7 @@ ParserObject GetGroupImpl::process(const ParserObject& request_body) {
 
     std::set<group_t> :: iterator it_g = request_body.groups.begin();
 
-    char* check = DatabaseConnector::GetID::Group((*it_g).title);
-    if (check == NULL) {
-        response_body.error = "Error get group id";
-
-        return response_body;
-    }
-
-    std::string group_id = check;
-
-    group_t group = DatabaseConnector::Group::GetData(group_id);
+    group_t group = DatabaseConnector::Group::GetData((*it_g).group_id);
     if (group.group_id == "Error") {
         response_body.error = "Error get data group members";
 
