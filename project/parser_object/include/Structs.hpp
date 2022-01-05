@@ -34,12 +34,13 @@ typedef struct {
 } personal_data_t;
 
 typedef struct {
-    std::string user_id     = "";
+    std::string event_id    = "";
     std::string event_name  = "";
     std::string date        = "";
     std::string description = "";
     std::string time_begin  = "";
     std::string time_end    = "";
+    std::string user_id     = "";
 } event_t;
 
 typedef struct {
@@ -54,7 +55,8 @@ typedef struct {
 typedef struct {
     std::string           group_id;
     std::string           title;
-    std::set<std::string> members;  //  user_id
+    std::string           description;
+    std::set<std::string> members;
 } group_t;
 
 typedef struct {
