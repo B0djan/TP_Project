@@ -51,7 +51,7 @@ RouteImpl::RouteImpl() {
     //  Group functional
     route_map.insert({ADD_GROUP,              std::make_pair(new ParserGroupImpl,              new AddGroupImpl)});
     route_map.insert({WRITE_GROUP,            std::make_pair(new ParserGroupImpl,              new WriteGroupImpl)});
-    route_map.insert({RM_GROUP,               std::make_pair(new ParserGroupImpl,              new RmGroupImpl)});
+    route_map.insert({RM_GROUP,               std::make_pair(new ParserGroupImpl,              new RmEventImpl)});
 
     route_map.insert({GET_GROUP,              std::make_pair(new ParserGroupImpl,              new GetGroupImpl)});
 
