@@ -48,7 +48,7 @@ namespace DatabaseConnector {
         };
 
         std::set<event_t> Events(const std::string& user_id, const std::string& date) {
-            char command[] = "SELECT event_name, description, time_begin, time_end "
+            char command[] = "SELECT event_id, event_name, description, time_begin, time_end "
                              "FROM event_m "
                              "WHERE (event_date = $1) AND (fk_user_id = $2)";
 
@@ -71,15 +71,15 @@ namespace DatabaseConnector {
                 return events;
 
             int n_rows = PQntuples(res);
-            //  int n_rows = PQnfields(res);
 
             event_t event;
 
             for (int i = 0; i < n_rows; i++) {
-                event.event_name = PQgetvalue(res, i, 0);
+                event.event_id = PQgetvalue(res, i, 0);
                 event.event_name = PQgetvalue(res, i, 1);
-                event.time_begin = PQgetvalue(res, i, 2);
-                event.time_end = PQgetvalue(res, i, 3);
+                event.description = PQgetvalue(res, i, 2);
+                event.time_begin = PQgetvalue(res, i, 3);
+                event.time_end = PQgetvalue(res, i, 4);
 
                 Print_struct::_event_t(event);
                 
