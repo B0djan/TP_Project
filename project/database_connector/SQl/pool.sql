@@ -36,6 +36,7 @@ CREATE TABLE event_m
 (
     event_id bigserial PRIMARY KEY,
     event_date date NOT NULL,
+    event_name varchar(63),
     time_begin varchar(12) NOT NULL,
     time_end varchar(12) NOT NULL,
     description varchar(127),
@@ -51,7 +52,8 @@ CREATE TABLE contacts
 CREATE TABLE group_m
 (
     group_id bigserial PRIMARY KEY NOT NULL,
-    title varchar(63) NOT NULL
+    title varchar(63) NOT NULL,
+    description varchar(127)
 );
 
 CREATE TABLE group_members
