@@ -22,6 +22,11 @@ ParserObject ParserGroupImpl::StrToObject(const std::string& parser_str) const {
             group.title = value["title"].get<std::string>();
         }
 
+        if (value.contains("description"))
+        {
+            group.description = value["description"].get<std::string>();
+        }
+
         if (value.contains("members")) {
             for (auto &element_in : value["members"])
             {
