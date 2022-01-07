@@ -5,6 +5,7 @@ Day::Day() {
 }
 
 Day::~Day() {
+    std::cout << "Удалил день" << std::endl;
     delete [] storage;
 }
 
@@ -16,7 +17,7 @@ int Day::GetSize() const{
     return size;
 }
 
-bool Day::IntervalIs(uint8_t number) const{
+bool Day::IntervalIs(const uint8_t &number) const{
     return storage[number / BITS] >> (number % BITS) & 1;
 }
 

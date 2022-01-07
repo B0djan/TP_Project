@@ -38,5 +38,5 @@ int main() {
     group_events.insert(d3);
 
     MeetUp meetup (group_events);
-    meetup.Get().ShowDay();
+    meetup.Get().Print();
 }

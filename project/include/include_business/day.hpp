@@ -20,7 +20,7 @@ public:
     void InsertEvent(Event& event);
     void EraseEvent(Duration& begin_time, Duration& end_time);
     void Free();
-    bool IntervalIs(uint8_t number) const;
+    bool IntervalIs(const uint8_t &number) const;
     void InversionDay();
     void UnionDays(Day& added_day);
 
