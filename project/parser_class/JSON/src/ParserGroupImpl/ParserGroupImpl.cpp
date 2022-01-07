@@ -60,7 +60,7 @@ std::string ParserGroupImpl::ObjectToStr(const std::string type_response, const 
     nlohmann::json j;
     std::string res;
 
-    if (type_response == ADD_GROUP || type_response == WRITE_GROUP || type_response == RM_GROUP || type_response == ADD_USER || type_response == RM_USER) {
+    if (type_response == WRITE_GROUP || type_response == RM_GROUP || type_response == ADD_USER || type_response == RM_USER) {
         if (other.error.empty()) {
             j[type_response] = "OK";
 
@@ -93,6 +93,7 @@ std::string ParserGroupImpl::ObjectToStr(const std::string type_response, const 
             {
                 json_groups.push_back(group.title);
             }
+
         }
 
         j[type_response] = json_groups;
@@ -114,6 +115,11 @@ std::string ParserGroupImpl::ObjectToStr(const std::string type_response, const 
         if (!group.title.empty())
         {
             json_group["title"] = group.title;
+        }
+
+        if (!group.description.empty())
+        {
+            json_group["description"] = group.description;
         }
 
         if (!(group.members.empty()))

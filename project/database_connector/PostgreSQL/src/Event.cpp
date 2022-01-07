@@ -24,7 +24,7 @@ namespace DatabaseConnector {
             PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 6, NULL, arguments, NULL, NULL, 0);
 
             if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-                printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+                printf("Add command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
 
                 PQclear(res);
 
@@ -39,8 +39,8 @@ namespace DatabaseConnector {
 
         int Write(const event_t& e) {
             char command[] = "UPDATE event_m "
-                             "SET (event_name = $1, event_date = $2, time_begin = $3, time_end = $4, description = $5)"
-                             "WHERE (fk_user_id = $6)";
+                             "SET event_name = $1, event_date = $2, time_begin = $3, time_end = $4, description = $5 "
+                             "WHERE (event_id = $6)";
 
 
             //  Отладка
@@ -55,12 +55,12 @@ namespace DatabaseConnector {
             arguments[2] = e.time_begin.c_str();
             arguments[3] = e.time_end.c_str();
             arguments[4] = e.description.c_str();
-            arguments[5] = e.user_id.c_str();
+            arguments[5] = e.event_id.c_str();
 
             PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 6, NULL, arguments, NULL, NULL, 0);
 
             if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-                printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+                printf("Write command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
 
                 PQclear(res);
 
@@ -73,25 +73,21 @@ namespace DatabaseConnector {
         }
 
 
-        int Delete(const event_t& e) {
-            char command[] = "DELETE FROM event_m WHERE (event_name = $1) AND (event_date = $2) AND (time_begin = $3) AND (time_end = $4) AND (description = $5) AND (fk_user_id = $6)";
+        int Delete(const std::string& event_id) {
+            char command[] = "DELETE FROM event_m WHERE (event_id = $1)";
 
             //  Отладка
             if (GLOBAL_KEY_TEST_DATABASE_CON) {
                 std::cout << "----------------------------" << std::endl;
-                Print_struct::_event_t(e);
+                Print_struct::from_client(event_id);
             }
 
-            const char* arguments[6];
+            const char* arguments[1];
 
-            arguments[0] = e.event_name.c_str();
-            arguments[1] = e.date.c_str();
-            arguments[2] = e.time_begin.c_str();
-            arguments[3] = e.time_end.c_str();
-            arguments[4] = e.description.c_str();
-            arguments[5] = e.user_id.c_str();
+            arguments[0] = event_id.c_str();
 
-            PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 6, NULL, arguments, NULL, NULL, 0);
+
+            PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 1, NULL, arguments, NULL, NULL, 0);
 
             if (PQresultStatus(res) != PGRES_COMMAND_OK) {
                 printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));

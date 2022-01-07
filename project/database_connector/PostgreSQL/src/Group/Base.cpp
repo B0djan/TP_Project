@@ -4,17 +4,17 @@
 
 namespace DatabaseConnector {
     namespace Group {
-        int Create(const std::string& title) {
-            char command[] = "INSERT INTO group_m (title) VALUES ($1)";
+        int Create(const group_t& group) {
+            char command[] = "INSERT INTO group_m (title, description) VALUES ($1, $2)";
+            const char* arguments[2];
 
-            const char* arguments[1];
+            arguments[0] = group.title.c_str();
+            arguments[1] = group.description.c_str();
 
-            arguments[0] = title.c_str();
-
-            PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 1, NULL, arguments, NULL, NULL, 0);
+            PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 2, NULL, arguments, NULL, NULL, 0);
 
             if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-                printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+                printf("Create command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
 
                 PQclear(res);
 
@@ -25,8 +25,40 @@ namespace DatabaseConnector {
 
             //  Отладка
             if (GLOBAL_KEY_TEST_DATABASE_CON) {
-                Print_struct::from_client(title);
+                Print_struct::_group_t(group);
             }
+
+            return SUCCESS;
+        }
+
+        int Write(const group_t& g) {
+            char command[] = "UPDATE group_m "
+                             "SET title = $1, description = $2"
+                             "WHERE (group_id = $3)";
+
+
+            //  Отладка
+            if (GLOBAL_KEY_TEST_DATABASE_CON) {
+                Print_struct::_group_t(g);
+            }
+
+            const char* arguments[3];
+
+            arguments[0] = g.title.c_str();
+            arguments[1] = g.description.c_str();
+            arguments[2] = g.group_id.c_str();
+
+            PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 3, NULL, arguments, NULL, NULL, 0);
+
+            if (PQresultStatus(res) != PGRES_COMMAND_OK) {
+                printf("Write command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+
+                PQclear(res);
+
+                return ERROR;
+            }
+
+            PQclear(res);
 
             return SUCCESS;
         }
@@ -41,7 +73,7 @@ namespace DatabaseConnector {
             PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 1, NULL, arguments, NULL, NULL, 0);
 
             if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-                printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+                printf("Delete command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
 
                 PQclear(res);
 
@@ -58,7 +90,7 @@ namespace DatabaseConnector {
             return SUCCESS;
         }
 
-        int DeleteAllMembers(const std::string &group_id) {
+        int DeleteAllMembers(const std::string& group_id) {
             char command[] = "DELETE FROM group_members WHERE (fk_group_id = $1)";
 
             const char* arguments[1];
@@ -68,7 +100,7 @@ namespace DatabaseConnector {
             PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 1, NULL, arguments, NULL, NULL, 0);
 
             if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-                printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+                printf("DeleteAllMembers command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
 
                 PQclear(res);
 
@@ -86,9 +118,7 @@ namespace DatabaseConnector {
         }
 
         group_t GetData(const std::string &group_id) {
-            Print_struct::from_processing(group_id);
-
-            char command_get_title[] = "Select title FROM group_m WHERE (group_id = $1)";
+            char command_get_title[] = "Select title, description FROM group_m WHERE (group_id = $1)";
 
             const char* arguments_t[1];
 
@@ -105,7 +135,7 @@ namespace DatabaseConnector {
             }
 
             group.title = PQgetvalue(res_t, 0, 0);
-            std::cout << "2" << std::endl;
+            group.description = PQgetvalue(res_t, 0, 1);
 
             PQclear(res_t);
 
@@ -128,7 +158,6 @@ namespace DatabaseConnector {
             std::string buf;
             for (int i = 0; i < n_rows; i++) {
                 char *member = PQgetvalue(res, i, 0);
-                std::cout << "2" << std::endl;
 
                 buf = member;
 
@@ -139,16 +168,10 @@ namespace DatabaseConnector {
                     return group;
                 }
 
-                std::cout << "3" << std::endl;
-
                 group.members.insert(check_user_id);
 
                 Print_struct::_group_t(group);
             }
-
-            group.group_id = group_id;
-
-            std::cout << "1" << std::endl;
 
             //  Отладка
             if (GLOBAL_KEY_TEST_DATABASE_CON) {

@@ -38,9 +38,9 @@
 
                             //  event
 #define ADD_EVENT                        "add_event"  //  completed + test
-//  input: user_id, data, description, time_begin, time_end; output: OK
+//  input: user_id, data, description, time_begin, time_end; output: event_id
 
-#define WRITE_EVENT                      "write_event"  //  in process
+#define WRITE_EVENT                      "rewrite_event"  //  completed + test
 //  input: user_id, data, description, time_begin, time_end; output: OK
 
 #define RM_EVENT                         "delete_event"  //  completed + test
@@ -59,9 +59,9 @@
 
                             //  group
 #define ADD_GROUP                        "create_group"  //  completed + test
-//  input: title, nickname; output: OK
+//  input: title, nickname; output: group_id
 
-#define WRITE_GROUP                      "change_group"  //  На будущее. Пока идентефикация по title
+#define WRITE_GROUP                      "rewrite_group"  //  completed + test
 //  input: title; output OK
 
 #define RM_GROUP                         "delete_group"  //  completed + test
