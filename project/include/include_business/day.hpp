@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <cassert>
 
 #include "../../include/include_business/event.hpp"
 #include "../../include/include_business/structs.hpp"
@@ -15,6 +16,7 @@ class Day {
 
 public:
     Day();
+    Day(const Day& day);
     ~Day();
 
     void InsertEvent(Event& event);

@@ -4,6 +4,11 @@ Day::Day() {
     storage = new uint8_t[NUMBER_INTERVAL] { 0 };
 }
 
+Day::Day(const Day& day) {
+    storage = day.storage;
+    size = day.size;
+}
+
 Day::~Day() {
     std::cout << "Удалил день" << std::endl;
     delete [] storage;
