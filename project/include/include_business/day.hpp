@@ -12,7 +12,7 @@ enum { BITS = sizeof(uint8_t) * 8 };
 
 class Day {
     uint8_t* storage = nullptr;
-    int size = sizeof(uint8_t) * NUMBER_INTERVAL;
+    size_t size = sizeof(uint8_t) * NUMBER_INTERVAL;
 
 public:
     Day();

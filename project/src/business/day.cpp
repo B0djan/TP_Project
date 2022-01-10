@@ -1,12 +1,17 @@
 #include "../../include/include_business/day.hpp"
 
 Day::Day() {
-    storage = new uint8_t[NUMBER_INTERVAL] { 0 };
+    this->storage = new uint8_t[NUMBER_INTERVAL] { 0 };
+    this->size = NUMBER_INTERVAL;
+
 }
 
-Day::Day(const Day& day) {
-    storage = day.storage;
-    size = day.size;
+Day::Day(const Day& other) {
+    this->storage = new uint8_t[other.size];
+
+    for (size_t i = 0; i < other.size; i++) {
+        this->storage[i] = other.storage[i];
+    }
 }
 
 Day::~Day() {
@@ -27,7 +32,7 @@ bool Day::IntervalIs(const uint8_t &number) const{
 }
 
 void Day::Print() const {
-    for (int i = 0; i < 96; i++) {
+    for (size_t i = 0; i < 96; i++) {
         if (IntervalIs(i)) {
             std::cout << "interval number " << std::setw(2) << i << " there is an event" << std::endl;
         } else {
@@ -37,24 +42,30 @@ void Day::Print() const {
 }
 
 void Day::ShowDay() const{
-    for (int i = 0; i < NUMBER_INTERVAL; i ++) {
+    for (size_t i = 0; i < NUMBER_INTERVAL; i ++) {
         std::cout << '[' << i << ']' << storage[i] << std::endl;
     }
 }
 
 void Day::UnionDays(Day& added_day) {
-    for (int i = 0; i < NUMBER_INTERVAL; i ++) {
+    for (size_t i = 0; i < NUMBER_INTERVAL; i ++) {
         storage[i] |= added_day.GetStorage()[i];
     }
 }
 
 void Day::InversionDay() {
-    for (int i = 0; i < NUMBER_INTERVAL; i ++) {
+    for (size_t i = 0; i < NUMBER_INTERVAL; i ++) {
         storage[i] = ~ storage[i];
     }
 }
 
 void Day::InsertEvent(Event& event) {
+    /* TODO : реализовать конструктор копирования для event
+     * тогда можно написать:
+     * while (event.GetBegin().GetNumberInterval() <= event.GetEnd().GetNumberInterval())
+     *
+     * подумать над проблемой перевода uint8_t в size_t
+    */
     uint8_t begin = event.GetBegin().GetNumberInterval();
     uint8_t end = event.GetEnd().GetNumberInterval();
     while (begin <= end) {
