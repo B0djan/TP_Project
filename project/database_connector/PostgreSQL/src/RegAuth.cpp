@@ -15,7 +15,7 @@ namespace DatabaseConnector {
             PGresult *res = PQexecParams(PGConnection::GetConnection(), check, 2, NULL, arguments, NULL, NULL, 0);
 
             if (PQresultStatus(res) != PGRES_TUPLES_OK) {
-                printf("command faild: %s", PQerrorMessage(PGConnection::GetConnection()));
+                printf("Registration command faild: %s", PQerrorMessage(PGConnection::GetConnection()));
 
                 PQclear(res);
 
@@ -60,7 +60,7 @@ namespace DatabaseConnector {
             PGresult *res = PQexecParams(PGConnection::GetConnection(), check, 2, NULL, arguments, NULL, NULL, 0);
 
             if (PQresultStatus(res) != PGRES_TUPLES_OK) {
-                printf("command faild: %s", PQerrorMessage(PGConnection::GetConnection()));
+                printf("Autorization command faild: %s", PQerrorMessage(PGConnection::GetConnection()));
 
                 PQclear(res);
 

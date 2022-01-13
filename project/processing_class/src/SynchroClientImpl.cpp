@@ -43,18 +43,12 @@ ParserObject SynchroClientGroupsImpl::process(const ParserObject& request_body) 
 
     std::string user_id = check_user_id;
 
-    std::set<std::string> names_groups = DatabaseConnector::Synchro::Groups(user_id);
-    if (names_groups.empty()) {
+    response_body.groups = DatabaseConnector::Synchro::Groups(user_id);
+    if (response_body.groups.empty()) {
         response_body.error = "Not found groups";
 
         return response_body;
     }
-
-    for (auto ng: names_groups) {
-        group_t group {.title = ng};
-
-        response_body.groups.insert(group);
-    };
 
     return response_body;
 }

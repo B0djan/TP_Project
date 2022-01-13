@@ -42,7 +42,7 @@ RouteImpl::RouteImpl() {
     //  Event functional
     route_map.insert({ADD_EVENT,              std::make_pair(new ParserEventImpl,              new AddEventImpl)});
     route_map.insert({WRITE_EVENT,            std::make_pair(new ParserEventImpl,              new WriteEventImpl)});
-    route_map.insert({RM_EVENT,               std::make_pair(new ParserEventImpl,              new RmGroupImpl)});
+    route_map.insert({RM_EVENT,               std::make_pair(new ParserEventImpl,              new RmEventImpl)});
 
     //  Contact functional
     route_map.insert({ADD_USER_CONTACTS,      std::make_pair(new ParserUserContactsImpl,       new AddUserContactsImpl)});

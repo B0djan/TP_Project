@@ -14,7 +14,7 @@
 
 #include "../../../database_connector/include/impl/DataBaseConnectorImpl.hpp"
 
-#define GLOBAL_KEY_TEST_PROCESSING false
+#define GLOBAL_KEY_TEST_PROCESSING true
 
 class Handler {
 public:
