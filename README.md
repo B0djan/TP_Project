@@ -68,6 +68,8 @@ Response: {"add_event":{"event_id":"56"}}
 Карту запросов можно глянуть в project/route/include/impl/RouteMapKeys.hpp
 Все звенья обработки можно глянуть в project/route/src/RouteImpl.hpp
 
+Карту БД можно воссоздать из файла project/database_connector/SQL/pool.sql
+
 ### Каркас сервера:
 
 Асинхронный механизм (1 реальный, куча виртуальных потоков). 
