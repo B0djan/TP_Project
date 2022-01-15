@@ -74,6 +74,14 @@
 * не responsive design
 
 
+### Ссылки на демнострацию работы клиента:
+
+* [Meet_up v.3 (15.01.22)](https://www.youtube.com/watch?v=YraDpnZb7vk)
+* [Meet_up v.2](https://www.youtube.com/watch?v=1rmKo4pDfnI)
+* [Meet_up v.1](https://www.youtube.com/watch?v=sgDWmKSD5C8)
+* [Meet_up v.0](https://youtu.be/VJB7_AQeRMI)
+
+
 # Реализация сервера
 Принимает POST/ с JSON в теле запроса.
 
