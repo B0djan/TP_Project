@@ -42,7 +42,7 @@ RES: {"delete_group":OK}
 
 //  GET MEMBERS
 TEST get_group_members: {"get_group_members":{"group_id":"56"}}
-RES: {"get_data_group":[{"title":"TESTA", "description":"2132", "members":["Danzan123","mars1234","user333"],"title":"group techno"}]}
+RES: {"get_group_members":[{"members":["mars1234","qwerty"]}]}
 
 
 
