@@ -7,12 +7,15 @@ RES: {"registration":{"user_id":"56"}}
 
 
 
-// EVETS
+// EVENTS
 TEST add_event: {"add_event":[{"user_id":"56","event_name":"breakfast","event_date":"01-06-2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"}]}
-RES: {"add_event":"OK}
+RES: {"add_event":{"event_id":"56"}}
 
-TEST delete_event: {"delete_event":[{"user_id":"56","event_name":"breakfast","event_date":"01-06-2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"}]}
-RES: {"add_event":"OK}
+TEST write_event: {"rewrite_event":[{"event_id":"56", "event_name":"breakfast","event_date":"01-06-2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"}]}
+RES: {"write_event":"OK}
+
+TEST delete_event: {"delete_event":[{"event_id":"56"}]}
+RES: {"delete_event":"OK}
 
 
 
@@ -26,17 +29,20 @@ RES: {"delete_friend":OK}
 
 
 //  GROUP BASE
-TEST create_group: {"create_group":{"title":"Texnosrac","members":["Ibragim"]}}
+TEST create_group: {"create_group":{"title":"Texnosrac", "description":"2132", "members":["Ibragim"]}}
+RES: {"create_group":{"group_id":"56"}}
+
+TEST rewrite_group: {"rewrite_group":{"group_id":"56","title":"Texnosrac", "description":"2132"}}
 RES: {"create_group":OK}
 
-TEST delete_group: {"delete_group":{"title":"Texnosrac"}}
+TEST delete_group: {"delete_group":{"group_id":"23"}}
 RES: {"delete_group":OK}
 
 
 
 //  GET MEMBERS
-TEST get_group_data: {"get_data_group":{"title":"Texnosrac"}}
-RES: {"get_data_group":[{"group_id":"2","members":["Danzan123","mars1234","user333"],"title":"group techno"}]}
+TEST get_group_data: {"get_data_group":{"group_id":"56"}}
+RES: {"get_data_group":[{"title":"TESTA", "description":"2132", "members":["Danzan123","mars1234","user333"],"title":"group techno"}]}
 
 
 
@@ -57,7 +63,7 @@ RES {"get_events":[{"description":"breakfast", "time_begin":"10:00", "time_end":
 TEST get_contacts: {"get_contacts":{"user_id":"56"}}
 RES {"get_contacts":["Misha","Maxim"]}
 
-TEST get_groups: {"get_groups":{members":["Sasha"]}}
+TEST get_groups: {"get_groups":{"members":["Sasha"]}}
 RES {"get_groups":["group techno","qqaa","qqqqqqqqqq","qwe1"]}
 
 

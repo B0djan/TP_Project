@@ -16,14 +16,12 @@ ParserObject WriteAddressDataImpl::process(const ParserObject& request_body) {
 ParserObject GetAddressDataImpl::process(const ParserObject& request_body) {
     ParserObject response_body;
 
-    address_data_t check_address = DatabaseConnector::Data::Address::Get(request_body.address_data.user_id);
-    if (check_address.user_id == "Error") {
+    response_body.address_data = DatabaseConnector::Data::Address::Get(request_body.address_data.user_id);
+    if (response_body.address_data.user_id == "Error") {
         response_body.error = "Error get address data";
 
         return response_body;
     }
-
-    response_body = check_address;
 
     return response_body;
 }

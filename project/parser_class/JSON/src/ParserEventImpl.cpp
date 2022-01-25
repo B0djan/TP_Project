@@ -6,13 +6,13 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
     // {"add_event":{["user_id":"56","event_name":"breakfast","event_date":"01:06:2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"]}}
 
     // {"get_events":[{"user_id":"56", "date":"date"}]}
-    std::cout << "!" << parser_str << "!" << std::endl;
 
-    std::cout << "C" << parser_str.data() << "C" << std::endl;
+    //  Отладка
+    if (GLOBAL_KEY_TEST_PARSER) {
+        Print_struct::from_client(parser_str);
+    }
 
     nlohmann::json j = nlohmann::json::parse(parser_str);
-
-    std::cout << "!!!!!!ENDDDDDDDDDDDDDDDDDD!!!!" << std::endl;
 
     nlohmann::json::iterator it = j.begin();
 
@@ -27,6 +27,11 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
         if(element.contains("user_id"))
         {
             event.user_id = element["user_id"].get<std::string>();
+        }
+
+        if(element.contains("event_id"))
+        {
+            event.event_id = element["event_id"].get<std::string>();
         }
 
         if(element.contains("event_name"))
@@ -63,7 +68,6 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
-        Print_struct::from_client(parser_str);
         for (std::set<event_t>::iterator it = events.begin(); it != events.end(); ++it) {
             Print_struct::_event_t(*it);
         }
@@ -73,11 +77,18 @@ ParserObject ParserEventImpl::StrToObject(const std::string& parser_str) const {
 }
 
 std::string ParserEventImpl::ObjectToStr(const std::string type_response, const ParserObject& other) const {
+    //  Отладка
+    if (GLOBAL_KEY_TEST_PARSER) {
+        for (std::set<event_t>::iterator it = other.events.begin(); it != other.events.end(); ++it) {
+            Print_struct::_event_t(*it);
+        }
+    }
+
     nlohmann::json j;
 
     std::string res;
 
-    if (type_response == ADD_EVENT || type_response == WRITE_EVENT || type_response == RM_EVENT) {
+    if (type_response == WRITE_EVENT || type_response == RM_EVENT) {
         if (other.error.empty()) {
             j[type_response] = "OK";
 
@@ -107,6 +118,9 @@ std::string ParserEventImpl::ObjectToStr(const std::string type_response, const 
     {
         nlohmann::json json_event;
 
+        if (!event.event_id.empty())
+            json_event["event_id"] = event.event_id;
+
         if (!event.event_name.empty())
             json_event["event_name"] = event.event_name;
         
@@ -124,14 +138,6 @@ std::string ParserEventImpl::ObjectToStr(const std::string type_response, const 
 
         json_events.push_back(json_event);
     }
-    //  Отладка
-    if (GLOBAL_KEY_TEST_PARSER) {
-        for (std::set<event_t>::iterator it = events.begin(); it != events.end(); ++it) {
-            Print_struct::_event_t(*it);
-        }
-        Print_struct::from_processing(res);
-    }
-
 
     j[type_response] = json_events;
 
@@ -139,9 +145,6 @@ std::string ParserEventImpl::ObjectToStr(const std::string type_response, const 
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
-        for (std::set<event_t>::iterator it = events.begin(); it != events.end(); ++it) {
-            Print_struct::_event_t(*it);
-        }
         Print_struct::from_processing(res);
     }
 
