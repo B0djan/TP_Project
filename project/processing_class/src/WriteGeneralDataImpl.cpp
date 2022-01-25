@@ -5,7 +5,7 @@ ParserObject WriteGeneralDataImpl::process(const ParserObject& request_body) {
 
     int code = DatabaseConnector::Data::General::ReWrite(request_body.general_data);
     if (code != 0) {
-        response_body.error = "Error write personal data";
+        response_body.error = "Error write general data";
 
         return response_body;
     }
