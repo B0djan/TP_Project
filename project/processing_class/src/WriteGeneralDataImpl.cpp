@@ -1,4 +1,4 @@
-#include <WritePersonalDataImpl.hpp>
+#include <WriteGeneralDataImpl.hpp>
 
 ParserObject WriteGeneralDataImpl::process(const ParserObject& request_body) {
     ParserObject response_body;
@@ -16,7 +16,7 @@ ParserObject WriteGeneralDataImpl::process(const ParserObject& request_body) {
 ParserObject GetGeneralDataImpl::process(const ParserObject& request_body) {
     ParserObject response_body;
 
-    response_body.personal_data = DatabaseConnector::Data::General::Get(request_body.general_data.user_id);
+    response_body.general_data = DatabaseConnector::Data::General::Get(request_body.general_data.user_id);
     if (response_body.personal_data.user_id == "Error") {
         response_body.error = "Error get personal data";
 

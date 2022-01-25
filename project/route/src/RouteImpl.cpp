@@ -10,6 +10,7 @@
 #include <RegistrAuthImpl.hpp>
 #include <SynchroClientImpl.hpp>
 #include <WriteAddressDataImpl.hpp>
+#include <WriteGeneralDataImpl.hpp>
 #include <WritePersonalDataImpl.hpp>
 
 //  parser_class classes
@@ -18,6 +19,7 @@
 #include <ParserGroupImpl.hpp>
 #include <ParserRegistrAuthImpl.hpp>
 #include <ParserWriteAddressDataImpl.hpp>
+#include <ParserWriteGeneralDataImpl.hpp>
 #include <ParserWritePersonalDataImpl.hpp>
 #include <ParserMeetUpImpl.hpp>
 
@@ -36,8 +38,8 @@ RouteImpl::RouteImpl() {
     route_map.insert({GET_PERSONAL_DATA,      std::make_pair(new ParserWritePersonalDataImpl,  new GetPersonalDataImpl)});
 
     //  Write user general data
-    route_map.insert({WRITE_GENERAL_DATA,    std::make_pair(new ParserWritePersonalDataImpl,  new WritePersonalDataImpl)});
-    route_map.insert({GET_GENERAL_DATA,      std::make_pair(new ParserWritePersonalDataImpl,  new GetPersonalDataImpl)});
+    route_map.insert({WRITE_GENERAL_DATA,    std::make_pair(new ParserWriteGeneralDataImpl,  new WriteGeneralDataImpl)});
+    route_map.insert({GET_GENERAL_DATA,      std::make_pair(new ParserWriteGeneralDataImpl,  new GetGeneralDataImpl)});
 
     //  Write user address
     route_map.insert({WRITE_ADDRESS,          std::make_pair(new ParserWriteAddressDataImpl,   new WriteAddressDataImpl)});

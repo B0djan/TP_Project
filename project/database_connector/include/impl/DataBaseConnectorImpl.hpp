@@ -51,7 +51,7 @@ namespace DatabaseConnector {
 
         namespace General {
             int CreateNull(const std::string& user_id);
-            int ReWrite(const personal_data_t& a);
+            int ReWrite(const general_data_t& a);
             general_data_t Get(const std::string &user_id);
         }
     }

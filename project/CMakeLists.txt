@@ -40,6 +40,7 @@ SET(SOURCE_LIST_PROCESSING_CLASS
         processing_class/src/SynchroClientImpl.cpp
         processing_class/src/RegistrAuthImpl.cpp
         processing_class/src/WriteAddressDataImpl.cpp
+        processing_class/src/WriteGeneralDataImpl.cpp
         processing_class/src/WritePersonalDataImpl.cpp
         database_connector/PostgreSQL/src/GetID.cpp)
 
