@@ -28,10 +28,15 @@ typedef struct {
     std::string surname      = "";
     std::string age          = "";
     std::string phone_number = "";
+} personal_data_t;
+
+typedef struct {
+    std::string user_id      = "";
     std::string status       = "";
     std::string label        = "";
     std::string description  = "";
-} personal_data_t;
+    std::string nickname     = "";
+} general_data_t;
 
 typedef struct {
     std::string event_id    = "";
@@ -89,4 +94,6 @@ namespace Print_struct {
     void _personal_data_t(const personal_data_t& d);
 
     void _address_data_t(const address_data_t& a);
+
+    void _general_data_t(const general_data_t& d);
 }

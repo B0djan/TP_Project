@@ -25,15 +25,6 @@ ParserObject ParserWritePersonalDataImpl::StrToObject(const std::string& parser_
     if (value.contains("phone_number"))
         personal_data.phone_number = value["phone_number"].get<std::string>();
 
-    if (value.contains("status"))
-        personal_data.status = value["status"].get<std::string>();
-
-    if (value.contains("label"))
-        personal_data.label = value["label"].get<std::string>();
-
-    if (value.contains("description"))
-        personal_data.description = value["description"].get<std::string>();
-
     if (value.contains("email"))
         personal_data.email = value["email"].get<std::string>();
 
@@ -98,15 +89,6 @@ std::string ParserWritePersonalDataImpl::ObjectToStr(const std::string type_resp
 
     if (!personal_data.phone_number.empty())
         value["phone_number"] = personal_data.phone_number;
-
-    if (!personal_data.status.empty())
-        value["status"] = personal_data.status;
-
-    if (!personal_data.label.empty())
-        value["label"] = personal_data.label;
-
-    if (!personal_data.description.empty())
-        value["description"] = personal_data.description;
 
     if (!personal_data.email.empty())
         value["email"] = personal_data.email;

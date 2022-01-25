@@ -35,6 +35,10 @@ RouteImpl::RouteImpl() {
     route_map.insert({WRITE_PERSONAL_DATA,    std::make_pair(new ParserWritePersonalDataImpl,  new WritePersonalDataImpl)});
     route_map.insert({GET_PERSONAL_DATA,      std::make_pair(new ParserWritePersonalDataImpl,  new GetPersonalDataImpl)});
 
+    //  Write user general data
+    route_map.insert({WRITE_GENERAL_DATA,    std::make_pair(new ParserWritePersonalDataImpl,  new WritePersonalDataImpl)});
+    route_map.insert({GET_GENERAL_DATA,      std::make_pair(new ParserWritePersonalDataImpl,  new GetPersonalDataImpl)});
+
     //  Write user address
     route_map.insert({WRITE_ADDRESS,          std::make_pair(new ParserWriteAddressDataImpl,   new WriteAddressDataImpl)});
     route_map.insert({GET_ADDRESS,            std::make_pair(new ParserWriteAddressDataImpl,   new GetAddressDataImpl)});

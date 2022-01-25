@@ -17,7 +17,7 @@ namespace DatabaseConnector {
                 PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 1, NULL, arguments, NULL, NULL, 0);
 
                 if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-                    printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+                    printf("Personal CreateNull command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
 
                     PQclear(res);
 
@@ -34,22 +34,19 @@ namespace DatabaseConnector {
                                  "SET first_name = $1, last_name = $2, age = $3, phone_number = $4, status = $5, label = $6, description = $7, email = $8 "
                                  "WHERE fk_data_user = $9";
 
-                const char *arguments[9];
+                const char *arguments[6];
 
                 arguments[0] = d.first_name.c_str();
                 arguments[1] = d.surname.c_str();
                 arguments[2] = d.age.c_str();
                 arguments[3] = d.phone_number.c_str();
-                arguments[4] = d.status.c_str();
-                arguments[5] = d.label.c_str();
-                arguments[6] = d.description.c_str();
-                arguments[7] = d.email.c_str();
-                arguments[8] = d.user_id.c_str();
+                arguments[4] = d.email.c_str();
+                arguments[5] = d.user_id.c_str();
 
-                PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 9, NULL, arguments, NULL, NULL, 0);
+                PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 6, NULL, arguments, NULL, NULL, 0);
 
                 if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-                    printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+                    printf("Personal ReWrite command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
 
                     PQclear(res);
 
@@ -73,7 +70,7 @@ namespace DatabaseConnector {
                 PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 1, NULL, arguments, NULL, NULL, 0);
 
                 if (PQresultStatus(res) != PGRES_TUPLES_OK) {
-                    printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+                    printf("Personal Get command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
 
                     PQclear(res);
 
@@ -88,10 +85,7 @@ namespace DatabaseConnector {
                 Data.surname = PQgetvalue(res, 0, 1);
                 Data.age = PQgetvalue(res, 0, 2);
                 Data.phone_number = PQgetvalue(res, 0, 3);
-                Data.status = PQgetvalue(res, 0, 4);
-                Data.label = PQgetvalue(res, 0, 5);
-                Data.description = PQgetvalue(res, 0, 6);
-                Data.email = PQgetvalue(res, 0, 7);
+                Data.email = PQgetvalue(res, 0, 4);
 
                 Print_struct::_personal_data_t(Data);
 

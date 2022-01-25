@@ -117,9 +117,15 @@ namespace Print_struct {
         std::cout << "surname          :---: " << d.surname << std::endl;
         std::cout << "age              :---: " << d.age << std::endl;
         std::cout << "phone_number     :---: " << d.phone_number << std::endl;
+    }
+
+    void _general_data_t(const general_data_t& d) {
+        std::cout << "-------------------------------------------------------------------------" << std::endl;
+        std::cout << "user_id          :---: " << d.user_id << std::endl;
         std::cout << "status           :---: " << d.status << std::endl;
         std::cout << "label            :---: " << d.label << std::endl;
         std::cout << "description      :---: " << d.description << std::endl;
+        std::cout << "nickname         :---: " << d.nickname << std::endl;
     }
 
     void _address_data_t(const address_data_t& a) {

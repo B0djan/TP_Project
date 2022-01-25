@@ -9,6 +9,8 @@
 
 
 
+
+
                             //  synchro
 #define GET_EVENTS                       "get_events"  //  in process + test
 //  input: user_id, date; output: set<event_t> [description, time_begin, time_end]
@@ -21,6 +23,18 @@
 
 
 
+
+
+                            //  general data
+#define WRITE_GENERAL_DATA              "write_general"  //  in process
+//  input: data...; output: OK
+
+#define GET_GENERAL_DATA                "get_general"   //  in process
+//  input: id; output: data
+
+
+
+
                             //  personal data
 #define WRITE_PERSONAL_DATA              "write_personal"  //  in process
 //  input: data...; output: OK
@@ -28,12 +42,16 @@
 #define GET_PERSONAL_DATA                "get_personal"  //  in process
 //  input: id; output: data
 
+
+
                             //  user address
 #define WRITE_ADDRESS                    "write_address"  //  in process
 //  input: data...; output: OK
 
 #define GET_ADDRESS                      "get_address"  //  in process
 //  input: id; output: data
+
+
 
 
                             //  event
@@ -57,6 +75,7 @@
 
 
 
+
                             //  group
 #define ADD_GROUP                        "create_group"  //  completed + test
 //  input: title, nickname; output: group_id
@@ -73,11 +92,14 @@
 
 
 
+
 #define ADD_USER                         "invite"  //  completed + test
 //  input: nickname, title(group); output: OK
 
 #define RM_USER                          "kick"  //  completed + test
 //  input: nickname, title(group); output: OK
+
+
 
 
 //  meetup in group

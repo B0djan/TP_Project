@@ -50,6 +50,7 @@ SET(SOURCE_LIST_PARSER_CLASS
         parser_class/JSON/src/ParserGroupImpl/ParserMeetUpImpl.cpp
         parser_class/JSON/src/ParserRegistrAuthImpl.cpp
         parser_class/JSON/src/ParserWriteAddressDataImpl.cpp
+        parser_class/JSON/src/ParserWriteGeneralDataImpl.cpp
         parser_class/JSON/src/ParserWritePersonalDataImpl.cpp)
 
 SET(SOURCE_LIST_PARSER_OBJECT
@@ -62,6 +63,7 @@ SET(SOURCE_LIST_DATABASE
         database_connector/PostgreSQL/src/Event.cpp
         database_connector/PostgreSQL/src/Data/Address.cpp
         database_connector/PostgreSQL/src/Data/Personal.cpp
+        database_connector/PostgreSQL/src/Data/General.cpp
         database_connector/PostgreSQL/src/Group/Base.cpp
         database_connector/PostgreSQL/src/Group/Management.cpp
         database_connector/PostgreSQL/src/SynchronizationClient.cpp

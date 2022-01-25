@@ -48,6 +48,12 @@ namespace DatabaseConnector {
             int ReWrite(const personal_data_t& a);
             personal_data_t Get(const std::string &user_id);
         }
+
+        namespace General {
+            int CreateNull(const std::string& user_id);
+            int ReWrite(const personal_data_t& a);
+            general_data_t Get(const std::string &user_id);
+        }
     }
 
     namespace Synchro {

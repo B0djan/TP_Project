@@ -17,7 +17,7 @@ namespace DatabaseConnector {
                 PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 1, NULL, arguments, NULL, NULL, 0);
 
                 if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-                    printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+                    printf("Address CreateNull command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
 
                     PQclear(res);
 
@@ -48,7 +48,7 @@ namespace DatabaseConnector {
                 PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 8, NULL, arguments, NULL, NULL, 0);
 
                 if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-                    printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+                    printf("Address ReWrite command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
 
                     PQclear(res);
 
@@ -72,7 +72,7 @@ namespace DatabaseConnector {
                 PGresult *res = PQexecParams(PGConnection::GetConnection(), command, 1, NULL, arguments, NULL, NULL, 0);
 
                 if (PQresultStatus(res) != PGRES_TUPLES_OK) {
-                    printf("command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+                    printf("Address Get command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
 
                     PQclear(res);
 
