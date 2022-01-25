@@ -117,28 +117,7 @@ namespace DatabaseConnector {
             return SUCCESS;
         }
 
-        group_t GetData(const std::string &group_id) {
-            char command_get_title[] = "Select title, description FROM group_m WHERE (group_id = $1)";
-
-            const char* arguments_t[1];
-
-            arguments_t[0] = group_id.c_str();
-
-            PGresult *res_t = PQexecParams(PGConnection::GetConnection(), command_get_title, 1, NULL, arguments_t, NULL, NULL, 0);
-
-            group_t group;
-
-            if (PQgetisnull(res_t, 0, 0)) {
-                group.group_id = "Error";
-
-                return group;
-            }
-
-            group.title = PQgetvalue(res_t, 0, 0);
-            group.description = PQgetvalue(res_t, 0, 1);
-
-            PQclear(res_t);
-
+        group_t GetMembers(const std::string &group_id) {
             char command_get_members[] = "Select fk_user_id FROM group_members WHERE (fk_group_id = $1)";
 
             const char* arguments_g[1];
@@ -147,6 +126,7 @@ namespace DatabaseConnector {
 
             PGresult *res = PQexecParams(PGConnection::GetConnection(), command_get_members, 1, NULL, arguments_g, NULL, NULL, 0);
 
+            group_t group;
             if (PQgetisnull(res, 0, 0)) {
                 group.group_id = "Error";
 

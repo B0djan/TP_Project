@@ -74,10 +74,6 @@ std::string ParserGroupImpl::ObjectToStr(const std::string type_response, const 
         return res;
     }
 
-    std::set<group_t> groups = other.groups;
-
-    nlohmann::json json_groups;
-
     if (other.groups.empty()) {
         j[type_response] = "Not found group";
 
@@ -86,22 +82,9 @@ std::string ParserGroupImpl::ObjectToStr(const std::string type_response, const 
         return res;
     }
 
-    if (type_response == GET_GROUPS) {
-        for (auto& group: groups){
+    std::set<group_t> groups = other.groups;
 
-            if (!group.title.empty())
-            {
-                json_groups.push_back(group.title);
-            }
-
-        }
-
-        j[type_response] = json_groups;
-
-        res = j.dump();
-
-        return res;
-    }
+    nlohmann::json json_groups;
 
     for (auto& group: groups)
     {

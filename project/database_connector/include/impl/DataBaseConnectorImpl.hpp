@@ -27,7 +27,7 @@ namespace DatabaseConnector {
 
         int Delete(const std::string& group_id);
 
-        group_t GetData(const std::string& group_id);
+        group_t GetMembers(const std::string& group_id);
 
         namespace Management {
             int AddMember(const std::string& member, const std::string);

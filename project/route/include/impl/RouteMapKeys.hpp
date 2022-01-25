@@ -68,8 +68,8 @@
 //  input: title; output OK
 
 
-#define GET_GROUP                         "get_data_group"  //  completed + test
-//  input: title(group); output: members
+#define GET_MEMBERS                         "get_group_members"  //  completed + test
+//  input: group_id; output: members
 
 
 

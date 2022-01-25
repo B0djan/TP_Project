@@ -106,7 +106,7 @@ ParserObject GetGroupImpl::process(const ParserObject& request_body) {
 
     std::set<group_t> :: iterator it_g = request_body.groups.begin();
 
-    group_t group = DatabaseConnector::Group::GetData((*it_g).group_id);
+    group_t group = DatabaseConnector::Group::GetMembers((*it_g).group_id);
     if (group.group_id == "Error") {
         response_body.error = "Error get data group members";
 

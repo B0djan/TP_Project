@@ -123,14 +123,15 @@ namespace DatabaseConnector {
                 buf.title = PQgetvalue(res, i, 1);
                 buf.description = PQgetvalue(res, i, 2);
 
+                //  Отладка
+                if (GLOBAL_KEY_TEST_DATABASE_CON) {
+                    Print_struct::_group_t(buf);
+                }
+
                 groups.insert(buf);
             }
 
             PQclear(res);
-
-            std::cout << "Полученный обработчиком id: " << arguments[0] << std::endl;
-            std::cout << "Количество строк (групп), которые нашел SQL: " << n_rows << std::endl;
-            std::cout << "Количество строк (групп), добавленных в множество: " << groups.size() << std::endl;
 
             return groups;
         }

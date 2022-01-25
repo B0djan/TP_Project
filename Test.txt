@@ -41,7 +41,7 @@ RES: {"delete_group":OK}
 
 
 //  GET MEMBERS
-TEST get_group_data: {"get_data_group":{"group_id":"56"}}
+TEST get_group_members: {"get_group_members":{"group_id":"56"}}
 RES: {"get_data_group":[{"title":"TESTA", "description":"2132", "members":["Danzan123","mars1234","user333"],"title":"group techno"}]}
 
 
@@ -64,7 +64,7 @@ TEST get_contacts: {"get_contacts":{"user_id":"56"}}
 RES {"get_contacts":["Misha","Maxim"]}
 
 TEST get_groups: {"get_groups":{"members":["Sasha"]}}
-RES {"get_groups":["group techno","qqaa","qqqqqqqqqq","qwe1"]}
+RES {"get_groups":[{"group_id":"48","title":"111111111111111111"},{"group_id":"2","title":"group techno"},{"group_id":"4","title":"qqaa"},{"description":"213131313231231323131123","group_id":"1","title":"qqqqqqqqqq"},{"group_id":"3","title":"qwe1"},{"group_id":"11","title":"sdvsdv"}]}
 
 
 
