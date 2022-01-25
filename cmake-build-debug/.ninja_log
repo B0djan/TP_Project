@@ -1,1 +1,12 @@
 # ninja log v5
+0	4358	1643064430138678794	CMakeFiles/TP_Project.dir/project/src/business/day.cpp.o	27ac13bb641809b6
+5	4392	1643064430172012313	CMakeFiles/TP_Project.dir/project/src/business/structs.cpp.o	e601edf015265e8d
+2	4410	1643064430188679072	CMakeFiles/TP_Project.dir/project/src/business/event.cpp.o	18b1c7f6d66bb9bf
+4	4468	1643064430248679406	CMakeFiles/TP_Project.dir/project/src/business/MeetUp.cpp.o	177ff6f05c364ba1
+3	4478	1643064430258679462	CMakeFiles/TP_Project.dir/project/src/business/function.cpp.o	646d1ec9552f741b
+8	4562	1643064430342013259	CMakeFiles/TP_Project.dir/project/main.cpp.o	df0edcd991309239
+1	570	1643064595699599641	CMakeFiles/TP_Project.dir/project/src/business/duration.cpp.o	e49463736edf5a1a
+576	709	1643064595836267068	TP_Project	c172caf81d2d93af
+1	778	1643064928121448610	CMakeFiles/TP_Project.dir/project/src/business/MeetUp.cpp.o	177ff6f05c364ba1
+2	971	1643064928314783018	CMakeFiles/TP_Project.dir/project/main.cpp.o	df0edcd991309239
+971	1159	1643064928501450723	TP_Project	c172caf81d2d93af

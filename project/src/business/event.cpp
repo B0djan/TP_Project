@@ -1,4 +1,4 @@
-#include "../../include/include_business/event.hpp"
+#include "event.hpp"
 
 Event::Event(Duration& begin, Duration& end) {
     this->begin = begin;
@@ -19,4 +19,10 @@ std::set<int> Event::GetIntervals() {
     for (auto i = GetBegin().GetNumberInterval(); i < GetEnd().GetNumberInterval(); i++)
         intervals.insert(i);
     return intervals;
+}
+bool operator< (const Event& lhs, const Event& rhs) {
+    if (lhs.begin == rhs.end) {
+        return lhs.end < rhs.end;
+    }
+    return lhs.begin < rhs.begin;
 }

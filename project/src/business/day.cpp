@@ -1,21 +1,18 @@
-#include "../../include/include_business/day.hpp"
+#include "day.hpp"
 
 Day::Day() {
     this->storage = new uint8_t[NUMBER_INTERVAL] { 0 };
     this->size = NUMBER_INTERVAL;
-
 }
 
 Day::Day(const Day& other) {
     this->storage = new uint8_t[other.size];
-
     for (size_t i = 0; i < other.size; i++) {
         this->storage[i] = other.storage[i];
     }
 }
 
 Day::~Day() {
-    std::cout << "Удалил день" << std::endl;
     delete [] storage;
 }
 

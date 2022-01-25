@@ -1,6 +1,9 @@
 #include "include/include_business/MeetUp.hpp"
 
 int main() {
+
+    // Эмуляция множества events
+
     std::set<std::set<event_t>> group_events;
 
     event_t e11;
@@ -31,12 +34,18 @@ int main() {
         d2.insert(e22);
     std::set<event_t> d3;
         d3.insert(e31);
-        //d3.insert(e32);
 
     group_events.insert(d1);
     group_events.insert(d2);
     group_events.insert(d3);
 
+    // работа алгоритма
+
     MeetUp meetup (group_events);
-    meetup.Get().Print();
+
+    std::set<meetup_t> meetups = GetMeetUps(meetup);
+    for (auto &elem : meetups) {
+        std::cout << "time_begin = " << elem.time_begin << '\t';
+        std::cout << "time_end = " << elem.time_end << '\n';
+    }
 }

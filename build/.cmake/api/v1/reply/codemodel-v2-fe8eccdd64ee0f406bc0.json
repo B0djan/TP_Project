@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "TP_Project::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-TP_Project-Debug-91c3b77362b229e29987.json",
+					"jsonFile" : "target-TP_Project-Debug-eb1e78a0093d0ee922c3.json",
 					"name" : "TP_Project",
 					"projectIndex" : 0
 				}
@@ -49,7 +49,7 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/bodja_n/TP/TP_Project/cmake-build-debug",
+		"build" : "/home/bodja_n/TP/TP_Project/build",
 		"source" : "/home/bodja_n/TP/TP_Project"
 	},
 	"version" : 

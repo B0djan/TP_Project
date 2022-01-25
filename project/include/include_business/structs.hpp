@@ -62,7 +62,5 @@ typedef struct {
 } contacts_t;
 
 bool operator< (const event_t& lhs, const event_t& rhs);
-
 bool operator< (const meetup_t& lhs, const meetup_t& rhs);
-
 bool operator< (const group_t& lhs, const group_t& rhs);

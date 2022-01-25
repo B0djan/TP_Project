@@ -1,0 +1,37 @@
+[
+{
+  "directory": "/home/bodja_n/TP/TP_Project/build",
+  "command": "/usr/bin/c++  -I/home/bodja_n/TP/TP_Project/project/include -I/home/bodja_n/TP/TP_Project/project/include/include_business -g -std=gnu++14 -o CMakeFiles/TP_Project.dir/project/src/business/day.cpp.o -c /home/bodja_n/TP/TP_Project/project/src/business/day.cpp",
+  "file": "/home/bodja_n/TP/TP_Project/project/src/business/day.cpp"
+},
+{
+  "directory": "/home/bodja_n/TP/TP_Project/build",
+  "command": "/usr/bin/c++  -I/home/bodja_n/TP/TP_Project/project/include -I/home/bodja_n/TP/TP_Project/project/include/include_business -g -std=gnu++14 -o CMakeFiles/TP_Project.dir/project/src/business/duration.cpp.o -c /home/bodja_n/TP/TP_Project/project/src/business/duration.cpp",
+  "file": "/home/bodja_n/TP/TP_Project/project/src/business/duration.cpp"
+},
+{
+  "directory": "/home/bodja_n/TP/TP_Project/build",
+  "command": "/usr/bin/c++  -I/home/bodja_n/TP/TP_Project/project/include -I/home/bodja_n/TP/TP_Project/project/include/include_business -g -std=gnu++14 -o CMakeFiles/TP_Project.dir/project/src/business/event.cpp.o -c /home/bodja_n/TP/TP_Project/project/src/business/event.cpp",
+  "file": "/home/bodja_n/TP/TP_Project/project/src/business/event.cpp"
+},
+{
+  "directory": "/home/bodja_n/TP/TP_Project/build",
+  "command": "/usr/bin/c++  -I/home/bodja_n/TP/TP_Project/project/include -I/home/bodja_n/TP/TP_Project/project/include/include_business -g -std=gnu++14 -o CMakeFiles/TP_Project.dir/project/src/business/function.cpp.o -c /home/bodja_n/TP/TP_Project/project/src/business/function.cpp",
+  "file": "/home/bodja_n/TP/TP_Project/project/src/business/function.cpp"
+},
+{
+  "directory": "/home/bodja_n/TP/TP_Project/build",
+  "command": "/usr/bin/c++  -I/home/bodja_n/TP/TP_Project/project/include -I/home/bodja_n/TP/TP_Project/project/include/include_business -g -std=gnu++14 -o CMakeFiles/TP_Project.dir/project/src/business/MeetUp.cpp.o -c /home/bodja_n/TP/TP_Project/project/src/business/MeetUp.cpp",
+  "file": "/home/bodja_n/TP/TP_Project/project/src/business/MeetUp.cpp"
+},
+{
+  "directory": "/home/bodja_n/TP/TP_Project/build",
+  "command": "/usr/bin/c++  -I/home/bodja_n/TP/TP_Project/project/include -I/home/bodja_n/TP/TP_Project/project/include/include_business -g -std=gnu++14 -o CMakeFiles/TP_Project.dir/project/src/business/structs.cpp.o -c /home/bodja_n/TP/TP_Project/project/src/business/structs.cpp",
+  "file": "/home/bodja_n/TP/TP_Project/project/src/business/structs.cpp"
+},
+{
+  "directory": "/home/bodja_n/TP/TP_Project/build",
+  "command": "/usr/bin/c++  -I/home/bodja_n/TP/TP_Project/project/include -I/home/bodja_n/TP/TP_Project/project/include/include_business -g -std=gnu++14 -o CMakeFiles/TP_Project.dir/project/main.cpp.o -c /home/bodja_n/TP/TP_Project/project/main.cpp",
+  "file": "/home/bodja_n/TP/TP_Project/project/main.cpp"
+}
+]

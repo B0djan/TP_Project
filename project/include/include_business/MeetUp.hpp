@@ -5,11 +5,16 @@
 
 class MeetUp {
     Day FreeTimeDay;
-public:
-    MeetUp(std::set<std::set<event_t>> &group_events);
-    ~MeetUp();
+    std::set<Event> DayMeetUp;
 
-    Day Get();
-    void Set(std::set<std::set<event_t>> group_events);
+public:
+    MeetUp(const std::set<std::set<event_t>> &group_events);
+    ~MeetUp() = default;
+
+    Day GetDay();
+    std::set<Event> GetDayMeetUp();
+    void Set(const std::set<std::set<event_t>> &group_events);
 };
+
+std::set<meetup_t> GetMeetUps (MeetUp& m);
 
