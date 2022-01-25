@@ -75,3 +75,4 @@ void AsyncFileInputStream::read(size_t count, Cb cb) {
         });
     }
 }
+
