@@ -17,10 +17,10 @@ public:
     Duration(const size_t& number);
     Duration(const Duration &copy);
 
-    int GetNumberInterval() const;
+    size_t GetNumberInterval() const;
     std::string GetTimeString() const;
-    Duration& operator= (const Duration& dur);
 
+    Duration& operator= (const Duration& dur);
     friend std::ostream& operator<< (std::ostream &out, const Duration& duration);
     friend bool operator== (const Duration& lhs, const Duration& rhs);
     friend bool operator< (const Duration& lhs, const Duration& rhs);

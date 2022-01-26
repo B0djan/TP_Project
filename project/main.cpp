@@ -1,4 +1,5 @@
 #include "MeetUp.hpp"
+#include "day.hpp"
 
 int main() {
 
@@ -7,12 +8,12 @@ int main() {
     std::set<std::set<event_t>> group_events;
 
     event_t e11;
-    e11.time_begin = "01:15";
-    e11.time_end = "02:30";
+    e11.time_begin = "00:00";
+    e11.time_end = "01:15";
 
     event_t e12;
-    e12.time_begin = "06:45";
-    e12.time_end = "07:15";
+    e12.time_begin = "02:15";
+    e12.time_end = "02:30";
 
     event_t e21;
     e21.time_begin = "11:30";
@@ -39,9 +40,36 @@ int main() {
     group_events.insert(d2);
     group_events.insert(d3);
 
+    Duration dur1("01:15");
+    Duration dur2("02:30");
+
+    std::cout << dur1 << '\n' << dur2 << '\n';
+
+    Event event (dur1, dur2);
+
+    event.Print();
+    std::cout << "__________" << '\n';
+
+//    Day day;
+//    day.InsertEvent(event);
+//    day.Print();
+
+    std::cout << "__________" << '\n';
+
+//    std::set<size_t> intervals;
+//    intervals = event.GetIntervals();
+//    for (auto elem: intervals) {
+//        std::cout << elem << '\n';
+//    }
+//    std::cout << "__________" << '\n';
+
     // работа алгоритма
 
     MeetUp meetup (group_events);
+
+    meetup.GetFreeTimeDay().Print();
+
+    std::cout << "__________" << '\n';
 
     std::set<meetup_t> meetups = meetup.GetMeetUps();
     for (auto &elem : meetups) {

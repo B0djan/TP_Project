@@ -12,9 +12,8 @@ public:
 
     Duration GetBegin();
     Duration GetEnd();
-    std::set<int> GetIntervals();
-
-
+    std::set<size_t> GetIntervals();
+    void Print();
 
     friend bool operator< (const Event& lhs, const Event& rhs);
 };
