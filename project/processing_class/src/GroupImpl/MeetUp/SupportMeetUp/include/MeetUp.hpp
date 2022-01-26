@@ -1,6 +1,6 @@
 #pragma once
 
-#include <day.hpp>
+#include "day.hpp"
 
 class MeetUp {
     Day FreeTimeDay;
@@ -10,7 +10,7 @@ public:
     MeetUp(const std::set<std::set<event_t>> &group_events);
     ~MeetUp() = default;
 
-    Day GetDay();
+    Day GetFreeTimeDay();
     std::set<meetup_t> GetMeetUps();
     std::set<Event> GetDayMeetUp();
     void Set(const std::set<std::set<event_t>> &group_events);

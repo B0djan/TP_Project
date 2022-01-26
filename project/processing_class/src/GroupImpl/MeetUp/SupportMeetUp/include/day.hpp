@@ -2,17 +2,19 @@
 
 #include <cstdint>
 #include <cassert>
+#include <iostream>
 
-#include <event.hpp>
-#include <Structs.hpp>
+#include "event.hpp"
+#include "Structs.hpp"
+#include "config.hpp"
 
-#define NUMBER_INTERVAL 12
-
-enum { BITS = sizeof(uint8_t) * 8 };
+enum { BITS = 8 * sizeof(uint8_t),
+       NUMBER_CHUNKS = ((24 * 60 + BITS * MINIMUM_TRACKED_TIME - 1) / (BITS * MINIMUM_TRACKED_TIME))
+};
 
 class Day {
     uint8_t* storage = nullptr;
-    size_t size = sizeof(uint8_t) * NUMBER_INTERVAL;
+    size_t size = sizeof(uint8_t) * NUMBER_CHUNKS;
 
 public:
     Day();
@@ -27,7 +29,7 @@ public:
     void UnionDays(Day& added_day);
 
     uint8_t* GetStorage() const;
-    int GetSize() const;
+    size_t GetSize() const;
     void Print() const;
     void ShowDay() const;
     

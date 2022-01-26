@@ -1,4 +1,5 @@
 #include "duration.hpp"
+#include "config.hpp"
 
 Duration::Duration(const size_t& h, const size_t& m) {
     total = h * 60 + m;
@@ -24,7 +25,7 @@ Duration::Duration(const std::string &time) {
 }
 
 Duration::Duration(const size_t& number) {
-    total = number * 15;
+    total = number * MINIMUM_TRACKED_TIME;
 
     hour = total / 60;
 
@@ -35,8 +36,8 @@ Duration::Duration (const Duration &copy) :
     hour(copy.hour), min(copy.min), total(copy.total){
 }
 
-int Duration::GetNumberInterval() const {
-    return (total) / 15;
+size_t Duration::GetNumberInterval() const {
+    return size_t(total / MINIMUM_TRACKED_TIME);
 }
 
 std::string Duration::GetTimeString() const{
@@ -48,6 +49,7 @@ std::string Duration::GetTimeString() const{
 
     return stream.str();
 }
+
 std::ostream& operator<< (std::ostream& out, const Duration& duration) {
     out << std::setfill('0') << std::setw(2) << duration.hour << ':';
 

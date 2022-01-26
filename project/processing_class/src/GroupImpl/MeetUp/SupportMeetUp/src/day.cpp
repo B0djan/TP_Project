@@ -1,9 +1,8 @@
 #include "day.hpp"
 
 Day::Day() {
-    this->storage = new uint8_t[NUMBER_INTERVAL] { 0 };
-
-    this->size = NUMBER_INTERVAL;
+    this->storage = new uint8_t[NUMBER_CHUNKS] { 0 };
+    this->size = NUMBER_CHUNKS;
 }
 
 Day::Day(const Day& other) {
@@ -22,7 +21,7 @@ uint8_t* Day::GetStorage() const {
     return storage;
 }
 
-int Day::GetSize() const{
+size_t Day::GetSize() const{
     return size;
 }
 
@@ -41,19 +40,19 @@ void Day::Print() const {
 }
 
 void Day::ShowDay() const{
-    for (size_t i = 0; i < NUMBER_INTERVAL; i ++) {
+    for (size_t i = 0; i < NUMBER_CHUNKS; i++) {
         std::cout << '[' << i << ']' << storage[i] << std::endl;
     }
 }
 
 void Day::UnionDays(Day& added_day) {
-    for (size_t i = 0; i < NUMBER_INTERVAL; i ++) {
+    for (size_t i = 0; i < NUMBER_CHUNKS; i++) {
         storage[i] |= added_day.GetStorage()[i];
     }
 }
 
 void Day::InversionDay() {
-    for (size_t i = 0; i < NUMBER_INTERVAL; i ++) {
+    for (size_t i = 0; i < NUMBER_CHUNKS; i++) {
         storage[i] = ~ storage[i];
     }
 }
@@ -67,27 +66,31 @@ void Day::InsertEvent(Event& event) {
     */
     uint8_t begin = event.GetBegin().GetNumberInterval();
 
-    uint8_t end = event.GetEnd().GetNumberInterval();
+    // std::cout << "begin = " << int(begin) << std::endl;
+
+    uint8_t end = event.GetEnd().GetNumberInterval() - 1;
+
+    // std::cout << "end = " << int(end) << std::endl;
+
     while (begin <= end) {
         storage[begin / BITS] |= ((uint8_t)1 << (begin % BITS));
-
         begin ++;
     }
 }
 
-void Day::EraseEvent(Duration& begin_time, Duration& end_time) {
-    uint8_t begin = begin_time.GetNumberInterval();
-
-    uint8_t end = end_time.GetNumberInterval();
-    while (begin < end) {
-        storage[begin / BITS] &= ~((uint8_t)1 << (begin % BITS));
-
-        begin++;
-    }
-}
+//void Day::EraseEvent(Duration& begin_time, Duration& end_time) {
+//    uint8_t begin = begin_time.GetNumberInterval();
+//
+//    uint8_t end = end_time.GetNumberInterval();
+//    while (begin <= end) {
+//        storage[begin / BITS] &= ~((uint8_t)1 << (begin % BITS));
+//
+//        begin++;
+//    }
+//}
 
 void Day::Free() {
-    for (int i = 0; i < NUMBER_INTERVAL; i++) {
+    for (int i = 0; i < NUMBER_CHUNKS; i++) {
         storage[i] = 0;
     }
 }
