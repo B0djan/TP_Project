@@ -1,9 +1,9 @@
 #include "day.hpp"
 
 Day::Day() {
-    this->storage = new uint8_t[NUMBER_INTERVAL] { 0 };
+    this->storage = new uint8_t[NUMBER_CHUNKS] { 0 };
 
-    this->size = NUMBER_INTERVAL;
+    this->size = NUMBER_CHUNKS;
 }
 
 Day::Day(const Day& other) {
@@ -22,7 +22,7 @@ uint8_t* Day::GetStorage() const {
     return storage;
 }
 
-int Day::GetSize() const{
+size_t Day::GetSize() const{
     return size;
 }
 
@@ -31,7 +31,7 @@ bool Day::IntervalIs(const uint8_t &number) const{
 }
 
 void Day::Print() const {
-    for (size_t i = 0; i < 96; i++) {
+    for (size_t i = 0; i < 95; i++) {
         if (IntervalIs(i)) {
             std::cout << "interval number " << std::setw(2) << i << " there is an event" << std::endl;
         } else {
@@ -41,19 +41,19 @@ void Day::Print() const {
 }
 
 void Day::ShowDay() const{
-    for (size_t i = 0; i < NUMBER_INTERVAL; i ++) {
+    for (size_t i = 0; i < NUMBER_CHUNKS; i ++) {
         std::cout << '[' << i << ']' << storage[i] << std::endl;
     }
 }
 
 void Day::UnionDays(Day& added_day) {
-    for (size_t i = 0; i < NUMBER_INTERVAL; i ++) {
+    for (size_t i = 0; i < NUMBER_CHUNKS; i ++) {
         storage[i] |= added_day.GetStorage()[i];
     }
 }
 
 void Day::InversionDay() {
-    for (size_t i = 0; i < NUMBER_INTERVAL; i ++) {
+    for (size_t i = 0; i < NUMBER_CHUNKS; i ++) {
         storage[i] = ~ storage[i];
     }
 }
@@ -87,7 +87,7 @@ void Day::EraseEvent(Duration& begin_time, Duration& end_time) {
 }
 
 void Day::Free() {
-    for (int i = 0; i < NUMBER_INTERVAL; i++) {
+    for (int i = 0; i < NUMBER_CHUNKS; i++) {
         storage[i] = 0;
     }
 }

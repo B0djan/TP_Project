@@ -1,4 +1,5 @@
 #include "duration.hpp"
+#include "config.hpp"
 
 Duration::Duration(const size_t& h, const size_t& m) {
     total = h * 60 + m;
