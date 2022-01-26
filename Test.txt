@@ -90,16 +90,11 @@ RES get_general: {"get_general":{"user_id":"8", "status":"asdas", "label":"1asd"
 
 
 
-
-
 //  ADDRESS
 TEST write_address: {"write_address":{"user_id":"1", "building":"1", "housing":"1", "street":"Bolshaya Voskresenskaya","city":"Krasnogorsk","district":"Krasnogorskiy","index":"143430", "country":"Russia"}}
 RES write_address: {"write_address:"OK"}
 
-TEST get_personal: {"get_address":{"user_id":"1"}}
-RES get_personal: {"get_personal":{"user_id":"1", "building":"1", "housing":"1","city":"Krasnogorsk","district":"Krasnogorskiy","index":"143430", "country":"Russia"}}
 
-{"get_meetup":{{"title":"2021-05-05", "members":["Danzan123","mars1234"]}}}
-
-
-{"get_meetup":{"title":"2021-05-05", "members":["Danzan123","mars1234"]}}
+//  GETMEETUP
+TEST get_meetup: {"get_meetup":{"date":"2022-01-26", "group_id":"61"}}
+RES get_meetup: {"get_meetup":[{"time_begin":"00:00","time_end":"00:30"},{"time_begin":"20:15","time_end":"23:30"}]}

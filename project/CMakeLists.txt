@@ -17,6 +17,8 @@ INCLUDE_DIRECTORIES(database_connector/PostgreSQL/include/impl)
 
 INCLUDE_DIRECTORIES(database_connector/libs/PostgreSQL)
 
+INCLUDE_DIRECTORIES(processing_class/src/GroupImpl/MeetUp/SupportMeetUp/include)
+
 SET(SOURCE_LIST_SERVER
         base_architecture/src/AsyncFileInputStream.cpp
         base_architecture/src/AsyncFileOutputStream.cpp
@@ -69,6 +71,13 @@ SET(SOURCE_LIST_DATABASE
         database_connector/PostgreSQL/src/SynchronizationClient.cpp
         database_connector/PostgreSQL/src/PGConnection.cpp)
 
+SET(SOURCE_LIST_SUPPORT_MEETUP
+        processing_class/src/GroupImpl/MeetUp/SupportMeetUp/src/day.cpp
+        processing_class/src/GroupImpl/MeetUp/SupportMeetUp/src/duration.cpp
+        processing_class/src/GroupImpl/MeetUp/SupportMeetUp/src/event.cpp
+        processing_class/src/GroupImpl/MeetUp/SupportMeetUp/src/MeetUp.cpp
+        )
+
 
 ADD_EXECUTABLE(${PROJECT_NAME}
         ${SOURCE_LIST_SERVER}
@@ -76,5 +85,6 @@ ADD_EXECUTABLE(${PROJECT_NAME}
         ${SOURCE_LIST_PROCESSING_CLASS}
         ${SOURCE_LIST_PARSER_CLASS}
         ${SOURCE_LIST_PARSER_OBJECT}
-        ${SOURCE_LIST_DATABASE})
+        ${SOURCE_LIST_DATABASE}
+        ${SOURCE_LIST_SUPPORT_MEETUP})
 

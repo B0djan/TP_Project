@@ -1,8 +1,6 @@
 #include <ParserMeetUpImpl.hpp>
 
 ParserObject ParserMeetUpImpl::StrToObject(const std::string& parser_str) const {
-    // {"create_group":{"title":"Texnosrac","members":["56"]}};
-
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
     nlohmann::json::iterator it = j.begin();
@@ -11,15 +9,17 @@ ParserObject ParserMeetUpImpl::StrToObject(const std::string& parser_str) const 
 
     group_t group;
 
+    meetup_t meetup;
+
     {
         if (value.contains("group_id"))
         {
             group.group_id = value["group_id"].get<std::string>();
         }
 
-        if (value.contains("title"))
+        if (value.contains("date"))
         {
-            group.title = value["title"].get<std::string>();
+            meetup.date = value["date"].get<std::string>();
         }
 
         if (value.contains("members")) {
@@ -37,6 +37,7 @@ ParserObject ParserMeetUpImpl::StrToObject(const std::string& parser_str) const 
     groups.insert(group);
 
     res = groups;
+    res.meetups.insert(meetup);
 
     //  Отладка
     if (GLOBAL_KEY_TEST_PARSER) {
@@ -50,13 +51,11 @@ ParserObject ParserMeetUpImpl::StrToObject(const std::string& parser_str) const 
 }
 
 std::string ParserMeetUpImpl::ObjectToStr(const std::string type_response, const ParserObject& other) const {
-    // {"add_event":{["user_id":"56","event_name":"breakfast","event_date":"01:06:2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"]}} TODO: Отредачить
-
     nlohmann::json j;
 
     std::string res;
 
-    if (other.error.empty()) {
+    if (!other.error.empty()) {
         j[type_response] = "Error get meetup";
 
         res = j.dump();
@@ -66,32 +65,42 @@ std::string ParserMeetUpImpl::ObjectToStr(const std::string type_response, const
 
     std::set<meetup_t> meetups = other.meetups;
 
-    nlohmann::json json_events;
+    if (meetups.empty()) {
+        j[type_response] = "Not found events";
+
+        res = j.dump();
+
+        return res;
+    }
+
+    nlohmann::json json_meetups;
 
     if (!meetups.empty())
     {
         for (auto& meetup: meetups)
         {
-            nlohmann::json json_event;
+            nlohmann::json json_meetup;
 
             if (!meetup.meetup_name.empty())
-                json_event["meetup_name"] = meetup.meetup_name;
+                json_meetup["meetup_name"] = meetup.meetup_name;
 
             if (!meetup.time_begin.empty())
-                json_event["time_begin"] = meetup.time_begin;
+                json_meetup["time_begin"] = meetup.time_begin;
 
             if (!meetup.time_end.empty())
-                json_event["time_end"]   = meetup.time_end;
+                json_meetup["time_end"]   = meetup.time_end;
 
             if (!meetup.description.empty())
-                json_event["description"] = meetup.description;
+                json_meetup["description"] = meetup.description;
 
             if (!meetup.date.empty())
-                json_event["meetup_date"] = meetup.date;
+                json_meetup["meetup_date"] = meetup.date;
 
-            json_events.push_back(json_event);
+            json_meetups.push_back(json_meetup);
         }
     }
+
+    j[type_response] = json_meetups;
 
     res = j.dump();
 

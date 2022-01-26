@@ -65,6 +65,7 @@ namespace Print_struct {
 
     void _event_t(const event_t& e) {
         std::cout << "-------------------------------------------------------------------------" << std::endl;
+        std::cout << "_event_t" << std::endl;
         std::cout << "event_id          :---: " << e.event_id << std::endl;
         std::cout << "user_id           :---: " << e.user_id << std::endl;
         std::cout << "event_name        :---: " << e.event_name << std::endl;
@@ -76,8 +77,9 @@ namespace Print_struct {
 
     void _meetup_t(const meetup_t& m) {
         std::cout << "-------------------------------------------------------------------------" << std::endl;
+        std::cout << "_meetup_t" << std::endl;
         std::cout << "user_id           :---: " << m.group_id << std::endl;
-        std::cout << "event_name        :---: " << m.meetup_name << std::endl;
+        std::cout << "meetup_name       :---: " << m.meetup_name << std::endl;
         std::cout << "date              :---: " << m.date << std::endl;
         std::cout << "description       :---: " << m.description << std::endl;
         std::cout << "time_begin        :---: " << m.time_begin << std::endl;
@@ -86,6 +88,7 @@ namespace Print_struct {
 
     void _user_t(const user_t& u) {
         std::cout << "-------------------------------------------------------------------------" << std::endl;
+        std::cout << "_user_t" << std::endl;
         std::cout << "user_id           :---: " << u.user_id << std::endl;
         std::cout << "password          :---: " << u.password << std::endl;
         std::cout << "nickname          :---: " << u.nickname << std::endl;
@@ -93,6 +96,7 @@ namespace Print_struct {
 
     void _contacts_t(const contacts_t& c) {
         std::cout << "-------------------------------------------------------------------------" << std::endl;
+        std::cout << "_contacts_t" << std::endl;
         std::cout << "user_id          :---: " << c.user_id << std::endl;
         for (std::set<std::string>::iterator it = c.list_contacts.begin(); it != c.list_contacts.end(); ++it) {
             std::cout << "contacts :---:         " << *it << std::endl;
@@ -101,6 +105,7 @@ namespace Print_struct {
 
     void _group_t(const group_t& g) {
         std::cout << "-------------------------------------------------------------------------" << std::endl;
+        std::cout << "_group_t" << std::endl;
         std::cout << "group_id         :---: " << g.group_id << std::endl;
         std::cout << "title            :---: " << g.title << std::endl;
         std::cout << "description      :---: " << g.description << std::endl;
@@ -111,6 +116,7 @@ namespace Print_struct {
 
     void _personal_data_t(const personal_data_t& d) {
         std::cout << "-------------------------------------------------------------------------" << std::endl;
+        std::cout << "_personal_data_t" << std::endl;
         std::cout << "user_id          :---: " << d.user_id << std::endl;
         std::cout << "first_name       :---: " << d.first_name << std::endl;
         std::cout << "email            :---: " << d.email << std::endl;
@@ -121,6 +127,7 @@ namespace Print_struct {
 
     void _general_data_t(const general_data_t& d) {
         std::cout << "-------------------------------------------------------------------------" << std::endl;
+        std::cout << "_general_data_t" << std::endl;
         std::cout << "user_id          :---: " << d.user_id << std::endl;
         std::cout << "status           :---: " << d.status << std::endl;
         std::cout << "label            :---: " << d.label << std::endl;
@@ -130,6 +137,7 @@ namespace Print_struct {
 
     void _address_data_t(const address_data_t& a) {
         std::cout << "-------------------------------------------------------------------------" << std::endl;
+        std::cout << "_address_data_t" << std::endl;
         std::cout << "user_id          :---: " << a.user_id << std::endl;
         std::cout << "building         :---: " << a.building << std::endl;
         std::cout << "housing          :---: " << a.housing << std::endl;
