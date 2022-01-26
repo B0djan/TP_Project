@@ -16,6 +16,7 @@ Duration Event::GetEnd() {
 }
 std::set<int> Event::GetIntervals() {
     std::set<int> intervals;
+
     for (auto i = GetBegin().GetNumberInterval(); i < GetEnd().GetNumberInterval(); i++)
         intervals.insert(i);
     return intervals;
@@ -24,5 +25,6 @@ bool operator< (const Event& lhs, const Event& rhs) {
     if (lhs.begin == rhs.end) {
         return lhs.end < rhs.end;
     }
+
     return lhs.begin < rhs.begin;
 }

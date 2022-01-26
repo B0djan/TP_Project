@@ -2,11 +2,13 @@
 
 Day::Day() {
     this->storage = new uint8_t[NUMBER_INTERVAL] { 0 };
+
     this->size = NUMBER_INTERVAL;
 }
 
 Day::Day(const Day& other) {
     this->storage = new uint8_t[other.size];
+
     for (size_t i = 0; i < other.size; i++) {
         this->storage[i] = other.storage[i];
     }
@@ -64,18 +66,22 @@ void Day::InsertEvent(Event& event) {
      * подумать над проблемой перевода uint8_t в size_t
     */
     uint8_t begin = event.GetBegin().GetNumberInterval();
+
     uint8_t end = event.GetEnd().GetNumberInterval();
     while (begin <= end) {
         storage[begin / BITS] |= ((uint8_t)1 << (begin % BITS));
+
         begin ++;
     }
 }
 
 void Day::EraseEvent(Duration& begin_time, Duration& end_time) {
     uint8_t begin = begin_time.GetNumberInterval();
+
     uint8_t end = end_time.GetNumberInterval();
     while (begin < end) {
         storage[begin / BITS] &= ~((uint8_t)1 << (begin % BITS));
+
         begin++;
     }
 }
