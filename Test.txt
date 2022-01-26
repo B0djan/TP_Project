@@ -48,10 +48,10 @@ RES: {"get_group_members":[{"members":["mars1234","qwerty"]}]}
 
 
 // GROUP MANAGEMENT
-TEST add_user: {"invite":{"title":"Texnosrac", "members":["Sasha"]}}
+TEST add_user: {"invite":{"group_id":"65", "members":["mars1234"]}}
 RES: {"invite":OK}
 
-TEST rm_user: {"kick":{"title":"Texnosrac", "members":["Sasha"]}}
+TEST rm_user: {"kick":{"group_id":"56", "members":["Sasha"]}}
 RES: {"kick":OK}
 
 

@@ -2,10 +2,10 @@
 
                             //  base
 #define REGISTRATION                     "registration"  //  completed + test
-//  input: nickname, password; output: user_id; error:"null" (если пользователь уже существует)
+//  input: nickname, password; output: user_id; error:"Error registration" (если пользователь уже существует)
 
 #define AUTHENTICATION                   "autorization"  //  completed + test
-//  input: nickname, password; output: user_id; error:"null" (если введены некорректные данные)
+//  input: nickname, password; output: user_id; error:"Error autorization" (если введены некорректные данные)
 
 
 
@@ -19,7 +19,7 @@
 //  input: user_id; output: set<string> [nickname]
 
 #define GET_GROUPS                       "get_groups"  // in process + test
-//  input: user_id; output: set<string> [title]
+//  input: user_id; output: set<group_t> [title, id, description]
 
 
 
