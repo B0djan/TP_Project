@@ -1,4 +1,4 @@
-#include "include/include_business/MeetUp.hpp"
+#include "MeetUp.hpp"
 
 int main() {
 
@@ -43,7 +43,7 @@ int main() {
 
     MeetUp meetup (group_events);
 
-    std::set<meetup_t> meetups = GetMeetUps(meetup);
+    std::set<meetup_t> meetups = meetup.GetMeetUps();
     for (auto &elem : meetups) {
         std::cout << "time_begin = " << elem.time_begin << '\t';
         std::cout << "time_end = " << elem.time_end << '\n';

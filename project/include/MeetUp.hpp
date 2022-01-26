@@ -12,9 +12,7 @@ public:
     ~MeetUp() = default;
 
     Day GetDay();
+    std::set<meetup_t> GetMeetUps();
     std::set<Event> GetDayMeetUp();
     void Set(const std::set<std::set<event_t>> &group_events);
 };
-
-std::set<meetup_t> GetMeetUps (MeetUp& m);
-

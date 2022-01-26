@@ -3,8 +3,8 @@
 #include <cstdint>
 #include <cassert>
 
-#include "../../include/include_business/event.hpp"
-#include "../../include/include_business/structs.hpp"
+#include "event.hpp"
+#include "structs.hpp"
 
 #define NUMBER_INTERVAL 12
 

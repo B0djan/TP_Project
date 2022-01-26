@@ -36,6 +36,21 @@ MeetUp::MeetUp(const std::set<std::set<event_t>> &group_events) {
 Day MeetUp::GetDay() {
     return FreeTimeDay;
 }
+
+std::set<meetup_t> MeetUp::GetMeetUps() {
+    std::set<meetup_t> answer;
+    for (auto elem : this->GetDayMeetUp()) {
+        meetup_t meetup;
+
+        meetup.time_begin = elem.GetBegin().GetTimeString();
+
+        meetup.time_end = elem.GetEnd().GetTimeString();
+
+        answer.insert(meetup);
+    }
+    return answer;
+}
+
 std::set<Event> MeetUp::GetDayMeetUp() {
     return DayMeetUp;
 }
@@ -49,19 +64,4 @@ void MeetUp::Set(const std::set<std::set<event_t>> &group_events) {
             FreeTimeDay.InsertEvent(user_event);
         }
     }
-}
-
-std::set<meetup_t> GetMeetUps (MeetUp& m) {
-    std::set<meetup_t> answer;
-    for (auto elem : m.GetDayMeetUp()) {
-        meetup_t meetup;
-
-        meetup.time_begin = elem.GetBegin().GetTimeString();
-
-        meetup.time_end = elem.GetEnd().GetTimeString();
-
-        answer.insert(meetup);
-    }
-
-    return answer;
 }

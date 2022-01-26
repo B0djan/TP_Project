@@ -1,16 +1,16 @@
 TARGET = ./main.out
 HDRS = \
-		project/include/include_business
+		project/include/
 
 CC = g++
 
 SRCS = \
-		project/src/business/MeetUp.cpp \
+		project/src/MeetUp.cpp \
 		\
-	   	project/src/business/duration.cpp \
-	   	project/src/business/structs.cpp \
-	   	project/src/business/event.cpp \
-	   	project/src/business/day.cpp \
+	   	project/src/duration.cpp \
+	   	project/src/structs.cpp \
+	   	project/src/event.cpp \
+	   	project/src/day.cpp \
 	   	project/main.cpp
 
 .PHONY: all build rebuild clean

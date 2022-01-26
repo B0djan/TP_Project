@@ -1,7 +1,7 @@
 #pragma once
 
 #include <set>
-#include "../../include/include_business/duration.hpp"
+#include "duration.hpp"
 
 class Event {
     Duration begin;
