@@ -12,13 +12,13 @@
 
 
                             //  synchro
-#define GET_EVENTS                       "get_events"  //  in process + test
+#define GET_EVENTS                       "get_events"  //  completed + test
 //  input: user_id, date; output: set<event_t> [description, time_begin, time_end]
 
-#define GET_CONTACTS                     "get_contacts"  //  in process + test
+#define GET_CONTACTS                     "get_contacts"  //  completed + test
 //  input: user_id; output: set<string> [nickname]
 
-#define GET_GROUPS                       "get_groups"  // in process + test
+#define GET_GROUPS                       "get_groups"  // completed + test
 //  input: user_id; output: set<group_t> [title, id, description]
 
 
@@ -26,29 +26,39 @@
 
 
                             //  general data
-#define WRITE_GENERAL_DATA              "write_general"  //  in process
+#define WRITE_GENERAL_DATA              "write_general"  //  completed + test
 //  input: data...; output: OK
 
-#define GET_GENERAL_DATA                "get_general"   //  in process
+#define GET_GENERAL_DATA                "get_general"   // completed + test
 //  input: id; output: data
 
 
 
 
+
+                            // Security
+#define WRITE_PASSWORD                "rewrite_password"   // completed + test
+//  input: id, password; output: ok
+
+#define WRITE_NICKNAME                "rewrite_nickname"   // completed + test
+//  input: id, nickname; output: ok
+
+
+
                             //  personal data
-#define WRITE_PERSONAL_DATA              "write_personal"  //  in process
+#define WRITE_PERSONAL_DATA              "write_personal"  // completed + test
 //  input: data...; output: OK
 
-#define GET_PERSONAL_DATA                "get_personal"  //  in process
+#define GET_PERSONAL_DATA                "get_personal"  // completed + test
 //  input: id; output: data
 
 
 
                             //  user address
-#define WRITE_ADDRESS                    "write_address"  //  in process
+#define WRITE_ADDRESS                    "write_address"  // completed + test
 //  input: data...; output: OK
 
-#define GET_ADDRESS                      "get_address"  //  in process
+#define GET_ADDRESS                      "get_address"  //  completed + test
 //  input: id; output: data
 
 
@@ -103,8 +113,8 @@
 
 
 //  meetup in group
-#define SEARCH_FREE_TIME                 "get_meetup"
-//  input: title, date; output: set<meetup_t>[description, time_begin, time_end]
+#define SEARCH_FREE_TIME                 "get_meetup"  completed + test
+//  input: group_id, date; output: set<meetup_t>[time_begin, time_end]
 
 
 #define JOIN                             "join_group"  //  В первом приближении похоже на add_user

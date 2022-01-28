@@ -82,11 +82,21 @@ RES get_personal: {"get_personal":{"user_id":"1", "first_name":"Bogdan", "surnam
 
 
 //  GENERAL DATA
-TEST write_general: "write_general":{"user_id":"8", "status":"asdas", "label":"1asd", "description":"MT11-72"}}
+TEST write_general: {"write_general":{"user_id":"8", "status":"asdas", "label":"1asd", "description":"MT11-72"}}
 RES write_general: {"write_general:"OK"}
 
 TEST get_general: {"get_general":{"user_id":"1"}}
 RES get_general: {"get_general":{"user_id":"8", "status":"asdas", "label":"1asd", "description":"MT11-72"}}
+
+
+
+
+//  SECURITY DATA
+TEST rewrite_password: {"rewrite_password":{"user_id":"8", "password":"asdas"}}
+RES rewrite_password: {"rewrite_password:"OK"}
+
+TEST rewrite_nickname: {"rewrite_nickname":{"user_id":"8", "password":"asdas"}}
+RES rewrite_nickname: {"rewrite_password:"OK"}
 
 
 

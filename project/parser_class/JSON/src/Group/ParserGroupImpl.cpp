@@ -1,4 +1,4 @@
-#include <ParserGroupImpl.hpp>
+#include <Group/ParserGroupImpl.hpp>
 
 ParserObject ParserGroupImpl::StrToObject(const std::string& parser_str) const {
     // {"create_group":{"title":"Texnosrac","members":["56"]}};
