@@ -2,12 +2,12 @@
 
 #include <Handler.hpp>
 
-class WriteGeneralDataImpl : public Handler {
+class WritePasswordImpl : public Handler {
 public:
     ParserObject process(const ParserObject& request_body) override;
 };
 
-class GetGeneralDataImpl : public Handler {
+class WriteNicknameImpl : public Handler {
 public:
     ParserObject process(const ParserObject& request_body) override;
 };

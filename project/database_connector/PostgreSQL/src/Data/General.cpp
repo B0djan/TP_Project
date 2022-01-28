@@ -30,21 +30,21 @@ namespace DatabaseConnector {
             }
 
             int ReWrite(const general_data_t &d) {
-                char command_1[] = "UPDATE general_data "
+                char command[] = "UPDATE general_data "
                                  "SET status = $1, label = $2, description = $3 "
                                  "WHERE fk_data_user = $4";
 
-                const char *arguments_part_1[4];
+                const char *arguments[4];
 
-                arguments_part_1[0] = d.status.c_str();
-                arguments_part_1[1] = d.label.c_str();
-                arguments_part_1[2] = d.description.c_str();
-                arguments_part_1[3] = d.user_id.c_str();
+                arguments[0] = d.status.c_str();
+                arguments[1] = d.label.c_str();
+                arguments[2] = d.description.c_str();
+                arguments[3] = d.user_id.c_str();
 
-                PGresult *res_1 = PQexecParams(PGConnection::GetConnection(), command_1, 4, NULL, arguments_part_1, NULL, NULL, 0);
+                PGresult *res_1 = PQexecParams(PGConnection::GetConnection(), command, 4, NULL, arguments, NULL, NULL, 0);
 
                 if (PQresultStatus(res_1) != PGRES_COMMAND_OK) {
-                    printf("General ReWrite Part 1 command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
+                    printf("General ReWrite command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
 
                     PQclear(res_1);
 
@@ -52,29 +52,6 @@ namespace DatabaseConnector {
                 }
 
                 PQclear(res_1);
-
-                // Part 2 nickname
-
-                char command_2[] = "UPDATE user_m "
-                                 "SET nickname = $1 "
-                                 "WHERE user_id = $2";
-
-                const char *arguments_part_2[2];
-
-                arguments_part_2[0] = d.nickname.c_str();
-                arguments_part_2[1] = d.user_id.c_str();
-
-                PGresult *res_2 = PQexecParams(PGConnection::GetConnection(), command_2, 2, NULL, arguments_part_2, NULL, NULL, 0);
-
-                if (PQresultStatus(res_2) != PGRES_COMMAND_OK) {
-                    printf("General ReWrite Part 2 command faild: %s\n", PQerrorMessage(PGConnection::GetConnection()));
-
-                    PQclear(res_2);
-
-                    return ERROR;
-                }
-
-                PQclear(res_2);
 
                 return SUCCESS;
             }

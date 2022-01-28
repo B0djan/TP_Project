@@ -5,23 +5,25 @@
 //  processing classes
 #include <ContactsImpl.hpp>
 #include <EventImpl.hpp>
-#include <GroupImpl.hpp>
-#include <MeetUpImpl.hpp>
+#include <Group/GroupImpl.hpp>
+#include <Group/MeetUpImpl.hpp>
 #include <RegistrAuthImpl.hpp>
 #include <SynchroClientImpl.hpp>
-#include <WriteAddressDataImpl.hpp>
-#include <WriteGeneralDataImpl.hpp>
-#include <WritePersonalDataImpl.hpp>
+#include <Data/WriteAddressDataImpl.hpp>
+#include <Data/WriteGeneralDataImpl.hpp>
+#include <Data/WriteSecurityDataImpl.hpp>
+#include <Data/WritePersonalDataImpl.hpp>
 
 //  parser_class classes
 #include <ParserContactsImpl.hpp>
 #include <ParserEventImpl.hpp>
-#include <ParserGroupImpl.hpp>
+#include <Group/ParserGroupImpl.hpp>
 #include <ParserRegistrAuthImpl.hpp>
-#include <ParserWriteAddressDataImpl.hpp>
-#include <ParserWriteGeneralDataImpl.hpp>
-#include <ParserWritePersonalDataImpl.hpp>
-#include <ParserMeetUpImpl.hpp>
+#include <Data/ParserWriteAddressDataImpl.hpp>
+#include <Data/ParserWriteGeneralDataImpl.hpp>
+#include <Data/ParserWriteSecurityDataImpl.hpp>
+#include <Data/ParserWritePersonalDataImpl.hpp>
+#include <Group/ParserMeetUpImpl.hpp>
 
 RouteImpl::RouteImpl() {
     //  Base            REQUEST                                        PARSER                     HANDLER
@@ -38,8 +40,12 @@ RouteImpl::RouteImpl() {
     route_map.insert({GET_PERSONAL_DATA,      std::make_pair(new ParserWritePersonalDataImpl,  new GetPersonalDataImpl)});
 
     //  Write user general data
-    route_map.insert({WRITE_GENERAL_DATA,    std::make_pair(new ParserWriteGeneralDataImpl,  new WriteGeneralDataImpl)});
-    route_map.insert({GET_GENERAL_DATA,      std::make_pair(new ParserWriteGeneralDataImpl,  new GetGeneralDataImpl)});
+    route_map.insert({WRITE_GENERAL_DATA,    std::make_pair(new ParserWriteGeneralDataImpl,    new WriteGeneralDataImpl)});
+    route_map.insert({GET_GENERAL_DATA,      std::make_pair(new ParserWriteGeneralDataImpl,    new GetGeneralDataImpl)});
+
+    // Security
+    route_map.insert({WRITE_PASSWORD,        std::make_pair(new ParserWriteSecurityDataImpl,    new WritePasswordImpl)});
+    route_map.insert({WRITE_NICKNAME,        std::make_pair(new ParserWriteSecurityDataImpl,    new WriteNicknameImpl)});
 
     //  Write user address
     route_map.insert({WRITE_ADDRESS,          std::make_pair(new ParserWriteAddressDataImpl,   new WriteAddressDataImpl)});
@@ -59,15 +65,15 @@ RouteImpl::RouteImpl() {
     route_map.insert({WRITE_GROUP,            std::make_pair(new ParserGroupImpl,              new WriteGroupImpl)});
     route_map.insert({RM_GROUP,               std::make_pair(new ParserGroupImpl,              new RmGroupImpl)});
 
-    route_map.insert({GET_MEMBERS,              std::make_pair(new ParserGroupImpl,              new GetGroupImpl)});
+    route_map.insert({GET_MEMBERS,             std::make_pair(new ParserGroupImpl,              new GetGroupImpl)});
 
-    //route_map.insert({SEARCH_GROUP,           std::make_pair(new ParserGroupImpl,              new SearchGroupImpl)});
+    //route_map.insert({SEARCH_GROUP,           std::make_pair(new Group,              new SearchGroupImpl)});
 
     route_map.insert({ADD_USER,               std::make_pair(new ParserGroupImpl,             new AddUserImpl)});
     route_map.insert({RM_USER,                std::make_pair(new ParserGroupImpl,             new RmUserImpl)});
 
-    //route_map.insert({JOIN,                   std::make_pair(new ParserGroupImpl,          new JoinImpl)});
-    //route_map.insert({LEAVE,                  std::make_pair(new ParserGroupImpl,          new LeaveImpl)});
+    //route_map.insert({JOIN,                   std::make_pair(new Group,          new JoinImpl)});
+    //route_map.insert({LEAVE,                  std::make_pair(new Group,          new LeaveImpl)});
 
     route_map.insert({SEARCH_FREE_TIME,       std::make_pair(new ParserMeetUpImpl,           new SearchFreeTimeImpl)});
 

@@ -18,6 +18,11 @@ namespace DatabaseConnector {
         char* User(const std::string& user_id);
     }
 
+    namespace Security {
+        int ReWritePassword(const std::string& user_id, const std::string& password);
+        int ReWriteNickname(const std::string& user_id, const std::string& nickname);
+    }
+
     namespace Group {
         int Create(const group_t& group);
 

@@ -1,4 +1,4 @@
-#include <ParserWriteGeneralDataImpl.hpp>
+#include <Data/ParserWriteGeneralDataImpl.hpp>
 
 ParserObject ParserWriteGeneralDataImpl::StrToObject(const std::string& parser_str) const {
     nlohmann::json j = nlohmann::json::parse(parser_str);
@@ -9,7 +9,7 @@ ParserObject ParserWriteGeneralDataImpl::StrToObject(const std::string& parser_s
 
     general_data_t general_data;
 
-    if (value.contains("status"))
+    if (value.contains("user_id"))
         general_data.user_id = value["user_id"].get<std::string>();
 
     if (value.contains("status"))
@@ -20,9 +20,6 @@ ParserObject ParserWriteGeneralDataImpl::StrToObject(const std::string& parser_s
 
     if (value.contains("description"))
         general_data.description = value["description"].get<std::string>();
-
-    if (value.contains("nickname"))
-        general_data.nickname = value["email"].get<std::string>();
 
     ParserObject res;
 
@@ -80,9 +77,6 @@ std::string ParserWriteGeneralDataImpl::ObjectToStr(const std::string type_respo
 
     if (!general_data.description.empty())
         value["description"] = general_data.description;
-
-    if (!general_data.nickname.empty())
-        value["nickname"] = general_data.nickname;
 
     j[type_response] = value;
 

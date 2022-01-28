@@ -17,7 +17,7 @@ INCLUDE_DIRECTORIES(database_connector/PostgreSQL/include/impl)
 
 INCLUDE_DIRECTORIES(database_connector/libs/PostgreSQL)
 
-INCLUDE_DIRECTORIES(processing_class/src/GroupImpl/MeetUp/SupportMeetUp/include)
+INCLUDE_DIRECTORIES(processing_class/src/Group/MeetUp/SupportMeetUp/include)
 
 SET(SOURCE_LIST_SERVER
         base_architecture/src/AsyncFileInputStream.cpp
@@ -34,26 +34,28 @@ SET(SOURCE_LIST_ROUTE
 SET(SOURCE_LIST_PROCESSING_CLASS
         processing_class/src/ContactsImpl.cpp
         processing_class/src/EventImpl.cpp
-        processing_class/src/GroupImpl/Base/GroupImpl.cpp
+        processing_class/src/Group/Base/GroupImpl.cpp
         "database_connector/PostgreSQL/src/Group/Management.cpp"
-        processing_class/src/GroupImpl/User/UserGroupImpl.cpp
-        processing_class/src/GroupImpl/MeetUp/MeetUpImpl.cpp
+        processing_class/src/Group/User/UserGroupImpl.cpp
+        processing_class/src/Group/MeetUp/MeetUpImpl.cpp
         processing_class/src/SynchroClientImpl.cpp
         processing_class/src/RegistrAuthImpl.cpp
-        processing_class/src/WriteAddressDataImpl.cpp
-        processing_class/src/WriteGeneralDataImpl.cpp
-        processing_class/src/WritePersonalDataImpl.cpp
+        processing_class/src/Data/WriteAddressDataImpl.cpp
+        processing_class/src/Data/WriteGeneralDataImpl.cpp
+        processing_class/src/Data/WriteSecurityDataImpl.cpp
+        processing_class/src/Data/WritePersonalDataImpl.cpp
         database_connector/PostgreSQL/src/GetID.cpp)
 
 SET(SOURCE_LIST_PARSER_CLASS
         parser_class/JSON/src/ParserContactsImpl.cpp
         parser_class/JSON/src/ParserEventImpl.cpp
-        parser_class/JSON/src/ParserGroupImpl/ParserGroupImpl.cpp
-        parser_class/JSON/src/ParserGroupImpl/ParserMeetUpImpl.cpp
+        parser_class/JSON/src/Group/ParserGroupImpl.cpp
+        parser_class/JSON/src/Group/ParserMeetUpImpl.cpp
         parser_class/JSON/src/ParserRegistrAuthImpl.cpp
-        parser_class/JSON/src/ParserWriteAddressDataImpl.cpp
-        parser_class/JSON/src/ParserWriteGeneralDataImpl.cpp
-        parser_class/JSON/src/ParserWritePersonalDataImpl.cpp)
+        parser_class/JSON/src/Data/ParserWriteAddressDataImpl.cpp
+        parser_class/JSON/src/Data/ParserWriteGeneralDataImpl.cpp
+        parser_class/JSON/src/Data/ParserWriteSecurityDataImpl.cpp
+        parser_class/JSON/src/Data/ParserWritePersonalDataImpl.cpp)
 
 SET(SOURCE_LIST_PARSER_OBJECT
         parser_object/src/Structs.cpp)
@@ -65,6 +67,7 @@ SET(SOURCE_LIST_DATABASE
         database_connector/PostgreSQL/src/Event.cpp
         database_connector/PostgreSQL/src/Data/Address.cpp
         database_connector/PostgreSQL/src/Data/Personal.cpp
+        database_connector/PostgreSQL/src/Data/Security.cpp
         database_connector/PostgreSQL/src/Data/General.cpp
         database_connector/PostgreSQL/src/Group/Base.cpp
         database_connector/PostgreSQL/src/Group/Management.cpp
@@ -72,10 +75,10 @@ SET(SOURCE_LIST_DATABASE
         database_connector/PostgreSQL/src/PGConnection.cpp)
 
 SET(SOURCE_LIST_SUPPORT_MEETUP
-        processing_class/src/GroupImpl/MeetUp/SupportMeetUp/src/day.cpp
-        processing_class/src/GroupImpl/MeetUp/SupportMeetUp/src/duration.cpp
-        processing_class/src/GroupImpl/MeetUp/SupportMeetUp/src/event.cpp
-        processing_class/src/GroupImpl/MeetUp/SupportMeetUp/src/MeetUp.cpp
+        processing_class/src/Group/MeetUp/SupportMeetUp/src/day.cpp
+        processing_class/src/Group/MeetUp/SupportMeetUp/src/duration.cpp
+        processing_class/src/Group/MeetUp/SupportMeetUp/src/event.cpp
+        processing_class/src/Group/MeetUp/SupportMeetUp/src/MeetUp.cpp
         )
 
 

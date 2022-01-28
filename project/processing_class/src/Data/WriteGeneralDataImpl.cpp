@@ -1,4 +1,4 @@
-#include <WriteGeneralDataImpl.hpp>
+#include <Data/WriteGeneralDataImpl.hpp>
 
 ParserObject WriteGeneralDataImpl::process(const ParserObject& request_body) {
     ParserObject response_body;
@@ -25,4 +25,3 @@ ParserObject GetGeneralDataImpl::process(const ParserObject& request_body) {
 
     return response_body;
 }
-

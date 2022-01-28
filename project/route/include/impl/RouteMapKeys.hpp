@@ -35,6 +35,16 @@
 
 
 
+
+                            // Security
+#define WRITE_PASSWORD                "rewrite_password"   //  in process
+//  input: id, password; output: ok
+
+#define WRITE_NICKNAME                "rewrite_nickname"   //  in process
+//  input: id, nickname; output: ok
+
+
+
                             //  personal data
 #define WRITE_PERSONAL_DATA              "write_personal"  //  in process
 //  input: data...; output: OK

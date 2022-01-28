@@ -90,6 +90,16 @@ RES get_general: {"get_general":{"user_id":"8", "status":"asdas", "label":"1asd"
 
 
 
+
+//  SECURITY DATA
+TEST rewrite_password: {"rewrite_password":{"user_id":"8", "password":"asdas"}}
+RES rewrite_password: {"rewrite_password:"OK"}
+
+TEST rewrite_nickname: {"rewrite_nickname":{"user_id":"8", "password":"asdas"}}
+RES rewrite_nickname: {"rewrite_password:"OK"}
+
+
+
 //  ADDRESS
 TEST write_address: {"write_address":{"user_id":"1", "building":"1", "housing":"1", "street":"Bolshaya Voskresenskaya","city":"Krasnogorsk","district":"Krasnogorskiy","index":"143430", "country":"Russia"}}
 RES write_address: {"write_address:"OK"}

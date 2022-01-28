@@ -33,6 +33,13 @@ ParserObject RegistrationImpl::process(const ParserObject& request_body) {
         return response_body;
     }
 
+    code = DatabaseConnector::Data::General::CreateNull(response_body.user.user_id);
+    if (code != 0) {
+        response_body.error = "Error create first general data";
+
+        return response_body;
+    }
+
     return response_body;
 }
 
