@@ -14,10 +14,15 @@ CREATE TABLE personal_data
 	email varchar(63),
 	age int,
 	phone_number varchar(20),
-	status varchar(31),
-	label varchar(31),
-	description varchar(127),
 	fk_data_user bigint REFERENCES user_m(user_id) NOT NULL
+);
+
+CREATE TABLE general_data
+(
+    status varchar(31),
+    label varchar(31),
+    description varchar(127),
+    fk_data_user bigint REFERENCES user_m(user_id) NOT NULL
 );
 
 CREATE TABLE user_address
@@ -75,6 +80,8 @@ CREATE TABLE meetup
 --  Удаление таблиц
 
 drop table personal_data;
+
+drop table general_data;
 
 drop table user_address;
 
