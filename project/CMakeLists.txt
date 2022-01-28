@@ -36,7 +36,7 @@ SET(SOURCE_LIST_PROCESSING_CLASS
         processing_class/src/EventImpl.cpp
         processing_class/src/Group/Base/GroupImpl.cpp
         "database_connector/PostgreSQL/src/Group/Management.cpp"
-        processing_class/src/Group/User/UserGroupImpl.cpp
+        processing_class/src/Group/User/GroupManagementImpl.cpp
         processing_class/src/Group/MeetUp/MeetUpImpl.cpp
         processing_class/src/SynchroClientImpl.cpp
         processing_class/src/RegistrAuthImpl.cpp
