@@ -113,7 +113,7 @@
 
 
 //  meetup in group
-#define SEARCH_FREE_TIME                 "get_meetup" // completed + test
+#define SEARCH_FREE_TIME                 "get_meetup"  //  completed + test
 //  input: group_id, date; output: set<meetup_t>[time_begin, time_end]
 
 
